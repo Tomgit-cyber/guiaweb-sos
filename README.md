@@ -90,8 +90,33 @@ Pode ser expandido com funcionalidades interativas (JS, Forms, Webhooks)
 
 
 
+
+
 ---
 
 👨‍💻 Autor
 
 Projeto construído por Everton Simão Marques com apoio de IA (ChatGPT), baseado nas diretrizes operacionais do projeto SOS Unimed Vidas.
+
+
+
+
+---
+
+👨‍💻 Copyright (c) 2025 - Projeto SOS Vidas
+
+Todos os direitos reservados.
+
+Este projeto e seus conteúdos (códigos, textos, fluxos, estrutura de pastas, arquivos e identidade visual) são propriedade intelectual da equipe SOS Vidas, liderada por seus idealizadores e colaboradores diretos. Está terminantemente proibida:
+
+- A reprodução total ou parcial deste conteúdo sem autorização escrita
+- A cópia ou redistribuição dos códigos ou documentos aqui incluídos
+- A modificação e redistribuição sob outro nome ou finalidade
+- A publicação externa em qualquer site ou plataforma sem autorização expressa
+
+O simples acesso ao conteúdo deste repositório não concede nenhuma licença de uso, revenda, modificação ou exposição pública.
+
+Para qualquer dúvida ou solicitação de uso autorizado, entre em contato com o responsável técnico do projeto.
+
+Este projeto está em desenvolvimento interno, uso exclusivo da equipe SOS Vidas e parceiros autorizados.
+
