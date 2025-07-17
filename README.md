@@ -1,122 +1,59 @@
-Guia Web – SOS Unimed Vidas 🚑
+# 🧭 Guia Web – SOS Unimed Vidas
 
-Este projeto é um guia prático e interativo para acompanhar o desenvolvimento no-code do aplicativo SOS Unimed Vidas, com foco em simplicidade, acessibilidade e usabilidade para equipes não técnicas.
+Este repositório contém o **Guia Web** do projeto **SOS Unimed Vidas**, criado para facilitar o acompanhamento visual e técnico do desenvolvimento do app, com foco no modelo **no-code/low-code**.
 
-
----
-
-✅ Propósito
-
-Ajudar o criador (no-code) a seguir um passo a passo simples.
-
-Documentar as 9 etapas do desenvolvimento, do planejamento ao deploy.
-
-Servir como um guia visual, acessível em dispositivos móveis ou desktop.
-
-
+Versão: **1.1**  
+Última atualização: **Julho/2025**
 
 ---
 
-📁 Estrutura
+## ✅ Propósito
 
-index.html: página principal com todas as etapas organizadas.
-
-Checklist visual
-
-Espaços para observações
-
-Planejamento do projeto MVP
-
-
-
+- Guiar o processo de desenvolvimento do projeto SOS Unimed Vidas de forma clara e visual.
+- Documentar as etapas desde o planejamento até o deploy.
+- Facilitar a rotina da equipe, mesmo sem conhecimento técnico.
 
 ---
 
-📌 Etapas abordadas
+## 🗂️ Estrutura do Projeto
 
-1. Planejamento
-
-
-2. Configuração
-
-
-3. UI (Interface)
-
-
-4. Backend
-
-
-5. Integração com sistemas Unimed
-
-
-6. Acessibilidade
-
-
-7. Pitch e Slides
-
-
-8. Testes
-
-
-9. Deploy
-
-
-
+| Arquivo       | Função                                             |
+|---------------|-----------------------------------------------------|
+| `index.html`  | Página principal do guia com checklist e notas     |
+| `README.md`   | Arquivo explicativo e de referência do repositório |
 
 ---
 
-🚀 Uso
+## 📌 Etapas do Guia
 
-1. Hospede este repositório no Vercel
-
-
-2. Acesse a URL gerada pelo Vercel (ex: https://guia-sos-unimed.vercel.app)
-
-
-3. Navegue pelas etapas, adicione observações e utilize como apoio diário
-
-
-
-
----
-
-📌 Observações
-
-Desenvolvido em HTML puro (sem frameworks)
-
-Totalmente responsivo e pronto para uso em celular
-
-Pode ser expandido com funcionalidades interativas (JS, Forms, Webhooks)
-
-
-
-
+1. Planejamento  
+2. Configuração  
+3. Interface (UI)  
+4. Backend  
+5. Integração com sistemas Unimed  
+6. Acessibilidade  
+7. Pitch e Slides  
+8. Testes  
+9. Deploy  
 
 ---
 
-👨‍💻 Autor
+## 🚀 Como usar
 
-Projeto construído por Everton Simão Marques com apoio de IA (ChatGPT), baseado nas diretrizes operacionais do projeto SOS Unimed Vidas.
-
-
-
+1. Hospede este repositório no [Vercel](https://vercel.com)
+2. Acesse a URL gerada (ex: `https://guiaweb-sos.vercel.app`)
+3. Marque etapas, anote pendências e acompanhe o desenvolvimento
 
 ---
 
-👨‍💻 Copyright (c) 2025 - Projeto SOS Vidas
+## 🛠️ Recursos disponíveis
 
-Todos os direitos reservados.
+- ✅ Checklist visual interativo
+- 📝 Área de anotações
+- 🔗 Links úteis integrados
 
-Este projeto e seus conteúdos (códigos, textos, fluxos, estrutura de pastas, arquivos e identidade visual) são propriedade intelectual da equipe SOS Vidas, liderada por seus idealizadores e colaboradores diretos. Está terminantemente proibida:
+---
 
-- A reprodução total ou parcial deste conteúdo sem autorização escrita
-- A cópia ou redistribuição dos códigos ou documentos aqui incluídos
-- A modificação e redistribuição sob outro nome ou finalidade
-- A publicação externa em qualquer site ou plataforma sem autorização expressa
+## 📌 Observações Técnicas
 
-O simples acesso ao conteúdo deste repositório não concede nenhuma licença de uso, revenda, modificação ou exposição pública.
-
-Para qualquer dúvida ou solicitação de uso autorizado, entre em contato com o responsável técnico do projeto.
-
-Este projeto está em desenvolvimento interno, uso exclusivo da equipe SOS Vidas e parceiros autorizados.
-
+- Desenvolvido com HTML/CSS puro (sem frameworks)
