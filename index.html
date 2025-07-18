@@ -7,7 +7,6 @@
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      line-height: 1.6;
       background-color: #f4f8fb;
       color: #333;
       margin: 0;
@@ -62,6 +61,9 @@
       margin-right: 10px;
       transform: scale(1.2);
     }
+    .concluido {
+      background-color: #d6f5d6;
+    }
     textarea {
       width: 100%;
       height: 120px;
@@ -83,6 +85,19 @@
     a:hover {
       text-decoration: underline;
     }
+    .botao-concluir {
+      margin-top: 8px;
+      padding: 6px 10px;
+      background-color: #0066cc;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+    .botao-concluir:hover {
+      background-color: #004f99;
+    }
     footer {
       font-size: 0.9rem;
     }
@@ -92,94 +107,87 @@
 
   <header>
     <h1>🧭 Guia Web – SOS Unimed Vidas</h1>
-    <p>Versão 1.1 • Atualizado por Tomgit</p>
+    <p>Versão 1.2 • Checklist interativo</p>
   </header>
 
   <main>
 
     <section>
-      <h2>✅ Checklist com Etapas do Projeto</h2>
-      <div class="checklist">
-        <label><input type="checkbox" /> Etapa 1 – Planejamento</label>
-        <label><input type="checkbox" /> Etapa 2 – Protótipo no Figma</label>
-        <label><input type="checkbox" /> Etapa 3 – Desenvolvimento no FlutterFlow</label>
-        <label><input type="checkbox" /> Etapa 4 – Integração com Firebase</label>
-        <label><input type="checkbox" /> Etapa 5 – Configuração Vercel</label>
-        <label><input type="checkbox" /> Etapa 6 – Testes e Ajustes</label>
-        <label><input type="checkbox" /> Etapa 7 – Implantação</label>
-        <label><input type="checkbox" /> Etapa 8 – Apresentação Interna</label>
-        <label><input type="checkbox" /> Etapa 9 – Pós-lançamento</label>
+      <h2>✅ Checklist das Etapas</h2>
+      <div class="checklist" id="checklist">
+        <label><input type="checkbox" data-key="etapa1" /> Etapa 1 – Planejamento</label>
+        <label><input type="checkbox" data-key="etapa2" /> Etapa 2 – Protótipo no Figma</label>
+        <label><input type="checkbox" data-key="etapa3" /> Etapa 3 – FlutterFlow</label>
+        <label><input type="checkbox" data-key="etapa4" /> Etapa 4 – Firebase</label>
+        <label><input type="checkbox" data-key="etapa5" /> Etapa 5 – Integração Vercel</label>
+        <label><input type="checkbox" data-key="etapa6" /> Etapa 6 – Testes</label>
+        <label><input type="checkbox" data-key="etapa7" /> Etapa 7 – Implantação</label>
+        <label><input type="checkbox" data-key="etapa8" /> Etapa 8 – Apresentação</label>
+        <label><input type="checkbox" data-key="etapa9" /> Etapa 9 – Pós-lançamento</label>
       </div>
     </section>
 
     <section>
-      <h2>🧩 Detalhamento das Etapas</h2>
-
-      <details>
-        <summary>Etapa 1 – Planejamento</summary>
-        <p>• Definir ideia central do SOS Vidas<br>• Levantar dores do público-alvo<br>• Alinhar escopo com Everton, Ricardo, Aline e Gelber</p>
-      </details>
-
-      <details>
-        <summary>Etapa 2 – Protótipo no Figma</summary>
-        <p>• Criar wireframes<br>• Escolher identidade visual (#0055A5)<br>• Compartilhar com equipe</p>
-      </details>
-
-      <details>
-        <summary>Etapa 3 – Desenvolvimento no FlutterFlow</summary>
-        <p>• Criar navegação entre telas<br>• Integrar variáveis do usuário<br>• Configurar autenticação e banco</p>
-      </details>
-
-      <details>
-        <summary>Etapa 4 – Integração com Firebase</summary>
-        <p>• Criar projeto Firebase<br>• Ativar Firestore e Auth<br>• Definir regras de segurança</p>
-      </details>
-
-      <details>
-        <summary>Etapa 5 – Configuração Vercel</summary>
-        <p>• Subir repositório GitHub<br>• Habilitar deploy automático<br>• Linkar domínio se necessário</p>
-      </details>
-
-      <details>
-        <summary>Etapa 6 – Testes e Ajustes</summary>
-        <p>• Testar botão, geolocalização e performance<br>• Ajustar bugs e layout mobile<br>• Validar com equipe e Unimed</p>
-      </details>
-
-      <details>
-        <summary>Etapa 7 – Implantação</summary>
-        <p>• Treinar equipe da central<br>• Revisar KPIs e logs (Zapier)<br>• Lançar o MVP</p>
-      </details>
-
-      <details>
-        <summary>Etapa 8 – Apresentação Interna</summary>
-        <p>• Apresentar resultados e funcionamento<br>• Coletar feedbacks de lideranças<br>• Revisar próximos passos</p>
-      </details>
-
-      <details>
-        <summary>Etapa 9 – Pós-lançamento</summary>
-        <p>• Manter suporte técnico<br>• Monitorar dados<br>• Planejar atualizações futuras</p>
-      </details>
-
+      <h2>🧩 Detalhes de Cada Etapa</h2>
+      <div id="detalhes">
+        <details><summary>Etapa 1 – Planejamento</summary><p>• Definição da ideia<br>• Estratégia<br>• Stakeholders</p><button class="botao-concluir">Concluir Etapa</button></details>
+        <details><summary>Etapa 2 – Protótipo</summary><p>• Figma/Wireframe<br>• Validação visual<br>• Fluxos de navegação</p><button class="botao-concluir">Concluir Etapa</button></details>
+        <details><summary>Etapa 3 – FlutterFlow</summary><p>• Montagem de telas<br>• Lógica no-code<br>• Autenticação</p><button class="botao-concluir">Concluir Etapa</button></details>
+        <details><summary>Etapa 4 – Firebase</summary><p>• Firestore<br>• Segurança<br>• Regras e banco</p><button class="botao-concluir">Concluir Etapa</button></details>
+        <details><summary>Etapa 5 – Vercel</summary><p>• Deploy<br>• GitHub conectado<br>• Domínio e teste</p><button class="botao-concluir">Concluir Etapa</button></details>
+        <details><summary>Etapa 6 – Testes</summary><p>• Usuários reais<br>• Logs via Zapier<br>• Ajustes</p><button class="botao-concluir">Concluir Etapa</button></details>
+        <details><summary>Etapa 7 – Implantação</summary><p>• Central treinada<br>• Guia entregue<br>• Ativação</p><button class="botao-concluir">Concluir Etapa</button></details>
+        <details><summary>Etapa 8 – Apresentação</summary><p>• Slides<br>• Pitch técnico<br>• Proposta comercial</p><button class="botao-concluir">Concluir Etapa</button></details>
+        <details><summary>Etapa 9 – Pós-lançamento</summary><p>• Suporte<br>• Atualizações<br>• Feedback Unimed</p><button class="botao-concluir">Concluir Etapa</button></details>
+      </div>
     </section>
 
     <section>
-      <h2>📝 Anotações Rápidas</h2>
-      <textarea placeholder="Digite observações ou lembretes importantes aqui..."></textarea>
+      <h2>📝 Suas Anotações</h2>
+      <textarea id="blocoAnotacao" placeholder="Digite aqui observações importantes..."></textarea>
     </section>
 
     <section>
       <h2>🔗 Links Úteis</h2>
       <ul>
-        <li><a href="https://vercel.com" target="_blank">🌐 Painel do Vercel</a></li>
-        <li><a href="https://github.com/Tomgit-cyber/guiaweb-sos" target="_blank">📁 Repositório GitHub</a></li>
+        <li><a href="https://vercel.com" target="_blank">🌐 Vercel</a></li>
+        <li><a href="https://github.com/Tomgit-cyber/guiaweb-sos" target="_blank">📁 GitHub</a></li>
       </ul>
     </section>
 
   </main>
 
   <footer>
-    &copy; 2025 SOS Unimed Vidas • Desenvolvido por Everton com apoio de IA | v1.1
+    &copy; 2025 SOS Unimed Vidas – Atualizado por Tomgit 💙
   </footer>
+
+  <script>
+    // Salvar e restaurar checkbox
+    document.querySelectorAll('.checklist input[type="checkbox"]').forEach(input => {
+      const key = input.dataset.key;
+      input.checked = localStorage.getItem(key) === 'true';
+      input.addEventListener('change', () => {
+        localStorage.setItem(key, input.checked);
+      });
+    });
+
+    // Salvar e restaurar textarea
+    const textarea = document.getElementById('blocoAnotacao');
+    textarea.value = localStorage.getItem('anotacao') || '';
+    textarea.addEventListener('input', () => {
+      localStorage.setItem('anotacao', textarea.value);
+    });
+
+    // Marcar bloco concluído
+    document.querySelectorAll('.botao-concluir').forEach(botao => {
+      botao.addEventListener('click', () => {
+        const details = botao.closest('details');
+        if (details) {
+          details.classList.add('concluido');
+        }
+      });
+    });
+  </script>
 
 </body>
 </html>
