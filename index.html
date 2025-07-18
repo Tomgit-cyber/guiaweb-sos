@@ -7,6 +7,7 @@
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
+      line-height: 1.6;
       background-color: #f4f8fb;
       color: #333;
       margin: 0;
@@ -24,7 +25,7 @@
     }
     main {
       padding: 20px;
-      max-width: 800px;
+      max-width: 900px;
       margin: auto;
     }
     section {
@@ -36,33 +37,30 @@
     }
     h2 {
       color: #0066cc;
+      margin-top: 0;
     }
-    .etapa {
-      margin-bottom: 15px;
+    details {
+      margin-bottom: 12px;
+      border-left: 4px solid #0066cc;
+      padding-left: 10px;
+      background-color: #f9fbfe;
+      border-radius: 6px;
+    }
+    summary {
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 1.05rem;
+      padding: 8px 0;
+    }
+    .checklist label {
+      display: flex;
+      align-items: center;
+      margin-bottom: 8px;
       cursor: pointer;
     }
-    .etapa h3 {
-      margin: 0;
-      font-size: 1.1rem;
-      color: #333;
-    }
-    .etapa-content {
-      display: none;
-      padding: 10px 0 0 10px;
-      border-left: 3px solid #0066cc;
-    }
-    .etapa button {
-      margin-top: 10px;
-      background-color: #28a745;
-      color: white;
-      border: none;
-      padding: 6px 10px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    .etapa.completed h3 {
-      text-decoration: line-through;
-      color: gray;
+    .checklist input[type="checkbox"] {
+      margin-right: 10px;
+      transform: scale(1.2);
     }
     textarea {
       width: 100%;
@@ -94,115 +92,94 @@
 
   <header>
     <h1>🧭 Guia Web – SOS Unimed Vidas</h1>
-    <p>Versão 1.2 • Etapas Interativas</p>
+    <p>Versão 1.1 • Atualizado por Tomgit</p>
   </header>
 
   <main>
+
     <section>
-      <h2>✅ Etapas de Desenvolvimento</h2>
-
-      <div class="etapa" onclick="toggleEtapa(this)">
-        <h3>Etapa 1 – Levantamento das necessidades</h3>
-        <div class="etapa-content">
-          Identificar as necessidades do projeto com todos os envolvidos e levantar os requisitos básicos do MVP.
-          <button onclick="marcarConcluido(event)">Marcar como concluído</button>
-        </div>
-      </div>
-
-      <div class="etapa" onclick="toggleEtapa(this)">
-        <h3>Etapa 2 – Protótipo no Figma</h3>
-        <div class="etapa-content">
-          Criar um protótipo visual no Figma para apresentar a interface do aplicativo antes do desenvolvimento.
-          <button onclick="marcarConcluido(event)">Marcar como concluído</button>
-        </div>
-      </div>
-
-      <div class="etapa" onclick="toggleEtapa(this)">
-        <h3>Etapa 3 – Montagem no FlutterFlow</h3>
-        <div class="etapa-content">
-          Utilizar o FlutterFlow para montar a estrutura do app sem precisar codificar manualmente.
-          <button onclick="marcarConcluido(event)">Marcar como concluído</button>
-        </div>
-      </div>
-
-      <div class="etapa" onclick="toggleEtapa(this)">
-        <h3>Etapa 4 – Configurar Firebase</h3>
-        <div class="etapa-content">
-          Integrar o projeto ao Firebase para autenticação, banco de dados e serviços em tempo real.
-          <button onclick="marcarConcluido(event)">Marcar como concluído</button>
-        </div>
-      </div>
-
-      <div class="etapa" onclick="toggleEtapa(this)">
-        <h3>Etapa 5 – Integração com Vercel</h3>
-        <div class="etapa-content">
-          Conectar o projeto à Vercel para deploy contínuo e hospedagem automática via GitHub.
-          <button onclick="marcarConcluido(event)">Marcar como concluído</button>
-        </div>
-      </div>
-
-      <div class="etapa" onclick="toggleEtapa(this)">
-        <h3>Etapa 6 – Publicar e testar</h3>
-        <div class="etapa-content">
-          Fazer o primeiro deploy e realizar testes com a equipe para validar o funcionamento.
-          <button onclick="marcarConcluido(event)">Marcar como concluído</button>
-        </div>
-      </div>
-
-      <div class="etapa" onclick="toggleEtapa(this)">
-        <h3>Etapa 7 – Ajustes finais</h3>
-        <div class="etapa-content">
-          Corrigir eventuais bugs e fazer ajustes baseados no feedback da equipe e testes.
-          <button onclick="marcarConcluido(event)">Marcar como concluído</button>
-        </div>
-      </div>
-
-      <div class="etapa" onclick="toggleEtapa(this)">
-        <h3>Etapa 8 – Apresentação</h3>
-        <div class="etapa-content">
-          Preparar o material de apresentação para os envolvidos, demonstrando o funcionamento do sistema.
-          <button onclick="marcarConcluido(event)">Marcar como concluído</button>
-        </div>
-      </div>
-
-      <div class="etapa" onclick="toggleEtapa(this)">
-        <h3>Etapa 9 – Implantação</h3>
-        <div class="etapa-content">
-          Realizar a entrega final e garantir o suporte para uso do sistema pela Unimed e parceiros.
-          <button onclick="marcarConcluido(event)">Marcar como concluído</button>
-        </div>
+      <h2>✅ Checklist com Etapas do Projeto</h2>
+      <div class="checklist">
+        <label><input type="checkbox" /> Etapa 1 – Planejamento</label>
+        <label><input type="checkbox" /> Etapa 2 – Protótipo no Figma</label>
+        <label><input type="checkbox" /> Etapa 3 – Desenvolvimento no FlutterFlow</label>
+        <label><input type="checkbox" /> Etapa 4 – Integração com Firebase</label>
+        <label><input type="checkbox" /> Etapa 5 – Configuração Vercel</label>
+        <label><input type="checkbox" /> Etapa 6 – Testes e Ajustes</label>
+        <label><input type="checkbox" /> Etapa 7 – Implantação</label>
+        <label><input type="checkbox" /> Etapa 8 – Apresentação Interna</label>
+        <label><input type="checkbox" /> Etapa 9 – Pós-lançamento</label>
       </div>
     </section>
 
     <section>
-      <h2>📝 Anotações</h2>
-      <textarea placeholder="Digite suas observações ou lembretes do projeto..."></textarea>
+      <h2>🧩 Detalhamento das Etapas</h2>
+
+      <details>
+        <summary>Etapa 1 – Planejamento</summary>
+        <p>• Definição da ideia central do SOS Vidas<br>• Levantamento de dores do público-alvo<br>• Reuniões estratégicas (Everton, Ricardo, Aline, Gelber)</p>
+      </details>
+
+      <details>
+        <summary>Etapa 2 – Protótipo no Figma</summary>
+        <p>• Criação de wireframe inicial<br>• Identidade visual: cores, tipografia e ícones<br>• Compartilhamento com o time para validação</p>
+      </details>
+
+      <details>
+        <summary>Etapa 3 – Desenvolvimento no FlutterFlow</summary>
+        <p>• Criação de telas e navegação<br>• Vinculação com variáveis de usuário<br>• Configuração de autenticação e banco</p>
+      </details>
+
+      <details>
+        <summary>Etapa 4 – Integração com Firebase</summary>
+        <p>• Criação de projeto no Firebase<br>• Ativação do Firestore e autenticação<br>• Regras de segurança e banco em nuvem</p>
+      </details>
+
+      <details>
+        <summary>Etapa 5 – Configuração Vercel</summary>
+        <p>• Repositório GitHub vinculado<br>• Deploy automático ativado<br>• Domínio personalizado (caso necessário)</p>
+      </details>
+
+      <details>
+        <summary>Etapa 6 – Testes e Ajustes</summary>
+        <p>• Testes em dispositivos reais<br>• Correções com base no feedback do time<br>• Ajustes de responsividade</p>
+      </details>
+
+      <details>
+        <summary>Etapa 7 – Implantação</summary>
+        <p>• Treinamento da equipe interna<br>• Checklist final de segurança e funcionamento<br>• Lançamento oficial</p>
+      </details>
+
+      <details>
+        <summary>Etapa 8 – Apresentação Interna</summary>
+        <p>• Reunião com lideranças<br>• Apresentação de fluxos e funcionalidades<br>• Coleta de novos feedbacks</p>
+      </details>
+
+      <details>
+        <summary>Etapa 9 – Pós-lançamento</summary>
+        <p>• Suporte técnico inicial<br>• Monitoramento de uso<br>• Planejamento para evoluções futuras</p>
+      </details>
+
+    </section>
+
+    <section>
+      <h2>📝 Anotações Rápidas</h2>
+      <textarea placeholder="Digite observações ou lembretes importantes aqui..."></textarea>
     </section>
 
     <section>
       <h2>🔗 Links Úteis</h2>
       <ul>
-        <li><a href="https://vercel.com" target="_blank">🌐 Painel Vercel</a></li>
-        <li><a href="https://github.com/Tomgit-cyber/guiaweb-sos" target="_blank">📁 Repositório no GitHub</a></li>
+        <li><a href="https://vercel.com" target="_blank">🌐 Painel do Vercel</a></li>
+        <li><a href="https://github.com/Tomgit-cyber/guiaweb-sos" target="_blank">📁 Repositório GitHub</a></li>
       </ul>
     </section>
+
   </main>
 
   <footer>
-    &copy; 2025 SOS Unimed Vidas • Criado com ❤️ por Tomgit
+    &copy; 2025 SOS Unimed Vidas • Desenvolvido por Everton com apoio de IA | v1.1
   </footer>
-
-  <script>
-    function toggleEtapa(element) {
-      const content = element.querySelector('.etapa-content');
-      content.style.display = content.style.display === 'block' ? 'none' : 'block';
-    }
-    function marcarConcluido(event) {
-      event.stopPropagation();
-      const etapa = event.target.closest('.etapa');
-      etapa.classList.toggle('completed');
-    }
-  </script>
 
 </body>
 </html>
