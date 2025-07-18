@@ -30,10 +30,30 @@
         button { background: white; color: #0055A5; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; }
         button:hover { background: #00ccff; color: white; }
         .glossary, .simulation { background: #001f3f; padding: 10px; margin: 10px 0; }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        .modal-content {
+            background: #003d7a;
+            margin: 15% auto;
+            padding: 20px;
+            border-radius: 5px;
+            width: 70%;
+            max-width: 400px;
+            color: white;
+        }
+        .close { color: #00ccff; float: right; font-size: 24px; cursor: pointer; }
         @media (max-width: 600px) {
             .container { padding: 10px; }
             h1 { font-size: 20px; }
             h2 { font-size: 18px; }
+            .modal-content { width: 90%; }
         }
     </style>
 </head>
@@ -50,7 +70,7 @@
             <div class="substage">b) Criar cronograma</div>
             <div class="substage">c) Aprovar plano</div>
             <div class="help">Ajuda: Veja vídeo de planejamento <a href="#" style="color: #00ccff;">aqui</a></div>
-            <div class="error"><button onclick="alert('Reporte o erro com print!')">Relatar Erro</button></div>
+            <div class="error"><button onclick="openModal()">Relatar Erro</button></div>
             <div class="notes">Observações: Feedback Unimed - "Aprovação pendente"</div>
         </div>
 
@@ -63,6 +83,7 @@
             <div class="substage">c) Testar conexão</div>
             <div class="help">Ajuda: Tutorial texto <a href="#" style="color: #00ccff;">aqui</a></div>
             <div class="notes">Observações: Objeção - "API rejeitada"</div>
+            <div class="error"><button onclick="openModal()">Relatar Erro</button></div>
         </div>
 
         <!-- UI -->
@@ -74,6 +95,7 @@
             <div class="substage">c) Revisão</div>
             <div class="help">Ajuda: Vídeo UI <a href="#" style="color: #00ccff;">aqui</a></div>
             <div class="notes">Feedback Gelber: "Botão maior"</div>
+            <div class="error"><button onclick="openModal()">Relatar Erro</button></div>
         </div>
 
         <!-- Backend -->
@@ -83,7 +105,7 @@
             <div class="substage">a) Configurar API</div>
             <div class="substage">b) Testar endpoints</div>
             <div class="substage">c) Otimizar</div>
-            <div class="error"><button onclick="alert('Reporte o erro!')">Relatar Erro</button></div>
+            <div class="error"><button onclick="openModal()">Relatar Erro</button></div>
         </div>
 
         <!-- Integração -->
@@ -94,6 +116,7 @@
             <div class="substage">b) Testar webhook</div>
             <div class="substage">c) Validar dados</div>
             <div class="help">Ajuda: Guia texto <a href="#" style="color: #00ccff;">aqui</a></div>
+            <div class="error"><button onclick="openModal()">Relatar Erro</button></div>
         </div>
 
         <!-- Chatbot -->
@@ -104,6 +127,7 @@
             <div class="substage">b) Integrar IA</div>
             <div class="substage">c) Testar respostas</div>
             <div class="notes">Observações: "Respostas lentas"</div>
+            <div class="error"><button onclick="openModal()">Relatar Erro</button></div>
         </div>
 
         <!-- Pitch -->
@@ -114,6 +138,7 @@
             <div class="substage">b) Simular reunião</div>
             <div class="substage">c) Ajustar discurso</div>
             <div class="help">Ajuda: Template <a href="#" style="color: #00ccff;">aqui</a></div>
+            <div class="error"><button onclick="openModal()">Relatar Erro</button></div>
         </div>
 
         <!-- Testes -->
@@ -123,7 +148,7 @@
             <div class="substage">a) Testar UI</div>
             <div class="substage">b) Validar backend</div>
             <div class="substage">c) Corrigir bugs</div>
-            <div class="error"><button onclick="alert('Reporte o erro!')">Relatar Erro</button></div>
+            <div class="error"><button onclick="openModal()">Relatar Erro</button></div>
         </div>
 
         <!-- Deploy -->
@@ -134,6 +159,7 @@
             <div class="substage">b) Testar link</div>
             <div class="substage">c) Monitorar</div>
             <div class="help">Ajuda: Guia deploy <a href="#" style="color: #00ccff;">aqui</a></div>
+            <div class="error"><button onclick="openModal()">Relatar Erro</button></div>
         </div>
 
         <!-- Glossário -->
@@ -152,5 +178,45 @@
             <p>5. Próximos passos? <input type="text" placeholder="Resposta"></p>
         </div>
     </div>
+
+    <!-- Modal para Relatar Erro -->
+    <div id="errorModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h3>Relatar Erro</h3>
+            <textarea id="errorDescription" placeholder="Descreva o erro..." rows="4" style="width: 100%; margin: 10px 0;"></textarea>
+            <input type="file" id="errorFile" accept="image/*" style="margin: 10px 0;">
+            <button onclick="submitError()">Enviar</button>
+        </div>
+    </div>
+
+    <script>
+        // Abrir modal
+        function openModal() {
+            document.getElementById("errorModal").style.display = "block";
+        }
+        // Fechar modal
+        function closeModal() {
+            document.getElementById("errorModal").style.display = "none";
+        }
+        // Enviar erro (simulação)
+        function submitError() {
+            let description = document.getElementById("errorDescription").value;
+            let file = document.getElementById("errorFile").files[0];
+            if (description || file) {
+                alert("Erro reportado!\nDescrição: " + description + "\nArquivo: " + (file ? file.name : "Nenhum"));
+                closeModal();
+            } else {
+                alert("Preencha a descrição ou anexe um print!");
+            }
+        }
+        // Fechar ao clicar fora
+        window.onclick = function(event) {
+            let modal = document.getElementById("errorModal");
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
 </body>
 </html>
