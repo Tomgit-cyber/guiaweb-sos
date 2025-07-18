@@ -86,6 +86,13 @@
     footer {
       font-size: 0.9rem;
     }
+    .indice ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .indice li {
+      margin-bottom: 8px;
+    }
   </style>
 </head>
 <body>
@@ -97,7 +104,18 @@
 
   <main>
 
-    <section>
+    <section class="indice">
+      <h2>📚 Índice</h2>
+      <ul>
+        <li><a href="#checklist">✅ Checklist com Etapas do Projeto</a></li>
+        <li><a href="#etapas">🧩 Detalhamento das Etapas</a></li>
+        <li><a href="#anotacoes">📝 Anotações</a></li>
+        <li><a href="#contato">📨 Fale com o time</a></li>
+        <li><a href="#links">🔗 Links Úteis</a></li>
+      </ul>
+    </section>
+
+    <section id="checklist">
       <h2>✅ Checklist com Etapas do Projeto</h2>
       <div class="checklist">
         <label><input type="checkbox" /> Etapa 1 – Planejamento</label>
@@ -112,7 +130,7 @@
       </div>
     </section>
 
-    <section>
+    <section id="etapas">
       <h2>🧩 Detalhamento das Etapas</h2>
       <details><summary>Etapa 1 – Planejamento</summary><p>• Definição da ideia central<br>• Levantamento de dores<br>• Reuniões estratégicas</p></details>
       <details><summary>Etapa 2 – Protótipo no Figma</summary><p>• Wireframe inicial<br>• Identidade visual<br>• Validação</p></details>
@@ -125,29 +143,29 @@
       <details><summary>Etapa 9 – Pós-lançamento</summary><p>• Suporte<br>• Monitoramento</p></details>
     </section>
 
-    <section>
+    <section id="anotacoes">
       <h2>📝 Anotações</h2>
       <textarea placeholder="Digite observações..."></textarea>
     </section>
 
-    <section>
-  <h2>📨 Fale com o time</h2>
-  <p>Use o formulário abaixo para enviar sugestões, dúvidas ou ajustes:</p>
-  <form action="https://formspree.io/f/xdkdkyj..." method="POST">
-    <label>Seu Nome:
-      <input type="text" name="nome" required />
-    </label><br />
-    <label>Seu Email:
-      <input type="email" name="email" required />
-    </label><br />
-    <label>Mensagem:
-      <textarea name="mensagem" required></textarea>
-    </label><br />
-    <button type="submit">Enviar</button>
-  </form>
-</section>
+    <section id="contato">
+      <h2>📨 Fale com o time</h2>
+      <p>Use o formulário abaixo para enviar sugestões, dúvidas ou ajustes:</p>
+      <form action="https://formspree.io/f/xdkdkyj..." method="POST">
+        <label>Seu Nome:
+          <input type="text" name="nome" required />
+        </label><br />
+        <label>Seu Email:
+          <input type="email" name="email" required />
+        </label><br />
+        <label>Mensagem:
+          <textarea name="mensagem" required></textarea>
+        </label><br />
+        <button type="submit">Enviar</button>
+      </form>
+    </section>
 
-    <section>
+    <section id="links">
       <h2>🔗 Links Úteis</h2>
       <ul>
         <li><a href="https://vercel.com" target="_blank">🌐 Painel Vercel</a></li>
