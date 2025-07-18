@@ -38,7 +38,7 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.5);
-            z-index: 1000; /* Garante que fique acima de outros elementos */
+            z-index: 1000;
         }
         .modal-content {
             background: #003d7a;
@@ -188,10 +188,10 @@
         <div class="modal-content">
             <span class="close" onclick="closeModal()">×</span>
             <h3>Relatar Erro</h3>
-            <form action="https://formspree.io/f/your-form-id" method="POST">
+            <form action="https://formspree.io/f/xwkgyqzl" method="POST">
                 <textarea name="description" id="errorDescription" placeholder="Descreva o erro..." rows="4" required style="width: 100%; margin: 10px 0; padding: 5px; background: #001f3f; border: none; border-radius: 5px; color: white;"></textarea>
                 <input type="file" name="attachment" id="errorFile" accept="image/*" style="margin: 10px 0;">
-                <input type="email" name="email" value="everton.developer.tech@gmail.com" style="display: none;"> <!-- E-mail fixo -->
+                <input type="email" name="email" value="everton.developer.tech@gmail.com" style="display: none;">
                 <button type="submit" class="submit">Enviar</button>
             </form>
         </div>
@@ -202,7 +202,6 @@
         function openModal() {
             let modal = document.getElementById("errorModal");
             modal.style.display = "block";
-            // Foco no textarea pra digitação
             setTimeout(() => document.getElementById("errorDescription").focus(), 100);
         }
         // Fechar modal
