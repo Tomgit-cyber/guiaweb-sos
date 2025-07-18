@@ -1,175 +1,156 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Guia SOS Unimed Vidas</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f4f8fb;
-      color: #333;
-      margin: 0;
-      padding: 0;
-    }
-    header, footer {
-      background-color: #0066cc;
-      color: white;
-      text-align: center;
-      padding: 20px 10px;
-    }
-    main {
-      padding: 20px;
-      max-width: 920px;
-      margin: auto;
-    }
-    section {
-      background: #fff;
-      border-radius: 10px;
-      padding: 20px;
-      margin-bottom: 20px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
-    h1 {
-      margin: 0;
-    }
-    h2 {
-      color: #0066cc;
-      margin-top: 0;
-    }
-    .checklist label {
-      display: flex;
-      align-items: center;
-      margin-bottom: 8px;
-    }
-    .checklist input[type="checkbox"] {
-      margin-right: 10px;
-      transform: scale(1.2);
-    }
-    details {
-      margin-bottom: 12px;
-      border-left: 4px solid #0066cc;
-      padding-left: 10px;
-      background: #f9fbfe;
-      border-radius: 6px;
-    }
-    summary {
-      font-weight: bold;
-      cursor: pointer;
-      padding: 8px 0;
-    }
-    textarea {
-      width: 100%;
-      height: 120px;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      resize: vertical;
-      font-family: inherit;
-      font-size: 1rem;
-    }
-    ul {
-      padding-left: 20px;
-    }
-    a {
-      color: #0066cc;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    footer {
-      font-size: 0.9rem;
-    }
-    .glossary term {
-      font-weight: bold;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Web – SOS Unimed Vidas v1.3</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0055A5;
+            color: white;
+            margin: 0;
+            padding: 10px;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        h1 { color: white; font-size: 24px; }
+        h2 { color: #00ccff; font-size: 20px; }
+        .stage { margin: 15px 0; }
+        .checkbox { margin: 5px; font-size: 16px; }
+        .completed { text-decoration: line-through; color: #90ee90; }
+        .substage { margin-left: 20px; }
+        .help, .error, .notes { background: #003d7a; padding: 10px; border-radius: 5px; margin: 10px 0; }
+        button { background: white; color: #0055A5; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; }
+        button:hover { background: #00ccff; color: white; }
+        .glossary, .simulation { background: #001f3f; padding: 10px; margin: 10px 0; }
+        @media (max-width: 600px) {
+            .container { padding: 10px; }
+            h1 { font-size: 20px; }
+            h2 { font-size: 18px; }
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <h1>Guia Web – SOS Unimed Vidas v1.3</h1>
+        <p>Gerencie o desenvolvimento do projeto com subetapas interativas!</p>
 
-  <header>
-    <h1>🧭 Guia Web – SOS Unimed Vidas</h1>
-    <p>Versão 1.2 • Atualizado por Tomgit</p>
-  </header>
+        <!-- Planejamento -->
+        <div class="stage">
+            <h2>1. Planejamento</h2>
+            <div class="checkbox"><input type="checkbox"> Definir objetivos</div>
+            <div class="substage">a) Identificar stakeholders</div>
+            <div class="substage">b) Criar cronograma</div>
+            <div class="substage">c) Aprovar plano</div>
+            <div class="help">Ajuda: Veja vídeo de planejamento <a href="#" style="color: #00ccff;">aqui</a></div>
+            <div class="error"><button onclick="alert('Reporte o erro com print!')">Relatar Erro</button></div>
+            <div class="notes">Observações: Feedback Unimed - "Aprovação pendente"</div>
+        </div>
 
-  <main>
+        <!-- Configuração -->
+        <div class="stage">
+            <h2>2. Configuração</h2>
+            <div class="checkbox"><input type="checkbox"> Configurar ambiente</div>
+            <div class="substage">a) Instalar ferramentas</div>
+            <div class="substage">b) Conectar Vercel</div>
+            <div class="substage">c) Testar conexão</div>
+            <div class="help">Ajuda: Tutorial texto <a href="#" style="color: #00ccff;">aqui</a></div>
+            <div class="notes">Observações: Objeção - "API rejeitada"</div>
+        </div>
 
-    <section>
-      <h2>✅ Checklist com Etapas</h2>
-      <div class="checklist">
-        <label><input type="checkbox" /> Etapa 1 – Planejamento</label>
-        <label><input type="checkbox" /> Etapa 2 – Protótipo no Figma</label>
-        <label><input type="checkbox" /> Etapa 3 – Desenvolvimento no FlutterFlow</label>
-        <label><input type="checkbox" /> Etapa 4 – Integração com Firebase</label>
-        <label><input type="checkbox" /> Etapa 5 – Configuração no Vercel</label>
-        <label><input type="checkbox" /> Etapa 6 – Testes e KPIs</label>
-        <label><input type="checkbox" /> Etapa 7 – Implantação Técnica</label>
-        <label><input type="checkbox" /> Etapa 8 – Apresentação e Validação</label>
-        <label><input type="checkbox" /> Etapa 9 – Pós-lançamento e Suporte</label>
-      </div>
-    </section>
+        <!-- UI -->
+        <div class="stage">
+            <h2>3. UI</h2>
+            <div class="checkbox"><input type="checkbox"> Desenhar interface</div>
+            <div class="substage">a) Mockup inicial</div>
+            <div class="substage">b) Ajustar cores (#0055A5)</div>
+            <div class="substage">c) Revisão</div>
+            <div class="help">Ajuda: Vídeo UI <a href="#" style="color: #00ccff;">aqui</a></div>
+            <div class="notes">Feedback Gelber: "Botão maior"</div>
+        </div>
 
-    <section>
-      <h2>📌 Detalhamento das Etapas</h2>
-      <details><summary>Etapa 1 – Planejamento</summary>
-        <p>• Definição da ideia<br>• Levantamento de dores dos usuários<br>• Planejamento de ferramentas (FlutterFlow, Firebase, Zapier)</p>
-      </details>
-      <details><summary>Etapa 2 – Protótipo no Figma</summary>
-        <p>• Wireframes<br>• Identidade visual (#0055A5)<br>• Validação visual com equipe</p>
-      </details>
-      <details><summary>Etapa 3 – Desenvolvimento no FlutterFlow</summary>
-        <p>• Telas interativas<br>• Conexão com variáveis<br>• Preparação para deploy</p>
-      </details>
-      <details><summary>Etapa 4 – Integração com Firebase</summary>
-        <p>• Firestore, Auth, segurança<br>• Estrutura de banco de dados<br>• Conexão com FlutterFlow</p>
-      </details>
-      <details><summary>Etapa 5 – Configuração no Vercel</summary>
-        <p>• Repositório Git vinculado<br>• Deploy automático ativo<br>• URL de produção pronta</p>
-      </details>
-      <details><summary>Etapa 6 – Testes e KPIs</summary>
-        <p>• Selenium + Zapier<br>• Localização < 5s, botão < 2s<br>• Logs no Slack ou Sheets</p>
-      </details>
-      <details><summary>Etapa 7 – Implantação Técnica</summary>
-        <p>• Treinamento da central<br>• Acesso ao painel Unimed<br>• Garantia de backup</p>
-      </details>
-      <details><summary>Etapa 8 – Apresentação e Validação</summary>
-        <p>• Reunião final com TI<br>• Slides técnicos<br>• Documentação validada</p>
-      </details>
-      <details><summary>Etapa 9 – Pós-lançamento e Suporte</summary>
-        <p>• Feedback contínuo<br>• Roadmap de melhorias<br>• Suporte técnico opcional</p>
-      </details>
-    </section>
+        <!-- Backend -->
+        <div class="stage">
+            <h2>4. Backend</h2>
+            <div class="checkbox"><input type="checkbox"> Desenvolver backend</div>
+            <div class="substage">a) Configurar API</div>
+            <div class="substage">b) Testar endpoints</div>
+            <div class="substage">c) Otimizar</div>
+            <div class="error"><button onclick="alert('Reporte o erro!')">Relatar Erro</button></div>
+        </div>
 
-    <section>
-      <h2>📝 Anotações</h2>
-      <textarea placeholder="Digite suas anotações aqui..."></textarea>
-    </section>
+        <!-- Integração -->
+        <div class="stage">
+            <h2>5. Integração</h2>
+            <div class="checkbox"><input type="checkbox"> Integrar sistemas</div>
+            <div class="substage">a) Conectar Zapier</div>
+            <div class="substage">b) Testar webhook</div>
+            <div class="substage">c) Validar dados</div>
+            <div class="help">Ajuda: Guia texto <a href="#" style="color: #00ccff;">aqui</a></div>
+        </div>
 
-    <section>
-      <h2>🔗 Links Úteis</h2>
-      <ul>
-        <li><a href="https://vercel.com" target="_blank">🌐 Painel Vercel</a></li>
-        <li><a href="https://github.com/Tomgit-cyber/guiaweb-sos" target="_blank">📁 GitHub – guiaweb-sos</a></li>
-      </ul>
-    </section>
+        <!-- Chatbot -->
+        <div class="stage">
+            <h2>6. Chatbot</h2>
+            <div class="checkbox"><input type="checkbox"> Desenvolver chatbot</div>
+            <div class="substage">a) Criar diálogos</div>
+            <div class="substage">b) Integrar IA</div>
+            <div class="substage">c) Testar respostas</div>
+            <div class="notes">Observações: "Respostas lentas"</div>
+        </div>
 
-    <section>
-      <h2>📘 Glossário Rápido</h2>
-      <ul>
-        <li><b>Firebase:</b> Plataforma backend da Google usada no app.</li>
-        <li><b>FlutterFlow:</b> Ferramenta no-code usada para construir o app.</li>
-        <li><b>Deploy:</b> Publicar a versão mais recente do projeto.</li>
-        <li><b>Vercel:</b> Plataforma de hospedagem onde está o guia.</li>
-        <li><b>Commit:</b> Salvar alterações no código e gerar nova versão.</li>
-      </ul>
-    </section>
+        <!-- Pitch -->
+        <div class="stage">
+            <h2>7. Pitch</h2>
+            <div class="checkbox"><input type="checkbox"> Preparar apresentação</div>
+            <div class="substage">a) Criar slides</div>
+            <div class="substage">b) Simular reunião</div>
+            <div class="substage">c) Ajustar discurso</div>
+            <div class="help">Ajuda: Template <a href="#" style="color: #00ccff;">aqui</a></div>
+        </div>
 
-  </main>
+        <!-- Testes -->
+        <div class="stage">
+            <h2>8. Testes</h2>
+            <div class="checkbox"><input type="checkbox"> Realizar testes</div>
+            <div class="substage">a) Testar UI</div>
+            <div class="substage">b) Validar backend</div>
+            <div class="substage">c) Corrigir bugs</div>
+            <div class="error"><button onclick="alert('Reporte o erro!')">Relatar Erro</button></div>
+        </div>
 
-  <footer>
-    &copy; 2025 SOS Unimed Vidas • v1.2 • Construído por Everton com apoio de IA
-  </footer>
+        <!-- Deploy -->
+        <div class="stage">
+            <h2>9. Deploy</h2>
+            <div class="checkbox"><input type="checkbox"> Lançar projeto</div>
+            <div class="substage">a) Fazer upload</div>
+            <div class="substage">b) Testar link</div>
+            <div class="substage">c) Monitorar</div>
+            <div class="help">Ajuda: Guia deploy <a href="#" style="color: #00ccff;">aqui</a></div>
+        </div>
 
+        <!-- Glossário -->
+        <div class="glossary">
+            <h2>Glossário</h2>
+            <p>API: Conexão com Unimed | Webhook: Automação via Grok</p>
+        </div>
+
+        <!-- Simulação de Reunião -->
+        <div class="simulation">
+            <h2>Simulação de Reunião (5 Perguntas Unimed TI)</h2>
+            <p>1. Qual o prazo? <input type="text" placeholder="Resposta"></p>
+            <p>2. Há integração com API? <input type="text" placeholder="Resposta"></p>
+            <p>3. Testes foram feitos? <input type="text" placeholder="Resposta"></p>
+            <p>4. Custos estimados? <input type="text" placeholder="Resposta"></p>
+            <p>5. Próximos passos? <input type="text" placeholder="Resposta"></p>
+        </div>
+    </div>
 </body>
 </html>
