@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guia Web – SOS Unimed Vidas v1.3</title>
+    <title>Guia Web – SOS Unimed Vidas v1.3.1</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -38,6 +38,7 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.5);
+            z-index: 1000; /* Garante que fique acima de outros elementos */
         }
         .modal-content {
             background: #003d7a;
@@ -47,8 +48,11 @@
             width: 70%;
             max-width: 400px;
             color: white;
+            position: relative;
         }
         .close { color: #00ccff; float: right; font-size: 24px; cursor: pointer; }
+        textarea, input[type="file"] { width: 100%; margin: 10px 0; padding: 5px; background: #001f3f; border: none; border-radius: 5px; color: white; }
+        button.submit { background: #00ccff; color: white; }
         @media (max-width: 600px) {
             .container { padding: 10px; }
             h1 { font-size: 20px; }
@@ -59,8 +63,8 @@
 </head>
 <body>
     <div class="container">
-        <h1>Guia Web – SOS Unimed Vidas v1.3</h1>
-        <p>Gerencie o desenvolvimento do projeto com subetapas interativas!</p>
+        <h1>Guia Web – SOS Unimed Vidas v1.3.1</h1>
+        <p>Gerencie o desenvolvimento com subetapas interativas!</p>
 
         <!-- Planejamento -->
         <div class="stage">
@@ -69,9 +73,9 @@
             <div class="substage">a) Identificar stakeholders</div>
             <div class="substage">b) Criar cronograma</div>
             <div class="substage">c) Aprovar plano</div>
-            <div class="help">Ajuda: Veja vídeo de planejamento <a href="#" style="color: #00ccff;">aqui</a></div>
+            <div class="help">Ajuda: Veja vídeo <a href="#" style="color: #00ccff;">aqui</a></div>
             <div class="error"><button onclick="openModal()">Relatar Erro</button></div>
-            <div class="notes">Observações: Feedback Unimed - "Aprovação pendente"</div>
+            <div class="notes">Observações: "Aprovação pendente"</div>
         </div>
 
         <!-- Configuração -->
@@ -81,8 +85,8 @@
             <div class="substage">a) Instalar ferramentas</div>
             <div class="substage">b) Conectar Vercel</div>
             <div class="substage">c) Testar conexão</div>
-            <div class="help">Ajuda: Tutorial texto <a href="#" style="color: #00ccff;">aqui</a></div>
-            <div class="notes">Observações: Objeção - "API rejeitada"</div>
+            <div class="help">Ajuda: Tutorial <a href="#" style="color: #00ccff;">aqui</a></div>
+            <div class="notes">Observações: "API rejeitada"</div>
             <div class="error"><button onclick="openModal()">Relatar Erro</button></div>
         </div>
 
@@ -94,7 +98,7 @@
             <div class="substage">b) Ajustar cores (#0055A5)</div>
             <div class="substage">c) Revisão</div>
             <div class="help">Ajuda: Vídeo UI <a href="#" style="color: #00ccff;">aqui</a></div>
-            <div class="notes">Feedback Gelber: "Botão maior"</div>
+            <div class="notes">Feedback: "Botão maior"</div>
             <div class="error"><button onclick="openModal()">Relatar Erro</button></div>
         </div>
 
@@ -115,7 +119,7 @@
             <div class="substage">a) Conectar Zapier</div>
             <div class="substage">b) Testar webhook</div>
             <div class="substage">c) Validar dados</div>
-            <div class="help">Ajuda: Guia texto <a href="#" style="color: #00ccff;">aqui</a></div>
+            <div class="help">Ajuda: Guia <a href="#" style="color: #00ccff;">aqui</a></div>
             <div class="error"><button onclick="openModal()">Relatar Erro</button></div>
         </div>
 
@@ -179,36 +183,32 @@
         </div>
     </div>
 
-    <!-- Modal para Relatar Erro -->
+    <!-- Modal para Relatar Erro com Formulário -->
     <div id="errorModal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
+            <span class="close" onclick="closeModal()">×</span>
             <h3>Relatar Erro</h3>
-            <textarea id="errorDescription" placeholder="Descreva o erro..." rows="4" style="width: 100%; margin: 10px 0;"></textarea>
-            <input type="file" id="errorFile" accept="image/*" style="margin: 10px 0;">
-            <button onclick="submitError()">Enviar</button>
+            <form action="https://formspree.io/f/your-form-id" method="POST">
+                <textarea name="description" id="errorDescription" placeholder="Descreva o erro..." rows="4" required style="width: 100%; margin: 10px 0; padding: 5px; background: #001f3f; border: none; border-radius: 5px; color: white;"></textarea>
+                <input type="file" name="attachment" id="errorFile" accept="image/*" style="margin: 10px 0;">
+                <input type="email" name="email" value="everton.developer.tech@gmail.com" style="display: none;"> <!-- E-mail fixo -->
+                <button type="submit" class="submit">Enviar</button>
+            </form>
         </div>
     </div>
 
     <script>
         // Abrir modal
         function openModal() {
-            document.getElementById("errorModal").style.display = "block";
+            let modal = document.getElementById("errorModal");
+            modal.style.display = "block";
+            // Foco no textarea pra digitação
+            setTimeout(() => document.getElementById("errorDescription").focus(), 100);
         }
         // Fechar modal
         function closeModal() {
-            document.getElementById("errorModal").style.display = "none";
-        }
-        // Enviar erro (simulação)
-        function submitError() {
-            let description = document.getElementById("errorDescription").value;
-            let file = document.getElementById("errorFile").files[0];
-            if (description || file) {
-                alert("Erro reportado!\nDescrição: " + description + "\nArquivo: " + (file ? file.name : "Nenhum"));
-                closeModal();
-            } else {
-                alert("Preencha a descrição ou anexe um print!");
-            }
+            let modal = document.getElementById("errorModal");
+            modal.style.display = "none";
         }
         // Fechar ao clicar fora
         window.onclick = function(event) {
