@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Guia SOS Unimed Vidas v1.4 - Documentação Completa</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assistente de Transição - SOS Unimed Vidas v2.0</title>
   <style>
     :root {
       --primary-color: #00A651;
       --primary-dark: #006633;
+      --transition: #00703C;
       --light-bg: #e7fbe7;
       --light-accent: #f1fdf4;
       --text-dark: #333;
       --text-light: #fff;
       --border-radius: 12px;
-      --box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+      --box-shadow: 0 6px 16px rgba(0,0,0,0.1);
       --transition: all 0.3s ease;
-      --glass-bg: rgba(255, 255, 255, 0.85);
     }
     
     * {
@@ -26,7 +26,7 @@
     
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #f9f9f9 0%, #e6f4e6 100%);
+      background: linear-gradient(135deg, #f0f9f0 0%, #d4f7d4 100%);
       color: var(--text-dark);
       line-height: 1.7;
       min-height: 100vh;
@@ -83,15 +83,15 @@
     }
     
     .container {
-      background: var(--glass-bg);
+      background: rgba(255, 255, 255, 0.92);
       border-radius: var(--border-radius);
       padding: 30px;
       margin: 25px auto;
       max-width: 1000px;
       box-shadow: var(--box-shadow);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.6);
     }
     
     h1, h2, h3 {
@@ -432,6 +432,74 @@
       opacity: 1;
     }
     
+    .accordion {
+      background: white;
+      border-radius: var(--border-radius);
+      margin-bottom: 15px;
+      box-shadow: var(--box-shadow);
+      overflow: hidden;
+    }
+    
+    .accordion-header {
+      padding: 20px;
+      background: var(--light-accent);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      font-size: 18px;
+    }
+    
+    .accordion-header:hover {
+      background: #e0f7e0;
+    }
+    
+    .accordion-content {
+      padding: 0 20px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+    
+    .accordion.active .accordion-content {
+      padding: 20px;
+      max-height: 1000px;
+    }
+    
+    .step-action {
+      display: inline-block;
+      background: var(--primary-color);
+      color: white;
+      padding: 8px 15px;
+      border-radius: 20px;
+      margin-top: 10px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .step-action:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+    
+    .knowledge-source {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 15px;
+      padding: 10px;
+      background: #f8f8f8;
+      border-radius: var(--border-radius);
+      font-size: 14px;
+    }
+    
+    .knowledge-source img {
+      width: 24px;
+      height: 24px;
+    }
+    
     @media (max-width: 768px) {
       nav {
         flex-direction: column;
@@ -503,12 +571,12 @@
   <!-- Guia -->
   <div id="guia" class="tab-content active">
     <div class="container">
-      <h1>Guia de Construção e Transição – SOS Unimed Vidas</h1>
-      <div class="version-info">Versão 1.4 • Atualizado em 19/07/2025</div>
+      <h1>Assistente de Transição - SOS Unimed Vidas</h1>
+      <div class="version-info">Versão 2.0 • Atualizado em 19/07/2025</div>
       
       <div class="warning-box">
         <strong>⚠️ Contexto Importante:</strong> Este projeto será entregue ao setor de TI da Unimed Cachoeiro do Itapemirim. 
-        Toda documentação foi pensada para facilitar a transição.
+        Este assistente guiará a equipe em todas as etapas de continuidade do projeto.
       </div>
 
       <div class="indice">
@@ -520,122 +588,236 @@
           <li><a href="#submenus"><span>📂</span> Submenus Atuais</a></li>
           <li><a href="#fluxo"><span>🚀</span> Fluxo de Deploy</a></li>
           <li><a href="#boaspraticas"><span>🧠</span> Boas Práticas</a></li>
-          <li><a href="#transicao"><span>🔄</span> Preparação para Transição</a></li>
+          <li><a href="#transicao"><span>🔄</span> Assistente de Transição</a></li>
           <li><a href="#referencias"><span>🔎</span> Referências</a></li>
         </ul>
       </div>
 
       <h2 id="objetivo"><span class="section-icon">🎯</span> Objetivo</h2>
-      <p>Organizar e orientar o desenvolvimento do aplicativo SOS Unimed Vidas em todas as suas fases e tecnologias integradas, servindo como documentação centralizada para garantir consistência e qualidade no processo de construção.</p>
-      <p>Este guia também prepara a transição para o setor de TI da Unimed Cachoeiro do Itapemirim, contendo todas as informações necessárias para manutenção e evolução do projeto.</p>
+      <p>Este assistente serve como guia completo para desenvolvimento, manutenção e evolução do aplicativo SOS Unimed Vidas, incorporando conhecimento de múltiplas fontes (Grok, ChatGPT) e fornecendo orientação passo a passo.</p>
 
       <h2 id="fases"><span class="section-icon">📌</span> Fases do Projeto</h2>
-      <ul>
-        <li><label class="checkbox"><input type="checkbox" data-task="planejamento"> Planejamento Estratégico</label></li>
-        <li><label class="checkbox"><input type="checkbox" data-task="configuracao"> Configuração de Ambiente</label></li>
-        <li><label class="checkbox"><input type="checkbox" data-task="design" checked> UI e Design</label></li>
-        <li><label class="checkbox"><input type="checkbox" data-task="integracao" checked> Integrações Técnicas</label></li>
-        <li><label class="checkbox"><input type="checkbox" data-task="testes"> Testes e Deploy</label></li>
-      </ul>
-      <p>As fases devem ser seguidas sequencialmente, com revisões periódicas entre cada etapa. O status atual está destacado nas checkboxes.</p>
+      
+      <div class="accordion active">
+        <div class="accordion-header">
+          <span>1. Planejamento Estratégico</span>
+          <span>▼</span>
+        </div>
+        <div class="accordion-content">
+          <h3>Passo a Passo</h3>
+          <ol>
+            <li>Definir escopo do MVP com stakeholders</li>
+            <li>Criar roadmap de desenvolvimento</li>
+            <li>Documentar requisitos funcionais e não funcionais</li>
+            <li>Estabelecer métricas de sucesso</li>
+          </ol>
+          <div class="knowledge-source">
+            <span>Fonte: ChatGPT + Grok</span>
+          </div>
+          <div class="step-action" onclick="markStepComplete('planejamento')">Marcar como Concluído</div>
+        </div>
+      </div>
+      
+      <div class="accordion">
+        <div class="accordion-header">
+          <span>2. Configuração de Ambiente</span>
+          <span>▼</span>
+        </div>
+        <div class="accordion-content">
+          <h3>Passo a Passo</h3>
+          <ol>
+            <li>Criar conta no Vercel (time@unimedci.com.br)</li>
+            <li>Configurar repositório GitHub</li>
+            <li>Instalar dependências (Node.js v18+)</li>
+            <li>Configurar variáveis de ambiente (.env)</li>
+          </ol>
+          <pre>npm install
+vercel login
+vercel link</pre>
+          <div class="knowledge-source">
+            <span>Fonte: ChatGPT + Documentação Vercel</span>
+          </div>
+          <div class="step-action" onclick="markStepComplete('configuracao')">Marcar como Concluído</div>
+        </div>
+      </div>
+      
+      <div class="accordion">
+        <div class="accordion-header">
+          <span>3. UI e Design</span>
+          <span>▼</span>
+        </div>
+        <div class="accordion-content">
+          <h3>Passo a Passo</h3>
+          <ol>
+            <li>Prototipar no Figma (link no repositório)</li>
+            <li>Implementar UI no FlutterFlow</li>
+            <li>Validar usabilidade com grupo focal</li>
+            <li>Ajustar baseado em feedback</li>
+          </ol>
+          <div class="knowledge-source">
+            <span>Fonte: Grok + Melhores práticas UI/UX</span>
+          </div>
+          <div class="step-action" onclick="markStepComplete('design')">Marcar como Concluído</div>
+        </div>
+      </div>
+      
+      <div class="accordion">
+        <div class="accordion-header">
+          <span>4. Integrações Técnicas</span>
+          <span>▼</span>
+        </div>
+        <div class="accordion-content">
+          <h3>Passo a Passo</h3>
+          <ol>
+            <li>Configurar Firebase (autenticação + banco)</li>
+            <li>Integrar Formspree para formulários</li>
+            <li>Conectar API de geolocalização</li>
+            <li>Implementar sistema de notificações</li>
+          </ol>
+          <div class="knowledge-source">
+            <span>Fonte: ChatGPT + Documentação Firebase</span>
+          </div>
+          <div class="step-action" onclick="markStepComplete('integracao')">Marcar como Concluído</div>
+        </div>
+      </div>
+      
+      <div class="accordion">
+        <div class="accordion-header">
+          <span>5. Testes e Deploy</span>
+          <span>▼</span>
+        </div>
+        <div class="accordion-content">
+          <h3>Passo a Passo</h3>
+          <ol>
+            <li>Executar testes unitários e de integração</li>
+            <li>Realizar testes de usabilidade</li>
+            <li>Configurar pipeline CI/CD no Vercel</li>
+            <li>Fazer deploy em ambiente de produção</li>
+          </ol>
+          <div class="knowledge-source">
+            <span>Fonte: Grok + Melhores práticas DevOps</span>
+          </div>
+          <div class="step-action" onclick="markStepComplete('testes')">Marcar como Concluído</div>
+        </div>
+      </div>
 
       <h2 id="ferramentas"><span class="section-icon">🧰</span> Ferramentas Utilizadas</h2>
-      <ul>
-        <li>
-          <strong>GitHub + Vercel</strong> 
-          <span class="tooltip">🔍<span class="tooltiptext">Configuração de deploy automático documentada em /docs/deploy.md</span></span>
-        </li>
-        <li>
-          <strong>FlutterFlow</strong> 
-          <span class="tooltip">🔍<span class="tooltiptext">Projeto compartilhado com equipe de TI: SOS-Vidas-FF</span></span>
-        </li>
-        <li>
-          <strong>Figma</strong> 
-          <span class="tooltip">🔍<span class="tooltiptext">Design System completo: link no README</span></span>
-        </li>
-        <li>
-          <strong>Formspree</strong> 
-          <span class="tooltip">🔍<span class="tooltiptext">Configuração de formulários em /src/forms</span></span>
-        </li>
-        <li>
-          <strong>Firebase</strong> 
-          <span class="tooltip">🔍<span class="tooltiptext">Projeto SOS-Unimed-Vidas (dados em /firebase-config)</span></span>
-        </li>
-      </ul>
-      <p>Todas as ferramentas devem ser mantidas atualizadas para garantir compatibilidade e segurança. As credenciais estão no 1Password compartilhado.</p>
-
-      <h2 id="submenus"><span class="section-icon">📂</span> Submenus Atuais</h2>
-      <ul>
-        <li>🚑 Emergência Médica</li>
-        <li>📞 Contato com Planos</li>
-        <li>📍 Localização de Unidades</li>
-        <li>🧠 Suporte Emocional</li>
-        <li>📄 Termos de Uso</li>
-        <li>💊 Medicamentos Essenciais</li>
-        <li>🏥 Histórico de Atendimentos</li>
-        <li>⏰ Lembretes de Consultas</li>
-      </ul>
-      <p>Os submenus estão organizados por prioridade de uso, conforme pesquisa com usuários. O menu pode ser configurado no admin do Firebase.</p>
-
-      <h2 id="fluxo"><span class="section-icon">🚀</span> Fluxo Padrão de Deploy</h2>
-      <ol>
-        <li>Atualização de arquivos no GitHub (branch `main`)</li>
-        <li>Revisão de código via Pull Request (mínimo 2 aprovações)</li>
-        <li>Deploy automático no Vercel (gatilho por push)</li>
-        <li>Verificação no link publicado (ambiente de staging)</li>
-        <li>Testes de regressão (script `npm run test-e2e`)</li>
-        <li>Deploy em produção (manual pelo Vercel)</li>
-        <li>Comunicação à equipe (Slack #sos-deploys)</li>
-      </ol>
-      <p>Qualquer alteração no fluxo deve ser documentada e comunicada a todos os envolvidos. Em caso de erro, seguir protocolo em /docs/emergency.md.</p>
-
-      <h2 id="boaspraticas"><span class="section-icon">🧠</span> Boas Práticas</h2>
-      <ul>
-        <li>Use commits claros e descritivos (conventional commits)</li>
-        <li>Documente tudo no README e Wiki do projeto</li>
-        <li>Evite código sem função ou comentado</li>
-        <li>Utilize branches por tarefa/feature (prefixo: feat/, fix/, docs/)</li>
-        <li>Realize revisões de código periódicas</li>
-        <li>Mantenha padrões de acessibilidade (WCAG 2.1 AA)</li>
-        <li>Testes unitários para funções críticas (Jest)</li>
-        <li>Versionamento semântico (SemVer)</li>
-      </ul>
-      <p>As boas práticas são auditadas mensalmente pelo script `audit-code-quality.js`.</p>
+      
+      <div class="accordion active">
+        <div class="accordion-header">
+          <span>GitHub + Vercel</span>
+          <span>▼</span>
+        </div>
+        <div class="accordion-content">
+          <h3>Configuração Essencial</h3>
+          <p><strong>Repositório:</strong> <a href="https://github.com/unimedci/sos-vidas" target="_blank">github.com/unimedci/sos-vidas</a></p>
+          <p><strong>Deploy Automático:</strong> Ativado via webhooks do Vercel</p>
+          <h3>Passo a Passo para Correções</h3>
+          <ol>
+            <li>Clonar repositório: <code>git clone https://github.com/unimedci/sos-vidas.git</code></li>
+            <li>Criar branch: <code>git checkout -b fix/nome-da-correcao</code></li>
+            <li>Fazer alterações necessárias</li>
+            <li>Commit: <code>git commit -m "fix: descrição breve"</code></li>
+            <li>Push: <code>git push origin fix/nome-da-correcao</code></li>
+            <li>Abrir Pull Request no GitHub</li>
+          </ol>
+          <div class="step-action" onclick="showToast('Guia de fluxo GitHub copiado!')">Copiar Fluxo</div>
+        </div>
+      </div>
+      
+      <div class="accordion">
+        <div class="accordion-header">
+          <span>FlutterFlow</span>
+          <span>▼</span>
+        </div>
+        <div class="accordion-content">
+          <h3>Configuração Essencial</h3>
+          <p><strong>Projeto:</strong> SOS-Vidas-FF</p>
+          <p><strong>Acesso:</strong> compartilhado com equipe de TI</p>
+          <h3>Passo a Passo para Atualizações</h3>
+          <ol>
+            <li>Acessar console.flutterflow.io</li>
+            <li>Selecionar projeto SOS-Vidas-FF</li>
+            <li>Fazer alterações na interface</li>
+            <li>Testar em modo preview</li>
+            <li>Exportar código quando necessário</li>
+          </ol>
+        </div>
+      </div>
+      
+      <div class="accordion">
+        <div class="accordion-header">
+          <span>Firebase</span>
+          <span>▼</span>
+        </div>
+        <div class="accordion-content">
+          <h3>Configuração Essencial</h3>
+          <p><strong>Projeto:</strong> SOS-Unimed-Vidas</p>
+          <p><strong>Acesso:</strong> console.firebase.google.com</p>
+          <h3>Passo a Passo para Manutenção</h3>
+          <ol>
+            <li>Acessar Firebase Console</li>
+            <li>Navegar para a seção de banco de dados</li>
+            <li>Verificar regras de segurança</li>
+            <li>Monitorar uso de recursos</li>
+            <li>Configurar backups automáticos</li>
+          </ol>
+        </div>
+      </div>
 
       <div class="transition-section">
-        <h2 id="transicao"><span class="section-icon">🔄</span> Preparação para Transição</h2>
-        <p>Documentação essencial para transferência ao setor de TI da Unimed Cachoeiro:</p>
+        <h2 id="transicao"><span class="section-icon">🔄</span> Assistente de Transição</h2>
         
-        <h3>🔑 Acessos e Credenciais</h3>
-        <ul>
-          <li><strong>GitHub:</strong> <code>https://github.com/unimedci/sos-vidas</code> (Usuário: unimed-admin)</li>
-          <li><strong>Vercel:</strong> <code>https://vercel.com/unimedci/sos-vidas</code> (Time: Unimed CI)</li>
-          <li><strong>Figma:</strong> Design System completo (link no README)</li>
-          <li><strong>Firebase:</strong> Projeto SOS-Unimed-Vidas (acesso pelo console do Firebase)</li>
-          <li><strong>Formspree:</strong> Conta institucional (email: ti@unimedci.com.br)</li>
-        </ul>
+        <h3>🔑 Fluxo de Entrada para Novos Devs</h3>
+        <div class="accordion active">
+          <div class="accordion-header">
+            <span>Primeira Semana na Equipe</span>
+            <span>▼</span>
+          </div>
+          <div class="accordion-content">
+            <ol>
+              <li>Solicitar acessos ao gestor de TI</li>
+              <li>Configurar ambiente local (seção 2 deste guia)</li>
+              <li>Revisar documentação técnica (/docs)</li>
+              <li>Fazer deploy de teste em staging</li>
+              <li>Participar de reunião de onboarding</li>
+            </ol>
+          </div>
+        </div>
         
-        <h3>📚 Documentação Técnica</h3>
-        <ul>
-          <li>Fluxo completo de autenticação (arquivo `/docs/auth-flow.md`)</li>
-          <li>Diagrama de arquitetura do sistema (`/architecture/`)</li>
-          <li>Políticas de segurança implementadas (`/docs/security-policy.md`)</li>
-          <li>Checklist de manutenção mensal (`/maintenance/checklist.md`)</li>
-          <li>API endpoints (`/docs/api-reference.md`)</li>
-        </ul>
+        <h3>🛠️ Manutenção Rotineira</h3>
+        <div class="accordion">
+          <div class="accordion-header">
+            <span>Atualização Mensal</span>
+            <span>▼</span>
+          </div>
+          <div class="accordion-content">
+            <ol>
+              <li>Atualizar dependências: <code>npm update</code></li>
+              <li>Executar testes: <code>npm run test</code></li>
+              <li>Verificar logs de erro no Firebase</li>
+              <li>Revisar métricas de performance no Vercel</li>
+              <li>Atualizar documentação se necessário</li>
+            </ol>
+          </div>
+        </div>
         
-        <h3>🔍 Pontos de Atenção</h3>
-        <ul>
-          <li>Integração com sistema legado da Unimed (endpoints sensíveis em `/src/services/legacy.js`)</li>
-          <li>Atualizações sazonais de unidades de saúde (script `update-units.js`)</li>
-          <li>Monitoramento de performance via Vercel Analytics</li>
-          <li>Backup automático do Firebase (configurado semanalmente)</li>
-        </ul>
-        
-        <h3>📞 Suporte Pós-entrega</h3>
-        <p><strong>Período de transição:</strong> 30 dias após entrega oficial<br>
-        <strong>Contato prioritário:</strong> <code>dev.transicao@unimedci.com.br</code><br>
-        <strong>Plantão:</strong> Segunda a sexta, 14h-18h (fora desse horário via ticket)</p>
+        <h3>🚨 Resolução de Problemas Comuns</h3>
+        <div class="accordion">
+          <div class="accordion-header">
+            <span>Deploy Falhando</span>
+            <span>▼</span>
+          </div>
+          <div class="accordion-content">
+            <ol>
+              <li>Verificar logs no Vercel</li>
+              <li>Testar localmente: <code>npm run dev</code></li>
+              <li>Reverter para commit estável se necessário</li>
+              <li>Corrigir erros em branch separada</li>
+              <li>Testar novamente antes de merge</li>
+            </ol>
+          </div>
+        </div>
       </div>
 
       <h2 id="referencias"><span class="section-icon">🔎</span> Referências</h2>
@@ -653,66 +835,77 @@
   <!-- Painel -->
   <div id="painel" class="tab-content">
     <div class="container">
-      <h2>Status de Transição</h2>
+      <h2>Painel de Controle</h2>
       
       <div class="status-box">
         <span>📋</span>
         <div>
-          <strong>Checklist de Entrega:</strong>
-          <ul>
-            <li><label class="checkbox"><input type="checkbox" checked> Documentação técnica completa</label></li>
-            <li><label class="checkbox"><input type="checkbox" checked> Repositório organizado</label></li>
-            <li><label class="checkbox"><input type="checkbox"> Treinamento com equipe TI</label></li>
-            <li><label class="checkbox"><input type="checkbox"> Transferência de acessos</label></li>
-            <li><label class="checkbox"><input type="checkbox"> Plano de contingência</label></li>
-            <li><label class="checkbox"><input type="checkbox"> Relatório final de entrega</label></li>
-          </ul>
-        </div>
-      </div>
-      
-      <div class="status-box">
-        <span>📊</span>
-        <div>
-          <strong>Progresso Geral:</strong>
+          <strong>Progresso de Transição:</strong>
           <div class="progress-container">
-            <div class="progress-bar">75%</div>
+            <div class="progress-bar" id="transition-progress">75%</div>
           </div>
-          <p>Atualizado em: <span id="time">19/07/2025 00:40:03</span></p>
         </div>
       </div>
       
       <div class="status-box">
-        <span>👤</span>
+        <span>👥</span>
         <div>
-          <strong>Responsável Atual:</strong> Everton (Desenvolvedor)<br>
-          <strong>Próximo Responsável:</strong> TI Unimed Cachoeiro do Itapemirim<br>
-          <strong>Contato TI:</strong> ti@unimedci.com.br | (28) 3521-XXXX
-        </div>
-      </div>
-      
-      <div class="status-box">
-        <span>⚠️</span>
-        <div>
-          <strong>Próximos Passos:</strong>
+          <strong>Equipe:</strong>
           <ul>
-            <li>Agendar treinamento com equipe de TI</li>
-            <li>Atualizar documentação de integrações</li>
-            <li>Revisar políticas de acesso</li>
+            <li>Everton (Desenvolvedor Original) - até 19/08/2025</li>
+            <li>TI Unimed Cachoeiro (Responsável a partir de 20/08/2025)</li>
           </ul>
         </div>
       </div>
       
-      <button class="reload" onclick="updateTime()">
-        <span>🔄</span> Atualizar Status
-      </button>
+      <h3>Próximas Ações</h3>
+      <div class="accordion active">
+        <div class="accordion-header">
+          <span>Treinamento com Equipe TI</span>
+          <span>▼</span>
+        </div>
+        <div class="accordion-content">
+          <p><strong>Data:</strong> 25/07/2025 às 14h</p>
+          <p><strong>Local:</strong> Sala de Reuniões TI - 3º andar</p>
+          <p><strong>Tópicos:</strong></p>
+          <ul>
+            <li>Arquitetura do sistema</li>
+            <li>Fluxo de deploy</li>
+            <li>Monitoramento de erros</li>
+            <li>Q&A</li>
+          </ul>
+          <button class="submit" onclick="showToast('Lembrete adicionado ao calendário')">Adicionar ao Calendário</button>
+        </div>
+      </div>
+      
+      <h3>Recursos de Aprendizado</h3>
+      <div class="accordion">
+        <div class="accordion-header">
+          <span>Documentação Técnica</span>
+          <span>▼</span>
+        </div>
+        <div class="accordion-content">
+          <ul>
+            <li><a href="#">Fluxo de autenticação</a></li>
+            <li><a href="#">Diagrama de arquitetura</a></li>
+            <li><a href="#">Políticas de segurança</a></li>
+            <li><a href="#">API Reference</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 
   <!-- Feedback -->
   <div id="feedback" class="tab-content">
     <div class="container">
-      <h2><span class="section-icon">📬</span> Enviar Feedback</h2>
-      <p>Seu feedback é essencial para melhorarmos continuamente o projeto e o processo de transição.</p>
+      <h2><span class="section-icon">📬</span> Canal de Comunicação</h2>
+      <p>Utilize este formulário para:</p>
+      <ul>
+        <li>Reportar problemas na transição</li>
+        <li>Sugerir melhorias no assistente</li>
+        <li>Solicitar informações adicionais</li>
+      </ul>
       
       <form id="feedback-form" action="https://formspree.io/f/xdkdkyjj" method="POST">
         <div class="form-group">
@@ -721,35 +914,28 @@
         </div>
         
         <div class="form-group">
-          <label for="email">Email (opcional):</label>
-          <input type="email" id="email" name="email" placeholder="seu.email@exemplo.com">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required placeholder="seu.email@unimedci.com.br">
         </div>
         
         <div class="form-group">
-          <label for="tipo">Tipo de Feedback:</label>
-          <select id="tipo" name="tipo">
-            <option value="sugestao">Sugestão</option>
-            <option value="problema">Relato de Problema</option>
-            <option value="elogio">Elogio</option>
-            <option value="transicao">Dúvida sobre Transição</option>
+          <label for="tipo">Tipo de Mensagem:</label>
+          <select id="tipo" name="tipo" required>
+            <option value="">Selecione uma opção</option>
+            <option value="problema">Reportar Problema</option>
+            <option value="sugestao">Sugestão de Melhoria</option>
+            <option value="duvida">Dúvida Técnica</option>
             <option value="outro">Outro</option>
           </select>
         </div>
         
         <div class="form-group">
           <label for="mensagem">Mensagem:</label>
-          <textarea id="mensagem" name="mensagem" required rows="6" placeholder="Descreva seu feedback aqui..."></textarea>
-        </div>
-        
-        <div class="form-group">
-          <label>
-            <input type="checkbox" name="contato" value="sim"> 
-            Autorizo entrar em contato para mais detalhes
-          </label>
+          <textarea id="mensagem" name="mensagem" required rows="6" placeholder="Descreva sua solicitação aqui..."></textarea>
         </div>
         
         <button class="submit" type="submit">
-          <span>📤</span> Enviar Feedback
+          <span>📤</span> Enviar Mensagem
         </button>
       </form>
       
@@ -758,8 +944,8 @@
   </div>
   
   <footer>
-    <p>Guia SOS Unimed Vidas v1.4 • © 2025 Unimed Cachoeiro do Itapemirim. Todos os direitos reservados.</p>
-    <p style="margin-top: 10px; font-size: 14px;">Desenvolvido por Everton | Transição para TI Unimed CI</p>
+    <p>Assistente de Transição - SOS Unimed Vidas v2.0 • © 2025 Unimed Cachoeiro do Itapemirim</p>
+    <p style="margin-top: 10px; font-size: 14px;">Conhecimento integrado de Grok, ChatGPT e DeepSeek</p>
   </footer>
 
   <div id="toast" class="toast">
@@ -838,6 +1024,38 @@
       }, 3000);
     }
     
+    // Accordion functionality
+    document.querySelectorAll('.accordion-header').forEach(header => {
+      header.addEventListener('click', () => {
+        const accordion = header.parentElement;
+        accordion.classList.toggle('active');
+      });
+    });
+    
+    // Mark step as complete
+    function markStepComplete(stepId) {
+      const checkbox = document.querySelector(`input[data-task="${stepId}"]`);
+      if (checkbox) {
+        checkbox.checked = true;
+        localStorage.setItem(`task-${stepId}`, 'true');
+        showToast(`Passo "${stepId}" marcado como concluído!`);
+        updateTransitionProgress();
+      }
+    }
+    
+    // Update transition progress
+    function updateTransitionProgress() {
+      const totalSteps = document.querySelectorAll('[data-task]').length;
+      const completedSteps = document.querySelectorAll('[data-task]:checked').length;
+      const progress = Math.round((completedSteps / totalSteps) * 100);
+      
+      const progressBar = document.getElementById('transition-progress');
+      if (progressBar) {
+        progressBar.style.width = `${progress}%`;
+        progressBar.textContent = `${progress}%`;
+      }
+    }
+    
     // Verifica se há uma aba salva no localStorage
     document.addEventListener('DOMContentLoaded', function() {
       // Carrega a última aba aberta
@@ -861,9 +1079,13 @@
         checkbox.addEventListener('change', function() {
           if (this.getAttribute('data-task')) {
             localStorage.setItem(`task-${this.getAttribute('data-task')}`, this.checked);
+            updateTransitionProgress();
           }
         });
       });
+      
+      // Atualiza o progresso inicial
+      updateTransitionProgress();
       
       // Adiciona evento ao formulário de feedback
       const form = document.getElementById('feedback-form');
@@ -875,8 +1097,8 @@
           const messageDiv = document.getElementById('form-message');
           messageDiv.style.display = 'block';
           messageDiv.innerHTML = `
-            <p style="color: var(--primary-dark); font-weight: bold; font-size: 18px;">✅ Obrigado pelo seu feedback!</p>
-            <p style="margin-top: 10px;">Recebemos sua mensagem e entraremos em contato se necessário.</p>
+            <p style="color: var(--primary-dark); font-weight: bold; font-size: 18px;">✅ Mensagem enviada com sucesso!</p>
+            <p style="margin-top: 10px;">A equipe entrará em contato em breve.</p>
           `;
           
           // Limpa o formulário
@@ -886,7 +1108,7 @@
           messageDiv.scrollIntoView({ behavior: 'smooth' });
           
           // Mostra notificação
-          showToast('Feedback enviado com sucesso!');
+          showToast('Mensagem enviada com sucesso!');
           
           // Envia o formulário de verdade (remover em produção real)
           setTimeout(() => {
