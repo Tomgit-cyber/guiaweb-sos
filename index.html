@@ -1,127 +1,143 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel Unimed – SOS Unimed Vidas</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #00A651;
-            color: white;
-            margin: 0;
-            padding: 10px;
-            text-align: center;
-        }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            border-radius: 10px;
-        }
-        h1 { font-size: 24px; }
-        .status, .chart {
-            margin: 15px 0;
-            padding: 10px;
-            background: #006633;
-            border-radius: 5px;
-        }
-        .chart {
-            background: #007F44;
-        }
-        .progress-bar {
-            background-color: white;
-            border-radius: 10px;
-            overflow: hidden;
-            margin: 10px 0;
-        }
-        .progress {
-            background-color: #00A651;
-            height: 20px;
-            text-align: right;
-            padding-right: 10px;
-            color: black;
-            font-weight: bold;
-        }
-        button {
-            background: white;
-            color: #00A651;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin: 5px;
-        }
-        button:hover {
-            background: #007F44;
-            color: white;
-        }
-        select {
-            padding: 8px;
-            border-radius: 5px;
-            border: none;
-            margin-bottom: 10px;
-        }
-        @media (max-width: 600px) {
-            .container { padding: 10px; }
-            h1 { font-size: 20px; }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Guia SOS Unimed Vidas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+    }
+    nav {
+      display: flex;
+      background-color: #00A651;
+      padding: 10px;
+      color: white;
+      justify-content: space-between;
+    }
+    nav button {
+      background: transparent;
+      border: none;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 16px;
+      margin-right: 20px;
+    }
+    .tab-content {
+      display: none;
+      padding: 20px;
+    }
+    .active {
+      display: block;
+    }
+    .container {
+      background: #e7fbe7;
+      border-radius: 10px;
+      padding: 20px;
+    }
+    .status, .chart {
+      margin: 15px 0;
+      padding: 15px;
+      border-radius: 5px;
+      background-color: #dff0df;
+    }
+    .chart {
+      background-color: #c4ebd4;
+    }
+    select, button.reload {
+      margin-top: 10px;
+      padding: 8px 12px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button.reload {
+      background: #00A651;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Painel Unimed – SOS Unimed Vidas</h1>
-        <p>Monitoramento e controle do projeto v1.3.1</p>
 
-        <div class="status">
-            <h2>Status Atual</h2>
-            <p>Etapa: <span id="etapa">Testes</span></p>
-            <p>Progresso: <span id="progresso">80%</span> (8 de 9 etapas concluídas)</p>
-            <p>Última Atualização: 18/07/2025 21:27</p>
-            <button onclick="location.reload()">🔁 Recarregar</button>
-        </div>
-
-        <div class="chart">
-            <h2>Progresso por Etapa</h2>
-            <select id="etapaFiltro" onchange="filtrarEtapa()">
-                <option value="todas">Todas</option>
-                <option value="Planejamento">Planejamento</option>
-                <option value="Configuração">Configuração</option>
-                <option value="UI">UI</option>
-                <option value="Backend">Backend</option>
-            </select>
-
-            <div class="progress-bar" data-etapa="Planejamento">
-                <div class="progress" style="width: 100%;">Planejamento – 100%</div>
-            </div>
-            <div class="progress-bar" data-etapa="Configuração">
-                <div class="progress" style="width: 100%;">Configuração – 100%</div>
-            </div>
-            <div class="progress-bar" data-etapa="UI">
-                <div class="progress" style="width: 100%;">UI – 100%</div>
-            </div>
-            <div class="progress-bar" data-etapa="Backend">
-                <div class="progress" style="width: 50%;">Backend – 50%</div>
-            </div>
-        </div>
-
-        <button onclick="window.location.href='https://guiaweb-sos.vercel.app'">Voltar ao Guia</button>
+  <nav>
+    <div>
+      <button onclick="showTab('guia')">Guia</button>
+      <button onclick="showTab('painel')">Painel</button>
     </div>
+  </nav>
 
-    <script>
-        function filtrarEtapa() {
-            const filtro = document.getElementById("etapaFiltro").value;
-            const barras = document.querySelectorAll(".progress-bar");
-            barras.forEach(barra => {
-                if (filtro === "todas" || barra.dataset.etapa === filtro) {
-                    barra.style.display = "block";
-                } else {
-                    barra.style.display = "none";
-                }
-            });
-        }
-    </script>
+  <!-- Guia -->
+  <div id="guia" class="tab-content active">
+    <div class="container">
+      <h1>Guia de Construção – SOS Unimed Vidas</h1>
+      <p>Bem-vindo ao guia oficial. Aqui você encontra os fluxos, ferramentas e instruções para desenvolvimento do projeto.</p>
+    </div>
+  </div>
+
+  <!-- Painel -->
+  <div id="painel" class="tab-content">
+    <div class="container">
+      <h1>Painel Unimed – SOS Unimed Vidas</h1>
+      <p>Monitoramento e controle do projeto v1.3.1</p>
+
+      <div class="status">
+        <h2>Status Atual</h2>
+        <p>Etapa: <strong>Testes</strong></p>
+        <p>Progresso: <strong>80%</strong> (8 de 9 etapas concluídas)</p>
+        <p>Última Atualização: <span id="update-time">19/07/2025 21:43</span></p>
+        <button class="reload" onclick="reloadData()">🔄 Recarregar</button>
+      </div>
+
+      <div class="chart">
+        <h2>Progresso por Etapa</h2>
+        <select onchange="filterEtapa(this.value)">
+          <option value="all">Todas</option>
+          <option value="ui">UI</option>
+          <option value="backend">Backend</option>
+        </select>
+        <div id="grafico">
+          <p>Planejamento: ✅ 100%</p>
+          <p>Configuração: ✅ 100%</p>
+          <p>UI: ✅ 100%</p>
+          <p>Backend: ⏳ 50%</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+    }
+
+    function reloadData() {
+      const now = new Date();
+      document.getElementById("update-time").innerText = now.toLocaleString();
+      alert("Dados simulados recarregados!");
+    }
+
+    function filterEtapa(value) {
+      const grafico = document.getElementById('grafico');
+      if (value === 'ui') {
+        grafico.innerHTML = '<p>UI: ✅ 100%</p>';
+      } else if (value === 'backend') {
+        grafico.innerHTML = '<p>Backend: ⏳ 50%</p>';
+      } else {
+        grafico.innerHTML = `
+          <p>Planejamento: ✅ 100%</p>
+          <p>Configuração: ✅ 100%</p>
+          <p>UI: ✅ 100%</p>
+          <p>Backend: ⏳ 50%</p>
+        `;
+      }
+    }
+  </script>
+
 </body>
 </html>
