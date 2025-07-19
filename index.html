@@ -60,6 +60,12 @@
       border: none;
       cursor: pointer;
     }
+    h2 {
+      color: #006633;
+    }
+    ul {
+      margin-left: 20px;
+    }
   </style>
 </head>
 <body>
@@ -75,7 +81,47 @@
   <div id="guia" class="tab-content active">
     <div class="container">
       <h1>Guia de Construção – SOS Unimed Vidas</h1>
-      <p>Bem-vindo ao guia oficial. Aqui você encontra os fluxos, ferramentas e instruções para desenvolvimento do projeto.</p>
+
+      <p><strong>Versão 1.3.1 – Atualizado em 19/07/2025</strong></p>
+
+      <h2>Objetivo</h2>
+      <p>Este guia visa estruturar o desenvolvimento do aplicativo SOS Unimed Vidas, organizando as etapas, ferramentas, e diretrizes técnicas.</p>
+
+      <h2>Fases do Projeto</h2>
+      <ul>
+        <li>🔹 Planejamento Estratégico</li>
+        <li>🔹 Configuração de Ambiente e Repositórios</li>
+        <li>🔹 Desenvolvimento da Interface (UI)</li>
+        <li>🔹 Integração com Backend</li>
+        <li>🔹 Testes e Ajustes Finais</li>
+      </ul>
+
+      <h2>Ferramentas Utilizadas</h2>
+      <ul>
+        <li>✅ GitHub e Vercel para CI/CD</li>
+        <li>✅ Figma (UI/UX)</li>
+        <li>✅ Formspree (Formulário inicial)</li>
+        <li>✅ OpenAI GPTs para geração de conteúdo e otimização</li>
+      </ul>
+
+      <h2>Submenus Atuais</h2>
+      <ul>
+        <li>🚑 Emergência Médica</li>
+        <li>📞 Contato com Plano</li>
+        <li>📍 Localização de Unidades</li>
+        <li>🧠 Suporte Emocional</li>
+        <li>📄 Termos e Condições</li>
+      </ul>
+
+      <h2>Fluxo Padrão de Deploy</h2>
+      <ol>
+        <li>Commit no GitHub</li>
+        <li>Deploy automático via Vercel</li>
+        <li>Verificação manual de UI</li>
+      </ol>
+
+      <h2>Observações Finais</h2>
+      <p>O guia é vivo e pode ser atualizado conforme evolução técnica e decisões com stakeholders.</p>
     </div>
   </div>
 
@@ -89,7 +135,7 @@
         <h2>Status Atual</h2>
         <p>Etapa: <strong>Testes</strong></p>
         <p>Progresso: <strong>80%</strong> (8 de 9 etapas concluídas)</p>
-        <p>Última Atualização: <span id="update-time">19/07/2025 21:43</span></p>
+        <p>Última Atualização: <span id="update-time">19/07/2025 21:45</span></p>
         <button class="reload" onclick="reloadData()">🔄 Recarregar</button>
       </div>
 
