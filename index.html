@@ -41,11 +41,7 @@
     }
     .tab-content { opacity: 0; }
     .container {
-      background: linear-gradient(135deg, #e7fbe7 0%, #dff0df 100%);
-      backdrop-filter: blur(5px);
-      -webkit-backdrop-filter: blur(5px);
-      border: 1px solid rgba(0, 166, 81, 0.2);
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      background: #e7fbe7;
       border-radius: 10px;
       padding: 20px;
       margin: 20px auto;
@@ -57,13 +53,13 @@
       margin: 8px 0;
       padding: 10px;
       border-left: 4px solid #00A651;
-      background-color: #e0f7e9;
+      background-color: #f1fdf4;
       border-radius: 5px;
     }
     label.checkbox { display: block; margin: 6px 0; }
     .indice ul { list-style: none; padding-left: 0; }
     .indice li { margin: 4px 0; }
-    .indice a { color: #004d26; text-decoration: none; }
+    .indice a { color: #006633; text-decoration: none; }
     .indice a:hover { text-decoration: underline; }
     form {
       margin-top: 20px;
@@ -88,21 +84,6 @@
       border-radius: 5px;
       font-weight: bold;
       cursor: pointer;
-    }
-    .progress-item {
-      margin: 5px 0;
-      padding: 5px;
-      background-color: #dff0df;
-      border-radius: 5px;
-    }
-    .progress-bar {
-      height: 20px;
-      background-color: #00A651;
-      border-radius: 5px;
-      transition: width 0.3s ease;
-    }
-    html {
-      scroll-behavior: smooth;
     }
     @media (max-width: 480px) {
       nav { flex-direction: column; align-items: center; }
@@ -203,15 +184,6 @@
       <div class="status-box">✅ Progresso: 70%</div>
       <div class="status-box">📅 Última atualização: <span id="time">---</span></div>
       <button class="reload" onclick="updateTime()">🔄 Atualizar</button>
-
-      <div class="chart">
-        <h2>Progresso por Etapa</h2>
-        <div class="progress-item">Planejamento: <div class="progress-bar" style="width: 100%;">100%</div></div>
-        <div class="progress-item">Configuração: <div class="progress-bar" style="width: 100%;">100%</div></div>
-        <div class="progress-item">UI: <div class="progress-bar" style="width: 100%;">100%</div></div>
-        <div class="progress-item">Backend: <div class="progress-bar" style="width: 50%;">50%</div></div>
-        <div class="progress-item">Integração: <div class="progress-bar" style="width: 70%;">70%</div></div>
-      </div>
     </div>
   </div>
 
@@ -257,14 +229,6 @@
       checkbox.addEventListener('change', function() {
         localStorage.setItem(this.id, this.checked);
       });
-    });
-
-    document.addEventListener('keydown', function(e) {
-      if (e.ctrlKey) {
-        if (e.key === '1') showTab('guia');
-        if (e.key === '2') showTab('painel');
-        if (e.key === '3') showTab('feedback');
-      }
     });
 
     setInterval(updateTime, 60000);
