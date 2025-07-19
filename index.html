@@ -60,11 +60,17 @@
       border: none;
       cursor: pointer;
     }
-    h2 {
+    h1, h2 {
       color: #006633;
     }
     ul, ol {
       margin-left: 20px;
+    }
+    pre {
+      background: #eef8ef;
+      padding: 10px;
+      border-radius: 5px;
+      overflow-x: auto;
     }
   </style>
 </head>
@@ -77,50 +83,79 @@
     </div>
   </nav>
 
-  <!-- Guia -->
+  <!-- Guia Técnico -->
   <div id="guia" class="tab-content active">
     <div class="container">
-      <h1>Guia de Construção – SOS Unimed Vidas</h1>
+      <h1>Guia Técnico – SOS Unimed Vidas</h1>
       <p><strong>Versão 1.3.1 – Atualizado em 19/07/2025</strong></p>
 
-      <h2>Objetivo</h2>
-      <p>Este guia visa estruturar o desenvolvimento do aplicativo SOS Unimed Vidas, organizando as etapas, ferramentas, e diretrizes técnicas.</p>
+      <h2>📌 Objetivo</h2>
+      <p>Fornecer diretrizes claras para a construção do app SOS Unimed Vidas, incluindo tarefas, ferramentas e boas práticas em cada fase do desenvolvimento.</p>
 
-      <h2>Fases do Projeto</h2>
+      <h2>🚀 1. Planejamento Estratégico</h2>
       <ul>
-        <li>🔹 Planejamento Estratégico</li>
-        <li>🔹 Configuração de Ambiente e Repositórios</li>
-        <li>🔹 Desenvolvimento da Interface (UI)</li>
-        <li>🔹 Integração com Backend</li>
-        <li>🔹 Testes e Ajustes Finais</li>
+        <li><strong>Tarefas:</strong> Levantamento de requisitos, definição de escopo e funcionalidades, roteiros e wireframes</li>
+        <li><strong>Ferramentas:</strong> Notion, Figma, Miro, Google Forms</li>
+        <li><strong>Boas práticas:</strong> Validar com usuários reais, documentar decisões e responsáveis</li>
       </ul>
 
-      <h2>Ferramentas Utilizadas</h2>
+      <h2>🖥️ 2. Configuração de Ambiente</h2>
       <ul>
-        <li>✅ GitHub e Vercel para CI/CD</li>
-        <li>✅ Figma (UI/UX)</li>
-        <li>✅ Formspree (Formulário inicial)</li>
-        <li>✅ OpenAI GPTs para geração de conteúdo e otimização</li>
+        <li><strong>Tarefas:</strong> Criar repositório GitHub, conectar com Vercel, estruturar pastas do projeto</li>
+        <li><strong>Ferramentas:</strong> GitHub, Vercel, VS Code</li>
+        <li><strong>Boas práticas:</strong> Commits frequentes, `.gitignore`, uso de branches</li>
+        <li><strong>Exemplo de estrutura:</strong>
+          <pre><code>/public
+/src
+  /components
+  /pages
+  /styles
+README.md</code></pre>
+        </li>
       </ul>
 
-      <h2>Submenus Atuais</h2>
+      <h2>🎨 3. Desenvolvimento da Interface</h2>
       <ul>
-        <li>🚑 Emergência Médica</li>
-        <li>📞 Contato com Plano</li>
-        <li>📍 Localização de Unidades</li>
-        <li>🧠 Suporte Emocional</li>
-        <li>📄 Termos e Condições</li>
+        <li><strong>Tarefas:</strong> Criar componentes reutilizáveis, aplicar responsividade e acessibilidade</li>
+        <li><strong>Ferramentas:</strong> HTML/CSS, Figma, Tailwind (opcional), React (se usado)</li>
+        <li><strong>Boas práticas:</strong> Design mobile-first, separação de lógica e apresentação</li>
       </ul>
 
-      <h2>Fluxo Padrão de Deploy</h2>
-      <ol>
-        <li>Commit no GitHub</li>
-        <li>Deploy automático via Vercel</li>
-        <li>Verificação manual de UI</li>
-      </ol>
+      <h2>🔗 4. Integração com Backend</h2>
+      <ul>
+        <li><strong>Tarefas:</strong> Criar ou integrar APIs, conectar formulários, proteger dados</li>
+        <li><strong>Ferramentas:</strong> Node.js, Supabase/Firebase, Postman</li>
+        <li><strong>Boas práticas:</strong> Uso de `.env`, modularização, documentação de API</li>
+        <li><strong>Exemplo:</strong>
+          <pre><code>fetch('https://api.sosvidas.com/status')
+  .then(res => res.json())
+  .then(data => atualizarPainel(data));</code></pre>
+        </li>
+      </ul>
 
-      <h2>Observações Finais</h2>
-      <p>O guia é vivo e pode ser atualizado conforme evolução técnica e decisões com stakeholders.</p>
+      <h2>🧪 5. Testes e Ajustes Finais</h2>
+      <ul>
+        <li><strong>Tarefas:</strong> Testes manuais e automatizados, ajustes de bugs</li>
+        <li><strong>Ferramentas:</strong> Lighthouse, Cypress, DevTools</li>
+        <li><strong>Boas práticas:</strong> Testes cross-device, foco em performance e acessibilidade</li>
+      </ul>
+
+      <h2>📦 6. Deploy e Monitoramento</h2>
+      <ul>
+        <li><strong>Tarefas:</strong> Deploy final, monitoramento, atualizações</li>
+        <li><strong>Ferramentas:</strong> Vercel, LogRocket, Google Search Console</li>
+        <li><strong>Boas práticas:</strong> Uso de changelogs, rollback rápido, análise de métricas</li>
+      </ul>
+
+      <h2>🧾 Convenções Técnicas</h2>
+      <ul>
+        <li><strong>Nomenclatura:</strong> `kebab-case` para arquivos, `camelCase` para variáveis</li>
+        <li><strong>Commits:</strong> `feat:`, `fix:`, `docs:`</li>
+        <li><strong>Responsividade:</strong> Media queries e unidades relativas</li>
+        <li><strong>Acessibilidade:</strong> `aria-label`, navegação via teclado, contraste adequado</li>
+      </ul>
+
+      <p><em>Este guia pode ser revisado e expandido conforme evolução do projeto.</em></p>
     </div>
   </div>
 
@@ -152,73 +187,6 @@
           <p>Backend: ⏳ 50%</p>
         </div>
       </div>
-
-      <div class="status">
-        <h2>Guia Técnico Detalhado</h2>
-        <button class="reload" onclick="toggleGuia()">📘 Expandir Guia Técnico</button>
-        <div id="guia-tecnico" style="display:none; text-align:left; margin-top:15px;">
-          <h3>1. Planejamento Estratégico</h3>
-          <ul>
-            <li>🔹 Definir objetivo e público-alvo</li>
-            <li>🔹 Reunião com stakeholders</li>
-            <li>🔹 Criar documento de escopo (Docs / Notion)</li>
-          </ul>
-
-          <h3>2. Configuração de Ambiente</h3>
-          <ul>
-            <li>🔹 Criar repositório GitHub</li>
-            <li>🔹 Setup no Vercel para CI/CD</li>
-            <li>🔹 Definir estrutura de pastas</li>
-          </ul>
-
-          <h3>3. UI/UX</h3>
-          <ul>
-            <li>🔹 Protótipo no Figma</li>
-            <li>🔹 Validação com equipe</li>
-            <li>🔹 Exportar assets</li>
-          </ul>
-
-          <h3>4. Desenvolvimento Frontend</h3>
-          <ul>
-            <li>🔹 HTML/CSS responsivo</li>
-            <li>🔹 Tabs e navegação</li>
-            <li>🔹 Integração com formulários</li>
-          </ul>
-
-          <h3>5. Integração Backend</h3>
-          <ul>
-            <li>🔹 API Node/Firebase</li>
-            <li>🔹 Banco Supabase/Firestore</li>
-            <li>🔹 Painel dinâmico (status futuro)</li>
-          </ul>
-
-          <h3>6. Testes</h3>
-          <ul>
-            <li>🔹 Testes cross-device</li>
-            <li>🔹 Ajustes UI/UX</li>
-            <li>🔹 Validação funcional</li>
-          </ul>
-
-          <h3>7. Deploy</h3>
-          <ul>
-            <li>🔹 Commit com changelog</li>
-            <li>🔹 Deploy automático no Vercel</li>
-            <li>🔹 Teste em produção</li>
-          </ul>
-
-          <h3>8. Entrega</h3>
-          <ul>
-            <li>🔹 Compartilhar com stakeholders</li>
-            <li>🔹 Coletar feedback</li>
-          </ul>
-
-          <h3>9. Evolução</h3>
-          <ul>
-            <li>🔹 Atualizar este guia conforme avanços</li>
-            <li>🔹 Adicionar backend dinâmico futuramente</li>
-          </ul>
-        </div>
-      </div>
     </div>
   </div>
 
@@ -248,11 +216,6 @@
           <p>Backend: ⏳ 50%</p>
         `;
       }
-    }
-
-    function toggleGuia() {
-      const guia = document.getElementById('guia-tecnico');
-      guia.style.display = guia.style.display === 'none' ? 'block' : 'none';
     }
   </script>
 
