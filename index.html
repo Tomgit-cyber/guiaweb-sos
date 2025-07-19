@@ -1,173 +1,127 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Guia SOS Unimed Vidas</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      line-height: 1.6;
-      background-color: #f4f8fb;
-      color: #333;
-      margin: 0;
-      padding: 0;
-    }
-    header, footer {
-      background-color: #007f3f; /* Verde Unimed */
-      color: white;
-      text-align: center;
-      padding: 20px 10px;
-    }
-    h1 {
-      margin: 0;
-      font-size: 1.8rem;
-    }
-    main {
-      padding: 20px;
-      max-width: 900px;
-      margin: auto;
-    }
-    section {
-      background-color: white;
-      border-radius: 10px;
-      padding: 20px;
-      margin-bottom: 20px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
-    h2 {
-      color: #007f3f;
-      margin-top: 0;
-    }
-    details {
-      margin-bottom: 12px;
-      border-left: 4px solid #007f3f;
-      padding-left: 10px;
-      background-color: #f9fbfe;
-      border-radius: 6px;
-    }
-    summary {
-      font-weight: bold;
-      cursor: pointer;
-      font-size: 1.05rem;
-      padding: 8px 0;
-    }
-    .checklist label {
-      display: flex;
-      align-items: center;
-      margin-bottom: 8px;
-      cursor: pointer;
-    }
-    .checklist input[type="checkbox"] {
-      margin-right: 10px;
-      transform: scale(1.2);
-    }
-    textarea, input[type="text"], input[type="email"] {
-      width: 100%;
-      margin-top: 8px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      padding: 10px;
-      font-family: inherit;
-      font-size: 1rem;
-      box-sizing: border-box;
-    }
-    button {
-      background-color: #007f3f;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 6px;
-      cursor: pointer;
-      margin-top: 10px;
-    }
-    ul {
-      padding-left: 20px;
-    }
-    a {
-      color: #007f3f;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    footer {
-      font-size: 0.9rem;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Unimed – SOS Unimed Vidas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #00A651;
+            color: white;
+            margin: 0;
+            padding: 10px;
+            text-align: center;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        h1 { font-size: 24px; }
+        .status, .chart {
+            margin: 15px 0;
+            padding: 10px;
+            background: #006633;
+            border-radius: 5px;
+        }
+        .chart {
+            background: #007F44;
+        }
+        .progress-bar {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        .progress {
+            background-color: #00A651;
+            height: 20px;
+            text-align: right;
+            padding-right: 10px;
+            color: black;
+            font-weight: bold;
+        }
+        button {
+            background: white;
+            color: #00A651;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #007F44;
+            color: white;
+        }
+        select {
+            padding: 8px;
+            border-radius: 5px;
+            border: none;
+            margin-bottom: 10px;
+        }
+        @media (max-width: 600px) {
+            .container { padding: 10px; }
+            h1 { font-size: 20px; }
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <h1>Painel Unimed – SOS Unimed Vidas</h1>
+        <p>Monitoramento e controle do projeto v1.3.1</p>
 
-  <header>
-    <h1>🧭 Guia Web – SOS Unimed Vidas</h1>
-    <p>Versão 1.4 • Atualizado por Tomgit • 18/07/2025</p>
-  </header>
+        <div class="status">
+            <h2>Status Atual</h2>
+            <p>Etapa: <span id="etapa">Testes</span></p>
+            <p>Progresso: <span id="progresso">80%</span> (8 de 9 etapas concluídas)</p>
+            <p>Última Atualização: 18/07/2025 21:27</p>
+            <button onclick="location.reload()">🔁 Recarregar</button>
+        </div>
 
-  <main>
+        <div class="chart">
+            <h2>Progresso por Etapa</h2>
+            <select id="etapaFiltro" onchange="filtrarEtapa()">
+                <option value="todas">Todas</option>
+                <option value="Planejamento">Planejamento</option>
+                <option value="Configuração">Configuração</option>
+                <option value="UI">UI</option>
+                <option value="Backend">Backend</option>
+            </select>
 
-    <section>
-      <h2>✅ Checklist com Etapas do Projeto</h2>
-      <div class="checklist">
-        <label><input type="checkbox" /> Etapa 1 – Planejamento</label>
-        <label><input type="checkbox" /> Etapa 2 – Protótipo no Figma</label>
-        <label><input type="checkbox" /> Etapa 3 – Desenvolvimento no FlutterFlow</label>
-        <label><input type="checkbox" /> Etapa 4 – Integração com Firebase</label>
-        <label><input type="checkbox" /> Etapa 5 – Configuração Vercel</label>
-        <label><input type="checkbox" /> Etapa 6 – Testes e Ajustes</label>
-        <label><input type="checkbox" /> Etapa 7 – Implantação</label>
-        <label><input type="checkbox" /> Etapa 8 – Apresentação Interna</label>
-        <label><input type="checkbox" /> Etapa 9 – Pós-lançamento</label>
-      </div>
-    </section>
+            <div class="progress-bar" data-etapa="Planejamento">
+                <div class="progress" style="width: 100%;">Planejamento – 100%</div>
+            </div>
+            <div class="progress-bar" data-etapa="Configuração">
+                <div class="progress" style="width: 100%;">Configuração – 100%</div>
+            </div>
+            <div class="progress-bar" data-etapa="UI">
+                <div class="progress" style="width: 100%;">UI – 100%</div>
+            </div>
+            <div class="progress-bar" data-etapa="Backend">
+                <div class="progress" style="width: 50%;">Backend – 50%</div>
+            </div>
+        </div>
 
-    <section>
-      <h2>🧩 Detalhamento das Etapas</h2>
-      <details><summary>Etapa 1 – Planejamento</summary><p>• Definição da ideia central<br>• Levantamento de dores<br>• Reuniões estratégicas</p></details>
-      <details><summary>Etapa 2 – Protótipo no Figma</summary><p>• Wireframe inicial<br>• Identidade visual<br>• Validação</p></details>
-      <details><summary>Etapa 3 – Desenvolvimento</summary><p>• FlutterFlow<br>• Variáveis<br>• Autenticação</p></details>
-      <details><summary>Etapa 4 – Firebase</summary><p>• Firestore<br>• Segurança<br>• Integração</p></details>
-      <details><summary>Etapa 5 – Vercel</summary><p>• GitHub<br>• Deploy<br>• Domínio</p></details>
-      <details><summary>Etapa 6 – Testes</summary><p>• Dispositivos reais<br>• Ajustes</p></details>
-      <details><summary>Etapa 7 – Implantação</summary><p>• Treinamento<br>• Checklist<br>• Lançamento</p></details>
-      <details><summary>Etapa 8 – Apresentação</summary><p>• Pitch<br>• Slides</p></details>
-      <details><summary>Etapa 9 – Pós-lançamento</summary><p>• Suporte<br>• Monitoramento</p></details>
-    </section>
+        <button onclick="window.location.href='https://guiaweb-sos.vercel.app'">Voltar ao Guia</button>
+    </div>
 
-    <section>
-      <h2>📝 Anotações</h2>
-      <textarea placeholder="Digite observações..."></textarea>
-    </section>
-
-    <section>
-      <h2>📨 Fale com o time</h2>
-      <p>Use o formulário abaixo para enviar sugestões, dúvidas ou ajustes:</p>
-      <form action="https://formspree.io/f/xldldvpz" method="POST">
-        <label>Seu Nome:
-          <input type="text" name="nome" required />
-        </label><br />
-        <label>Seu Email:
-          <input type="email" name="email" required />
-        </label><br />
-        <label>Mensagem:
-          <textarea name="mensagem" required></textarea>
-        </label><br />
-        <button type="submit">Enviar</button>
-      </form>
-    </section>
-
-    <section>
-      <h2>🔗 Links Úteis</h2>
-      <ul>
-        <li><a href="https://vercel.com/evertons-projects-588b1bf6/guiaweb-sos" target="_blank">🌐 Painel Vercel</a></li>
-        <li><a href="https://github.com/Tomgit-cyber/guiaweb-sos" target="_blank">📁 GitHub</a></li>
-      </ul>
-    </section>
-
-  </main>
-
-  <footer>
-    &copy; 2025 SOS Unimed Vidas • Desenvolvido por Everton + IA
-  </footer>
-
+    <script>
+        function filtrarEtapa() {
+            const filtro = document.getElementById("etapaFiltro").value;
+            const barras = document.querySelectorAll(".progress-bar");
+            barras.forEach(barra => {
+                if (filtro === "todas" || barra.dataset.etapa === filtro) {
+                    barra.style.display = "block";
+                } else {
+                    barra.style.display = "none";
+                }
+            });
+        }
+    </script>
 </body>
 </html>
