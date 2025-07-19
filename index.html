@@ -2,9 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Guia de desenvolvimento do SOS Unimed Vidas v1.3.2, com fases, ferramentas e boas práticas.">
-  <meta name="keywords" content="Unimed, SOS, guia, desenvolvimento, Vercel, Formspree">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Guia SOS Unimed Vidas v1.3.2</title>
   <style>
     body {
@@ -19,7 +17,6 @@
       padding: 10px;
       justify-content: space-between;
       color: white;
-      role="navigation";
     }
     nav button {
       background: transparent;
@@ -33,13 +30,10 @@
     .tab-content {
       display: none;
       padding: 20px;
-      transition: opacity 0.3s;
     }
     .active {
       display: block;
-      opacity: 1;
     }
-    .tab-content { opacity: 0; }
     .container {
       background: #e7fbe7;
       border-radius: 10px;
@@ -47,8 +41,12 @@
       margin: 20px auto;
       max-width: 900px;
     }
-    h1, h2 { color: #006633; }
-    ul, ol { margin-left: 20px; }
+    h1, h2 {
+      color: #006633;
+    }
+    ul, ol {
+      margin-left: 20px;
+    }
     .status-box {
       margin: 8px 0;
       padding: 10px;
@@ -56,11 +54,24 @@
       background-color: #f1fdf4;
       border-radius: 5px;
     }
-    label.checkbox { display: block; margin: 6px 0; }
-    .indice ul { list-style: none; padding-left: 0; }
-    .indice li { margin: 4px 0; }
-    .indice a { color: #006633; text-decoration: none; }
-    .indice a:hover { text-decoration: underline; }
+    label.checkbox {
+      display: block;
+      margin: 6px 0;
+    }
+    .indice ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .indice li {
+      margin: 4px 0;
+    }
+    .indice a {
+      color: #006633;
+      text-decoration: none;
+    }
+    .indice a:hover {
+      text-decoration: underline;
+    }
     form {
       margin-top: 20px;
       background: #fff;
@@ -85,36 +96,15 @@
       font-weight: bold;
       cursor: pointer;
     }
-    .progress-item {
-      margin: 5px 0;
-      padding: 5px;
-      background-color: #dff0df;
-      border-radius: 5px;
-    }
-    .progress-bar {
-      height: 20px;
-      background-color: #00A651;
-      border-radius: 5px;
-      text-align: right;
-      color: white;
-      padding-right: 5px;
-    }
-    @media (max-width: 480px) {
-      nav { flex-direction: column; align-items: center; }
-      nav button { margin: 5px 0; }
-      .container { margin: 10px; padding: 10px; }
-      form { padding: 10px; }
-      input, textarea { font-size: 14px; }
-    }
   </style>
 </head>
 <body>
 
   <nav>
     <div>
-      <button aria-label="Abrir guia" onclick="showTab('guia')">📘 Guia</button>
-      <button aria-label="Abrir painel" onclick="showTab('painel')">📊 Painel</button>
-      <button aria-label="Abrir feedback" onclick="showTab('feedback')">📝 Feedback</button>
+      <button onclick="showTab('guia')">📘 Guia</button>
+      <button onclick="showTab('painel')">📊 Painel</button>
+      <button onclick="showTab('feedback')">📝 Feedback</button>
     </div>
   </nav>
 
@@ -142,11 +132,11 @@
 
       <h2 id="fases">📌 Fases do Projeto</h2>
       <ul>
-        <li><label class="checkbox"><input type="checkbox" id="fase1"> Planejamento Estratégico</label></li>
-        <li><label class="checkbox"><input type="checkbox" id="fase2"> Configuração de Ambiente</label></li>
-        <li><label class="checkbox"><input type="checkbox" id="fase3"> UI e Design</label></li>
-        <li><label class="checkbox"><input type="checkbox" id="fase4"> Integrações Técnicas</label></li>
-        <li><label class="checkbox"><input type="checkbox" id="fase5"> Testes e Deploy</label></li>
+        <li><label class="checkbox"><input type="checkbox"> Planejamento Estratégico</label></li>
+        <li><label class="checkbox"><input type="checkbox"> Configuração de Ambiente</label></li>
+        <li><label class="checkbox"><input type="checkbox"> UI e Design</label></li>
+        <li><label class="checkbox"><input type="checkbox"> Integrações Técnicas</label></li>
+        <li><label class="checkbox"><input type="checkbox"> Testes e Deploy</label></li>
       </ul>
 
       <h2 id="ferramentas">🧰 Ferramentas Utilizadas</h2>
@@ -198,15 +188,6 @@
       <div class="status-box">✅ Progresso: 70%</div>
       <div class="status-box">📅 Última atualização: <span id="time">---</span></div>
       <button class="reload" onclick="updateTime()">🔄 Atualizar</button>
-
-      <div class="chart">
-        <h2>Progresso por Etapa</h2>
-        <div class="progress-item">Planejamento: <div class="progress-bar" style="width: 100%;">100%</div></div>
-        <div class="progress-item">Configuração: <div class="progress-bar" style="width: 100%;">100%</div></div>
-        <div class="progress-item">UI: <div class="progress-bar" style="width: 100%;">100%</div></div>
-        <div class="progress-item">Backend: <div class="progress-bar" style="width: 50%;">50%</div></div>
-        <div class="progress-item">Integração: <div class="progress-bar" style="width: 70%;">70%</div></div>
-      </div>
     </div>
   </div>
 
@@ -233,29 +214,7 @@
     function updateTime() {
       document.getElementById("time").innerText = new Date().toLocaleString();
     }
-
-    document.querySelector('form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const nome = this.querySelector('input[name="nome"]').value;
-      const mensagem = this.querySelector('textarea[name="mensagem"]').value;
-      if (nome && mensagem) {
-        this.submit();
-        alert('Feedback enviado com sucesso!');
-        this.reset();
-      } else {
-        alert('Preencha todos os campos!');
-      }
-    });
-
-    document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
-      checkbox.checked = localStorage.getItem(checkbox.id) === 'true';
-      checkbox.addEventListener('change', function() {
-        localStorage.setItem(this.id, this.checked);
-      });
-    });
-
-    setInterval(updateTime, 60000);
-    updateTime();
   </script>
+
 </body>
 </html>
