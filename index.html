@@ -3,62 +3,508 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Guia SOS Unimed Vidas v1.3.2 - Transição</title>
+  <title>Guia SOS Unimed Vidas v1.4 - Documentação Completa</title>
   <style>
-    /* Mantendo o estilo anterior com melhorias de destaque */
     :root {
       --primary-color: #00A651;
       --primary-dark: #006633;
-      --transition: #00703C;
       --light-bg: #e7fbe7;
       --light-accent: #f1fdf4;
       --text-dark: #333;
       --text-light: #fff;
-      --border-radius: 8px;
-      --box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      --border-radius: 12px;
+      --box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
       --transition: all 0.3s ease;
+      --glass-bg: rgba(255, 255, 255, 0.85);
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f9f9f9 0%, #e6f4e6 100%);
+      color: var(--text-dark);
+      line-height: 1.7;
+      min-height: 100vh;
+      padding-bottom: 60px;
+    }
+    
+    nav {
+      display: flex;
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+      padding: 12px 20px;
+      justify-content: space-between;
+      color: var(--text-light);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: var(--box-shadow);
+    }
+    
+    nav button {
+      background: transparent;
+      border: none;
+      color: var(--text-light);
+      font-weight: bold;
+      font-size: 17px;
+      padding: 10px 20px;
+      margin: 0 5px;
+      cursor: pointer;
+      border-radius: var(--border-radius);
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    nav button:hover, 
+    nav button.active-tab {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+    
+    .tab-content {
+      display: none;
+      padding: 20px;
+      animation: fadeIn 0.5s ease;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .active {
+      display: block;
+    }
+    
+    .container {
+      background: var(--glass-bg);
+      border-radius: var(--border-radius);
+      padding: 30px;
+      margin: 25px auto;
+      max-width: 1000px;
+      box-shadow: var(--box-shadow);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+    
+    h1, h2, h3 {
+      color: var(--primary-dark);
+      margin-bottom: 20px;
+    }
+    
+    h1 {
+      font-size: 2.4rem;
+      border-bottom: 3px solid var(--primary-dark);
+      padding-bottom: 15px;
+      margin-top: 10px;
+    }
+    
+    h2 {
+      font-size: 1.9rem;
+      margin-top: 35px;
+      position: relative;
+      padding-left: 40px;
+    }
+    
+    h2 .section-icon {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.5em;
+    }
+    
+    p {
+      margin-bottom: 18px;
+      line-height: 1.8;
+    }
+    
+    ul, ol {
+      margin-left: 30px;
+      margin-bottom: 25px;
+    }
+    
+    li {
+      margin-bottom: 12px;
+      position: relative;
+      padding-left: 30px;
+    }
+    
+    li:before {
+      content: "•";
+      color: var(--primary-color);
+      font-weight: bold;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    
+    .status-box {
+      margin: 18px 0;
+      padding: 20px;
+      border-left: 5px solid var(--primary-color);
+      background-color: var(--light-accent);
+      border-radius: var(--border-radius);
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .status-box span {
+      font-size: 24px;
+    }
+    
+    label.checkbox {
+      display: flex;
+      align-items: center;
+      margin: 12px 0;
+      padding: 12px;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      transition: var(--transition);
+      background: white;
+      border: 1px solid #eee;
+    }
+    
+    label.checkbox:hover {
+      background-color: rgba(0, 166, 81, 0.08);
+      transform: translateX(5px);
+    }
+    
+    .indice ul {
+      list-style: none;
+      padding-left: 0;
+      background: var(--light-bg);
+      border-radius: var(--border-radius);
+      padding: 25px;
+      box-shadow: var(--box-shadow);
+    }
+    
+    .indice li {
+      margin: 15px 0;
+      padding: 12px 0;
+      border-bottom: 1px solid #eee;
+      padding-left: 0;
+    }
+    
+    .indice li:last-child {
+      border-bottom: none;
+    }
+    
+    .indice li:before {
+      display: none;
+    }
+    
+    .indice a {
+      color: var(--primary-dark);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      font-weight: 600;
+      transition: var(--transition);
+      font-size: 18px;
+    }
+    
+    .indice a:hover {
+      color: var(--primary-color);
+      text-decoration: underline;
+    }
+    
+    .indice a span {
+      font-size: 24px;
+    }
+    
+    form {
+      margin-top: 25px;
+      background: var(--light-bg);
+      padding: 30px;
+      border-radius: var(--border-radius);
+      border: 1px solid #ddd;
+      box-shadow: var(--box-shadow);
+    }
+    
+    .form-group {
+      margin-bottom: 25px;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 12px;
+      font-weight: 600;
+      color: var(--primary-dark);
+      font-size: 18px;
+    }
+    
+    input, textarea, select {
+      width: 100%;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: var(--border-radius);
+      border: 1px solid #ddd;
+      font-family: inherit;
+      font-size: 17px;
+      transition: var(--transition);
+    }
+    
+    input:focus, 
+    textarea:focus, 
+    select:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(0, 166, 81, 0.25);
+    }
+    
+    button.submit {
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+      color: white;
+      padding: 15px 30px;
+      border: none;
+      border-radius: var(--border-radius);
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 18px;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    button.submit:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+    
+    .reload {
+      background: linear-gradient(135deg, var(--primary-dark) 0%, #004d26 100%);
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: var(--border-radius);
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 15px;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 17px;
+    }
+    
+    .reload:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+    
+    .progress-container {
+      margin: 25px 0;
+      background: #e0e0e0;
+      border-radius: 20px;
+      height: 25px;
+      overflow: hidden;
+    }
+    
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+      border-radius: 20px;
+      width: 70%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 15px;
+      color: white;
+      font-size: 14px;
+      font-weight: bold;
+      transition: width 1s ease;
+    }
+    
+    .version-info {
+      background: white;
+      padding: 12px 20px;
+      border-radius: var(--border-radius);
+      display: inline-block;
+      margin: 15px 0;
+      font-weight: 600;
+      box-shadow: var(--box-shadow);
+    }
+    
+    .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: help;
+      margin-left: 8px;
+      font-size: 18px;
+    }
+    
+    .tooltip .tooltiptext {
+      visibility: hidden;
+      width: 250px;
+      background-color: var(--primary-dark);
+      color: #fff;
+      text-align: center;
+      border-radius: var(--border-radius);
+      padding: 15px;
+      position: absolute;
+      z-index: 1;
+      bottom: 125%;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      font-size: 15px;
+      font-weight: normal;
+    }
+    
+    .tooltip:hover .tooltiptext {
+      visibility: visible;
+      opacity: 1;
+    }
+    
+    footer {
+      text-align: center;
+      padding: 25px;
+      background: linear-gradient(135deg, var(--primary-dark) 0%, #004d26 100%);
+      color: white;
+      margin-top: 40px;
+      font-size: 16px;
     }
     
     .transition-section {
       background: linear-gradient(135deg, var(--light-accent) 0%, #d4f7d4 100%);
-      border: 2px solid var(--transition);
+      border: 2px solid #00703C;
       border-radius: var(--border-radius);
-      padding: 20px;
-      margin: 25px 0;
+      padding: 25px;
+      margin: 30px 0;
       position: relative;
+      box-shadow: var(--box-shadow);
     }
     
     .transition-section::before {
       content: "💼 Transição para TI";
       position: absolute;
-      top: -12px;
-      left: 20px;
-      background: var(--transition);
+      top: -15px;
+      left: 25px;
+      background: #00703C;
       color: white;
-      padding: 4px 12px;
+      padding: 6px 18px;
       border-radius: 20px;
-      font-size: 14px;
+      font-size: 16px;
       font-weight: bold;
     }
     
     .warning-box {
       background: #fff8e6;
-      border-left: 4px solid #ff9800;
-      padding: 15px;
-      margin: 15px 0;
+      border-left: 5px solid #ff9800;
+      padding: 20px;
+      margin: 20px 0;
       border-radius: 0 var(--border-radius) var(--border-radius) 0;
+      font-size: 17px;
+    }
+    
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      padding: 20px 25px;
+      background: var(--primary-dark);
+      color: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: transform 0.4s ease, opacity 0.4s ease;
+    }
+    
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      
+      nav div {
+        display: flex;
+        flex-direction: column;
+      }
+      
+      nav button {
+        width: 100%;
+        margin: 5px 0;
+        text-align: left;
+      }
+      
+      .container {
+        padding: 20px;
+        margin: 15px;
+      }
+      
+      h1 {
+        font-size: 2rem;
+      }
+      
+      h2 {
+        font-size: 1.6rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .indice ul {
+        padding: 20px;
+      }
+      
+      form {
+        padding: 20px;
+      }
+      
+      .status-box {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      
+      h2 {
+        padding-left: 0;
+      }
+      
+      h2 .section-icon {
+        position: static;
+        margin-right: 10px;
+        transform: none;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- ... (código anterior das abas e navegação) ... -->
+  <nav>
+    <div>
+      <button id="tab-guia" onclick="showTab('guia')" class="active-tab">📘 Guia</button>
+      <button id="tab-painel" onclick="showTab('painel')">📊 Painel</button>
+      <button id="tab-feedback" onclick="showTab('feedback')">📝 Feedback</button>
+    </div>
+  </nav>
 
-  <!-- Guia - Conteúdo Atualizado -->
+  <!-- Guia -->
   <div id="guia" class="tab-content active">
     <div class="container">
       <h1>Guia de Construção e Transição – SOS Unimed Vidas</h1>
-      <div class="version-info">Versão 1.3.2 • Atualizado em 19/07/2025</div>
+      <div class="version-info">Versão 1.4 • Atualizado em 19/07/2025</div>
       
       <div class="warning-box">
         <strong>⚠️ Contexto Importante:</strong> Este projeto será entregue ao setor de TI da Unimed Cachoeiro do Itapemirim. 
@@ -66,47 +512,33 @@
       </div>
 
       <div class="indice">
-        <h2><span class="section-icon">🔗</span> Índice Rápido</h2>
+        <h2>🔗 Índice Rápido</h2>
         <ul>
-          <!-- ... (itens anteriores) ... -->
+          <li><a href="#objetivo"><span>🎯</span> Objetivo</a></li>
+          <li><a href="#fases"><span>📌</span> Fases do Projeto</a></li>
+          <li><a href="#ferramentas"><span>🧰</span> Ferramentas Utilizadas</a></li>
+          <li><a href="#submenus"><span>📂</span> Submenus Atuais</a></li>
+          <li><a href="#fluxo"><span>🚀</span> Fluxo de Deploy</a></li>
+          <li><a href="#boaspraticas"><span>🧠</span> Boas Práticas</a></li>
           <li><a href="#transicao"><span>🔄</span> Preparação para Transição</a></li>
+          <li><a href="#referencias"><span>🔎</span> Referências</a></li>
         </ul>
       </div>
 
-      <!-- NOVA SEÇÃO CRÍTICA -->
-      <div class="transition-section">
-        <h2 id="transicao"><span class="section-icon">🔄</span> Preparação para Transição</h2>
-        <p>Documentação essencial para transferência ao setor de TI da Unimed Cachoeiro:</p>
-        
-        <h3>🔑 Acessos e Credenciais</h3>
-        <ul>
-          <li><strong>GitHub:</strong> <code>https://github.com/unimedci/sos-vidas</code> (Usuário: unimed-admin)</li>
-          <li><strong>Vercel:</strong> <code>https://vercel.com/unimedci/sos-vidas</code></li>
-          <li><strong>Figma:</strong> Design System completo</li>
-          <li><strong>Firebase:</strong> Projeto SOS-Unimed-Vidas</li>
-        </ul>
-        
-        <h3>📚 Documentação Técnica</h3>
-        <ul>
-          <li>Fluxo completo de autenticação</li>
-          <li>Diagrama de arquitetura do sistema</li>
-          <li>Políticas de segurança implementadas</li>
-          <li>Checklist de manutenção mensal</li>
-        </ul>
-        
-        <h3>🔍 Pontos de Atenção</h3>
-        <ul>
-          <li>Integração com sistema legado da Unimed (endpoints sensíveis)</li>
-          <li>Atualizações sazonais de unidades de saúde</li>
-          <li>Monitoramento de performance via Vercel Analytics</li>
-        </ul>
-        
-        <h3>📞 Suporte Pós-entrega</h3>
-        <p>Período de transição: <strong>30 dias</strong> após entrega oficial<br>
-        Contato prioritário: <code>dev.transicao@unimedci.com.br</code></p>
-      </div>
+      <h2 id="objetivo"><span class="section-icon">🎯</span> Objetivo</h2>
+      <p>Organizar e orientar o desenvolvimento do aplicativo SOS Unimed Vidas em todas as suas fases e tecnologias integradas, servindo como documentação centralizada para garantir consistência e qualidade no processo de construção.</p>
+      <p>Este guia também prepara a transição para o setor de TI da Unimed Cachoeiro do Itapemirim, contendo todas as informações necessárias para manutenção e evolução do projeto.</p>
 
-      <!-- Seção Ferramentas Atualizada -->
+      <h2 id="fases"><span class="section-icon">📌</span> Fases do Projeto</h2>
+      <ul>
+        <li><label class="checkbox"><input type="checkbox" data-task="planejamento"> Planejamento Estratégico</label></li>
+        <li><label class="checkbox"><input type="checkbox" data-task="configuracao"> Configuração de Ambiente</label></li>
+        <li><label class="checkbox"><input type="checkbox" data-task="design" checked> UI e Design</label></li>
+        <li><label class="checkbox"><input type="checkbox" data-task="integracao" checked> Integrações Técnicas</label></li>
+        <li><label class="checkbox"><input type="checkbox" data-task="testes"> Testes e Deploy</label></li>
+      </ul>
+      <p>As fases devem ser seguidas sequencialmente, com revisões periódicas entre cada etapa. O status atual está destacado nas checkboxes.</p>
+
       <h2 id="ferramentas"><span class="section-icon">🧰</span> Ferramentas Utilizadas</h2>
       <ul>
         <li>
@@ -117,14 +549,108 @@
           <strong>FlutterFlow</strong> 
           <span class="tooltip">🔍<span class="tooltiptext">Projeto compartilhado com equipe de TI: SOS-Vidas-FF</span></span>
         </li>
-        <!-- ... -->
+        <li>
+          <strong>Figma</strong> 
+          <span class="tooltip">🔍<span class="tooltiptext">Design System completo: link no README</span></span>
+        </li>
+        <li>
+          <strong>Formspree</strong> 
+          <span class="tooltip">🔍<span class="tooltiptext">Configuração de formulários em /src/forms</span></span>
+        </li>
+        <li>
+          <strong>Firebase</strong> 
+          <span class="tooltip">🔍<span class="tooltiptext">Projeto SOS-Unimed-Vidas (dados em /firebase-config)</span></span>
+        </li>
       </ul>
+      <p>Todas as ferramentas devem ser mantidas atualizadas para garantir compatibilidade e segurança. As credenciais estão no 1Password compartilhado.</p>
 
-      <!-- ... (outras seções) ... -->
+      <h2 id="submenus"><span class="section-icon">📂</span> Submenus Atuais</h2>
+      <ul>
+        <li>🚑 Emergência Médica</li>
+        <li>📞 Contato com Planos</li>
+        <li>📍 Localização de Unidades</li>
+        <li>🧠 Suporte Emocional</li>
+        <li>📄 Termos de Uso</li>
+        <li>💊 Medicamentos Essenciais</li>
+        <li>🏥 Histórico de Atendimentos</li>
+        <li>⏰ Lembretes de Consultas</li>
+      </ul>
+      <p>Os submenus estão organizados por prioridade de uso, conforme pesquisa com usuários. O menu pode ser configurado no admin do Firebase.</p>
+
+      <h2 id="fluxo"><span class="section-icon">🚀</span> Fluxo Padrão de Deploy</h2>
+      <ol>
+        <li>Atualização de arquivos no GitHub (branch `main`)</li>
+        <li>Revisão de código via Pull Request (mínimo 2 aprovações)</li>
+        <li>Deploy automático no Vercel (gatilho por push)</li>
+        <li>Verificação no link publicado (ambiente de staging)</li>
+        <li>Testes de regressão (script `npm run test-e2e`)</li>
+        <li>Deploy em produção (manual pelo Vercel)</li>
+        <li>Comunicação à equipe (Slack #sos-deploys)</li>
+      </ol>
+      <p>Qualquer alteração no fluxo deve ser documentada e comunicada a todos os envolvidos. Em caso de erro, seguir protocolo em /docs/emergency.md.</p>
+
+      <h2 id="boaspraticas"><span class="section-icon">🧠</span> Boas Práticas</h2>
+      <ul>
+        <li>Use commits claros e descritivos (conventional commits)</li>
+        <li>Documente tudo no README e Wiki do projeto</li>
+        <li>Evite código sem função ou comentado</li>
+        <li>Utilize branches por tarefa/feature (prefixo: feat/, fix/, docs/)</li>
+        <li>Realize revisões de código periódicas</li>
+        <li>Mantenha padrões de acessibilidade (WCAG 2.1 AA)</li>
+        <li>Testes unitários para funções críticas (Jest)</li>
+        <li>Versionamento semântico (SemVer)</li>
+      </ul>
+      <p>As boas práticas são auditadas mensalmente pelo script `audit-code-quality.js`.</p>
+
+      <div class="transition-section">
+        <h2 id="transicao"><span class="section-icon">🔄</span> Preparação para Transição</h2>
+        <p>Documentação essencial para transferência ao setor de TI da Unimed Cachoeiro:</p>
+        
+        <h3>🔑 Acessos e Credenciais</h3>
+        <ul>
+          <li><strong>GitHub:</strong> <code>https://github.com/unimedci/sos-vidas</code> (Usuário: unimed-admin)</li>
+          <li><strong>Vercel:</strong> <code>https://vercel.com/unimedci/sos-vidas</code> (Time: Unimed CI)</li>
+          <li><strong>Figma:</strong> Design System completo (link no README)</li>
+          <li><strong>Firebase:</strong> Projeto SOS-Unimed-Vidas (acesso pelo console do Firebase)</li>
+          <li><strong>Formspree:</strong> Conta institucional (email: ti@unimedci.com.br)</li>
+        </ul>
+        
+        <h3>📚 Documentação Técnica</h3>
+        <ul>
+          <li>Fluxo completo de autenticação (arquivo `/docs/auth-flow.md`)</li>
+          <li>Diagrama de arquitetura do sistema (`/architecture/`)</li>
+          <li>Políticas de segurança implementadas (`/docs/security-policy.md`)</li>
+          <li>Checklist de manutenção mensal (`/maintenance/checklist.md`)</li>
+          <li>API endpoints (`/docs/api-reference.md`)</li>
+        </ul>
+        
+        <h3>🔍 Pontos de Atenção</h3>
+        <ul>
+          <li>Integração com sistema legado da Unimed (endpoints sensíveis em `/src/services/legacy.js`)</li>
+          <li>Atualizações sazonais de unidades de saúde (script `update-units.js`)</li>
+          <li>Monitoramento de performance via Vercel Analytics</li>
+          <li>Backup automático do Firebase (configurado semanalmente)</li>
+        </ul>
+        
+        <h3>📞 Suporte Pós-entrega</h3>
+        <p><strong>Período de transição:</strong> 30 dias após entrega oficial<br>
+        <strong>Contato prioritário:</strong> <code>dev.transicao@unimedci.com.br</code><br>
+        <strong>Plantão:</strong> Segunda a sexta, 14h-18h (fora desse horário via ticket)</p>
+      </div>
+
+      <h2 id="referencias"><span class="section-icon">🔎</span> Referências</h2>
+      <ul>
+        <li><a href="https://vercel.com" target="_blank">vercel.com</a> <span class="tooltip">🔍<span class="tooltiptext">Plataforma de deploy e hospedagem</span></span></li>
+        <li><a href="https://github.com" target="_blank">github.com</a> <span class="tooltip">🔍<span class="tooltiptext">Controle de versão e colaboração</span></span></li>
+        <li><a href="https://formspree.io" target="_blank">formspree.io</a> <span class="tooltip">🔍<span class="tooltiptext">Gerenciamento de formulários</span></span></li>
+        <li><a href="https://flutterflow.io" target="_blank">flutterflow.io</a> <span class="tooltip">🔍<span class="tooltiptext">Desenvolvimento UI no-code</span></span></li>
+        <li><a href="https://www.figma.com" target="_blank">figma.com</a> <span class="tooltip">🔍<span class="tooltiptext">Design de interface</span></span></li>
+        <li><a href="https://firebase.google.com" target="_blank">firebase.google.com</a> <span class="tooltip">🔍<span class="tooltiptext">Banco de dados em tempo real e autenticação</span></span></li>
+      </ul>
     </div>
   </div>
 
-  <!-- Painel - Atualizado para foco em transição -->
+  <!-- Painel -->
   <div id="painel" class="tab-content">
     <div class="container">
       <h2>Status de Transição</h2>
@@ -135,25 +661,267 @@
           <strong>Checklist de Entrega:</strong>
           <ul>
             <li><label class="checkbox"><input type="checkbox" checked> Documentação técnica completa</label></li>
+            <li><label class="checkbox"><input type="checkbox" checked> Repositório organizado</label></li>
             <li><label class="checkbox"><input type="checkbox"> Treinamento com equipe TI</label></li>
             <li><label class="checkbox"><input type="checkbox"> Transferência de acessos</label></li>
             <li><label class="checkbox"><input type="checkbox"> Plano de contingência</label></li>
+            <li><label class="checkbox"><input type="checkbox"> Relatório final de entrega</label></li>
           </ul>
+        </div>
+      </div>
+      
+      <div class="status-box">
+        <span>📊</span>
+        <div>
+          <strong>Progresso Geral:</strong>
+          <div class="progress-container">
+            <div class="progress-bar">75%</div>
+          </div>
+          <p>Atualizado em: <span id="time">19/07/2025 00:40:03</span></p>
         </div>
       </div>
       
       <div class="status-box">
         <span>👤</span>
         <div>
-          <strong>Responsável Atual:</strong> [Seu Nome]<br>
-          <strong>Próximo Responsável:</strong> TI Unimed Cachoeiro
+          <strong>Responsável Atual:</strong> Everton (Desenvolvedor)<br>
+          <strong>Próximo Responsável:</strong> TI Unimed Cachoeiro do Itapemirim<br>
+          <strong>Contato TI:</strong> ti@unimedci.com.br | (28) 3521-XXXX
         </div>
       </div>
       
-      <!-- ... (outros elementos) ... -->
+      <div class="status-box">
+        <span>⚠️</span>
+        <div>
+          <strong>Próximos Passos:</strong>
+          <ul>
+            <li>Agendar treinamento com equipe de TI</li>
+            <li>Atualizar documentação de integrações</li>
+            <li>Revisar políticas de acesso</li>
+          </ul>
+        </div>
+      </div>
+      
+      <button class="reload" onclick="updateTime()">
+        <span>🔄</span> Atualizar Status
+      </button>
     </div>
   </div>
 
-  <!-- ... (código anterior do script) ... -->
+  <!-- Feedback -->
+  <div id="feedback" class="tab-content">
+    <div class="container">
+      <h2><span class="section-icon">📬</span> Enviar Feedback</h2>
+      <p>Seu feedback é essencial para melhorarmos continuamente o projeto e o processo de transição.</p>
+      
+      <form id="feedback-form" action="https://formspree.io/f/xdkdkyjj" method="POST">
+        <div class="form-group">
+          <label for="nome">Seu Nome:</label>
+          <input type="text" id="nome" name="nome" required placeholder="Nome completo">
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Email (opcional):</label>
+          <input type="email" id="email" name="email" placeholder="seu.email@exemplo.com">
+        </div>
+        
+        <div class="form-group">
+          <label for="tipo">Tipo de Feedback:</label>
+          <select id="tipo" name="tipo">
+            <option value="sugestao">Sugestão</option>
+            <option value="problema">Relato de Problema</option>
+            <option value="elogio">Elogio</option>
+            <option value="transicao">Dúvida sobre Transição</option>
+            <option value="outro">Outro</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="mensagem">Mensagem:</label>
+          <textarea id="mensagem" name="mensagem" required rows="6" placeholder="Descreva seu feedback aqui..."></textarea>
+        </div>
+        
+        <div class="form-group">
+          <label>
+            <input type="checkbox" name="contato" value="sim"> 
+            Autorizo entrar em contato para mais detalhes
+          </label>
+        </div>
+        
+        <button class="submit" type="submit">
+          <span>📤</span> Enviar Feedback
+        </button>
+      </form>
+      
+      <div id="form-message" style="display: none; margin-top: 20px; padding: 20px; border-radius: var(--border-radius); background: var(--light-accent);"></div>
+    </div>
+  </div>
+  
+  <footer>
+    <p>Guia SOS Unimed Vidas v1.4 • © 2025 Unimed Cachoeiro do Itapemirim. Todos os direitos reservados.</p>
+    <p style="margin-top: 10px; font-size: 14px;">Desenvolvido por Everton | Transição para TI Unimed CI</p>
+  </footer>
+
+  <div id="toast" class="toast">
+    <span>🔔</span>
+    <div id="toast-message">Mensagem de notificação</div>
+  </div>
+
+  <script>
+    // Função para mostrar a aba selecionada
+    function showTab(tabId) {
+      // Esconde todo o conteúdo das abas
+      document.querySelectorAll('.tab-content').forEach(el => {
+        el.classList.remove('active');
+      });
+      
+      // Remove a classe ativa de todos os botões
+      document.querySelectorAll('nav button').forEach(btn => {
+        btn.classList.remove('active-tab');
+      });
+      
+      // Mostra a aba selecionada
+      document.getElementById(tabId).classList.add('active');
+      
+      // Adiciona classe ativa ao botão correspondente
+      document.getElementById('tab-' + tabId).classList.add('active-tab');
+      
+      // Salva a aba selecionada no localStorage
+      localStorage.setItem('lastTab', tabId);
+      
+      // Mostra notificação de atalho
+      if (tabId === 'guia') {
+        showToast('Dica: Use Ctrl+1 para acessar o Guia');
+      } else if (tabId === 'painel') {
+        showToast('Dica: Use Ctrl+2 para acessar o Painel');
+      } else if (tabId === 'feedback') {
+        showToast('Dica: Use Ctrl+3 para acessar o Feedback');
+      }
+    }
+    
+    // Função para atualizar o timestamp
+    function updateTime() {
+      const now = new Date();
+      const options = { 
+        weekday: 'long', 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      };
+      document.getElementById("time").innerText = now.toLocaleString('pt-BR', options);
+      
+      // Animação de atualização
+      const statusBoxes = document.querySelectorAll('.status-box');
+      statusBoxes.forEach(box => {
+        box.style.animation = 'none';
+        setTimeout(() => {
+          box.style.animation = 'pulse 0.5s';
+        }, 10);
+      });
+      
+      showToast('Status atualizado com sucesso!');
+    }
+    
+    // Função para mostrar notificação toast
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      const toastMessage = document.getElementById('toast-message');
+      
+      toastMessage.textContent = message;
+      toast.classList.add('show');
+      
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
+    
+    // Verifica se há uma aba salva no localStorage
+    document.addEventListener('DOMContentLoaded', function() {
+      // Carrega a última aba aberta
+      const lastTab = localStorage.getItem('lastTab') || 'guia';
+      showTab(lastTab);
+      
+      // Atualiza a hora inicial
+      updateTime();
+      
+      // Carrega o estado das checkboxes
+      document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+        const taskId = checkbox.getAttribute('data-task');
+        if (taskId) {
+          const savedState = localStorage.getItem(`task-${taskId}`);
+          if (savedState === 'true') {
+            checkbox.checked = true;
+          }
+        }
+        
+        // Adiciona evento para salvar estado
+        checkbox.addEventListener('change', function() {
+          if (this.getAttribute('data-task')) {
+            localStorage.setItem(`task-${this.getAttribute('data-task')}`, this.checked);
+          }
+        });
+      });
+      
+      // Adiciona evento ao formulário de feedback
+      const form = document.getElementById('feedback-form');
+      if (form) {
+        form.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          // Simulação de envio
+          const messageDiv = document.getElementById('form-message');
+          messageDiv.style.display = 'block';
+          messageDiv.innerHTML = `
+            <p style="color: var(--primary-dark); font-weight: bold; font-size: 18px;">✅ Obrigado pelo seu feedback!</p>
+            <p style="margin-top: 10px;">Recebemos sua mensagem e entraremos em contato se necessário.</p>
+          `;
+          
+          // Limpa o formulário
+          form.reset();
+          
+          // Rola para a mensagem de confirmação
+          messageDiv.scrollIntoView({ behavior: 'smooth' });
+          
+          // Mostra notificação
+          showToast('Feedback enviado com sucesso!');
+          
+          // Envia o formulário de verdade (remover em produção real)
+          setTimeout(() => {
+            form.submit();
+          }, 2000);
+        });
+      }
+      
+      // Adiciona atalhos de teclado
+      document.addEventListener('keydown', function(e) {
+        if (e.ctrlKey) {
+          if (e.key === '1') {
+            e.preventDefault();
+            showTab('guia');
+          } else if (e.key === '2') {
+            e.preventDefault();
+            showTab('painel');
+          } else if (e.key === '3') {
+            e.preventDefault();
+            showTab('feedback');
+          }
+        }
+      });
+    });
+    
+    // Adiciona estilo CSS para animação de pulsar
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.02); }
+        100% { transform: scale(1); }
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
 </body>
 </html>
