@@ -1,1161 +1,170 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Guia SOS Unimed Vidas - Modo Criador</title>
-  <style>
-    /* Estilo Modo Criador */
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      line-height: 1.6;
-      background: linear-gradient(135deg, #f7fff7 0%, #e6f7e6 100%);
-      color: #333;
-      margin: 0;
-      padding: 0;
-      min-height: 100vh;
-    }
-
-    header, footer {
-      background: linear-gradient(135deg, #009d38 0%, #007d2e 100%);
-      color: white;
-      text-align: center;
-      padding: 25px 20px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-
-    h1, h2, h3 {
-      margin: 0;
-      padding-bottom: 10px;
-    }
-
-    h1 {
-      font-size: 2.4rem;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-    }
-
-    h2 {
-      font-size: 1.8rem;
-      color: #007d2e;
-      border-bottom: 2px solid #009d38;
-      padding-bottom: 8px;
-      margin-top: 30px;
-    }
-
-    main {
-      padding: 20px;
-      max-width: 1100px;
-      margin: 30px auto;
-    }
-
-    section {
-      background: rgba(255, 255, 255, 0.95);
-      margin-bottom: 25px;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-      border: 1px solid #e0e8e0;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    section:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
-    }
-
-    pre, code {
-      background: #e6f7e6;
-      padding: 15px;
-      border-radius: 8px;
-      overflow-x: auto;
-      display: block;
-      border-left: 4px solid #009d38;
-      font-family: 'Consolas', monospace;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 20px 0;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    }
-
-    th {
-      background: #009d38;
-      color: white;
-      font-weight: 600;
-    }
-
-    th, td {
-      padding: 15px;
-      border: 1px solid #e0e8e0;
-      text-align: left;
-    }
-
-    tr:nth-child(even) {
-      background-color: #f8fff8;
-    }
-
-    mark {
-      background: linear-gradient(120deg, rgba(0, 157, 56, 0.2), rgba(0, 157, 56, 0.1));
-      padding: 2px 6px;
-      border-radius: 4px;
-      font-weight: 500;
-    }
-
-    /* Estilos existentes do guia */
-    nav {
-      display: flex;
-      background: linear-gradient(135deg, #009d38 0%, #007d2e 100%);
-      padding: 12px 20px;
-      justify-content: center;
-      color: white;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-
-    nav button {
-      background: transparent;
-      border: none;
-      color: white;
-      font-weight: 600;
-      font-size: 17px;
-      padding: 12px 24px;
-      margin: 0 10px;
-      cursor: pointer;
-      border-radius: 30px;
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    nav button:hover,
-    nav button.active-tab {
-      background: rgba(255, 255, 255, 0.2);
-      transform: translateY(-2px);
-    }
-
-    .tab-content {
-      display: none;
-      padding: 20px;
-      animation: fadeIn 0.5s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .active {
-      display: block;
-    }
-
-    .container {
-      background: rgba(255, 255, 255, 0.92);
-      border-radius: 12px;
-      padding: 30px;
-      margin: 25px auto;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border: 1px solid rgba(255, 255, 255, 0.6);
-    }
-
-    .status-box {
-      margin: 18px 0;
-      padding: 20px;
-      border-left: 5px solid #009d38;
-      background-color: #e6f7e6;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-
-    .status-box span {
-      font-size: 24px;
-      color: #009d38;
-    }
-
-    label.checkbox {
-      display: flex;
-      align-items: center;
-      margin: 12px 0;
-      padding: 12px 15px;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      background: white;
-      border: 1px solid #e0e8e0;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
-    }
-
-    label.checkbox:hover {
-      background-color: rgba(0, 157, 56, 0.05);
-      transform: translateX(5px);
-      border-color: #b3e0b3;
-    }
-
-    .indice ul {
-      list-style: none;
-      padding-left: 0;
-      background: #e6f7e6;
-      border-radius: 12px;
-      padding: 25px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    }
-
-    .indice li {
-      margin: 15px 0;
-      padding: 12px 0;
-      border-bottom: 1px solid #d9f0d9;
-    }
-
-    .indice li:last-child {
-      border-bottom: none;
-    }
-
-    .indice a {
-      color: #007d2e;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      font-size: 18px;
-    }
-
-    .indice a:hover {
-      color: #009d38;
-      text-decoration: underline;
-    }
-
-    form {
-      margin-top: 25px;
-      background: #e6f7e6;
-      padding: 30px;
-      border-radius: 12px;
-      border: 1px solid #d9f0d9;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    }
-
-    .form-group {
-      margin-bottom: 25px;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 12px;
-      font-weight: 600;
-      color: #007d2e;
-      font-size: 18px;
-    }
-
-    input, textarea, select {
-      width: 100%;
-      padding: 15px;
-      margin: 10px 0;
-      border-radius: 8px;
-      border: 1px solid #d9f0d9;
-      font-family: inherit;
-      font-size: 17px;
-      transition: all 0.3s ease;
-    }
-
-    input:focus,
-    textarea:focus,
-    select:focus {
-      outline: none;
-      border-color: #009d38;
-      box-shadow: 0 0 0 3px rgba(0, 157, 56, 0.2);
-    }
-
-    button.submit {
-      background: linear-gradient(135deg, #009d38 0%, #007d2e 100%);
-      color: white;
-      padding: 15px 30px;
-      border: none;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
-      font-size: 18px;
-      transition: all 0.3s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      box-shadow: 0 4px 10px rgba(0, 157, 56, 0.3);
-    }
-
-    button.submit:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 15px rgba(0, 157, 56, 0.4);
-    }
-
-    .reload {
-      background: linear-gradient(135deg, #007d2e 0%, #005d20 100%);
-      color: white;
-      padding: 12px 25px;
-      border: none;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
-      margin-top: 15px;
-      transition: all 0.3s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 17px;
-      box-shadow: 0 4px 10px rgba(0, 125, 46, 0.3);
-    }
-
-    .reload:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 15px rgba(0, 125, 46, 0.4);
-    }
-
-    .progress-container {
-      margin: 25px 0;
-      background: #d9f0d9;
-      border-radius: 20px;
-      height: 25px;
-      overflow: hidden;
-      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-    }
-
-    .progress-bar {
-      height: 100%;
-      background: linear-gradient(90deg, #009d38 0%, #007d2e 100%);
-      border-radius: 20px;
-      width: 70%;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      padding-right: 15px;
-      color: white;
-      font-size: 14px;
-      font-weight: bold;
-      transition: width 1s ease;
-    }
-
-    .version-info {
-      background: white;
-      padding: 12px 20px;
-      border-radius: 30px;
-      display: inline-block;
-      margin: 15px 0;
-      font-weight: 600;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-      border: 1px solid #e0e8e0;
-    }
-
-    .tooltip {
-      position: relative;
-      display: inline-block;
-      cursor: help;
-      margin-left: 8px;
-      font-size: 18px;
-    }
-
-    .tooltip .tooltiptext {
-      visibility: hidden;
-      width: 250px;
-      background-color: #007d2e;
-      color: #fff;
-      text-align: center;
-      border-radius: 8px;
-      padding: 15px;
-      position: absolute;
-      z-index: 1;
-      bottom: 125%;
-      left: 50%;
-      transform: translateX(-50%);
-      opacity: 0;
-      transition: opacity 0.3s;
-      font-size: 15px;
-      font-weight: normal;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    }
-
-    .tooltip:hover .tooltiptext {
-      visibility: visible;
-      opacity: 1;
-    }
-
-    .transition-section {
-      background: linear-gradient(135deg, #e6f7e6 0%, #d1f0d1 100%);
-      border: 2px solid #009d38;
-      border-radius: 12px;
-      padding: 25px;
-      margin: 30px 0;
-      position: relative;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-    }
-
-    .transition-section::before {
-      content: "💼 Transição para TI";
-      position: absolute;
-      top: -15px;
-      left: 25px;
-      background: #009d38;
-      color: white;
-      padding: 6px 18px;
-      border-radius: 30px;
-      font-size: 16px;
-      font-weight: bold;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .warning-box {
-      background: #fff8e6;
-      border-left: 5px solid #ff9800;
-      padding: 20px;
-      margin: 20px 0;
-      border-radius: 0 8px 8px 0;
-      font-size: 17px;
-    }
-
-    .toast {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      padding: 20px 25px;
-      background: #007d2e;
-      color: white;
-      border-radius: 8px;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      transform: translateY(100px);
-      opacity: 0;
-      transition: transform 0.4s ease, opacity 0.4s ease;
-    }
-
-    .toast.show {
-      transform: translateY(0);
-      opacity: 1;
-    }
-
-    .accordion {
-      background: white;
-      border-radius: 8px;
-      margin-bottom: 15px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-      overflow: hidden;
-      border: 1px solid #e0e8e0;
-    }
-
-    .accordion-header {
-      padding: 20px;
-      background: #e6f7e6;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-weight: 600;
-      font-size: 18px;
-      transition: background 0.3s ease;
-    }
-
-    .accordion-header:hover {
-      background: #d1f0d1;
-    }
-
-    .accordion-content {
-      padding: 0 20px;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease, padding 0.3s ease;
-    }
-
-    .accordion.active .accordion-content {
-      padding: 20px;
-      max-height: 1000px;
-    }
-
-    .step-action {
-      display: inline-block;
-      background: #009d38;
-      color: white;
-      padding: 8px 15px;
-      border-radius: 30px;
-      margin-top: 10px;
-      font-size: 14px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 2px 5px rgba(0, 157, 56, 0.3);
-    }
-
-    .step-action:hover {
-      background: #007d2e;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(0, 157, 56, 0.4);
-    }
-
-    .knowledge-source {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-top: 15px;
-      padding: 10px 15px;
-      background: #f8fff8;
-      border-radius: 8px;
-      font-size: 14px;
-      border: 1px solid #e0e8e0;
-    }
-
-    /* Responsividade */
-    @media (max-width: 768px) {
-      nav {
-        flex-direction: column;
-        align-items: stretch;
-      }
-
-      nav div {
-        display: flex;
-        flex-direction: column;
-      }
-
-      nav button {
-        width: 100%;
-        margin: 5px 0;
-        text-align: left;
-      }
-
-      .container {
-        padding: 20px;
-        margin: 15px;
-      }
-
-      h1 {
-        font-size: 2rem;
-      }
-
-      h2 {
-        font-size: 1.6rem;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .indice ul {
-        padding: 20px;
-      }
-
-      form {
-        padding: 20px;
-      }
-
-      .status-box {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-      }
-
-      h2 {
-        padding-left: 0;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia de Continuidade - SOS Unimed Vidas</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            color: #0066cc;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .alert {
+            background-color: #fff4e5;
+            padding: 15px;
+            border-left: 4px solid #ff9800;
+            margin: 20px 0;
+        }
+        .checklist {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-left: 4px solid #4CAF50;
+            margin: 20px 0;
+        }
+        .faq {
+            background-color: #e7f4ff;
+            padding: 15px;
+            border-left: 4px solid #2196F3;
+            margin: 20px 0;
+        }
+    </style>
 </head>
 <body>
+    <h1>Guia de Continuidade - SOS Unimed Vidas</h1>
+    
+    <!-- Seção 1: Orçamento -->
+    <h2>Orçamento e Alocação de Recursos (MVP)</h2>
+    <table>
+        <tr>
+            <th>Item</th>
+            <th>Custo (R$)</th>
+            <th>Detalhes</th>
+        </tr>
+        <tr>
+            <td>Desenvolvimento (Time Everton)</td>
+            <td>5.000</td>
+            <td>Implementação do app e assistente web</td>
+        </tr>
+        <tr>
+            <td>Negociações (Time Ricardo)</td>
+            <td>5.000</td>
+            <td>Acordos com fornecedores e Unimed</td>
+        </tr>
+        <tr>
+            <td><strong>Serviços Externos (MVP)</strong></td>
+            <td><strong>1.000</strong></td>
+            <td>
+                <ul>
+                    <li>Twilio: R$500 (SMS/chamadas)</li>
+                    <li>Google Maps API: R$200</li>
+                    <li>Reserva: R$300</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>Total Alocado</strong></td>
+            <td><strong>11.000</strong></td>
+            <td>Dentro do orçamento de R$20k</td>
+        </tr>
+    </table>
 
-  <header>
-    <h1>Guia SOS Unimed Vidas</h1>
-    <p>Modo Criador - Assistente de Desenvolvimento e Transição</p>
-  </header>
-
-  <nav>
-    <div>
-      <button id="tab-guia" onclick="showTab('guia')" class="active-tab">📘 Guia</button>
-      <button id="tab-painel" onclick="showTab('painel')">📊 Painel</button>
-      <button id="tab-feedback" onclick="showTab('feedback')">📝 Feedback</button>
+    <div class="alert">
+        <strong>⚠️ Reserva estratégica:</strong> R$9.000 disponíveis para fase 2 (ex.: integração com Íris) ou ajustes no MVP.
     </div>
-  </nav>
 
-  <!-- Guia -->
-  <div id="guia" class="tab-content active">
-    <div class="container">
-      <div class="version-info">Versão 2.0 • Modo Criador • Atualizado em 19/07/2025</div>
+    <!-- Seção 2: Ferramentas -->
+    <h2>Ferramentas Críticas (MVP)</h2>
+    <table>
+        <tr>
+            <th>Ferramenta</th>
+            <th>Custo MVP</th>
+            <th>Alternativas Testadas</th>
+            <th>Risco Técnico</th>
+        </tr>
+        <tr>
+            <td>FlutterFlow</td>
+            <td>Grátis</td>
+            <td>Flutter puro (+R$8k pós-MVP)</td>
+            <td>Médio (lock-in)</td>
+        </tr>
+        <tr>
+            <td>Firebase</td>
+            <td>Grátis</td>
+            <td>Supabase (open-source)</td>
+            <td>Baixo</td>
+        </tr>
+        <tr>
+            <td>Twilio</td>
+            <td>R$500</td>
+            <td>WebRTC (grátis, mas complexo)</td>
+            <td>Baixo</td>
+        </tr>
+        <tr>
+            <td>Google Maps API</td>
+            <td>R$200</td>
+            <td>Mapbox (R$0 até 50k reqs/mês)</td>
+            <td>Médio (custo)</td>
+        </tr>
+    </table>
 
-      <div class="warning-box">
-        <strong>⚠️ Contexto Importante:</strong> Este projeto será entregue ao setor de TI da Unimed Cachoeiro do Itapemirim.
-        Este assistente guiará a equipe em todas as etapas de continuidade do projeto.
-      </div>
-
-      <div class="indice">
-        <h2>🔗 Índice Rápido</h2>
+    <!-- Seção 3: Checklist de Validação -->
+    <div class="checklist">
+        <h3>✅ Checklist de Validação (Antes de Comprar/Solicitar)</h3>
         <ul>
-          <li><a href="#objetivo"><span>🎯</span> Objetivo</a></li>
-          <li><a href="#fases"><span>📌</span> Fases do Projeto</a></li>
-          <li><a href="#ferramentas"><span>🧰</span> Ferramentas Utilizadas</a></li>
-          <li><a href="#submenus"><span>📂</span> Submenus Atuais</a></li>
-          <li><a href="#fluxo"><span>🚀</span> Fluxo de Deploy</a></li>
-          <li><a href="#boaspraticas"><span>🧠</span> Boas Práticas</a></li>
-          <li><a href="#transicao"><span>🔄</span> Assistente de Transição</a></li>
-          <li><a href="#referencias"><span>🔎</span> Referências</a></li>
+            <li><input type="checkbox"> Testei o Twilio com créditos mínimos (R$500)?</li>
+            <li><input type="checkbox"> Google Maps está funcionando no app com limite gratuito?</li>
+            <li><input type="checkbox"> Firebase não está gerando custos inesperados?</li>
+            <li><input type="checkbox"> Documentei no GitHub como trocar FlutterFlow por Flutter puro?</li>
         </ul>
-      </div>
-
-      <h2 id="objetivo">🎯 Objetivo</h2>
-      <p>Este assistente serve como guia completo para desenvolvimento, manutenção e evolução do aplicativo SOS Unimed Vidas, incorporando conhecimento de múltiplas fontes e fornecendo orientação passo a passo.</p>
-      <p>O guia foi projetado para facilitar a transição para a equipe de TI da Unimed Cachoeiro do Itapemirim, garantindo continuidade do projeto após entrega do MVP.</p>
-
-      <h2 id="fases">📌 Fases do Projeto</h2>
-
-      <div class="accordion active">
-        <div class="accordion-header">
-          <span>1. Planejamento Estratégico</span>
-          <span>▼</span>
-        </div>
-        <div class="accordion-content">
-          <h3>Passo a Passo</h3>
-          <ol>
-            <li>Definir escopo do MVP com stakeholders</li>
-            <li>Criar roadmap de desenvolvimento</li>
-            <li>Documentar requisitos funcionais e não funcionais</li>
-            <li>Estabelecer métricas de sucesso</li>
-          </ol>
-          <div class="knowledge-source">
-            <span>Fonte: ChatGPT + Grok</span>
-          </div>
-          <div class="step-action" onclick="markStepComplete('planejamento')">Marcar como Concluído</div>
-        </div>
-      </div>
-
-      <div class="accordion">
-        <div class="accordion-header">
-          <span>2. Configuração de Ambiente</span>
-          <span>▼</span>
-        </div>
-        <div class="accordion-content">
-          <h3>Passo a Passo</h3>
-          <ol>
-            <li>Criar conta no Vercel (time@unimedci.com.br)</li>
-            <li>Configurar repositório GitHub</li>
-            <li>Instalar dependências (Node.js v18+)</li>
-            <li>Configurar variáveis de ambiente (.env)</li>
-          </ol>
-          <pre>npm install
-vercel login
-vercel link</pre>
-          <div class="knowledge-source">
-            <span>Fonte: ChatGPT + Documentação Vercel</span>
-          </div>
-          <div class="step-action" onclick="markStepComplete('configuracao')">Marcar como Concluído</div>
-        </div>
-      </div>
-
-      <div class="accordion">
-        <div class="accordion-header">
-          <span>3. UI e Design</span>
-          <span>▼</span>
-        </div>
-        <div class="accordion-content">
-          <h3>Passo a Passo</h3>
-          <ol>
-            <li>Prototipar no Figma (link no repositório)</li>
-            <li>Implementar UI no FlutterFlow</li>
-            <li>Validar usabilidade com grupo focal</li>
-            <li>Ajustar baseado em feedback</li>
-          </ol>
-          <div class="knowledge-source">
-            <span>Fonte: Grok + Melhores práticas UI/UX</span>
-          </div>
-          <div class="step-action" onclick="markStepComplete('design')">Marcar como Concluído</div>
-        </div>
-      </div>
-
-      <div class="accordion">
-        <div class="accordion-header">
-          <span>4. Integrações Técnicas</span>
-          <span>▼</span>
-        </div>
-        <div class="accordion-content">
-          <h3>Passo a Passo</h3>
-          <ol>
-            <li>Configurar Firebase (autenticação + banco)</li>
-            <li>Integrar Formspree para formulários</li>
-            <li>Conectar API de geolocalização</li>
-            <li>Implementar sistema de notificações</li>
-          </ol>
-          <div class="knowledge-source">
-            <span>Fonte: ChatGPT + Documentação Firebase</span>
-          </div>
-          <div class="step-action" onclick="markStepComplete('integracao')">Marcar como Concluído</div>
-        </div>
-      </div>
-
-      <div class="accordion">
-        <div class="accordion-header">
-          <span>5. Testes e Deploy</span>
-          <span>▼</span>
-        </div>
-        <div class="accordion-content">
-          <h3>Passo a Passo</h3>
-          <ol>
-            <li>Executar testes unitários e de integração</li>
-            <li>Realizar testes de usabilidade</li>
-            <li>Configurar pipeline CI/CD no Vercel</li>
-            <li>Fazer deploy em ambiente de produção</li>
-          </ol>
-          <div class="knowledge-source">
-            <span>Fonte: Grok + Melhores práticas DevOps</span>
-          </div>
-          <div class="step-action" onclick="markStepComplete('testes')">Marcar como Concluído</div>
-        </div>
-      </div>
-
-      <h2 id="ferramentas">🧰 Ferramentas Utilizadas</h2>
-
-      <div class="accordion active">
-        <div class="accordion-header">
-          <span>GitHub + Vercel</span>
-          <span>▼</span>
-        </div>
-        <div class="accordion-content">
-          <h3>Configuração Essencial</h3>
-          <p><strong>Repositório:</strong> <a href="https://github.com/unimedci/sos-vidas" target="_blank">github.com/unimedci/sos-vidas</a></p>
-          <p><strong>Deploy Automático:</strong> Ativado via webhooks do Vercel</p>
-          <h3>Passo a Passo para Correções</h3>
-          <ol>
-            <li>Clonar repositório: <code>git clone https://github.com/unimedci/sos-vidas.git</code></li>
-            <li>Criar branch: <code>git checkout -b fix/nome-da-correcao</code></li>
-            <li>Fazer alterações necessárias</li>
-            <li>Commit: <code>git commit -m "fix: descrição breve"</code></li>
-            <li>Push: <code>git push origin fix/nome-da-correcao</code></li>
-            <li>Abrir Pull Request no GitHub</li>
-          </ol>
-          <div class="step-action" onclick="showToast('Guia de fluxo GitHub copiado!')">Copiar Fluxo</div>
-        </div>
-      </div>
-
-      <div class="accordion">
-        <div class="accordion-header">
-          <span>FlutterFlow</span>
-          <span>▼</span>
-        </div>
-        <div class="accordion-content">
-          <h3>Configuração Essencial</h3>
-          <p><strong>Projeto:</strong> SOS-Vidas-FF</p>
-          <p><strong>Acesso:</strong> compartilhado com equipe de TI</p>
-          <h3>Passo a Passo para Atualizações</h3>
-          <ol>
-            <li>Acessar console.flutterflow.io</li>
-            <li>Selecionar projeto SOS-Vidas-FF</li>
-            <li>Fazer alterações na interface</li>
-            <li>Testar em modo preview</li>
-            <li>Exportar código quando necessário</li>
-          </ol>
-        </div>
-      </div>
-
-      <div class="accordion">
-        <div class="accordion-header">
-          <span>Firebase</span>
-          <span>▼</span>
-        </div>
-        <div class="accordion-content">
-          <h3>Configuração Essencial</h3>
-          <p><strong>Projeto:</strong> SOS-Unimed-Vidas</p>
-          <p><strong>Acesso:</strong> console.firebase.google.com</p>
-          <h3>Passo a Passo para Manutenção</h3>
-          <ol>
-            <li>Acessar Firebase Console</li>
-            <li>Navegar para a seção de banco de dados</li>
-            <li>Verificar regras de segurança</li>
-            <li>Monitorar uso de recursos</li>
-            <li>Configurar backups automáticos</li>
-          </ol>
-        </div>
-      </div>
-
-      <div class="transition-section">
-        <h2 id="transicao">🔄 Assistente de Transição</h2>
-
-        <h3>🔑 Fluxo de Entrada para Novos Devs</h3>
-        <div class="accordion active">
-          <div class="accordion-header">
-            <span>Primeira Semana na Equipe</span>
-            <span>▼</span>
-          </div>
-          <div class="accordion-content">
-            <ol>
-              <li>Solicitar acessos ao gestor de TI</li>
-              <li>Configurar ambiente local (seção 2 deste guia)</li>
-              <li>Revisar documentação técnica (/docs)</li>
-              <li>Fazer deploy de teste em staging</li>
-              <li>Participar de reunião de onboarding</li>
-            </ol>
-          </div>
-        </div>
-
-        <h3>🛠️ Manutenção Rotineira</h3>
-        <div class="accordion">
-          <div class="accordion-header">
-            <span>Atualização Mensal</span>
-            <span>▼</span>
-          </div>
-          <div class="accordion-content">
-            <ol>
-              <li>Atualizar dependências: <code>npm update</code></li>
-              <li>Executar testes: <code>npm run test</code></li>
-              <li>Verificar logs de erro no Firebase</li>
-              <li>Revisar métricas de performance no Vercel</li>
-              <li>Atualizar documentação se necessário</li>
-            </ol>
-          </div>
-        </div>
-
-        <h3>🚨 Resolução de Problemas Comuns</h3>
-        <div class="accordion">
-          <div class="accordion-header">
-            <span>Deploy Falhando</span>
-            <span>▼</span>
-          </div>
-          <div class="accordion-content">
-            <ol>
-              <li>Verificar logs no Vercel</li>
-              <li>Testar localmente: <code>npm run dev</code></li>
-              <li>Reverter para commit estável se necessário</li>
-              <li>Corrigir erros em branch separada</li>
-              <li>Testar novamente antes de merge</li>
-            </ol>
-          </div>
-        </div>
-      </div>
-
-      <h2 id="referencias">🔎 Referências</h2>
-      <ul>
-        <li><a href="https://vercel.com" target="_blank">vercel.com</a> <span class="tooltip">🔍<span class="tooltiptext">Plataforma de deploy e hospedagem</span></span></li>
-        <li><a href="https://github.com" target="_blank">github.com</a> <span class="tooltip">🔍<span class="tooltiptext">Controle de versão e colaboração</span></span></li>
-        <li><a href="https://formspree.io" target="_blank">formspree.io</a> <span class="tooltip">🔍<span class="tooltiptext">Gerenciamento de formulários</span></span></li>
-        <li><a href="https://flutterflow.io" target="_blank">flutterflow.io</a> <span class="tooltip">🔍<span class="tooltiptext">Desenvolvimento UI no-code</span></span></li>
-        <li><a href="https://www.figma.com" target="_blank">figma.com</a> <span class="tooltip">🔍<span class="tooltiptext">Design de interface</span></span></li>
-        <li><a href="https://firebase.google.com" target="_blank">firebase.google.com</a> <span class="tooltip">🔍<span class="tooltiptext">Banco de dados em tempo real e autenticação</span></span></li>
-      </ul>
     </div>
-  </div>
 
-  <!-- Painel -->
-  <div id="painel" class="tab-content">
-    <div class="container">
-      <h2>Painel de Controle</h2>
-
-      <div class="status-box">
-        <span>📋</span>
-        <div>
-          <strong>Progresso de Transição:</strong>
-          <div class="progress-container">
-            <div class="progress-bar" id="transition-progress">75%</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="status-box">
-        <span>👥</span>
-        <div>
-          <strong>Equipe:</strong>
-          <ul>
-            <li>Everton (Desenvolvedor Original) - até 19/08/2025</li>
-            <li>TI Unimed Cachoeiro (Responsável a partir de 20/08/2025)</li>
-          </ul>
-        </div>
-      </div>
-
-      <h3>Próximas Ações</h3>
-      <div class="accordion active">
-        <div class="accordion-header">
-          <span>Treinamento com Equipe TI</span>
-          <span>▼</span>
-        </div>
-        <div class="accordion-content">
-          <p><strong>Data:</strong> 25/07/2025 às 14h</p>
-          <p><strong>Local:</strong> Sala de Reuniões TI - 3º andar</p>
-          <p><strong>Tópicos:</strong></p>
-          <ul>
-            <li>Arquitetura do sistema</li>
-            <li>Fluxo de deploy</li>
-            <li>Monitoramento de erros</li>
-            <li>Q&A</li>
-          </ul>
-          <button class="submit" onclick="showToast('Lembrete adicionado ao calendário')">Adicionar ao Calendário</button>
-        </div>
-      </div>
-
-      <h3>Recursos de Aprendizado</h3>
-      <div class="accordion">
-        <div class="accordion-header">
-          <span>Documentação Técnica</span>
-          <span>▼</span>
-        </div>
-        <div class="accordion-content">
-          <ul>
-            <li><a href="#">Fluxo de autenticação</a></li>
-            <li><a href="#">Diagrama de arquitetura</a></li>
-            <li><a href="#">Políticas de segurança</a></li>
-            <li><a href="#">API Reference</a></li>
-          </ul>
-        </div>
-      </div>
+    <!-- Seção 4: FAQ de Riscos -->
+    <div class="faq">
+        <h3>❓ FAQ de Riscos Técnicos</h3>
+        <p><strong>P: E se o Twilio ficar muito caro?</strong><br>
+        R: Migre para WebRTC (grátis) ou negocie pacote corporativo com a Unimed.</p>
+        
+        <p><strong>P: E se o FlutterFlow limitar funcionalidades?</strong><br>
+        R: Use a reserva de R$9k para contratar um dev Flutter e exportar o código.</p>
+        
+        <p><strong>P: Como evitar custos ocultos no Firebase?</strong><br>
+        R: Ative alertas de gastos no console e use regras de segurança rígidas.</p>
     </div>
-  </div>
 
-  <!-- Feedback -->
-  <div id="feedback" class="tab-content">
-    <div class="container">
-      <h2>📬 Canal de Comunicação</h2>
-      <p>Utilize este formulário para:</p>
-      <ul>
-        <li>Reportar problemas na transição</li>
-        <li>Sugerir melhorias no assistente</li>
-        <li>Solicitar informações adicionais</li>
-      </ul>
+    <!-- Seção 5: Links Úteis -->
+    <h2>🔗 Links Úteis</h2>
+    <ul>
+        <li><a href="https://github.com/unimedci/sos-vidas" target="_blank">Repositório GitHub</a></li>
+        <li><a href="https://vercel.com/dashboard" target="_blank">Painel Vercel</a></li>
+        <li><a href="https://console.firebase.google.com" target="_blank">Console Firebase</a></li>
+    </ul>
 
-      <form id="feedback-form" action="https://formspree.io/f/xdkdkyjj" method="POST">
-        <div class="form-group">
-          <label for="nome">Seu Nome:</label>
-          <input type="text" id="nome" name="nome" required placeholder="Nome completo">
-        </div>
-
-        <div class="form-group">
-          <label for="email">Email:</label>
-          <input type="email" id="email" name="email" required placeholder="seu.email@unimedci.com.br">
-        </div>
-
-        <div class="form-group">
-          <label for="tipo">Tipo de Mensagem:</label>
-          <select id="tipo" name="tipo" required>
-            <option value="">Selecione uma opção</option>
-            <option value="problema">Reportar Problema</option>
-            <option value="sugestao">Sugestão de Melhoria</option>
-            <option value="duvida">Dúvida Técnica</option>
-            <option value="outro">Outro</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="mensagem">Mensagem:</label>
-          <textarea id="mensagem" name="mensagem" required rows="6" placeholder="Descreva sua solicitação aqui..."></textarea>
-        </div>
-
-        <button class="submit" type="submit">
-          <span>📤</span> Enviar Mensagem
-        </button>
-      </form>
-
-      <div id="form-message" style="display: none; margin-top: 20px; padding: 20px; border-radius: var(--border-radius); background: var(--light-accent);"></div>
-    </div>
-  </div>
-
-  <footer>
-    <p>Assistente de Transição - SOS Unimed Vidas v2.0 • © 2025 Unimed Cachoeiro do Itapemirim</p>
-    <p style="margin-top: 10px; font-size: 14px;">Conhecimento integrado de Grok, ChatGPT e DeepSeek</p>
-  </footer>
-
-  <div id="toast" class="toast">
-    <span>🔔</span>
-    <div id="toast-message">Mensagem de notificação</div>
-  </div>
-
-  <script>
-    // Função para mostrar a aba selecionada
-    function showTab(tabId) {
-      // Esconde todo o conteúdo das abas
-      document.querySelectorAll('.tab-content').forEach(el => {
-        el.classList.remove('active');
-      });
-
-      // Remove a classe ativa de todos os botões
-      document.querySelectorAll('nav button').forEach(btn => {
-        btn.classList.remove('active-tab');
-      });
-
-      // Mostra a aba selecionada
-      document.getElementById(tabId).classList.add('active');
-
-      // Adiciona classe ativa ao botão correspondente
-      document.getElementById('tab-' + tabId).classList.add('active-tab');
-
-      // Salva a aba selecionada no localStorage
-      localStorage.setItem('lastTab', tabId);
-
-      // Mostra notificação de atalho
-      if (tabId === 'guia') {
-        showToast('Dica: Use Ctrl+1 para acessar o Guia');
-      } else if (tabId === 'painel') {
-        showToast('Dica: Use Ctrl+2 para acessar o Painel');
-      } else if (tabId === 'feedback') {
-        showToast('Dica: Use Ctrl+3 para acessar o Feedback');
-      }
-    }
-
-    // Função para atualizar o timestamp
-    function updateTime() {
-      const now = new Date();
-      const options = {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit'
-      };
-      document.getElementById("time").innerText = now.toLocaleString('pt-BR', options);
-
-      // Animação de atualização
-      const statusBoxes = document.querySelectorAll('.status-box');
-      statusBoxes.forEach(box => {
-        box.style.animation = 'none';
-        setTimeout(() => {
-          box.style.animation = 'pulse 0.5s';
-        }, 10);
-      });
-
-      showToast('Status atualizado com sucesso!');
-    }
-
-    // Função para mostrar notificação toast
-    function showToast(message) {
-      const toast = document.getElementById('toast');
-      const toastMessage = document.getElementById('toast-message');
-
-      toastMessage.textContent = message;
-      toast.classList.add('show');
-
-      setTimeout(() => {
-        toast.classList.remove('show');
-      }, 3000);
-    }
-
-    // Accordion functionality
-    document.querySelectorAll('.accordion-header').forEach(header => {
-      header.addEventListener('click', () => {
-        const accordion = header.parentElement;
-        accordion.classList.toggle('active');
-      });
-    });
-
-    // Mark step as complete
-    function markStepComplete(stepId) {
-      const checkbox = document.querySelector(`input[data-task="${stepId}"]`);
-      if (checkbox) {
-        checkbox.checked = true;
-        localStorage.setItem(`task-${stepId}`, 'true');
-        showToast(`Passo "${stepId}" marcado como concluído!`);
-        updateTransitionProgress();
-      }
-    }
-
-    // Update transition progress
-    function updateTransitionProgress() {
-      const totalSteps = document.querySelectorAll('[data-task]').length;
-      const completedSteps = document.querySelectorAll('[data-task]:checked').length;
-      const progress = Math.round((completedSteps / totalSteps) * 100);
-
-      const progressBar = document.getElementById('transition-progress');
-      if (progressBar) {
-        progressBar.style.width = `${progress}%`;
-        progressBar.textContent = `${progress}%`;
-      }
-    }
-
-    // Verifica se há uma aba salva no localStorage
-    document.addEventListener('DOMContentLoaded', function() {
-      // Carrega a última aba aberta
-      const lastTab = localStorage.getItem('lastTab') || 'guia';
-      showTab(lastTab);
-
-      // Atualiza a hora inicial
-      updateTime();
-
-      // Carrega o estado das checkboxes
-      document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
-        const taskId = checkbox.getAttribute('data-task');
-        if (taskId) {
-          const savedState = localStorage.getItem(`task-${taskId}`);
-          if (savedState === 'true') {
-            checkbox.checked = true;
-          }
-        }
-
-        // Adiciona evento para salvar estado
-        checkbox.addEventListener('change', function() {
-          if (this.getAttribute('data-task')) {
-            localStorage.setItem(`task-${this.getAttribute('data-task')}`, this.checked);
-            updateTransitionProgress();
-          }
-        });
-      });
-
-      // Atualiza o progresso inicial
-      updateTransitionProgress();
-
-      // Adiciona evento ao formulário de feedback
-      const form = document.getElementById('feedback-form');
-      if (form) {
-        form.addEventListener('submit', function(e) {
-          e.preventDefault();
-
-          // Simulação de envio
-          const messageDiv = document.getElementById('form-message');
-          messageDiv.style.display = 'block';
-          messageDiv.innerHTML = `
-            <p style="color: var(--primary-dark); font-weight: bold; font-size: 18px;">✅ Mensagem enviada com sucesso!</p>
-            <p style="margin-top: 10px;">A equipe entrará em contato em breve.</p>
-          `;
-
-          // Limpa o formulário
-          form.reset();
-
-          // Rola para a mensagem de confirmação
-          messageDiv.scrollIntoView({ behavior: 'smooth' });
-
-          // Mostra notificação
-          showToast('Mensagem enviada com sucesso!');
-
-          // Envia o formulário de verdade (remover em produção real)
-          setTimeout(() => {
-            form.submit();
-          }, 2000);
-        });
-      }
-
-      // Adiciona atalhos de teclado
-      document.addEventListener('keydown', function(e) {
-        if (e.ctrlKey) {
-          if (e.key === '1') {
-            e.preventDefault();
-            showTab('guia');
-          } else if (e.key === '2') {
-            e.preventDefault();
-            showTab('painel');
-          } else if (e.key === '3') {
-            e.preventDefault();
-            showTab('feedback');
-          }
-        }
-      });
-    });
-
-    // Adiciona estilo CSS para animação de pulsar
-    const style = document.createElement('style');
-    style.textContent = `
-      @keyframes pulse {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.02); }
-        100% { transform: scale(1); }
-      }
-    `;
-    document.head.appendChild(style);
-  </script>
+    <!-- Seção 6: Contato -->
+    <h2>📞 Contato Técnico</h2>
+    <p>
+        Everton Marques<br>
+        <a href="mailto:everton.marques@unimedci.com.br">everton.marques@unimedci.com.br</a><br>
+        (28) 99999-9999
+    </p>
 </body>
 </html>
