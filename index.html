@@ -1,170 +1,987 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guia de Continuidade - SOS Unimed Vidas</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        h1, h2, h3 {
-            color: #0066cc;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-        .alert {
-            background-color: #fff4e5;
-            padding: 15px;
-            border-left: 4px solid #ff9800;
-            margin: 20px 0;
-        }
-        .checklist {
-            background-color: #f8f9fa;
-            padding: 15px;
-            border-left: 4px solid #4CAF50;
-            margin: 20px 0;
-        }
-        .faq {
-            background-color: #e7f4ff;
-            padding: 15px;
-            border-left: 4px solid #2196F3;
-            margin: 20px 0;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guia de Continuidade SOS Unimed Vidas</title>
+  <style>
+    /* Esquema de cores verde Unimed */
+    :root {
+      --primary-color: #00A651; /* Verde Unimed principal */
+      --primary-dark: #00703C; /* Verde mais escuro */
+      --primary-light: #E5F5E9; /* Verde claro para fundos */
+      --secondary-color: #006837; /* Verde secundário */
+      --accent-color: #FFD100; /* Amarelo para destaques */
+      --text-dark: #333333;
+      --text-light: #FFFFFF;
+      --border-radius: 8px;
+      --box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      --transition: all 0.3s ease;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #F5FBF7 0%, #E5F5E9 100%);
+      color: var(--text-dark);
+      line-height: 1.7;
+      min-height: 100vh;
+      padding-bottom: 60px;
+    }
+    
+    header {
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+      color: white;
+      text-align: center;
+      padding: 25px 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    h1 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 10px;
+    }
+    
+    nav {
+      display: flex;
+      background: var(--primary-dark);
+      padding: 12px 20px;
+      justify-content: center;
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    nav button {
+      background: transparent;
+      border: none;
+      color: white;
+      font-weight: 600;
+      font-size: 17px;
+      padding: 12px 24px;
+      margin: 0 10px;
+      cursor: pointer;
+      border-radius: 30px;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    nav button:hover, 
+    nav button.active-tab {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+    
+    .tab-content {
+      display: none;
+      padding: 20px;
+      animation: fadeIn 0.5s ease;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .active {
+      display: block;
+    }
+    
+    .container {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: var(--border-radius);
+      padding: 30px;
+      margin: 25px auto;
+      max-width: 1000px;
+      box-shadow: var(--box-shadow);
+      border: 1px solid rgba(0, 166, 81, 0.1);
+    }
+    
+    h2, h3 {
+      color: var(--primary-dark);
+      margin-bottom: 20px;
+    }
+    
+    h2 {
+      font-size: 1.9rem;
+      margin-top: 35px;
+      position: relative;
+      padding-left: 40px;
+      border-bottom: 2px solid var(--primary-color);
+      padding-bottom: 10px;
+    }
+    
+    h2 .section-icon {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.5em;
+    }
+    
+    p {
+      margin-bottom: 18px;
+      line-height: 1.8;
+    }
+    
+    ul, ol {
+      margin-left: 30px;
+      margin-bottom: 25px;
+    }
+    
+    li {
+      margin-bottom: 12px;
+      position: relative;
+      padding-left: 30px;
+    }
+    
+    li:before {
+      content: "•";
+      color: var(--primary-color);
+      font-weight: bold;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    
+    .status-box {
+      margin: 18px 0;
+      padding: 20px;
+      border-left: 5px solid var(--primary-color);
+      background-color: var(--primary-light);
+      border-radius: var(--border-radius);
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .status-box span {
+      font-size: 24px;
+      color: var(--primary-dark);
+    }
+    
+    label.checkbox {
+      display: flex;
+      align-items: center;
+      margin: 12px 0;
+      padding: 12px 15px;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      transition: var(--transition);
+      background: white;
+      border: 1px solid #D5E8D9;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+    }
+    
+    label.checkbox:hover {
+      background-color: rgba(0, 166, 81, 0.05);
+      transform: translateX(5px);
+      border-color: #A3D1A9;
+    }
+    
+    .indice ul {
+      list-style: none;
+      padding-left: 0;
+      background: var(--primary-light);
+      border-radius: var(--border-radius);
+      padding: 25px;
+      box-shadow: var(--box-shadow);
+    }
+    
+    .indice li {
+      margin: 15px 0;
+      padding: 12px 0;
+      border-bottom: 1px solid #D5E8D9;
+    }
+    
+    .indice li:last-child {
+      border-bottom: none;
+    }
+    
+    .indice li:before {
+      display: none;
+    }
+    
+    .indice a {
+      color: var(--primary-dark);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      font-weight: 600;
+      transition: var(--transition);
+      font-size: 18px;
+    }
+    
+    .indice a:hover {
+      color: var(--primary-color);
+      text-decoration: underline;
+    }
+    
+    form {
+      margin-top: 25px;
+      background: var(--primary-light);
+      padding: 30px;
+      border-radius: var(--border-radius);
+      border: 1px solid #D5E8D9;
+      box-shadow: var(--box-shadow);
+    }
+    
+    .form-group {
+      margin-bottom: 25px;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 12px;
+      font-weight: 600;
+      color: var(--primary-dark);
+      font-size: 18px;
+    }
+    
+    input, textarea, select {
+      width: 100%;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: var(--border-radius);
+      border: 1px solid #D5E8D9;
+      font-family: inherit;
+      font-size: 17px;
+      transition: var(--transition);
+    }
+    
+    input:focus, 
+    textarea:focus, 
+    select:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(0, 166, 81, 0.2);
+    }
+    
+    button.submit {
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+      color: white;
+      padding: 15px 30px;
+      border: none;
+      border-radius: var(--border-radius);
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 18px;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 4px 10px rgba(0, 166, 81, 0.3);
+    }
+    
+    button.submit:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(0, 166, 81, 0.4);
+    }
+    
+    .reload {
+      background: linear-gradient(135deg, var(--primary-dark) 0%, #006837 100%);
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: var(--border-radius);
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 15px;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 17px;
+      box-shadow: 0 4px 10px rgba(0, 120, 60, 0.3);
+    }
+    
+    .reload:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(0, 120, 60, 0.4);
+    }
+    
+    .progress-container {
+      margin: 25px 0;
+      background: #E0E8E2;
+      border-radius: 20px;
+      height: 25px;
+      overflow: hidden;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+    
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+      border-radius: 20px;
+      width: 70%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 15px;
+      color: white;
+      font-size: 14px;
+      font-weight: bold;
+      transition: width 1s ease;
+    }
+    
+    .version-info {
+      background: white;
+      padding: 12px 20px;
+      border-radius: 30px;
+      display: inline-block;
+      margin: 15px 0;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      border: 1px solid #E0E8E2;
+    }
+    
+    .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: help;
+      margin-left: 8px;
+      font-size: 18px;
+    }
+    
+    .tooltip .tooltiptext {
+      visibility: hidden;
+      width: 250px;
+      background-color: var(--primary-dark);
+      color: white;
+      text-align: center;
+      border-radius: var(--border-radius);
+      padding: 15px;
+      position: absolute;
+      z-index: 1;
+      bottom: 125%;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      font-size: 15px;
+      font-weight: normal;
+      box-shadow: var(--box-shadow);
+    }
+    
+    .tooltip:hover .tooltiptext {
+      visibility: visible;
+      opacity: 1;
+    }
+    
+    .continuity-section {
+      background: linear-gradient(135deg, #E5F5E9 0%, #D0EBD7 100%);
+      border: 2px solid var(--primary-color);
+      border-radius: var(--border-radius);
+      padding: 25px;
+      margin: 30px 0;
+      position: relative;
+      box-shadow: var(--box-shadow);
+    }
+    
+    .continuity-section::before {
+      content: "🔄 Guia de Continuidade";
+      position: absolute;
+      top: -15px;
+      left: 25px;
+      background: var(--primary-color);
+      color: white;
+      padding: 6px 18px;
+      border-radius: 30px;
+      font-size: 16px;
+      font-weight: bold;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .warning-box {
+      background: #FFF8E6;
+      border-left: 5px solid var(--accent-color);
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 0 var(--border-radius) var(--border-radius) 0;
+      font-size: 17px;
+    }
+    
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      padding: 20px 25px;
+      background: var(--primary-dark);
+      color: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: transform 0.4s ease, opacity 0.4s ease;
+    }
+    
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    
+    .accordion {
+      background: white;
+      border-radius: var(--border-radius);
+      margin-bottom: 15px;
+      box-shadow: var(--box-shadow);
+      overflow: hidden;
+      border: 1px solid #E0E8E2;
+    }
+    
+    .accordion-header {
+      padding: 20px;
+      background: #F0F9F2;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      font-size: 18px;
+      transition: background 0.3s ease;
+    }
+    
+    .accordion-header:hover {
+      background: #E5F5E9;
+    }
+    
+    .accordion-content {
+      padding: 0 20px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+    
+    .accordion.active .accordion-content {
+      padding: 20px;
+      max-height: 1000px;
+    }
+    
+    .step-action {
+      display: inline-block;
+      background: var(--primary-color);
+      color: white;
+      padding: 8px 15px;
+      border-radius: 30px;
+      margin-top: 10px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 2px 5px rgba(0, 166, 81, 0.3);
+    }
+    
+    .step-action:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 166, 81, 0.4);
+    }
+    
+    .knowledge-source {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 15px;
+      padding: 10px 15px;
+      background: #F8FCF9;
+      border-radius: var(--border-radius);
+      font-size: 14px;
+      border: 1px solid #E0E8E2;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      background: linear-gradient(135deg, var(--primary-dark) 0%, #006837 100%);
+      color: white;
+      margin-top: 40px;
+      font-size: 16px;
+    }
+    
+    /* Responsividade */
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      
+      nav div {
+        display: flex;
+        flex-direction: column;
+      }
+      
+      nav button {
+        width: 100%;
+        margin: 5px 0;
+        text-align: left;
+      }
+      
+      .container {
+        padding: 20px;
+        margin: 15px;
+      }
+      
+      h1 {
+        font-size: 2rem;
+      }
+      
+      h2 {
+        font-size: 1.6rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .indice ul {
+        padding: 20px;
+      }
+      
+      form {
+        padding: 20px;
+      }
+      
+      .status-box {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      
+      h2 {
+        padding-left: 0;
+      }
+    }
+  </style>
 </head>
 <body>
-    <h1>Guia de Continuidade - SOS Unimed Vidas</h1>
-    
-    <!-- Seção 1: Orçamento -->
-    <h2>Orçamento e Alocação de Recursos (MVP)</h2>
-    <table>
-        <tr>
-            <th>Item</th>
-            <th>Custo (R$)</th>
-            <th>Detalhes</th>
-        </tr>
-        <tr>
-            <td>Desenvolvimento (Time Everton)</td>
-            <td>5.000</td>
-            <td>Implementação do app e assistente web</td>
-        </tr>
-        <tr>
-            <td>Negociações (Time Ricardo)</td>
-            <td>5.000</td>
-            <td>Acordos com fornecedores e Unimed</td>
-        </tr>
-        <tr>
-            <td><strong>Serviços Externos (MVP)</strong></td>
-            <td><strong>1.000</strong></td>
-            <td>
-                <ul>
-                    <li>Twilio: R$500 (SMS/chamadas)</li>
-                    <li>Google Maps API: R$200</li>
-                    <li>Reserva: R$300</li>
-                </ul>
-            </td>
-        </tr>
-        <tr>
-            <td><strong>Total Alocado</strong></td>
-            <td><strong>11.000</strong></td>
-            <td>Dentro do orçamento de R$20k</td>
-        </tr>
-    </table>
 
-    <div class="alert">
-        <strong>⚠️ Reserva estratégica:</strong> R$9.000 disponíveis para fase 2 (ex.: integração com Íris) ou ajustes no MVP.
+  <header>
+    <h1>Guia de Continuidade SOS Unimed Vidas</h1>
+    <p>Assistente Técnico para Transição e Manutenção</p>
+  </header>
+
+  <nav>
+    <div>
+      <button id="tab-guia" onclick="showTab('guia')" class="active-tab">📘 Guia</button>
+      <button id="tab-painel" onclick="showTab('painel')">📊 Painel</button>
+      <button id="tab-feedback" onclick="showTab('feedback')">📝 Feedback</button>
     </div>
+  </nav>
 
-    <!-- Seção 2: Ferramentas -->
-    <h2>Ferramentas Críticas (MVP)</h2>
-    <table>
-        <tr>
-            <th>Ferramenta</th>
-            <th>Custo MVP</th>
-            <th>Alternativas Testadas</th>
-            <th>Risco Técnico</th>
-        </tr>
-        <tr>
-            <td>FlutterFlow</td>
-            <td>Grátis</td>
-            <td>Flutter puro (+R$8k pós-MVP)</td>
-            <td>Médio (lock-in)</td>
-        </tr>
-        <tr>
-            <td>Firebase</td>
-            <td>Grátis</td>
-            <td>Supabase (open-source)</td>
-            <td>Baixo</td>
-        </tr>
-        <tr>
-            <td>Twilio</td>
-            <td>R$500</td>
-            <td>WebRTC (grátis, mas complexo)</td>
-            <td>Baixo</td>
-        </tr>
-        <tr>
-            <td>Google Maps API</td>
-            <td>R$200</td>
-            <td>Mapbox (R$0 até 50k reqs/mês)</td>
-            <td>Médio (custo)</td>
-        </tr>
-    </table>
+  <!-- Guia -->
+  <div id="guia" class="tab-content active">
+    <div class="container">
+      <div class="version-info">Versão 2.0 • Foco em Continuidade • Atualizado em 19/07/2025</div>
+      
+      <div class="warning-box">
+        <strong>⚠️ Contexto Importante:</strong> Este guia foi reformulado para focar na continuidade do projeto após entrega para a equipe de TI da Unimed Cachoeiro do Itapemirim.
+      </div>
 
-    <!-- Seção 3: Checklist de Validação -->
-    <div class="checklist">
-        <h3>✅ Checklist de Validação (Antes de Comprar/Solicitar)</h3>
+      <div class="indice">
+        <h2>🔗 Índice Rápido</h2>
         <ul>
-            <li><input type="checkbox"> Testei o Twilio com créditos mínimos (R$500)?</li>
-            <li><input type="checkbox"> Google Maps está funcionando no app com limite gratuito?</li>
-            <li><input type="checkbox"> Firebase não está gerando custos inesperados?</li>
-            <li><input type="checkbox"> Documentei no GitHub como trocar FlutterFlow por Flutter puro?</li>
+          <li><a href="#objetivo"><span>🎯</span> Objetivo</a></li>
+          <li><a href="#fluxo"><span>🔄</span> Fluxo de Continuidade</a></li>
+          <li><a href="#ferramentas"><span>🧰</span> Ferramentas</a></li>
+          <li><a href="#responsabilidades"><span>👥</span> Responsabilidades</a></li>
+          <li><a href="#manutencao"><span>🔧</span> Manutenção</a></li>
+          <li><a href="#referencias"><span>🔎</span> Referências</a></li>
         </ul>
-    </div>
+      </div>
 
-    <!-- Seção 4: FAQ de Riscos -->
-    <div class="faq">
-        <h3>❓ FAQ de Riscos Técnicos</h3>
-        <p><strong>P: E se o Twilio ficar muito caro?</strong><br>
-        R: Migre para WebRTC (grátis) ou negocie pacote corporativo com a Unimed.</p>
-        
-        <p><strong>P: E se o FlutterFlow limitar funcionalidades?</strong><br>
-        R: Use a reserva de R$9k para contratar um dev Flutter e exportar o código.</p>
-        
-        <p><strong>P: Como evitar custos ocultos no Firebase?</strong><br>
-        R: Ative alertas de gastos no console e use regras de segurança rígidas.</p>
-    </div>
+      <h2 id="objetivo">🎯 Objetivo do Guia de Continuidade</h2>
+      <p>Este documento tem como principal objetivo garantir a transição suave e a manutenção contínua do aplicativo SOS Unimed Vidas após sua entrega à equipe de TI.</p>
+      
+      <div class="continuity-section">
+        <h3>Principais Benefícios:</h3>
+        <ul>
+          <li>Preservação do conhecimento técnico</li>
+          <li>Redução de dependência de pessoal específico</li>
+          <li>Padronização de processos de manutenção</li>
+          <li>Documentação centralizada para toda a equipe</li>
+          <li>Facilidade no onboarding de novos membros</li>
+        </ul>
+      </div>
 
-    <!-- Seção 5: Links Úteis -->
-    <h2>🔗 Links Úteis</h2>
-    <ul>
+      <h2 id="fluxo">🔄 Fluxo de Continuidade</h2>
+      
+      <div class="accordion active">
+        <div class="accordion-header">
+          <span>1. Transição de Conhecimento</span>
+          <span>▼</span>
+        </div>
+        <div class="accordion-content">
+          <h3>Passo a Passo</h3>
+          <ol>
+            <li>Reunião de alinhamento com a equipe de TI</li>
+            <li>Transferência de acessos e credenciais</li>
+            <li>Sessões de treinamento técnico</li>
+            <li>Documentação de processos críticos</li>
+          </ol>
+          <div class="knowledge-source">
+            <span>Fonte: DeepSeek + Melhores Práticas</span>
+          </div>
+          <div class="step-action" onclick="markStepComplete('transicao')">Marcar como Concluído</div>
+        </div>
+      </div>
+      
+      <div class="accordion">
+        <div class="accordion-header">
+          <span>2. Monitoramento Inicial</span>
+          <span>▼</span>
+        </div>
+        <div class="accordion-content">
+          <h3>Passo a Passo</h3>
+          <ol>
+            <li>Configurar alertas de monitoramento</li>
+            <li>Estabelecer métricas de performance</li>
+            <li>Implementar logs de erro centralizados</li>
+            <li>Agendar revisões semanais</li>
+          </ol>
+          <div class="knowledge-source">
+            <span>Fonte: ChatGPT + Documentação Técnica</span>
+          </div>
+          <div class="step-action" onclick="markStepComplete('monitoramento')">Marcar como Concluído</div>
+        </div>
+      </div>
+      
+      <div class="accordion">
+        <div class="accordion-header">
+          <span>3. Manutenção Contínua</span>
+          <span>▼</span>
+        </div>
+        <div class="accordion-content">
+          <h3>Passo a Passo</h3>
+          <ol>
+            <li>Atualizações de segurança mensais</li>
+            <li>Revisão trimestral de arquitetura</li>
+            <li>Testes de carga semestrais</li>
+            <li>Atualizações de documentação</li>
+          </ol>
+          <div class="knowledge-source">
+            <span>Fonte: Grok + Experiência Operacional</span>
+          </div>
+          <div class="step-action" onclick="markStepComplete('manutencao')">Marcar como Concluído</div>
+        </div>
+      </div>
+
+      <h2 id="ferramentas">🧰 Ferramentas de Continuidade</h2>
+      
+      <div class="accordion active">
+        <div class="accordion-header">
+          <span>Sistema de Monitoramento</span>
+          <span>▼</span>
+        </div>
+        <div class="accordion-content">
+          <h3>Configuração Essencial</h3>
+          <p><strong>Ferramenta:</strong> Vercel Analytics + Firebase Performance</p>
+          <p><strong>Alertas:</strong> Configurados para downtime > 5min</p>
+          <h3>Passo a Passo para Acesso</h3>
+          <ol>
+            <li>Acessar dashboard.vercel.com</li>
+            <li>Selecionar projeto SOS-Unimed-Vidas</li>
+            <li>Navegar para a seção Analytics</li>
+            <li>Configurar alertas personalizados</li>
+          </ol>
+        </div>
+      </div>
+      
+      <div class="accordion">
+        <div class="accordion-header">
+          <span>Gestão de Acessos</span>
+          <span>▼</span>
+        </div>
+        <div class="accordion-content">
+          <h3>Política de Acessos</h3>
+          <p><strong>Princípio:</strong> Privilégio mínimo necessário</p>
+          <p><strong>Ferramenta:</strong> Google Workspace + 1Password</p>
+          <h3>Fluxo de Gerenciamento</h3>
+          <ol>
+            <li>Solicitar acesso via sistema de tickets</li>
+            <li>Aprovação do gestor técnico</li>
+            <li>Configuração de permissões</li>
+            <li>Treinamento inicial obrigatório</li>
+          </ol>
+        </div>
+      </div>
+
+      <h2 id="responsabilidades">👥 Responsabilidades de Continuidade</h2>
+      
+      <table>
+        <thead>
+          <tr>
+            <th>Função</th>
+            <th>Responsabilidades</th>
+            <th>Check-in</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Gestor Técnico</strong></td>
+            <td>Supervisão geral, alocação de recursos</td>
+            <td>Semanal</td>
+          </tr>
+          <tr>
+            <td><strong>Dev Sênior</strong></td>
+            <td>Manutenção crítica, revisão de código</td>
+            <td>Diário</td>
+          </tr>
+          <tr>
+            <td><strong>Dev Pleno</strong></td>
+            <td>Implementação de features, correções</td>
+            <td>Diário</td>
+          </tr>
+          <tr>
+            <td><strong>Suporte Técnico</strong></td>
+            <td>Monitoramento, primeiro nível de suporte</td>
+            <td>Contínuo</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="continuity-section">
+        <h2 id="manutencao">🔧 Manutenção Preventiva</h2>
+        
+        <h3>🔑 Rotinas Essenciais</h3>
+        <div class="accordion active">
+          <div class="accordion-header">
+            <span>Mensal</span>
+            <span>▼</span>
+          </div>
+          <div class="accordion-content">
+            <ol>
+              <li>Atualizar dependências: <code>npm update</code></li>
+              <li>Revisar logs de erros</li>
+              <li>Testar backups</li>
+              <li>Auditar acessos</li>
+            </ol>
+          </div>
+        </div>
+        
+        <h3>🛡️ Atualizações de Segurança</h3>
+        <div class="accordion">
+          <div class="accordion-header">
+            <span>Trimestral</span>
+            <span>▼</span>
+          </div>
+          <div class="accordion-content">
+            <ol>
+              <li>Verificar vulnerabilidades</li>
+              <li>Atualizar certificados SSL</li>
+              <li>Revisar políticas de acesso</li>
+              <li>Testar plano de contingência</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <h2 id="referencias">🔎 Referências de Continuidade</h2>
+      <ul>
+        <li><a href="https://vercel.com/docs" target="_blank">Documentação Vercel</a></li>
+        <li><a href="https://firebase.google.com/docs" target="_blank">Guia Firebase</a></li>
         <li><a href="https://github.com/unimedci/sos-vidas" target="_blank">Repositório GitHub</a></li>
-        <li><a href="https://vercel.com/dashboard" target="_blank">Painel Vercel</a></li>
-        <li><a href="https://console.firebase.google.com" target="_blank">Console Firebase</a></li>
-    </ul>
+        <li><a href="https://docs.unimedci.com.br" target="_blank">Documentação Unimed CI</a></li>
+      </ul>
+    </div>
+  </div>
 
-    <!-- Seção 6: Contato -->
-    <h2>📞 Contato Técnico</h2>
-    <p>
-        Everton Marques<br>
-        <a href="mailto:everton.marques@unimedci.com.br">everton.marques@unimedci.com.br</a><br>
-        (28) 99999-9999
-    </p>
+  <!-- Painel -->
+  <div id="painel" class="tab-content">
+    <div class="container">
+      <h2>Painel de Continuidade</h2>
+      
+      <div class="status-box">
+        <span>📋</span>
+        <div>
+          <strong>Progresso de Transição:</strong>
+          <div class="progress-container">
+            <div class="progress-bar" id="transition-progress">75%</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="status-box">
+        <span>👥</span>
+        <div>
+          <strong>Equipe Responsável:</strong>
+          <ul>
+            <li>TI Unimed Cachoeiro (Responsável principal)</li>
+            <li>Everton (Suporte até 19/08/2025)</li>
+          </ul>
+        </div>
+      </div>
+      
+      <h3>Próximas Ações de Continuidade</h3>
+      <div class="accordion active">
+        <div class="accordion-header">
+          <span>Treinamento Técnico</span>
+          <span>▼</span>
+        </div>
+        <div class="accordion-content">
+          <p><strong>Data:</strong> 25/07/2025 às 14h</p>
+          <p><strong>Local:</strong> Sala de Reuniões TI - 3º andar</p>
+          <p><strong>Tópicos:</strong></p>
+          <ul>
+            <li>Arquitetura do sistema</li>
+            <li>Fluxo de deploy</li>
+            <li>Monitoramento de erros</li>
+            <li>Plano de contingência</li>
+          </ul>
+        </div>
+      </div>
+      
+      <h3>Checklist de Continuidade</h3>
+      <div class="accordion">
+        <div class="accordion-header">
+          <span>Itens Pendentes</span>
+          <span>▼</span>
+        </div>
+        <div class="accordion-content">
+          <ul>
+            <li><label class="checkbox"><input type="checkbox"> Transferência completa de acessos</label></li>
+            <li><label class="checkbox"><input type="checkbox"> Documentação de processos críticos</label></li>
+            <li><label class="checkbox"><input type="checkbox"> Configuração de monitoramento contínuo</label></li>
+            <li><label class="checkbox"><input type="checkbox"> Plano de backup validado</label></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Feedback -->
+  <div id="feedback" class="tab-content">
+    <div class="container">
+      <h2>📬 Canal de Continuidade</h2>
+      <p>Utilize este formulário para questões relacionadas à continuidade do projeto:</p>
+      
+      <form id="feedback-form" action="https://formspree.io/f/xdkdkyjj" method="POST">
+        <div class="form-group">
+          <label for="nome">Seu Nome:</label>
+          <input type="text" id="nome" name="nome" required placeholder="Nome completo">
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required placeholder="seu.email@unimedci.com.br">
+        </div>
+        
+        <div class="form-group">
+          <label for="tipo">Tipo de Solicitação:</label>
+          <select id="tipo" name="tipo" required>
+            <option value="">Selecione uma opção</option>
+            <option value="duvida">Dúvida Técnica</option>
+            <option value="sugestao">Sugestão de Melhoria</option>
+            <option value="problema">Reportar Problema</option>
+            <option value="acesso">Solicitação de Acesso</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="mensagem">Mensagem:</label>
+          <textarea id="mensagem" name="mensagem" required rows="6" placeholder="Descreva sua solicitação aqui..."></textarea>
+        </div>
+        
+        <button class="submit" type="submit">
+          <span>📤</span> Enviar Solicitação
+        </button>
+      </form>
+    </div>
+  </div>
+  
+  <footer>
+    <p>Guia de Continuidade - SOS Unimed Vidas v2.0 • © 2025 Unimed Cachoeiro do Itapemirim</p>
+    <p style="margin-top: 10px; font-size: 14px;">Documentação técnica para transição e manutenção contínua</p>
+  </footer>
+
+  <div id="toast" class="toast">
+    <span>🔔</span>
+    <div id="toast-message">Mensagem de notificação</div>
+  </div>
+
+  <script>
+    // Função para mostrar a aba selecionada
+    function showTab(tabId) {
+      // Esconde todo o conteúdo das abas
+      document.querySelectorAll('.tab-content').forEach(el => {
+        el.classList.remove('active');
+      });
+      
+      // Remove a classe ativa de todos os botões
+      document.querySelectorAll('nav button').forEach(btn => {
+        btn.classList.remove('active-tab');
+      });
+      
+      // Mostra a aba selecionada
+      document.getElementById(tabId).classList.add('active');
+      
+      // Adiciona classe ativa ao botão correspondente
+      document.getElementById('tab-' + tabId).classList.add('active-tab');
+      
+      // Salva a aba selecionada no localStorage
+      localStorage.setItem('lastTab', tabId);
+    }
+    
+    // Função para mostrar notificação toast
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      const toastMessage = document.getElementById('toast-message');
+      
+      toastMessage.textContent = message;
+      toast.classList.add('show');
+      
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
+    
+    // Accordion functionality
+    document.querySelectorAll('.accordion-header').forEach(header => {
+      header.addEventListener('click', () => {
+        const accordion = header.parentElement;
+        accordion.classList.toggle('active');
+      });
+    });
+    
+    // Mark step as complete
+    function markStepComplete(stepId) {
+      showToast(`Passo "${stepId}" marcado como concluído!`);
+    }
+    
+    // Verifica se há uma aba salva no localStorage
+    document.addEventListener('DOMContentLoaded', function() {
+      // Carrega a última aba aberta
+      const lastTab = localStorage.getItem('lastTab') || 'guia';
+      showTab(lastTab);
+      
+      // Adiciona evento ao formulário de feedback
+      const form = document.getElementById('feedback-form');
+      if (form) {
+        form.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          // Mostra notificação
+          showToast('Solicitação enviada com sucesso!');
+          
+          // Envia o formulário
+          setTimeout(() => {
+            form.submit();
+          }, 2000);
+        });
+      }
+    });
+  </script>
 </body>
 </html>
