@@ -513,6 +513,17 @@
       font-size: 16px;
     }
     
+    footer a {
+      color: white;
+      text-decoration: underline;
+      margin: 0 10px;
+      transition: opacity 0.3s;
+    }
+    
+    footer a:hover {
+      opacity: 0.8;
+    }
+    
     /* Responsividade */
     @media (max-width: 768px) {
       nav {
@@ -542,6 +553,15 @@
       
       h2 {
         font-size: 1.6rem;
+      }
+      
+      footer {
+        padding: 20px 15px;
+      }
+      
+      footer a {
+        display: block;
+        margin: 8px 0;
       }
     }
     
@@ -792,8 +812,8 @@
       <ul>
         <li><a href="https://vercel.com/docs" target="_blank">Documentação Vercel</a></li>
         <li><a href="https://firebase.google.com/docs" target="_blank">Guia Firebase</a></li>
-        <li><a href="https://github.com/unimedci/sos-vidas" target="_blank">Repositório GitHub</a></li>
-        <li><a href="https://docs.unimedci.com.br" target="_blank">Documentação Unimed CI</a></li>
+        <li><a href="https://github.com/Tomgit-cyber/guiaweb-sos" target="_blank">Repositório GitHub do Guia</a></li>
+        <li><a href="https://www.unimed.coop.br/site/web/cachoeirodoes/home" target="_blank">Portal Unimed Cachoeiro</a></li>
       </ul>
     </div>
   </div>
@@ -903,7 +923,11 @@
   
   <footer>
     <p>Guia de Continuidade - SOS Unimed Vidas v2.0 • © 2025 Unimed Cachoeiro do Itapemirim</p>
-    <p style="margin-top: 10px; font-size: 14px;">Documentação técnica para transição e manutenção contínua</p>
+    <div style="margin-top: 15px;">
+      <a href="https://github.com/Tomgit-cyber/guiaweb-sos" target="_blank">Repositório GitHub</a> • 
+      <a href="https://www.unimed.coop.br/site/web/cachoeirodoes/home" target="_blank">Portal Unimed Cachoeiro</a> • 
+      <a href="mailto:ti@unimedci.com.br">Contato TI</a>
+    </div>
   </footer>
 
   <div id="toast" class="toast">
