@@ -1,20 +1,10 @@
-Excelente! Você encontrou um dos erros mais comuns ao configurar um novo ambiente de desenvolvimento, e é uma adição perfeita para o nosso guia.
-
-A imagem mostra o erro: "'flutter' não é reconhecido como um comando interno ou externo...".
-
-Isso significa que o terminal do Windows não sabe onde encontrar o programa flutter que você está tentando executar. A causa quase sempre é a mesma: o caminho para a pasta bin do Flutter SDK não foi adicionado corretamente às "Variáveis de Ambiente" do sistema, ou o terminal não foi reiniciado após a alteração.
-
-Para tornar o guia à prova de falhas, vamos adicionar uma seção dedicada à solução deste problema específico. Vou criar um novo item de menu chamado "Solução de Problemas" para que qualquer pessoa que encontre esse erro possa ir direto para a solução.
-
-Aqui está o código atualizado, com a nova seção de troubleshooting incluída:
-
-Generated html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SOS Unimed Vidas - Guia de Desenvolvimento</title>
+  <link rel="icon" type="image/png" href="/favicon.png?v=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     /* Esquema de cores verde Unimed */
@@ -30,15 +20,28 @@ Generated html
       --box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       --transition: all 0.3s ease;
 
-      /* Fontes do site da Unimed */
+      /* Fontes */
       --font-primary: 'Open Sans', sans-serif;
       --font-secondary: 'Roboto', sans-serif;
     }
+
+    @font-face {
+      font-family: 'Open Sans';
+      font-display: swap;
+      src: url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700');
+    }
+    @font-face {
+      font-family: 'Roboto';
+      font-display: swap;
+      src: url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700');
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
+
     body {
       font-family: var(--font-primary);
       background: linear-gradient(135deg, #F5FBF7 0%, #E5F5E9 100%);
@@ -47,6 +50,22 @@ Generated html
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+    }
+
+    /* Suporte a modo escuro */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --primary-light: #1A3C2A;
+        --text-dark: #E5F5E9;
+        --text-light: #333333;
+      }
+      body {
+        background: linear-gradient(135deg, #1A3C2A 0%, #2A4B3A 100%);
+      }
+      .content, .sidebar {
+        background: #2A2A2A;
+        color: var(--text-dark);
+      }
     }
 
     /* Página Inicial */
@@ -64,19 +83,10 @@ Generated html
     .logo {
       width: 120px;
       height: 120px;
-      background: var(--primary-color);
       border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      object-fit: contain;
       margin-bottom: 30px;
       box-shadow: var(--box-shadow);
-    }
-
-    .logo span {
-      font-size: 60px;
-      color: white;
-      font-weight: bold;
     }
 
     h1 {
@@ -174,7 +184,7 @@ Generated html
 
     /* Layout principal do guia */
     .main-container {
-      display: none; /* Inicialmente oculto */
+      display: none;
       flex: 1;
       padding: 20px;
       gap: 20px;
@@ -187,10 +197,23 @@ Generated html
       border-radius: var(--border-radius);
       box-shadow: var(--box-shadow);
       padding: 20px;
-      height: calc(100vh - 180px);
+      min-height: calc(100vh - 180px);
       overflow-y: auto;
       position: sticky;
       top: 20px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--primary-color) var(--primary-light);
+    }
+
+    .sidebar::-webkit-scrollbar {
+      width: 8px;
+    }
+    .sidebar::-webkit-scrollbar-track {
+      background: var(--primary-light);
+    }
+    .sidebar::-webkit-scrollbar-thumb {
+      background: var(--primary-color);
+      border-radius: 4px;
     }
 
     .sidebar h2 {
@@ -250,6 +273,8 @@ Generated html
       transition: var(--transition);
       font-size: 0.95rem;
       font-weight: 400;
+      display: flex;
+      align-items: center;
     }
 
     .submenu-item:hover {
@@ -262,6 +287,11 @@ Generated html
       font-weight: 600;
     }
 
+    .submenu-item.completed {
+      color: var(--primary-color);
+      font-weight: 600;
+    }
+
     /* Conteúdo principal */
     .content {
       flex: 1;
@@ -270,7 +300,20 @@ Generated html
       box-shadow: var(--box-shadow);
       padding: 30px;
       overflow-y: auto;
-      height: calc(100vh - 180px);
+      min-height: calc(100vh - 180px);
+      scrollbar-width: thin;
+      scrollbar-color: var(--primary-color) var(--primary-light);
+    }
+
+    .content::-webkit-scrollbar {
+      width: 8px;
+    }
+    .content::-webkit-scrollbar-track {
+      background: var(--primary-light);
+    }
+    .content::-webkit-scrollbar-thumb {
+      background: var(--primary-color);
+      border-radius: 4px;
     }
 
     .content-section {
@@ -330,7 +373,7 @@ Generated html
       margin: 20px 0;
       border-radius: 0 var(--border-radius) var(--border-radius) 0;
     }
-    
+
     .troubleshooting-box {
       background: #FFFBE6;
       border-left: 5px solid var(--accent-color);
@@ -436,7 +479,7 @@ Generated html
       font-weight: bold;
       box-shadow: var(--box-shadow);
       z-index: 1000;
-      display: none; /* Inicialmente oculto */
+      display: none;
       font-family: var(--font-primary);
       font-weight: 600;
       font-size: 0.9rem;
@@ -464,12 +507,13 @@ Generated html
 
       .sidebar {
         flex: 0 0 auto;
-        height: auto;
+        max-height: 50vh;
+        overflow-y: auto;
         position: static;
       }
 
       .content {
-        height: auto;
+        min-height: auto;
       }
 
       h1 {
@@ -485,20 +529,18 @@ Generated html
 <body>
   <!-- Página Inicial -->
   <div class="home-page" id="home-page">
-    <div class="logo">
-      <span>+</span>
-    </div>
+    <img src="/unimed-logo.png?v=1.0" alt="Logo Unimed Vidas" class="logo">
     <h1>SOS Unimed Vidas</h1>
     <p class="subtitle">Guia Completo de Desenvolvimento e Entrega do MVP</p>
 
     <div class="buttons">
-      <a href="#" class="main-button" onclick="showGuide('structure')">
+      <a href="#" class="main-button" onclick="showGuide('structure')" role="button" aria-label="Acessar Guia de Estrutura">
         <i>📘</i>
         <h2>Guia de Estrutura</h2>
         <p>Visão geral e documentação do projeto</p>
       </a>
 
-      <a href="#" class="main-button" onclick="showGuide('development')">
+      <a href="#" class="main-button" onclick="showGuide('development')" role="button" aria-label="Acessar Guia de Desenvolvimento">
         <i>🛠️</i>
         <h2>Guia de Desenvolvimento</h2>
         <p>Passo a passo completo para criar o MVP</p>
@@ -507,7 +549,7 @@ Generated html
   </div>
 
   <!-- Botão Voltar -->
-  <a href="#" class="back-button" id="back-button" onclick="showHomePage()">← Voltar</a>
+  <a href="#" class="back-button" id="back-button" onclick="showHomePage()" role="button" aria-label="Voltar para a página inicial">← Voltar</a>
 
   <!-- Layout do Guia -->
   <div class="main-container" id="main-container">
@@ -516,82 +558,84 @@ Generated html
       <h2>🗺️ Navegação</h2>
 
       <div class="menu-item">
-        <div class="menu-title" onclick="toggleSubmenu('setup')">
+        <div class="menu-title" onclick="toggleSubmenu('setup')" role="button" aria-expanded="false" aria-controls="submenu-setup">
           <span>⚙️ Configuração Inicial</span>
           <span>▼</span>
         </div>
         <div class="submenu" id="submenu-setup">
-          <div class="submenu-item" onclick="showContent('setup-chromeos')">ChromeOS/Linux</div>
-          <div class="submenu-item" onclick="showContent('setup-windows')">Windows</div>
-          <div class="submenu-item" onclick="showContent('setup-macos')">macOS</div>
+          <div class="submenu-item" onclick="showContent('setup-chromeos')"><span class="status-indicator status-not-started"></span>ChromeOS/Linux</div>
+          <div class="submenu-item" onclick="showContent('setup-windows')"><span class="status-indicator status-not-started"></span>Windows</div>
+          <div class="submenu-item" onclick="showContent('setup-macos')"><span class="status-indicator status-not-started"></span>macOS</div>
         </div>
       </div>
 
       <div class="menu-item">
-        <div class="menu-title" onclick="toggleSubmenu('troubleshooting')">
+        <div class="menu-title" onclick="toggleSubmenu('troubleshooting')" role="button" aria-expanded="false" aria-controls="submenu-troubleshooting">
           <span>❓ Solução de Problemas</span>
           <span>▼</span>
         </div>
         <div class="submenu" id="submenu-troubleshooting">
-          <div class="submenu-item" onclick="showContent('trouble-path')">Comando 'flutter' não reconhecido</div>
+          <div class="submenu-item" onclick="showContent('trouble-path')"><span class="status-indicator status-not-started"></span>Comando 'flutter' não reconhecido</div>
+          <div class="submenu-item" onclick="showContent('trouble-licenses')"><span class="status-indicator status-not-started"></span>Erro de licenças Android</div>
+          <div class="submenu-item" onclick="showContent('trouble-emulator')"><span class="status-indicator status-not-started"></span>Problemas com Emulador</div>
         </div>
       </div>
-      
+
       <div class="menu-item">
-        <div class="menu-title" onclick="toggleSubmenu('dev')">
+        <div class="menu-title" onclick="toggleSubmenu('dev')" role="button" aria-expanded="false" aria-controls="submenu-dev">
           <span>💻 Desenvolvimento</span>
           <span>▼</span>
         </div>
         <div class="submenu" id="submenu-dev">
-          <div class="submenu-item" onclick="showContent('dev-project')">Criar Projeto</div>
-          <div class="submenu-item" onclick="showContent('dev-structure')">Estrutura Básica</div>
-          <div class="submenu-item" onclick="showContent('dev-ui')">Interface do Usuário</div>
-          <div class="submenu-item" onclick="showContent('dev-logic')">Lógica de Negócio</div>
+          <div class="submenu-item" onclick="showContent('dev-project')"><span class="status-indicator status-not-started"></span>Criar Projeto</div>
+          <div class="submenu-item" onclick="showContent('dev-structure')"><span class="status-indicator status-not-started"></span>Estrutura Básica</div>
+          <div class="submenu-item" onclick="showContent('dev-ui')"><span class="status-indicator status-not-started"></span>Interface do Usuário</div>
+          <div class="submenu-item" onclick="showContent('dev-logic')"><span class="status-indicator status-not-started"></span>Lógica de Negócio</div>
         </div>
       </div>
 
       <div class="menu-item">
-        <div class="menu-title" onclick="toggleSubmenu('integration')">
+        <div class="menu-title" onclick="toggleSubmenu('integration')" role="button" aria-expanded="false" aria-controls="submenu-integration">
           <span>🔗 Integrações</span>
           <span>▼</span>
         </div>
         <div class="submenu" id="submenu-integration">
-          <div class="submenu-item" onclick="showContent('integration-firebase')">Firebase</div>
-          <div class="submenu-item" onclick="showContent('integration-api')">API Externa</div>
+          <div class="submenu-item" onclick="showContent('integration-firebase')"><span class="status-indicator status-not-started"></span>Firebase</div>
+          <div class="submenu-item" onclick="showContent('integration-api')"><span class="status-indicator status-not-started"></span>API Externa</div>
         </div>
       </div>
 
       <div class="menu-item">
-        <div class="menu-title" onclick="toggleSubmenu('testing')">
+        <div class="menu-title" onclick="toggleSubmenu('testing')" role="button" aria-expanded="false" aria-controls="submenu-testing">
           <span>🧪 Testes</span>
           <span>▼</span>
         </div>
         <div class="submenu" id="submenu-testing">
-          <div class="submenu-item" onclick="showContent('testing-unit')">Testes Unitários</div>
-          <div class="submenu-item" onclick="showContent('testing-device')">Testes em Dispositivo</div>
+          <div class="submenu-item" onclick="showContent('testing-unit')"><span class="status-indicator status-not-started"></span>Testes Unitários</div>
+          <div class="submenu-item" onclick="showContent('testing-device')"><span class="status-indicator status-not-started"></span>Testes em Dispositivo</div>
         </div>
       </div>
 
       <div class="menu-item">
-        <div class="menu-title" onclick="toggleSubmenu('deployment')">
+        <div class="menu-title" onclick="toggleSubmenu('deployment')" role="button" aria-expanded="false" aria-controls="submenu-deployment">
           <span>🚀 Implantação</span>
           <span>▼</span>
         </div>
         <div class="submenu" id="submenu-deployment">
-          <div class="submenu-item" onclick="showContent('deployment-build')">Build do Aplicativo</div>
-          <div class="submenu-item" onclick="showContent('deployment-playstore')">Google Play Store</div>
-          <div class="submenu-item" onclick="showContent('deployment-analytics')">Analytics</div>
+          <div class="submenu-item" onclick="showContent('deployment-build')"><span class="status-indicator status-not-started"></span>Build do Aplicativo</div>
+          <div class="submenu-item" onclick="showContent('deployment-playstore')"><span class="status-indicator status-not-started"></span>Google Play Store</div>
+          <div class="submenu-item" onclick="showContent('deployment-analytics')"><span class="status-indicator status-not-started"></span>Analytics</div>
         </div>
       </div>
 
       <div class="menu-item">
-        <div class="menu-title" onclick="toggleSubmenu('delivery')">
+        <div class="menu-title" onclick="toggleSubmenu('delivery')" role="button" aria-expanded="false" aria-controls="submenu-delivery">
           <span>📦 Entrega</span>
           <span>▼</span>
         </div>
         <div class="submenu" id="submenu-delivery">
-          <div class="submenu-item" onclick="showContent('delivery-documentation')">Documentação</div>
-          <div class="submenu-item" onclick="showContent('delivery-transfer')">Transferência de Conhecimento</div>
+          <div class="submenu-item" onclick="showContent('delivery-documentation')"><span class="status-indicator status-not-started"></span>Documentação</div>
+          <div class="submenu-item" onclick="showContent('delivery-transfer')"><span class="status-indicator status-not-started"></span>Transferência de Conhecimento</div>
         </div>
       </div>
     </div>
@@ -616,13 +660,13 @@ Generated html
 
         <p>O objetivo é entregar um MVP completo e funcional, com todas as etapas documentadas para facilitar a continuidade do projeto pela equipe de TI da Unimed.</p>
 
-        <a href="#" class="link-button" onclick="showContent('setup-chromeos')">Começar pelo Primeiro Passo</a>
+        <a href="#" class="link-button" onclick="showContent('setup-windows')" role="button" aria-label="Iniciar configuração para Windows">Começar pelo Primeiro Passo</a>
       </div>
 
       <!-- Setup Windows -->
       <div class="content-section" id="content-setup-windows">
         <h2>⚙️ Configuração no Windows</h2>
-        <p>Siga este guia para configurar seu ambiente de desenvolvimento Flutter no Windows.</p>
+        <p>Siga este guia para configurar seu ambiente de desenvolvimento Flutter no Windows. Ele é feito para ser simples, mesmo para iniciantes!</p>
 
         <h3>📋 Pré-requisitos</h3>
         <ul>
@@ -636,9 +680,9 @@ Generated html
         <div class="step-box">
           <h4>Baixar o Flutter SDK</h4>
           <p>
-            <a href="https://storage.googleapis.com/flutter_infra_release/releases/stable/windows/flutter_windows_3.22.2-stable.zip" class="link-button" target="_blank">Baixar Flutter SDK para Windows (v3.22.2)</a>
+            <a href="https://flutter.dev/docs/get-started/install/windows" class="link-button" target="_blank" role="button" aria-label="Baixar Flutter SDK">Baixar Flutter SDK para Windows (Versão Estável Mais Recente)</a>
           </p>
-          <p><strong>O que é isso?</strong> Este é o kit de desenvolvimento principal do Flutter. Ele contém todas as ferramentas, bibliotecas e o compilador necessários para criar, testar e compilar o aplicativo. Para este guia, usaremos a versão estável mais recente para garantir acesso às últimas funcionalidades e correções de segurança.</p>
+          <p><strong>O que é isso?</strong> O Flutter SDK é como a caixa de ferramentas para criar o aplicativo. Ele contém tudo que você precisa para desenvolver, testar e construir o app. Usamos a versão mais recente para garantir que você tenha as últimas funcionalidades e segurança.</p>
         </div>
 
         <div class="step-box">
@@ -661,16 +705,16 @@ Generated html
           <div class="code-block">
             flutter doctor
           </div>
-          <p>Se você vir um erro de "comando não reconhecido", consulte a seção de <a href="#" onclick="showContent('trouble-path')">Solução de Problemas</a>.</p>
+          <p>Se você vir um erro como "'flutter' não é reconhecido", vá para a seção <a href="#" onclick="showContent('trouble-path')" role="button" aria-label="Solução para comando flutter não reconhecido">Solução de Problemas</a>.</p>
         </div>
 
         <h3>🤖 Passo 3: Instalar Android Studio</h3>
         <div class="step-box">
           <h4>Baixar Android Studio</h4>
           <p>
-            <a href="https://developer.android.com/studio" class="link-button" target="_blank">Baixar Android Studio</a>
+            <a href="https://developer.android.com/studio" class="link-button" target="_blank" role="button" aria-label="Baixar Android Studio">Baixar Android Studio</a>
           </p>
-          <p><strong>Por que isso é necessário?</strong> O Android Studio é o ambiente de desenvolvimento oficial do Google para Android. Mesmo que você use outro editor de código (como o VS Code), sua instalação é **essencial**, pois ele fornece o Android SDK, as ferramentas de linha de comando e o gerenciador de emuladores que o Flutter utiliza para construir e testar o aplicativo para Android.</p>
+          <p><strong>Por que isso é necessário?</strong> O Android Studio é o programa oficial do Google para desenvolver apps Android. Mesmo que você use outro editor (como VS Code), ele é essencial porque fornece ferramentas para o Flutter construir e testar o aplicativo no Android.</p>
         </div>
 
         <div class="step-box">
@@ -706,60 +750,161 @@ Generated html
           <p>Agora deverá mostrar todas as dependências como OK.</p>
         </div>
 
-        <div class="step-action" onclick="markStepComplete('setup-windows')">Marcar como Concluído</div>
-        <a href="#" class="link-button" onclick="showContent('dev-project')">Próximo: Criar Projeto</a>
+        <div class="step-action" onclick="markStepComplete('setup-windows')" role="button" aria-label="Marcar configuração do Windows como concluída">Marcar como Concluído</div>
+        <a href="#" class="link-button" onclick="showContent('dev-project')" role="button" aria-label="Ir para criar projeto">Próximo: Criar Projeto</a>
       </div>
-      
-      <!-- Seção de Solução de Problemas -->
+
+      <!-- Setup macOS (Placeholder) -->
+      <div class="content-section" id="content-setup-macos">
+        <h2>⚙️ Configuração no macOS</h2>
+        <p>Este é um espaço reservado para instruções de configuração no macOS. Siga passos semelhantes aos do Windows, ajustando para o macOS:</p>
+        <ul>
+          <li>Baixe o Flutter SDK de <a href="https://flutter.dev/docs/get-started/install/macos" target="_blank">flutter.dev</a>.</li>
+          <li>Adicione o Flutter ao PATH em <code>~/.zshrc</code>.</li>
+          <li>Instale o Android Studio e aceite as licenças.</li>
+          <li>Execute <code>flutter doctor</code> para verificar a configuração.</li>
+        </ul>
+        <div class="step-action" onclick="markStepComplete('setup-macos')" role="button" aria-label="Marcar configuração do macOS como concluída">Marcar como Concluído</div>
+      </div>
+
+      <!-- Setup ChromeOS/Linux (Placeholder) -->
+      <div class="content-section" id="content-setup-chromeos">
+        <h2>⚙️ Configuração no ChromeOS/Linux</h2>
+        <p>Este é um espaço reservado para instruções de configuração no ChromeOS/Linux. Siga passos semelhantes aos do Windows, ajustando para Linux:</p>
+        <ul>
+          <li>Baixe o Flutter SDK de <a href="https://flutter.dev/docs/get-started/install/linux" target="_blank">flutter.dev</a>.</li>
+          <li>Adicione o Flutter ao PATH em <code>~/.bashrc</code> ou <code>~/.zshrc</code>.</li>
+          <li>Instale o Android Studio e aceite as licenças.</li>
+          <li>Execute <code>flutter doctor</code> para verificar a configuração.</li>
+        </ul>
+        <div class="step-action" onclick="markStepComplete('setup-chromeos')" role="button" aria-label="Marcar configuração do ChromeOS/Linux como concluída">Marcar como Concluído</div>
+      </div>
+
+      <!-- Seção de Solução de Problemas: Comando 'flutter' não reconhecido -->
       <div class="content-section" id="content-trouble-path">
         <h2>❓ Solução de Problemas: Comando 'flutter' não reconhecido</h2>
-        <p>Este é um dos erros mais comuns durante a configuração inicial e geralmente tem uma solução simples.</p>
-        
+        <p>Este erro ocorre quando o sistema não encontra o programa Flutter. É comum e fácil de resolver! Ele acontece porque o caminho para o Flutter não foi configurado corretamente nas variáveis de ambiente do seu computador.</p>
+
+        <h3>Windows</h3>
         <div class="troubleshooting-box">
           <h4>Cenário do Erro</h4>
-          <p>Você abre o terminal (Prompt de Comando, PowerShell, etc.), digita <code>flutter doctor</code> e recebe a seguinte mensagem:</p>
+          <p>Você abre o terminal (Prompt de Comando ou PowerShell), digita <code>flutter doctor</code> e vê:</p>
           <div class="code-block">'flutter' não é reconhecido como um comando interno<br>ou externo, um programa operável ou um arquivo em lotes.</div>
         </div>
 
-        <h3>Causa Principal</h3>
-        <p>O erro indica que o sistema operacional não sabe onde encontrar o executável do Flutter. Isso acontece porque o local de instalação do Flutter SDK não foi adicionado corretamente à variável de ambiente `Path` do seu sistema.</p>
-
-        <h3>✅ Como Resolver</h3>
-        <p>Siga estes passos para verificar e corrigir o problema:</p>
-        
-        <ol>
-            <li>
-                <strong>Verifique o Caminho do Flutter:</strong><br>
-                Confirme em qual pasta você extraiu o Flutter SDK. No nosso guia, recomendamos <code>C:\src\flutter</code>. O caminho que precisa estar no Path é a subpasta <code>bin</code> dentro dela, ou seja: <code>C:\src\flutter\bin</code>.
-            </li>
-            <li>
-                <strong>Corrija as Variáveis de Ambiente:</strong>
+        <div class="troubleshooting-box">
+          <h4>Como Resolver</h4>
+          <ol>
+            <li><strong>Verifique o Caminho do Flutter:</strong><br>
+                Confirme onde você extraiu o Flutter SDK. No nosso guia, usamos <code>C:\src\flutter</code>. O caminho a adicionar é a subpasta <code>bin</code>: <code>C:\src\flutter\bin</code>.</li>
+            <li><strong>Corrija as Variáveis de Ambiente:</strong>
                 <ul>
-                    <li>Pressione <code>Win + R</code>, digite <code>sysdm.cpl</code> e pressione Enter.</li>
-                    <li>Vá para a aba <code>Avançado</code> e clique em <code>Variáveis de Ambiente</code>.</li>
-                    <li>Na seção inferior ("Variáveis do sistema"), encontre a variável <code>Path</code>, selecione-a e clique em <code>Editar</code>.</li>
-                    <li>Verifique se o caminho <code>C:\src\flutter\bin</code> está na lista. Se não estiver, clique em <code>Novo</code> e adicione-o.</li>
-                    <li>Certifique-se de que não há erros de digitação.</li>
-                    <li>Clique em <code>OK</code> em todas as janelas para salvar.</li>
+                  <li>Pressione <code>Win + R</code>, digite <code>sysdm.cpl</code> e pressione Enter.</li>
+                  <li>Vá para a aba <code>Avançado</code> e clique em <code>Variáveis de Ambiente</code>.</li>
+                  <li>Na seção <code>Variáveis do sistema</code>, selecione <code>Path</code> e clique em <code>Editar</code>.</li>
+                  <li>Verifique se <code>C:\src\flutter\bin</code> está na lista. Se não, clique em <code>Novo</code> e adicione-o.</li>
+                  <li>Confirme que não há erros de digitação.</li>
+                  <li>Clique em <code>OK</code> para salvar.</li>
                 </ul>
+                <p><strong>Nota:</strong> Se o erro persistir, verifique se o Flutter SDK foi extraído corretamente e se você tem permissões de escrita na pasta <code>C:\src\flutter</code>. Tente executar o terminal como administrador.</p>
+                <img src="/images/path-variable-windows.png?v=1.0" alt="Configuração da variável PATH no Windows" style="max-width: 100%; border-radius: var(--border-radius); margin: 10px 0;">
             </li>
-            <li>
-                <strong>Reinicie o Terminal (Passo Crucial!):</strong><br>
-                As alterações nas variáveis de ambiente só são aplicadas a novas sessões do terminal. <strong>Feche todas as janelas do Prompt de Comando ou PowerShell e abra uma nova.</strong>
-            </li>
-            <li>
-                <strong>Tente Novamente:</strong><br>
-                No <strong>novo</strong> terminal, digite o comando novamente:
+            <li><strong>Reinicie o Terminal:</strong><br>
+                Feche todas as janelas do Prompt de Comando ou PowerShell e abra uma nova. Isso é essencial!</li>
+            <li><strong>Tente Novamente:</strong><br>
+                No novo terminal, execute:
                 <div class="code-block">flutter doctor</div>
-                O comando agora deve ser reconhecido e começar a executar a verificação do Flutter.
-            </li>
-        </ol>
-        
-        <a href="#" class="link-button" onclick="showContent('setup-windows')">Voltar para a Configuração</a>
-      </div>
-      
-      <!-- Outras seções do guia (ChromeOS, macOS, etc.) devem ser inseridas aqui -->
+                O comando agora deve funcionar e verificar sua configuração.</li>
+          </ol>
+        </div>
 
+        <h3>macOS</h3>
+        <div class="troubleshooting-box">
+          <h4>Verificar e Corrigir</h4>
+          <ol>
+            <li>Confirme que o Flutter SDK está em <code>~/development/flutter</code>.</li>
+            <li>Abra o terminal e edite o arquivo de perfil (<code>~/.zshrc</code> ou <code>~/.bashrc</code>):
+              <div class="code-block">nano ~/.zshrc</div>
+            </li>
+            <li>Adicione a linha:
+              <div class="code-block">export PATH="$PATH:~/development/flutter/bin"</div>
+            </li>
+            <li>Salve e atualize o perfil:
+              <div class="code-block">source ~/.zshrc</div>
+            </li>
+            <li>Teste com:
+              <div class="code-block">flutter doctor</div>
+            </li>
+          </ol>
+          <p><strong>Nota:</strong> Se o erro persistir, verifique as permissões da pasta <code>~/development/flutter</code> e tente executar como administrador com <code>sudo</code>.</p>
+        </div>
+
+        <h3>Linux/ChromeOS</h3>
+        <div class="troubleshooting-box">
+          <h4>Verificar e Corrigir</h4>
+          <ol>
+            <li>Confirme que o Flutter SDK está em <code>~/flutter</code>.</li>
+            <li>Abra o terminal e edite <code>~/.bashrc</code> ou <code>~/.zshrc</code>:
+              <div class="code-block">nano ~/.bashrc</div>
+            </li>
+            <li>Adicione a linha:
+              <div class="code-block">export PATH="$PATH:~/flutter/bin"</div>
+            </li>
+            <li>Salve e atualize:
+              <div class="code-block">source ~/.bashrc</div>
+            </li>
+            <li>Teste com:
+              <div class="code-block">flutter doctor</div>
+            </li>
+          </ol>
+          <p><strong>Nota:</strong> Se o erro persistir, verifique as permissões da pasta <code>~/flutter</code> e tente executar como administrador com <code>sudo</code>.</p>
+        </div>
+
+        <a href="#" class="link-button" id="trouble-path-back" onclick="showContent('setup-windows')" role="button" aria-label="Voltar para a configuração">Voltar para a Configuração</a>
+      </div>
+
+      <!-- Seção de Solução de Problemas: Erro de Licenças Android -->
+      <div class="content-section" id="content-trouble-licenses">
+        <h2>❓ Solução de Problemas: Erro de Licenças Android</h2>
+        <p>Se o <code>flutter doctor</code> indicar que as licenças Android não estão aceitas, siga estes passos simples:</p>
+        <div class="troubleshooting-box">
+          <h4>Como Resolver</h4>
+          <ol>
+            <li>Execute no terminal:
+              <div class="code-block">flutter doctor --android-licenses</div>
+            </li>
+            <li>Pressione <code>y</code> para aceitar todas as licenças.</li>
+            <li>Reexecute <code>flutter doctor</code> para verificar.</li>
+          </ol>
+          <p><strong>Nota:</strong> Certifique-se de que o Android Studio está instalado, pois ele fornece as ferramentas necessárias para as licenças.</p>
+        </div>
+        <a href="#" class="link-button" id="trouble-licenses-back" onclick="showContent('setup-windows')" role="button" aria-label="Voltar para a configuração">Voltar para a Configuração</a>
+      </div>
+
+      <!-- Seção de Solução de Problemas: Problemas com Emulador -->
+      <div class="content-section" id="content-trouble-emulator">
+        <h2>❓ Solução de Problemas: Problemas com Emulador</h2>
+        <p>Se o emulador Android não iniciar ou o Flutter não o detectar, siga estes passos:</p>
+        <div class="troubleshooting-box">
+          <h4>Como Resolver</h4>
+          <ol>
+            <li>Abra o Android Studio e vá para <code>Configure > AVD Manager</code>.</li>
+            <li>Crie um novo dispositivo virtual (escolha um dispositivo como Pixel 4 e uma API recente).</li>
+            <li>Inicie o emulador e verifique se ele aparece ao executar:
+              <div class="code-block">flutter devices</div>
+            </li>
+            <li>Se não for detectado, verifique se o Android SDK está configurado corretamente no Android Studio.</li>
+          </ol>
+          <p><strong>Nota:</strong> Emuladores exigem um computador com bom desempenho. Considere testar em um dispositivo físico se o emulador for lento.</p>
+        </div>
+        <a href="#" class="link-button" id="trouble-emulator-back" onclick="showContent('setup-windows')" role="button" aria-label="Voltar para a configuração">Voltar para a Configuração</a>
+      </div>
+
+      <!-- Placeholder para outras seções -->
+      <div class="content-section" id="content-dev-project">
+        <h2>💻 Criar Projeto</h2>
+        <p>Este é um espaço reservado para instruções sobre como criar um novo projeto Flutter. Execute <code>flutter create meu_projeto</code> no terminal e siga as instruções.</p>
+      </div>
     </div>
   </div>
 
@@ -788,11 +933,16 @@ Generated html
       document.getElementById('back-button').style.display = 'block';
       document.body.style.background = 'linear-gradient(135deg, #F5FBF7 0%, #E5F5E9 100%)';
 
-      // Se for o guia de desenvolvimento, mostra o primeiro passo
       if (type === 'development') {
-        showContent('setup-windows'); // Padrão para Windows
+        const platform = navigator.platform.toLowerCase();
+        let defaultSection = 'setup-windows';
+        if (platform.includes('mac')) {
+          defaultSection = 'setup-macos';
+        } else if (platform.includes('linux')) {
+          defaultSection = 'setup-chromeos';
+        }
+        showContent(defaultSection);
       } else {
-        // Para outros tipos, mostra a página inicial do guia
         showContent('home');
       }
     }
@@ -801,35 +951,37 @@ Generated html
     function toggleSubmenu(id) {
       const submenu = document.getElementById(`submenu-${id}`);
       const title = submenu.previousElementSibling;
+      const isExpanded = submenu.classList.toggle('active');
+      title.classList.toggle('active');
+      title.setAttribute('aria-expanded', isExpanded);
 
-      // Fechar outros submenus
       document.querySelectorAll('.submenu').forEach(menu => {
         if (menu.id !== `submenu-${id}`) {
           menu.classList.remove('active');
           menu.previousElementSibling.classList.remove('active');
+          menu.previousElementSibling.setAttribute('aria-expanded', 'false');
         }
       });
-
-      // Alternar o atual
-      submenu.classList.toggle('active');
-      title.classList.toggle('active');
     }
 
     // Função para mostrar conteúdo
     function showContent(id) {
+      const targetContent = document.getElementById(`content-${id}`);
+      if (!targetContent) {
+        console.error(`Seção de conteúdo content-${id} não encontrada`);
+        showContent('home');
+        return;
+      }
+
       document.querySelectorAll('.content-section').forEach(section => {
         section.classList.remove('active');
       });
-
-      const targetContent = document.getElementById(`content-${id}`);
-      if (targetContent) {
-          targetContent.classList.add('active');
-      }
+      targetContent.classList.add('active');
 
       document.querySelectorAll('.submenu-item').forEach(item => {
         item.classList.remove('active');
       });
-      
+
       const menuItem = document.querySelector(`.submenu-item[onclick="showContent('${id}')"]`);
       if (menuItem) {
         menuItem.classList.add('active');
@@ -837,32 +989,48 @@ Generated html
         if (parentSubmenu) {
           parentSubmenu.classList.add('active');
           parentSubmenu.previousElementSibling.classList.add('active');
+          parentSubmenu.previousElementSibling.setAttribute('aria-expanded', 'true');
         }
       }
 
+      // Atualizar botão de voltar dinamicamente
+      const backLinks = document.querySelectorAll('#content-trouble-path .link-button, #content-trouble-licenses .link-button, #content-trouble-emulator .link-button');
+      backLinks.forEach(link => {
+        const platform = navigator.platform.toLowerCase();
+        let setupSection = 'setup-windows';
+        if (platform.includes('mac')) setupSection = 'setup-macos';
+        else if (platform.includes('linux')) setupSection = 'setup-chromeos';
+        link.setAttribute('onclick', `showContent('${setupSection}')`);
+        link.textContent = `Voltar para a Configuração (${setupSection.split('-')[1].charAt(0).toUpperCase() + setupSection.split('-')[1].slice(1)})`;
+        link.setAttribute('aria-label', `Voltar para a configuração de ${setupSection.split('-')[1]}`);
+      });
+
       const contentElement = document.querySelector('.content');
       if (contentElement) {
-          contentElement.scrollTop = 0;
+        contentElement.scrollTop = 0;
       }
     }
 
-
     // Função para marcar passo como concluído
     function markStepComplete(stepId) {
-      // Aqui você poderia salvar o estado em localStorage
-      console.log(`Passo ${stepId} marcado como concluído`);
-
+      localStorage.setItem(`step-${stepId}`, 'completed');
       const menuItem = document.querySelector(`.submenu-item[onclick="showContent('${stepId}')"]`);
-
       if (menuItem) {
-        menuItem.innerHTML = `✓ ${menuItem.textContent}`;
+        menuItem.innerHTML = `<span class="status-indicator status-completed"></span>${menuItem.textContent.replace(/✓ |<span.*<\/span>/, '')}`;
+        menuItem.classList.add('completed');
       }
-
       alert(`Passo "${stepId}" marcado como concluído!`);
     }
 
     // Inicializar
     document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.submenu-item').forEach(item => {
+        const stepId = item.getAttribute('onclick').match(/'([^']+)'/)[1];
+        if (localStorage.getItem(`step-${stepId}`) === 'completed') {
+          item.innerHTML = `<span class="status-indicator status-completed"></span>${item.textContent.replace(/✓ |<span.*<\/span>/, '')}`;
+          item.classList.add('completed');
+        }
+      });
       showHomePage();
     });
   </script>
