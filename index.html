@@ -1,266 +1,73 @@
-```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SOS Unimed Vidas - Guia de Desenvolvimento</title>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
-    /* Esquema de cores verde Unimed */
-    :root {
-      --primary-color: #00A651; /* Verde Unimed principal */
-      --primary-dark: #00703C; /* Verde mais escuro */
-      --primary-light: #E5F5E9; /* Verde claro para fundos */
-      --secondary-color: #006837; /* Verde secundário */
-      --accent-color: #FFD100; /* Amarelo para destaques */
-      --text-dark: #333333;
-      --text-light: #FFFFFF;
-      --border-radius: 8px;
-      --box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      --transition: all 0.3s ease;
-      
-      /* Fontes do site da Unimed */
-      --font-primary: 'Open Sans', sans-serif;
-      --font-secondary: 'Roboto', sans-serif;
-    }
-    * {
-      box-sizing: border-box;
+    /* Estilos básicos */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9f9f9;
       margin: 0;
       padding: 0;
     }
-    body {
-      font-family: var(--font-primary);
-      background: linear-gradient(135deg, #F5FBF7 0%, #E5F5E9 100%);
-      color: var(--text-dark);
-      line-height: 1.7;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
     
-    /* Página Inicial */
-    .home-page {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      padding: 20px;
-      text-align: center;
-      background: linear-gradient(135deg, #E5F5E9 0%, #F5FBF7 100%);
-    }
-    
-    .logo {
-      width: 120px;
-      height: 120px;
-      background: var(--primary-color);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 30px;
-      box-shadow: var(--box-shadow);
-    }
-    
-    .logo span {
-      font-size: 60px;
-      color: white;
-      font-weight: bold;
-    }
-    
-    h1 {
-      font-family: var(--font-secondary);
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: var(--primary-dark);
-      margin-bottom: 15px;
-      letter-spacing: -0.5px;
-    }
-    
-    .subtitle {
-      font-family: var(--font-primary);
-      font-size: 1.2rem;
-      font-weight: 400;
-      color: var(--secondary-color);
-      max-width: 600px;
-      margin-bottom: 40px;
-      line-height: 1.6;
-    }
-    
-    .buttons {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    
-    .main-button {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      width: 250px;
-      height: 200px;
-      padding: 25px;
-      background: white;
-      border-radius: var(--border-radius);
-      box-shadow: var(--box-shadow);
-      text-decoration: none;
-      color: var(--text-dark);
-      transition: var(--transition);
-      border: 2px solid var(--primary-light);
-    }
-    
-    .main-button:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-      border-color: var(--primary-color);
-    }
-    
-    .main-button i {
-      font-size: 3rem;
-      margin-bottom: 15px;
-      color: var(--primary-color);
-    }
-    
-    .main-button h2 {
-      font-family: var(--font-secondary);
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: 10px;
-      color: var(--primary-dark);
-    }
-    
-    .main-button p {
-      font-family: var(--font-primary);
-      font-size: 0.9rem;
-      font-weight: 400;
-      color: #666;
-      line-height: 1.5;
-    }
-    
-    footer {
-      text-align: center;
-      padding: 25px;
-      background: linear-gradient(135deg, var(--primary-dark) 0%, #006837 100%);
-      color: white;
-      margin-top: auto;
-      font-size: 16px;
-      font-family: var(--font-primary);
-    }
-    
-    footer a {
-      color: white;
-      text-decoration: underline;
-      margin: 0 10px;
-      transition: opacity 0.3s;
-      font-weight: 400;
-    }
-    
-    footer a:hover {
-      opacity: 0.8;
-    }
-    
-    /* Layout principal do guia */
-    .main-container {
-      display: none; /* Inicialmente oculto */
-      flex: 1;
-      padding: 20px;
-      gap: 20px;
-    }
-    
-    /* Menu lateral */
     .sidebar {
-      flex: 0 0 300px;
-      background: white;
-      border-radius: var(--border-radius);
-      box-shadow: var(--box-shadow);
-      padding: 20px;
-      height: calc(100vh - 180px);
+      width: 300px;
+      height: 100vh;
+      background-color: #ffffff;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      top: 0;
+      left: 0;
       overflow-y: auto;
-      position: sticky;
-      top: 20px;
     }
     
     .sidebar h2 {
-      font-family: var(--font-secondary);
-      color: var(--primary-dark);
-      margin-bottom: 20px;
+      color: #333;
+      margin: 20px 15px;
+      font-size: 24px;
+      border-bottom: 1px solid #ddd;
       padding-bottom: 10px;
-      border-bottom: 2px solid var(--primary-color);
-      font-size: 1.5rem;
-      font-weight: 700;
     }
     
     .menu-item {
-      margin-bottom: 15px;
+      margin: 10px 15px;
     }
     
     .menu-title {
-      font-family: var(--font-secondary);
-      font-weight: 600;
-      color: var(--primary-dark);
-      padding: 12px 15px;
-      background: var(--primary-light);
-      border-radius: var(--border-radius);
-      cursor: pointer;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      transition: var(--transition);
-      font-size: 1rem;
-    }
-    
-    .menu-title:hover {
-      background: #D0EBD7;
-    }
-    
-    .menu-title.active {
-      background: var(--primary-color);
+      background-color: #00A651;
       color: white;
+      padding: 10px 15px;
+      cursor: pointer;
+      border-radius: 5px;
     }
     
     .submenu {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease;
+      display: none;
+      margin-left: 20px;
     }
     
     .submenu.active {
-      max-height: 500px;
+      display: block;
     }
     
     .submenu-item {
-      font-family: var(--font-primary);
-      padding: 10px 20px;
-      cursor: pointer;
-      border-radius: var(--border-radius);
-      margin: 5px 0;
-      transition: var(--transition);
-      font-size: 0.95rem;
-      font-weight: 400;
-    }
-    
-    .submenu-item:hover {
-      background: #F0F9F2;
-    }
-    
-    .submenu-item.active {
-      background: var(--primary-color);
+      background-color: #00A651;
       color: white;
-      font-weight: 600;
+      padding: 10px 15px;
+      margin: 5px 0;
+      cursor: pointer;
+      border-radius: 5px;
     }
     
-    /* Conteúdo principal */
     .content {
-      flex: 1;
-      background: white;
-      border-radius: var(--border-radius);
-      box-shadow: var(--box-shadow);
-      padding: 30px;
-      overflow-y: auto;
-      height: calc(100vh - 180px);
+      margin-left: 320px;
+      padding: 20px;
     }
     
     .content-section {
@@ -269,1201 +76,162 @@
     
     .content-section.active {
       display: block;
-      animation: fadeIn 0.5s ease;
-    }
-    
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    .content h2 {
-      font-family: var(--font-secondary);
-      color: var(--primary-dark);
-      margin-bottom: 20px;
-      font-size: 1.9rem;
-      font-weight: 700;
-      letter-spacing: -0.3px;
-    }
-    
-    .content h3 {
-      font-family: var(--font-secondary);
-      color: var(--primary-dark);
-      margin: 25px 0 15px;
-      font-size: 1.4rem;
-      font-weight: 600;
-    }
-    
-    .content p {
-      font-family: var(--font-primary);
-      margin-bottom: 15px;
-      line-height: 1.8;
-      font-size: 1rem;
-      font-weight: 400;
-    }
-    
-    .content ul, .content ol {
-      font-family: var(--font-primary);
-      margin-left: 30px;
-      margin-bottom: 20px;
-    }
-    
-    .content li {
-      margin-bottom: 10px;
-      font-weight: 400;
     }
     
     .step-box {
-      background: var(--primary-light);
-      border-left: 5px solid var(--primary-color);
+      background-color: #E5F5E9;
+      border-left: 5px solid #00A651;
       padding: 20px;
       margin: 20px 0;
-      border-radius: 0 var(--border-radius) var(--border-radius) 0;
+      border-radius: 0 8px 8px 0;
     }
     
     .step-box h4 {
-      font-family: var(--font-secondary);
       margin-top: 0;
-      color: var(--primary-dark);
-      font-size: 1.2rem;
-      font-weight: 600;
-    }
-    
-    .step-action {
-      display: inline-block;
-      background: var(--primary-color);
-      color: white;
-      padding: 8px 15px;
-      border-radius: 30px;
-      margin-top: 15px;
-      font-size: 14px;
-      cursor: pointer;
-      transition: var(--transition);
-      box-shadow: 0 2px 5px rgba(0, 166, 81, 0.3);
-      font-family: var(--font-primary);
-      font-weight: 600;
-      border: none;
-    }
-    
-    .step-action:hover {
-      background: var(--primary-dark);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(0, 166, 81, 0.4);
     }
     
     .code-block {
-      background: #2d2d2d;
+      background-color: #2d2d2d;
       color: #f8f8f2;
       padding: 15px;
-      border-radius: var(--border-radius);
+      border-radius: 8px;
       font-family: 'Courier New', monospace;
       font-size: 14px;
       overflow-x: auto;
       margin: 15px 0;
     }
-    
-    .link-button {
-      display: inline-block;
-      background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
-      color: white;
-      padding: 12px 20px;
-      border-radius: var(--border-radius);
-      text-decoration: none;
-      font-weight: bold;
-      margin: 10px 0;
-      transition: var(--transition);
-      box-shadow: 0 4px 10px rgba(0, 166, 81, 0.3);
-      font-family: var(--font-primary);
-      font-weight: 600;
-      border: none;
-      cursor: pointer;
-      font-size: 1rem;
-    }
-    
-    .link-button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 15px rgba(0, 166, 81, 0.4);
-    }
-    
-    .status-indicator {
-      display: inline-block;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      margin-right: 8px;
-    }
-    
-    .status-pending {
-      background: #FFD100;
-    }
-    
-    .status-completed {
-      background: #00A651;
-    }
-    
-    .status-not-started {
-      background: #CCCCCC;
-    }
-    
-    /* Botão Voltar */
-    .back-button {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      background: var(--primary-color);
-      color: white;
-      padding: 10px 15px;
-      border-radius: var(--border-radius);
-      text-decoration: none;
-      font-weight: bold;
-      box-shadow: var(--box-shadow);
-      z-index: 1000;
-      display: none; /* Inicialmente oculto */
-      font-family: var(--font-primary);
-      font-weight: 600;
-      font-size: 0.9rem;
-    }
-    
-    .back-button:hover {
-      background: var(--primary-dark);
-    }
-    
-    /* Responsividade */
-    @media (max-width: 768px) {
-      .buttons {
-        flex-direction: column;
-        align-items: center;
-      }
-      
-      .main-button {
-        width: 100%;
-        max-width: 300px;
-      }
-      
-      .main-container {
-        flex-direction: column;
-      }
-      
-      .sidebar {
-        flex: 0 0 auto;
-        height: auto;
-        position: static;
-      }
-      
-      .content {
-        height: auto;
-      }
-      
-      h1 {
-        font-size: 2rem;
-      }
-      
-      .subtitle {
-        font-size: 1rem;
-      }
-    }
   </style>
 </head>
 <body>
-  <!-- Página Inicial -->
-  <div class="home-page" id="home-page">
-    <div class="logo">
-      <span>+</span>
+  <div class="sidebar">
+    <h2>Navegação</h2>
+    <div class="menu-item">
+      <div class="menu-title" onclick="toggleSubmenu('setup')">
+        Configuração Inicial <span>&#9660;</span>
+      </div>
+      <div class="submenu" id="submenu-setup">
+        <div class="submenu-item" onclick="showContent('setup-chromeos')">ChromeOS/Linux</div>
+        <div class="submenu-item" onclick="showContent('setup-windows')">Windows</div>
+        <div class="submenu-item" onclick="showContent('setup-macos')">macOS</div>
+      </div>
     </div>
-    <h1>SOS Unimed Vidas</h1>
-    <p class="subtitle">Guia Completo de Desenvolvimento e Entrega do MVP</p>
     
-    <div class="buttons">
-      <a href="#" class="main-button" onclick="showGuide('structure')">
-        <i>📘</i>
-        <h2>Guia de Estrutura</h2>
-        <p>Visão geral e documentação do projeto</p>
-      </a>
-      
-      <a href="#" class="main-button" onclick="showGuide('development')">
-        <i>🛠️</i>
-        <h2>Guia de Desenvolvimento</h2>
-        <p>Passo a passo completo para criar o MVP</p>
-      </a>
-    </div>
+    <!-- Outras seções de menu -->
   </div>
   
-  <!-- Botão Voltar -->
-  <a href="#" class="back-button" id="back-button" onclick="showHomePage()">← Voltar</a>
-  
-  <!-- Layout do Guia -->
-  <div class="main-container" id="main-container">
-    <!-- Menu Lateral -->
-    <div class="sidebar">
-      <h2>🗺️ Navegação</h2>
-      
-      <div class="menu-item">
-        <div class="menu-title" onclick="toggleSubmenu('setup')">
-          <span>⚙️ Configuração Inicial</span>
-          <span>▼</span>
-        </div>
-        <div class="submenu" id="submenu-setup">
-          <div class="submenu-item" onclick="showContent('setup-chromeos')">ChromeOS/Linux</div>
-          <div class="submenu-item" onclick="showContent('setup-windows')">Windows</div>
-          <div class="submenu-item" onclick="showContent('setup-macos')">macOS</div>
-        </div>
-      </div>
-      
-      <div class="menu-item">
-        <div class="menu-title" onclick="toggleSubmenu('dev')">
-          <span>💻 Desenvolvimento</span>
-          <span>▼</span>
-        </div>
-        <div class="submenu" id="submenu-dev">
-          <div class="submenu-item" onclick="showContent('dev-project')">Criar Projeto</div>
-          <div class="submenu-item" onclick="showContent('dev-structure')">Estrutura Básica</div>
-          <div class="submenu-item" onclick="showContent('dev-ui')">Interface do Usuário</div>
-          <div class="submenu-item" onclick="showContent('dev-logic')">Lógica de Negócio</div>
-        </div>
-      </div>
-      
-      <div class="menu-item">
-        <div class="menu-title" onclick="toggleSubmenu('integration')">
-          <span>🔗 Integrações</span>
-          <span>▼</span>
-        </div>
-        <div class="submenu" id="submenu-integration">
-          <div class="submenu-item" onclick="showContent('integration-firebase')">Firebase</div>
-          <div class="submenu-item" onclick="showContent('integration-api')">API Externa</div>
-        </div>
-      </div>
-      
-      <div class="menu-item">
-        <div class="menu-title" onclick="toggleSubmenu('testing')">
-          <span>🧪 Testes</span>
-          <span>▼</span>
-        </div>
-        <div class="submenu" id="submenu-testing">
-          <div class="submenu-item" onclick="showContent('testing-unit')">Testes Unitários</div>
-          <div class="submenu-item" onclick="showContent('testing-device')">Testes em Dispositivo</div>
-        </div>
-      </div>
-      
-      <div class="menu-item">
-        <div class="menu-title" onclick="toggleSubmenu('deployment')">
-          <span>🚀 Implantação</span>
-          <span>▼</span>
-        </div>
-        <div class="submenu" id="submenu-deployment">
-          <div class="submenu-item" onclick="showContent('deployment-build')">Build do Aplicativo</div>
-          <div class="submenu-item" onclick="showContent('deployment-playstore')">Google Play Store</div>
-          <div class="submenu-item" onclick="showContent('deployment-analytics')">Analytics</div>
-        </div>
-      </div>
-      
-      <div class="menu-item">
-        <div class="menu-title" onclick="toggleSubmenu('delivery')">
-          <span>📦 Entrega</span>
-          <span>▼</span>
-        </div>
-        <div class="submenu" id="submenu-delivery">
-          <div class="submenu-item" onclick="showContent('delivery-documentation')">Documentação</div>
-          <div class="submenu-item" onclick="showContent('delivery-transfer')">Transferência de Conhecimento</div>
-        </div>
-      </div>
+  <div class="content">
+    <!-- Conteúdo inicial oculto -->
+    <div class="content-section active" id="content-home">
+      <h2>Bem-vindo ao Guia de Desenvolvimento</h2>
+      <p>Este guia foi criado para te orientar em cada etapa do desenvolvimento do aplicativo SOS Unimed Vidas.</p>
     </div>
     
-    <!-- Conteúdo Principal -->
-    <div class="content">
-      <!-- Página Inicial do Guia -->
-      <div class="content-section active" id="content-home">
-        <h2>🎯 Bem-vindo ao Guia de Desenvolvimento</h2>
-        <p>Este guia foi criado para te orientar em cada etapa do desenvolvimento do aplicativo SOS Unimed Vidas, desde a configuração inicial até a entrega final do MVP.</p>
-        
-        <div class="step-box">
-          <h4>Como usar este guia:</h4>
-          <ol>
-            <li>Use o menu à esquerda para navegar pelas fases do desenvolvimento</li>
-            <li>Clique em cada item para ver instruções detalhadas</li>
-            <li>Siga os passos na ordem recomendada para melhor resultado</li>
-            <li>Marque as tarefas como concluídas conforme você avança</li>
-          </ol>
-        </div>
-        
-        <p>O objetivo é entregar um MVP completo e funcional, com todas as etapas documentadas para facilitar a continuidade do projeto pela equipe de TI da Unimed.</p>
-        
-        <a href="#" class="link-button" onclick="showContent('setup-chromeos')">Começar pelo Primeiro Passo</a>
+    <!-- Seção de Configuração para ChromeOS/Linux -->
+    <div class="content-section" id="content-setup-chromeos">
+      <h2>Configuração no ChromeOS/Linux</h2>
+      <p>Siga este guia para configurar seu ambiente de desenvolvimento Flutter no ChromeOS com suporte a Linux (Crostini).</p>
+      
+      <!-- Conteúdo detalhado para ChromeOS/Linux -->
+    </div>
+    
+    <!-- Seção de Configuração para Windows -->
+    <div class="content-section" id="content-setup-windows">
+      <h2>Configuração no Windows</h2>
+      <p>Siga este guia para configurar seu ambiente de desenvolvimento Flutter no Windows.</p>
+      
+      <h3>Pré-requisitos</h3>
+      <ul>
+        <li>Windows 10 ou superior (64-bit)</li>
+        <li>Pelo menos 8GB de RAM</li>
+        <li>Pelo menos 4GB de espaço em disco livre</li>
+        <li>Conexão estável com a internet</li>
+      </ul>
+      
+      <h3>Passo 1: Instalar o Flutter SDK</h3>
+      <div class="step-box">
+        <h4>Baixar o Flutter SDK</h4>
+        <ol>
+          <li>Acesse <a href="https://docs.flutter.dev/get-started/install/windows" target="_blank">docs.flutter.dev/get-started/install/windows</a></li>
+          <li>Baixe o arquivo <code>flutter_windows_x.x.x-stable.zip</code></li>
+          <li>Extraia o arquivo em <code>C:\src\flutter</code> (crie a pasta se necessário)</li>
+        </ol>
       </div>
       
-      <!-- Setup ChromeOS -->
-      <div class="content-section" id="content-setup-chromeos">
-        <h2>⚙️ Configuração no ChromeOS/Linux</h2>
-        <p>Siga este guia para configurar seu ambiente de desenvolvimento Flutter no ChromeOS com suporte a Linux (Crostini).</p>
-        
-        <h3>📋 Pré-requisitos</h3>
-        <ul>
-          <li>Chromebook com suporte a Linux (Crostini)</li>
-          <li>Pelo menos 8GB de armazenamento livre</li>
-          <li>Conexão estável com a internet</li>
-        </ul>
-        
-        <h3>🔧 Passo 1: Configurar o Ambiente Linux</h3>
-        <div class="step-box">
-          <h4>Ativar Linux (Crostini)</h4>
-          <ol>
-            <li>Acesse <code>Configurações</code> > <code>Linux (Desenvolvedor)</code></li>
-            <li>Clique em <code>Ativar</code></li>
-            <li>Siga as instruções na tela (pode demorar alguns minutos)</li>
-          </ol>
+      <div class="step-box">
+        <h4>Adicionar ao PATH</h4>
+        <ol>
+          <li>Pressione <code>Win + R</code>, digite <code>sysdm.cpl</code> e pressione Enter</li>
+          <li>Clique na aba <code>Avançado</code></li>
+          <li>Clique em <code>Variáveis de Ambiente</code></li>
+          <li>Na seção <code>Variáveis do sistema</code>, selecione <code>Path</code> e clique em <code>Editar</code></li>
+          <li>Clique em <code>Novo</code> e adicione: <code>C:\src\flutter\bin</code></li>
+          <li>Clique <code>OK</code> para fechar todas as janelas</li>
+        </ol>
+      </div>
+      
+      <h3>Passo 2: Verificar Dependências</h3>
+      <div class="step-box">
+        <h4>Executar flutter doctor</h4>
+        <p>Abra o Prompt de Comando ou PowerShell e execute:</p>
+        <div class="code-block">
+          flutter doctor
         </div>
-        
-        <div class="step-box">
-          <h4>Atualizar pacotes</h4>
-          <p>Abra o Terminal Linux e execute:</p>
-          <div class="code-block">
-            sudo apt-get update && sudo apt-get upgrade -y
-          </div>
-        </div>
-        
-        <h3>📥 Passo 2: Instalar o Flutter</h3>
-        <div class="step-box">
-          <h4>Baixar o Flutter SDK</h4>
-          <div class="code-block">
-            cd ~<br>
-            wget https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.22.0-stable.tar.xz
-          </div>
-        </div>
-        
-        <div class="step-box">
-          <h4>Extrair o arquivo</h4>
-          <div class="code-block">
-            tar xf flutter_linux_3.22.0-stable.tar.xz
-          </div>
-        </div>
-        
-        <div class="step-box">
-          <h4>Adicionar ao PATH</h4>
-          <ol>
-            <li>Edite o arquivo <code>.bashrc</code>:</li>
-            <div class="code-block">
-              nano ~/.bashrc
-            </div>
-            <li>Adicione no final:</li>
-            <div class="code-block">
-              export PATH="$PATH:$HOME/flutter/bin"
-            </div>
-            <li>Salve (Ctrl+O, Enter) e saia (Ctrl+X)</li>
-            <li>Carregue as alterações:</li>
-            <div class="code-block">
-              source ~/.bashrc
-            </div>
-          </ol>
-        </div>
-        
-        <h3>🔍 Passo 3: Verificar Dependências</h3>
-        <div class="step-box">
-          <h4>Executar flutter doctor</h4>
-          <div class="code-block">
-            flutter doctor
-          </div>
-          <p>Você verá mensagens sobre dependências faltando - vamos resolver isso agora.</p>
-        </div>
-        
-        <h3>🤖 Passo 4: Configurar Android</h3>
-        <div class="step-box">
-          <h4>Instalar Java JDK</h4>
-          <div class="code-block">
-            sudo apt-get install openjdk-11-jdk -y
-          </div>
-        </div>
-        
-        <div class="step-box">
-          <h4>Baixar Android Studio</h4>
-          <ol>
-            <li>Acesse <a href="https://developer.android.com/studio" target="_blank">developer.android.com/studio</a></li>
-            <li>Baixe a versão para Linux</li>
-            <li>No terminal, navegue até a pasta de downloads e extraia:</li>
-            <div class="code-block">
-              cd ~/Downloads<br>
-              unzip android-studio-*-linux.tar.gz<br>
-              mv android-studio ~
-            </div>
-          </ol>
-        </div>
-        
-        <div class="step-box">
-          <h4>Iniciar Android Studio</h4>
-          <div class="code-block">
-            cd ~/android-studio/bin<br>
-            ./studio.sh
-          </div>
-          <p>Siga o assistente de instalação e marque:</p>
+        <p>Você verá mensagens sobre dependências faltando - vamos resolver isso agora.</p>
+      </div>
+      
+      <h3>Passo 3: Instalar Android Studio</h3>
+      <div class="step-box">
+        <h4>Baixar Android Studio</h4>
+        <ol>
+          <li>Acesse <a href="https://developer.android.com/studio" target="_blank">developer.android.com/studio</a></li>
+          <li>Baixe a versão para Windows</li>
+          <li>Execute o instalador e siga as instruções</li>
+        </ol>
+      </div>
+      
+      <h3>Passo 4: Configurar Android Studio</h3>
+      <div class="step-box">
+        <h4>Configurar Android Studio</h4>
+        <ol>
+          <li>Abra o Android Studio</li>
+          <li>No assistente de instalação, marque:</li>
           <ul>
             <li>Android SDK</li>
             <li>Android SDK Platform</li>
             <li>Android Virtual Device</li>
           </ul>
-        </div>
-        
-        <div class="step-box">
-          <h4>Configurar variáveis de ambiente</h4>
-          <ol>
-            <li>Edite novamente o <code>.bashrc</code>:</li>
-            <div class="code-block">
-              nano ~/.bashrc
-            </div>
-            <li>Adicione:</li>
-            <div class="code-block">
-              export ANDROID_HOME="$HOME/Android/Sdk"<br>
-              export PATH="$PATH:$ANDROID_HOME/tools"<br>
-              export PATH="$PATH:$ANDROID_HOME/platform-tools"
-            </div>
-            <li>Salve e carregue:</li>
-            <div class="code-block">
-              source ~/.bashrc
-            </div>
-          </ol>
-        </div>
-        
-        <h3>✅ Passo 5: Finalizar Configuração</h3>
-        <div class="step-box">
-          <h4>Aceitar licenças Android</h4>
-          <div class="code-block">
-            flutter doctor --android-licenses
-          </div>
-          <p>Pressione <code>y</code> para aceitar todas as licenças.</p>
-        </div>
-        
-        <div class="step-box">
-          <h4>Verificar instalação</h4>
-          <div class="code-block">
-            flutter doctor
-          </div>
-          <p>Agora deverá mostrar todas as dependências como OK.</p>
-        </div>
-        
-        <div class="step-action" onclick="markStepComplete('setup-chromeos')">Marcar como Concluído</div>
-        <a href="#" class="link-button" onclick="showContent('dev-project')">Próximo: Criar Projeto</a>
+          <li>Clique em <code>Next</code> e complete a instalação</li>
+        </ol>
       </div>
       
-      <!-- Setup Windows -->
-      <div class="content-section" id="content-setup-windows">
-        <h2>⚙️ Configuração no Windows</h2>
-        <p>Siga este guia para configurar seu ambiente de desenvolvimento Flutter no Windows.</p>
-        
-        <h3>📋 Pré-requisitos</h3>
-        <ul>
-          <li>Windows 10 ou superior (64-bit)</li>
-          <li>Pelo menos 8GB de RAM</li>
-          <li>Pelo menos 4GB de espaço em disco livre</li>
-          <li>Conexão estável com a internet</li>
-        </ul>
-        
-        <h3>📥 Passo 1: Instalar o Flutter SDK</h3>
-        <div class="step-box">
-          <h4>Baixar o Flutter SDK</h4>
-          <ol>
-            <li>Acesse <a href="https://docs.flutter.dev/get-started/install/windows" target="_blank">docs.flutter.dev/get-started/install/windows</a></li>
-            <li>Baixe o arquivo <code>flutter_windows_x.x.x-stable.zip</code></li>
-            <li>Extraia o arquivo em <code>C:\src\flutter</code> (crie a pasta se necessário)</li>
-          </ol>
+      <h3>Passo 5: Finalizar Configuração</h3>
+      <div class="step-box">
+        <h4>Aceitar licenças Android</h4>
+        <p>Execute no Prompt de Comando ou PowerShell:</p>
+        <div class="code-block">
+          flutter doctor --android-licenses
         </div>
-        
-        <div class="step-box">
-          <h4>Adicionar ao PATH</h4>
-          <ol>
-            <li>Pressione <code>Win + R</code>, digite <code>sysdm.cpl</code> e pressione Enter</li>
-            <li>Clique na aba <code>Avançado</code></li>
-            <li>Clique em <code>Variáveis de Ambiente</code></li>
-            <li>Na seção <code>Variáveis do sistema</code>, selecione <code>Path</code> e clique em <code>Editar</code></li>
-            <li>Clique em <code>Novo</code> e adicione: <code>C:\src\flutter\bin</code></li>
-            <li>Clique <code>OK</code> para fechar todas as janelas</li>
-          </ol>
-        </div>
-        
-        <h3>🔍 Passo 2: Verificar Dependências</h3>
-        <div class="step-box">
-          <h4>Executar flutter doctor</h4>
-          <p>Abra o Prompt de Comando ou PowerShell e execute:</p>
-          <div class="code-block">
-            flutter doctor
-          </div>
-          <p>Você verá mensagens sobre dependências faltando - vamos resolver isso agora.</p>
-        </div>
-        
-        <h3>🤖 Passo 3: Instalar Android Studio</h3>
-        <div class="step-box">
-          <h4>Baixar Android Studio</h4>
-          <ol>
-            <li>Acesse <a href="https://developer.android.com/studio" target="_blank">developer.android.com/studio</a></li>
-            <li>Baixe a versão para Windows</li>
-            <li>Execute o instalador e siga as instruções</li>
-          </ol>
-        </div>
-        
-        <div class="step-box">
-          <h4>Configurar Android Studio</h4>
-          <ol>
-            <li>Abra o Android Studio</li>
-            <li>No assistente de instalação, marque:</li>
-            <ul>
-              <li>Android SDK</li>
-              <li>Android SDK Platform</li>
-              <li>Android Virtual Device</li>
-            </ul>
-            <li>Clique em <code>Next</code> e complete a instalação</li>
-          </ol>
-        </div>
-        
-        <h3>📱 Passo 4: Configurar Emulador Android (Opcional)</h3>
-        <div class="step-box">
-          <h4>Criar um dispositivo virtual</h4>
-          <ol>
-            <li>No Android Studio, vá em <code>Tools</code> > <code>Device Manager</code></li>
-            <li>Clique em <code>Create Device</code></li>
-            <li>Selecione um dispositivo (ex: Pixel 4)</li>
-            <li>Selecione uma imagem do sistema (API 30 ou superior recomendado)</li>
-            <li>Clique em <code>Finish</code></li>
-          </ol>
-        </div>
-        
-        <h3>✅ Passo 5: Finalizar Configuração</h3>
-        <div class="step-box">
-          <h4>Aceitar licenças Android</h4>
-          <p>Execute no Prompt de Comando ou PowerShell:</p>
-          <div class="code-block">
-            flutter doctor --android-licenses
-          </div>
-          <p>Pressione <code>y</code> para aceitar todas as licenças.</p>
-        </div>
-        
-        <div class="step-box">
-          <h4>Verificar instalação</h4>
-          <p>Execute novamente:</p>
-          <div class="code-block">
-            flutter doctor
-          </div>
-          <p>Agora deverá mostrar todas as dependências como OK.</p>
-        </div>
-        
-        <div class="step-action" onclick="markStepComplete('setup-windows')">Marcar como Concluído</div>
-        <a href="#" class="link-button" onclick="showContent('dev-project')">Próximo: Criar Projeto</a>
+        <p>Pressione <code>y</code> para aceitar todas as licenças.</p>
       </div>
       
-      <!-- Criar Projeto -->
-      <div class="content-section" id="content-dev-project">
-        <h2>💻 Criar Projeto Flutter</h2>
-        <p>Agora que o ambiente está configurado, vamos criar o projeto do aplicativo SOS Unimed Vidas.</p>
-        
-        <h3>🚀 Passo 1: Criar o Projeto</h3>
-        <div class="step-box">
-          <h4>Executar comando de criação</h4>
-          <p>No terminal, execute:</p>
-          <div class="code-block">
-            flutter create sos_unimed_vidas<br>
-            cd sos_unimed_vidas
-          </div>
+      <div class="step-box">
+        <h4>Verificar instalação</h4>
+        <p>Execute novamente:</p>
+        <div class="code-block">
+          flutter doctor
         </div>
-        
-        <h3>📁 Passo 2: Estrutura do Projeto</h3>
-        <div class="step-box">
-          <h4>Entender a estrutura padrão</h4>
-          <p>A estrutura básica criada:</p>
-          <ul>
-            <li><code>lib/</code> - Código-fonte Dart principal</li>
-            <li><code>lib/main.dart</code> - Ponto de entrada do aplicativo</li>
-            <li><code>pubspec.yaml</code> - Arquivo de configuração do projeto</li>
-            <li><code>test/</code> - Pasta para testes</li>
-            <li><code>android/</code>, <code>ios/</code> - Pastas específicas de plataforma</li>
-          </ul>
-        </div>
-        
-        <h3>▶️ Passo 3: Executar o Projeto</h3>
-        <div class="step-box">
-          <h4>Rodar o aplicativo de exemplo</h4>
-          <p>Certifique-se de ter um dispositivo/emulador conectado e execute:</p>
-          <div class="code-block">
-            flutter run
-          </div>
-          <p>Você deve ver o aplicativo de exemplo "Counter" rodando.</p>
-        </div>
-        
-        <div class="step-action" onclick="markStepComplete('dev-project')">Marcar como Concluído</div>
-        <a href="#" class="link-button" onclick="showContent('dev-structure')">Próximo: Estrutura Básica</a>
-      </div>
-      
-      <!-- Estrutura Básica -->
-      <div class="content-section" id="content-dev-structure">
-        <h2>🏗️ Estrutura Básica do Aplicativo</h2>
-        <p>Vamos organizar a estrutura do nosso aplicativo SOS Unimed Vidas.</p>
-        
-        <h3>📂 Passo 1: Criar Estrutura de Pastas</h3>
-        <div class="step-box">
-          <h4>Estrutura recomendada</h4>
-          <p>Dentro da pasta <code>lib/</code>, crie as seguintes pastas:</p>
-          <ul>
-            <li><code>models/</code> - Modelos de dados</li>
-            <li><code>views/</code> - Telas do aplicativo</li>
-            <li><code>widgets/</code> - Componentes reutilizáveis</li>
-            <li><code>services/</code> - Serviços e integrações</li>
-            <li><code>utils/</code> - Funções utilitárias</li>
-          </ul>
-        </div>
-        
-        <h3>📱 Passo 2: Criar Telas Principais</h3>
-        <div class="step-box">
-          <h4>Telas do MVP</h4>
-          <p>Crie os seguintes arquivos em <code>lib/views/</code>:</p>
-          <ul>
-            <li><code>home_screen.dart</code> - Tela inicial</li>
-            <li><code>emergency_screen.dart</code> - Tela de emergência</li>
-            <li><code>profile_screen.dart</code> - Perfil do usuário</li>
-            <li><code>help_screen.dart</code> - Ajuda e informações</li>
-          </ul>
-        </div>
-        
-        <h3>🔄 Passo 3: Configurar Navegação</h3>
-        <div class="step-box">
-          <h4>Implementar navegação básica</h4>
-          <p>Modifique <code>lib/main.dart</code> para usar <code>MaterialApp</code> com rotas nomeadas:</p>
-          <div class="code-block">
-            // Exemplo básico de configuração de rotas<br>
-            MaterialApp(<br>
-              &nbsp;&nbsp;title: 'SOS Unimed Vidas',<br>
-              &nbsp;&nbsp;initialRoute: '/',<br>
-              &nbsp;&nbsp;routes: {<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;'/': (context) => HomeScreen(),<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;'/emergency': (context) => EmergencyScreen(),<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;'/profile': (context) => ProfileScreen(),<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;'/help': (context) => HelpScreen(),<br>
-              &nbsp;&nbsp;},<br>
-            )
-          </div>
-        </div>
-        
-        <div class="step-action" onclick="markStepComplete('dev-structure')">Marcar como Concluído</div>
-        <a href="#" class="link-button" onclick="showContent('dev-ui')">Próximo: Interface do Usuário</a>
-      </div>
-      
-      <!-- Interface do Usuário -->
-      <div class="content-section" id="content-dev-ui">
-        <h2>🎨 Interface do Usuário</h2>
-        <p>Vamos criar a interface do usuário seguindo a identidade visual da Unimed.</p>
-        
-        <h3>🎨 Passo 1: Definir Tema</h3>
-        <div class="step-box">
-          <h4>Configurar cores da Unimed</h4>
-          <p>No <code>MaterialApp</code>, defina o tema:</p>
-          <div class="code-block">
-            theme: ThemeData(<br>
-              &nbsp;&nbsp;primaryColor: Color(0xFF00A651),<br>
-              &nbsp;&nbsp;accentColor: Color(0xFFFFD100),<br>
-              &nbsp;&nbsp;scaffoldBackgroundColor: Color(0xFFF5FBF7),<br>
-              &nbsp;&nbsp;// Outras configurações de tema<br>
-            )
-          </div>
-        </div>
-        
-        <h3>📱 Passo 2: Criar Componentes</h3>
-        <div class="step-box">
-          <h4>Componentes principais</h4>
-          <p>Crie widgets reutilizáveis em <code>lib/widgets/</code>:</p>
-          <ul>
-            <li><code>emergency_button.dart</code> - Botão de emergência grande</li>
-            <li><code>custom_app_bar.dart</code> - Barra superior personalizada</li>
-            <li><code>info_card.dart</code> - Cartão para informações</li>
-          </ul>
-        </div>
-        
-        <h3>📄 Passo 3: Implementar Telas</h3>
-        <div class="step-box">
-          <h4>Tela inicial (HomeScreen)</h4>
-          <p>Elementos principais:</p>
-          <ul>
-            <li>AppBar com logo da Unimed</li>
-            <li>Botão de emergência grande e destacado</li>
-            <li>Cartões com informações rápidas</li>
-            <li>Menu de navegação inferior</li>
-          </ul>
-        </div>
-        
-        <div class="step-action" onclick="markStepComplete('dev-ui')">Marcar como Concluído</div>
-        <a href="#" class="link-button" onclick="showContent('dev-logic')">Próximo: Lógica de Negócio</a>
-      </div>
-      
-      <!-- Lógica de Negócio -->
-      <div class="content-section" id="content-dev-logic">
-        <h2>🧠 Lógica de Negócio</h2>
-        <p>Implementar a lógica principal do aplicativo SOS Unimed Vidas.</p>
-        
-        <h3>📞 Passo 1: Funcionalidade de Emergência</h3>
-        <div class="step-box">
-          <h4>Ação do botão de emergência</h4>
-          <p>O botão deve:</p>
-          <ol>
-            <li>Mostrar confirmação antes de chamar</li>
-            <li>Realizar chamada telefônica para o número da Unimed</li>
-            <li>Enviar notificação para o sistema da Unimed</li>
-            <li>Registrar o evento no histórico</li>
-          </ol>
-          <div class="code-block">
-            // Exemplo de chamada telefônica<br>
-            _makeEmergencyCall() async {<br>
-              &nbsp;&nbsp;const phoneNumber = 'tel:123456789';<br>
-              &nbsp;&nbsp;if (await launch(phoneNumber)) {<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;// Registrar chamada<br>
-              &nbsp;&nbsp;} else {<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;throw 'Could not launch $phoneNumber';<br>
-              &nbsp;&nbsp;}<br>
-            }
-          </div>
-        </div>
-        
-        <h3>💾 Passo 2: Gerenciamento de Dados</h3>
-        <div class="step-box">
-          <h4>Modelos de dados</h4>
-          <p>Crie modelos em <code>lib/models/</code>:</p>
-          <ul>
-            <li><code>user.dart</code> - Informações do usuário</li>
-            <li><code>emergency_history.dart</code> - Histórico de emergências</li>
-            <li><code>health_info.dart</code> - Informações de saúde</li>
-          </ul>
-        </div>
-        
-        <h3>🔁 Passo 3: Estado da Aplicação</h3>
-        <div class="step-box">
-          <h4>Gerenciar estado com Provider</h4>
-          <p>Instale o pacote Provider no <code>pubspec.yaml</code>:</p>
-          <div class="code-block">
-            dependencies:<br>
-              &nbsp;&nbsp;flutter:<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;sdk: flutter<br>
-              &nbsp;&nbsp;provider: ^6.0.0
-          </div>
-          <p>Crie provedores para gerenciar estado global:</p>
-          <ul>
-            <li><code>user_provider.dart</code></li>
-            <li><code>emergency_provider.dart</code></li>
-          </ul>
-        </div>
-        
-        <div class="step-action" onclick="markStepComplete('dev-logic')">Marcar como Concluído</div>
-        <a href="#" class="link-button" onclick="showContent('integration-firebase')">Próximo: Integração Firebase</a>
-      </div>
-      
-      <!-- Integração Firebase -->
-      <div class="content-section" id="content-integration-firebase">
-        <h2>🔥 Integração com Firebase</h2>
-        <p>Configurar Firebase para autenticação, banco de dados e analytics.</p>
-        
-        <h3>⚙️ Passo 1: Configurar Projeto Firebase</h3>
-        <div class="step-box">
-          <h4>Criar projeto no Firebase Console</h4>
-          <ol>
-            <li>Acesse <a href="https://console.firebase.google.com/" target="_blank">Firebase Console</a></li>
-            <li>Clique em "Criar projeto"</li>
-            <li>Nomeie como "SOS Unimed Vidas"</li>
-            <li>Ative Google Analytics (recomendado)</li>
-          </ol>
-        </div>
-        
-        <h3>📱 Passo 2: Adicionar App Flutter</h3>
-        <div class="step-box">
-          <h4>Configurar para Android</h4>
-          <ol>
-            <li>No Firebase Console, adicione um app Android</li>
-            <li>Use o package name do seu app Flutter</li>
-            <li>Baixe o arquivo <code>google-services.json</code></li>
-            <li>Coloque na pasta <code>android/app/</code></li>
-          </ol>
-        </div>
-        
-        <h3>📦 Passo 3: Adicionar Dependências</h3>
-        <div class="step-box">
-          <h4>Atualizar pubspec.yaml</h4>
-          <div class="code-block">
-            dependencies:<br>
-              &nbsp;&nbsp;firebase_core: ^2.0.0<br>
-              &nbsp;&nbsp;firebase_auth: ^4.0.0<br>
-              &nbsp;&nbsp;cloud_firestore: ^4.0.0<br>
-              &nbsp;&nbsp;firebase_analytics: ^10.0.0
-          </div>
-        </div>
-        
-        <h3>🔌 Passo 4: Inicializar Firebase</h3>
-        <div class="step-box">
-          <h4>Configurar inicialização</h4>
-          <p>No <code>main.dart</code>:</p>
-          <div class="code-block">
-            import 'package:firebase_core/firebase_core.dart';<br><br>
-            
-            void main() async {<br>
-              &nbsp;&nbsp;WidgetsFlutterBinding.ensureInitialized();<br>
-              &nbsp;&nbsp;await Firebase.initializeApp();<br>
-              &nbsp;&nbsp;runApp(MyApp());<br>
-            }
-          </div>
-        </div>
-        
-        <h3>🔐 Passo 5: Implementar Autenticação</h3>
-        <div class="step-box">
-          <h4>Fluxo de login básico</h4>
-          <p>Implementar tela de login com CPF e senha:</p>
-          <div class="code-block">
-            // Exemplo de autenticação<br>
-            final FirebaseAuth _auth = FirebaseAuth.instance;<br><br>
-            
-            Future<User?> signIn(String cpf, String password) async {<br>
-              &nbsp;&nbsp;try {<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;UserCredential result = await _auth.signInWithEmailAndPassword(<br>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;email: '$cpf@unimed.com',<br>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;password: password,<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;);<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;return result.user;<br>
-              &nbsp;&nbsp;} catch (e) {<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;print(e.toString());<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;return null;<br>
-              &nbsp;&nbsp;}<br>
-            }
-          </div>
-        </div>
-        
-        <div class="step-action" onclick="markStepComplete('integration-firebase')">Marcar como Concluído</div>
-        <a href="#" class="link-button" onclick="showContent('testing-unit')">Próximo: Testes Unitários</a>
-      </div>
-      
-      <!-- Integração API Externa -->
-      <div class="content-section" id="content-integration-api">
-        <h2>🌐 Integração com API Externa</h2>
-        <p>Configurar integração com APIs externas para funcionalidades adicionais.</p>
-        
-        <h3>🔌 Passo 1: Configurar Cliente HTTP</h3>
-        <div class="step-box">
-          <h4>Adicionar dependência</h4>
-          <p>Adicione ao <code>pubspec.yaml</code>:</p>
-          <div class="code-block">
-            dependencies:<br>
-              &nbsp;&nbsp;http: ^0.13.5
-          </div>
-        </div>
-        
-        <h3>📡 Passo 2: Criar Serviço de API</h3>
-        <div class="step-box">
-          <h4>Exemplo de serviço</h4>
-          <p>Crie <code>lib/services/api_service.dart</code>:</p>
-          <div class="code-block">
-            import 'dart:convert';<br>
-            import 'package:http/http.dart' as http;<br><br>
-            
-            class ApiService {<br>
-              &nbsp;&nbsp;static const String baseUrl = 'https://api.example.com';<br><br>
-              
-              &nbsp;&nbsp;Future&lt;Map&lt;String, dynamic&gt;&gt; fetchData(String endpoint) async {<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;final response = await http.get(Uri.parse('$baseUrl/$endpoint'));<br><br>
-                
-                &nbsp;&nbsp;&nbsp;&nbsp;if (response.statusCode == 200) {<br>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return json.decode(response.body);<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;} else {<br>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;throw Exception('Falha ao carregar dados');<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;}<br>
-              &nbsp;&nbsp;}<br>
-            }
-          </div>
-        </div>
-        
-        <h3>🔒 Passo 3: Gerenciar Autenticação</h3>
-        <div class="step-box">
-          <h4>Headers de autenticação</h4>
-          <p>Adicione headers para APIs que requerem autenticação:</p>
-          <div class="code-block">
-            Future&lt;http.Response&gt; getDataWithAuth(String token) async {<br>
-              &nbsp;&nbsp;return await http.get(<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;Uri.parse('https://api.example.com/data'),<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;headers: {<br>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'Authorization': 'Bearer $token',<br>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'Content-Type': 'application/json',<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;},<br>
-              &nbsp;&nbsp;);<br>
-            }
-          </div>
-        </div>
-        
-        <h3>🔄 Passo 4: Tratar Erros</h3>
-        <div class="step-box">
-          <h4>Implementar tratamento de erros</h4>
-          <p>Adicione tratamento para diferentes códigos de status:</p>
-          <div class="code-block">
-            try {<br>
-              &nbsp;&nbsp;final response = await http.get(Uri.parse(url));<br>
-              &nbsp;&nbsp;if (response.statusCode == 200) {<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;// Sucesso<br>
-              &nbsp;&nbsp;} else if (response.statusCode == 401) {<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;// Não autorizado<br>
-              &nbsp;&nbsp;} else if (response.statusCode == 404) {<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;// Não encontrado<br>
-              &nbsp;&nbsp;} else {<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;// Outro erro<br>
-              &nbsp;&nbsp;}<br>
-            } catch (e) {<br>
-              &nbsp;&nbsp;// Erro de conexão<br>
-            }
-          </div>
-        </div>
-        
-        <div class="step-action" onclick="markStepComplete('integration-api')">Marcar como Concluído</div>
-        <a href="#" class="link-button" onclick="showContent('testing-unit')">Próximo: Testes Unitários</a>
-      </div>
-      
-      <!-- Testes Unitários -->
-      <div class="content-section" id="content-testing-unit">
-        <h2>🧪 Testes Unitários</h2>
-        <p>Criar testes para garantir a qualidade do código.</p>
-        
-        <h3>📝 Passo 1: Estrutura de Testes</h3>
-        <div class="step-box">
-          <h4>Organizar pasta de testes</h4>
-          <p>Estrutura recomendada em <code>test/</code>:</p>
-          <ul>
-            <li><code>models/</code> - Testes para modelos de dados</li>
-            <li><code>services/</code> - Testes para serviços</li>
-            <li><code>widgets/</code> - Testes para widgets</li>
-          </ul>
-        </div>
-        
-        <h3>🔬 Passo 2: Escrever Testes Unitários</h3>
-        <div class="step-box">
-          <h4>Exemplo de teste para modelo</h4>
-          <p>Arquivo <code>test/models/user_test.dart</code>:</p>
-          <div class="code-block">
-            import 'package:flutter_test/flutter_test.dart';<br>
-            import 'package:sos_unimed_vidas/models/user.dart';<br><br>
-            
-            void main() {<br>
-              &nbsp;&nbsp;test('User model should be created correctly', () {<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;final user = User(<br>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id: '123',<br>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name: 'João Silva',<br>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cpf: '12345678900'<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;);<br><br>
-                
-                &nbsp;&nbsp;&nbsp;&nbsp;expect(user.name, 'João Silva');<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;expect(user.cpf, '12345678900');<br>
-              &nbsp;&nbsp;});<br>
-            }
-          </div>
-        </div>
-        
-        <h3>🏃 Passo 3: Executar Testes</h3>
-        <div class="step-box">
-          <h4>Rodar todos os testes</h4>
-          <p>No terminal, execute:</p>
-          <div class="code-block">
-            flutter test
-          </div>
-          <p>Para rodar testes específicos:</p>
-          <div class="code-block">
-            flutter test test/models/user_test.dart
-          </div>
-        </div>
-        
-        <div class="step-action" onclick="markStepComplete('testing-unit')">Marcar como Concluído</div>
-        <a href="#" class="link-button" onclick="showContent('deployment-build')">Próximo: Build do Aplicativo</a>
-      </div>
-      
-      <!-- Testes em Dispositivo -->
-      <div class="content-section" id="content-testing-device">
-        <h2>📱 Testes em Dispositivo</h2>
-        <p>Realizar testes em dispositivos físicos para validar funcionalidades.</p>
-        
-        <h3>🔌 Passo 1: Conectar Dispositivo</h3>
-        <div class="step-box">
-          <h4>Habilitar depuração USB</h4>
-          <ol>
-            <li>Vá em <code>Configurações</code> > <code>Sobre o telefone</code></li>
-            <li>Toque 7 vezes em <code>Número da versão</code> para ativar as opções de desenvolvedor</li>
-            <li>Vá em <code>Configurações</code> > <code>Opções do desenvolvedor</code></li>
-            <li>Ative <code>Depuração USB</code></li>
-            <li>Conecte o dispositivo ao computador via USB</li>
-            <li>Aceite a solicitação de autorização no dispositivo</li>
-          </ol>
-        </div>
-        
-        <h3>🔍 Passo 2: Verificar Conexão</h3>
-        <div class="step-box">
-          <h4>Listar dispositivos conectados</h4>
-          <p>No terminal, execute:</p>
-          <div class="code-block">
-            flutter devices
-          </div>
-          <p>Seu dispositivo deve aparecer na lista.</p>
-        </div>
-        
-        <h3>🏃 Passo 3: Executar Testes</h3>
-        <div class="step-box">
-          <h4>Rodar aplicativo no dispositivo</h4>
-          <p>Execute o aplicativo no dispositivo conectado:</p>
-          <div class="code-block">
-            flutter run
-          </div>
-          <p>Ou especifique o dispositivo:</p>
-          <div class="code-block">
-            flutter run -d &lt;device_id&gt;
-          </div>
-        </div>
-        
-        <h3>📋 Passo 4: Testar Funcionalidades</h3>
-        <div class="step-box">
-          <h4>Verificar pontos críticos</h4>
-          <ul>
-            <li>Funcionamento do botão de emergência</li>
-            <li>Navegação entre telas</li>
-            <li>Carregamento de dados</li>
-            <li>Integração com Firebase</li>
-            <li>Performance em diferentes condições de rede</li>
-          </ul>
-        </div>
-        
-        <div class="step-action" onclick="markStepComplete('testing-device')">Marcar como Concluído</div>
-        <a href="#" class="link-button" onclick="showContent('deployment-build')">Próximo: Build do Aplicativo</a>
-      </div>
-      
-      <!-- Build do Aplicativo -->
-      <div class="content-section" id="content-deployment-build">
-        <h2>📦 Build do Aplicativo</h2>
-        <p>Preparar o aplicativo para distribuição.</p>
-        
-        <h3>📱 Passo 1: Build para Android</h3>
-        <div class="step-box">
-          <h4>Criar APK de release</h4>
-          <p>No terminal, execute:</p>
-          <div class="code-block">
-            flutter build apk --release
-          </div>
-          <p>O APK será gerado em <code>build/app/outputs/flutter-apk/app-release.apk</code></p>
-        </div>
-        
-        <h3>📱 Passo 2: Build para iOS (se aplicável)</h3>
-        <div class="step-box">
-          <h4>Criar IPA para distribuição</h4>
-          <p>No Mac, execute:</p>
-          <div class="code-block">
-            flutter build ios --release
-          </div>
-        </div>
-        
-        <h3>🔐 Passo 3: Configurar Signing (Android)</h3>
-        <div class="step-box">
-          <h4>Criar keystore para assinatura</h4>
-          <p>No terminal:</p>
-          <div class="code-block">
-            keytool -genkey -v -keystore ~/upload-keystore.jks -keyalg RSA -keysize 2048 -validity 10000 -alias upload
-          </div>
-          <p>Referencie o keystore no arquivo <code>android/key.properties</code>:</p>
-          <div class="code-block">
-            storePassword=<password><br>
-            keyPassword=<password><br>
-            keyAlias=upload<br>
-            storeFile=/Users/<user>/upload-keystore.jks
-          </div>
-        </div>
-        
-        <div class="step-action" onclick="markStepComplete('deployment-build')">Marcar como Concluído</div>
-        <a href="#" class="link-button" onclick="showContent('delivery-documentation')">Próximo: Documentação</a>
-      </div>
-      
-      <!-- Documentação -->
-      <div class="content-section" id="content-delivery-documentation">
-        <h2>📚 Documentação Final</h2>
-        <p>Criar documentação completa para entrega do MVP.</p>
-        
-        <h3>📄 Passo 1: Documento de Entrega</h3>
-        <div class="step-box">
-          <h4>Conteúdo essencial</h4>
-          <ul>
-            <li><strong>Visão Geral do Projeto</strong> - Objetivos e escopo</li>
-            <li><strong>Instruções de Instalação</strong> - Como configurar o ambiente</li>
-            <li><strong>Arquitetura do Sistema</strong> - Estrutura do código</li>
-            <li><strong>Fluxo de Funcionalidades</strong> - Como as principais features funcionam</li>
-            <li><strong>Integrações</strong> - Detalhes das APIs e serviços externos</li>
-            <li><strong>Deploy e CI/CD</strong> - Processo de build e deploy</li>
-            <li><strong>Contatos</strong> - Equipe responsável e canais de comunicação</li>
-          </ul>
-        </div>
-        
-        <h3>🔗 Passo 2: Links e Recursos</h3>
-        <div class="step-box">
-          <h4>Recursos importantes</h4>
-          <ul>
-            <li>Repositório GitHub: <a href="https://github.com/Tomgit-cyber/guiaweb-sos" target="_blank">github.com/Tomgit-cyber/guiaweb-sos</a></li>
-            <li>Documentação Firebase: <a href="https://firebase.google.com/docs" target="_blank">firebase.google.com/docs</a></li>
-            <li>Documentação Flutter: <a href="https://docs.flutter.dev/" target="_blank">docs.flutter.dev</a></li>
-            <li>Portal Unimed: <a href="https://www.unimed.coop.br/site/web/sulcapixaba" target="_blank">unimed.coop.br/sulcapixaba</a></li>
-          </ul>
-        </div>
-        
-        <h3>📋 Passo 3: Checklist de Entrega</h3>
-        <div class="step-box">
-          <h4>Verificações finais</h4>
-          <ul>
-            <li><span class="status-indicator status-completed"></span> Código fonte completo entregue</li>
-            <li><span class="status-indicator status-completed"></span> Documentação técnica finalizada</li>
-            <li><span class="status-indicator status-completed"></span> APK/IPA gerado e testado</li>
-            <li><span class="status-indicator status-completed"></span> Acessos e credenciais repassados</li>
-            <li><span class="status-indicator status-completed"></span> Sessão de transferência de conhecimento realizada</li>
-          </ul>
-        </div>
-        
-        <div class="step-action" onclick="markStepComplete('delivery-documentation')">Marcar como Concluído</div>
-        <a href="#" class="link-button" onclick="showContent('home')">Voltar ao Início</a>
+        <p>Agora deverá mostrar todas as dependências como OK.</p>
       </div>
     </div>
+    
+    <!-- Outras seções de conteúdo -->
   </div>
   
-  <footer>
-    <p>Guia de Desenvolvimento Ponta a Ponta - SOS Unimed Vidas • © 2025 Unimed Cachoeiro do Itapemirim</p>
-    <div style="margin-top: 15px;">
-      <a href="https://github.com/Tomgit-cyber/guiaweb-sos" target="_blank">Repositório GitHub</a> • 
-      <a href="https://www.unimed.coop.br/site/web/sulcapixaba" target="_blank">Portal Unimed Sul Capixaba</a> • 
-      <a href="mailto:ti@unimedci.com.br">Contato TI</a>
-    </div>
-  </footer>
-  
   <script>
-    // Função para mostrar a página inicial
-    function showHomePage() {
-      document.getElementById('home-page').style.display = 'flex';
-      document.getElementById('main-container').style.display = 'none';
-      document.getElementById('back-button').style.display = 'none';
-      document.body.style.background = 'linear-gradient(135deg, #F5FBF7 0%, #E5F5E9 100%)';
-    }
-    
-    // Função para mostrar o guia
-    function showGuide(type) {
-      document.getElementById('home-page').style.display = 'none';
-      document.getElementById('main-container').style.display = 'flex';
-      document.getElementById('back-button').style.display = 'block';
-      document.body.style.background = 'linear-gradient(135deg, #F5FBF7 0%, #E5F5E9 100%)';
-      
-      // Se for o guia de desenvolvimento, mostra o primeiro passo
-      if (type === 'development') {
-        showContent('setup-chromeos');
-      } else {
-        // Para outros tipos, mostra a página inicial do guia
-        showContent('home');
-      }
-    }
-    
     // Função para alternar visibilidade do submenu
     function toggleSubmenu(id) {
       const submenu = document.getElementById(`submenu-${id}`);
-      const title = submenu.previousElementSibling;
-      
-      // Fechar outros submenus
-      document.querySelectorAll('.submenu').forEach(menu => {
-        if (menu.id !== `submenu-${id}`) {
-          menu.classList.remove('active');
-          menu.previousElementSibling.classList.remove('active');
-        }
-      });
-      
-      // Alternar o atual
       submenu.classList.toggle('active');
-      title.classList.toggle('active');
     }
     
     // Função para mostrar conteúdo
@@ -1475,54 +243,7 @@
       
       // Mostrar o conteúdo selecionado
       document.getElementById(`content-${id}`).classList.add('active');
-      
-      // Atualizar menu ativo
-      document.querySelectorAll('.submenu-item').forEach(item => {
-        item.classList.remove('active');
-      });
-      
-      // Encontrar e ativar o item do menu correspondente
-      const menuItem = Array.from(document.querySelectorAll('.submenu-item')).find(item => 
-        item.getAttribute('onclick').includes(id)
-      );
-      
-      if (menuItem) {
-        menuItem.classList.add('active');
-        // Abrir o submenu pai também
-        const parentSubmenu = menuItem.closest('.submenu');
-        if (parentSubmenu) {
-          parentSubmenu.classList.add('active');
-          parentSubmenu.previousElementSibling.classList.add('active');
-        }
-      }
-      
-      // Scroll para o topo do conteúdo
-      document.querySelector('.content').scrollTop = 0;
     }
-    
-    // Função para marcar passo como concluído
-    function markStepComplete(stepId) {
-      // Aqui você poderia salvar o estado em localStorage
-      console.log(`Passo ${stepId} marcado como concluído`);
-      
-      // Atualizar visualmente o item do menu
-      const menuItem = Array.from(document.querySelectorAll('.submenu-item')).find(item => 
-        item.getAttribute('onclick').includes(stepId)
-      );
-      
-      if (menuItem) {
-        menuItem.innerHTML = `✓ ${menuItem.textContent}`;
-      }
-      
-      alert(`Passo "${stepId}" marcado como concluído!`);
-    }
-    
-    // Inicializar
-    document.addEventListener('DOMContentLoaded', function() {
-      // Mostrar conteúdo inicial
-      showHomePage();
-    });
   </script>
 </body>
 </html>
-```
