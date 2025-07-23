@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SOS Unimed Vidas - Guia de Desenvolvimento</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     /* Esquema de cores verde Unimed */
     :root {
@@ -18,6 +19,10 @@
       --border-radius: 8px;
       --box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       --transition: all 0.3s ease;
+      
+      /* Fontes do site da Unimed */
+      --font-primary: 'Open Sans', sans-serif;
+      --font-secondary: 'Roboto', sans-serif;
     }
     * {
       box-sizing: border-box;
@@ -25,7 +30,7 @@
       padding: 0;
     }
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: var(--font-primary);
       background: linear-gradient(135deg, #F5FBF7 0%, #E5F5E9 100%);
       color: var(--text-dark);
       line-height: 1.7;
@@ -65,16 +70,22 @@
     }
     
     h1 {
+      font-family: var(--font-secondary);
       font-size: 2.5rem;
+      font-weight: 700;
       color: var(--primary-dark);
       margin-bottom: 15px;
+      letter-spacing: -0.5px;
     }
     
     .subtitle {
+      font-family: var(--font-primary);
       font-size: 1.2rem;
+      font-weight: 400;
       color: var(--secondary-color);
       max-width: 600px;
       margin-bottom: 40px;
+      line-height: 1.6;
     }
     
     .buttons {
@@ -114,14 +125,19 @@
     }
     
     .main-button h2 {
+      font-family: var(--font-secondary);
       font-size: 1.5rem;
+      font-weight: 700;
       margin-bottom: 10px;
       color: var(--primary-dark);
     }
     
     .main-button p {
+      font-family: var(--font-primary);
       font-size: 0.9rem;
+      font-weight: 400;
       color: #666;
+      line-height: 1.5;
     }
     
     footer {
@@ -131,6 +147,7 @@
       color: white;
       margin-top: auto;
       font-size: 16px;
+      font-family: var(--font-primary);
     }
     
     footer a {
@@ -138,6 +155,7 @@
       text-decoration: underline;
       margin: 0 10px;
       transition: opacity 0.3s;
+      font-weight: 400;
     }
     
     footer a:hover {
@@ -166,10 +184,13 @@
     }
     
     .sidebar h2 {
+      font-family: var(--font-secondary);
       color: var(--primary-dark);
       margin-bottom: 20px;
       padding-bottom: 10px;
       border-bottom: 2px solid var(--primary-color);
+      font-size: 1.5rem;
+      font-weight: 700;
     }
     
     .menu-item {
@@ -177,7 +198,8 @@
     }
     
     .menu-title {
-      font-weight: bold;
+      font-family: var(--font-secondary);
+      font-weight: 600;
       color: var(--primary-dark);
       padding: 12px 15px;
       background: var(--primary-light);
@@ -187,6 +209,7 @@
       justify-content: space-between;
       align-items: center;
       transition: var(--transition);
+      font-size: 1rem;
     }
     
     .menu-title:hover {
@@ -209,11 +232,14 @@
     }
     
     .submenu-item {
+      font-family: var(--font-primary);
       padding: 10px 20px;
       cursor: pointer;
       border-radius: var(--border-radius);
       margin: 5px 0;
       transition: var(--transition);
+      font-size: 0.95rem;
+      font-weight: 400;
     }
     
     .submenu-item:hover {
@@ -223,7 +249,7 @@
     .submenu-item.active {
       background: var(--primary-color);
       color: white;
-      font-weight: bold;
+      font-weight: 600;
     }
     
     /* Conteúdo principal */
@@ -252,28 +278,39 @@
     }
     
     .content h2 {
+      font-family: var(--font-secondary);
       color: var(--primary-dark);
       margin-bottom: 20px;
       font-size: 1.9rem;
+      font-weight: 700;
+      letter-spacing: -0.3px;
     }
     
     .content h3 {
+      font-family: var(--font-secondary);
       color: var(--primary-dark);
       margin: 25px 0 15px;
+      font-size: 1.4rem;
+      font-weight: 600;
     }
     
     .content p {
+      font-family: var(--font-primary);
       margin-bottom: 15px;
       line-height: 1.8;
+      font-size: 1rem;
+      font-weight: 400;
     }
     
     .content ul, .content ol {
+      font-family: var(--font-primary);
       margin-left: 30px;
       margin-bottom: 20px;
     }
     
     .content li {
       margin-bottom: 10px;
+      font-weight: 400;
     }
     
     .step-box {
@@ -285,8 +322,11 @@
     }
     
     .step-box h4 {
+      font-family: var(--font-secondary);
       margin-top: 0;
       color: var(--primary-dark);
+      font-size: 1.2rem;
+      font-weight: 600;
     }
     
     .step-action {
@@ -300,6 +340,9 @@
       cursor: pointer;
       transition: var(--transition);
       box-shadow: 0 2px 5px rgba(0, 166, 81, 0.3);
+      font-family: var(--font-primary);
+      font-weight: 600;
+      border: none;
     }
     
     .step-action:hover {
@@ -330,6 +373,11 @@
       margin: 10px 0;
       transition: var(--transition);
       box-shadow: 0 4px 10px rgba(0, 166, 81, 0.3);
+      font-family: var(--font-primary);
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
     }
     
     .link-button:hover {
@@ -371,6 +419,9 @@
       box-shadow: var(--box-shadow);
       z-index: 1000;
       display: none; /* Inicialmente oculto */
+      font-family: var(--font-primary);
+      font-weight: 600;
+      font-size: 0.9rem;
     }
     
     .back-button:hover {
@@ -401,6 +452,14 @@
       
       .content {
         height: auto;
+      }
+      
+      h1 {
+        font-size: 2rem;
+      }
+      
+      .subtitle {
+        font-size: 1rem;
       }
     }
   </style>
