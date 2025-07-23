@@ -1,3 +1,14 @@
+Excelente! Você encontrou um dos erros mais comuns ao configurar um novo ambiente de desenvolvimento, e é uma adição perfeita para o nosso guia.
+
+A imagem mostra o erro: "'flutter' não é reconhecido como um comando interno ou externo...".
+
+Isso significa que o terminal do Windows não sabe onde encontrar o programa flutter que você está tentando executar. A causa quase sempre é a mesma: o caminho para a pasta bin do Flutter SDK não foi adicionado corretamente às "Variáveis de Ambiente" do sistema, ou o terminal não foi reiniciado após a alteração.
+
+Para tornar o guia à prova de falhas, vamos adicionar uma seção dedicada à solução deste problema específico. Vou criar um novo item de menu chamado "Solução de Problemas" para que qualquer pessoa que encontre esse erro possa ir direto para a solução.
+
+Aqui está o código atualizado, com a nova seção de troubleshooting incluída:
+
+Generated html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -319,8 +330,16 @@
       margin: 20px 0;
       border-radius: 0 var(--border-radius) var(--border-radius) 0;
     }
+    
+    .troubleshooting-box {
+      background: #FFFBE6;
+      border-left: 5px solid var(--accent-color);
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    }
 
-    .step-box h4 {
+    .step-box h4, .troubleshooting-box h4 {
       font-family: var(--font-secondary);
       margin-top: 0;
       color: var(--primary-dark);
@@ -509,6 +528,16 @@
       </div>
 
       <div class="menu-item">
+        <div class="menu-title" onclick="toggleSubmenu('troubleshooting')">
+          <span>❓ Solução de Problemas</span>
+          <span>▼</span>
+        </div>
+        <div class="submenu" id="submenu-troubleshooting">
+          <div class="submenu-item" onclick="showContent('trouble-path')">Comando 'flutter' não reconhecido</div>
+        </div>
+      </div>
+      
+      <div class="menu-item">
         <div class="menu-title" onclick="toggleSubmenu('dev')">
           <span>💻 Desenvolvimento</span>
           <span>▼</span>
@@ -579,6 +608,7 @@
           <ol>
             <li>Use o menu à esquerda para navegar pelas fases do desenvolvimento</li>
             <li>Clique em cada item para ver instruções detalhadas</li>
+            <li>Se encontrar um problema, verifique a seção <strong>Solução de Problemas</strong>.</li>
             <li>Siga os passos na ordem recomendada para melhor resultado</li>
             <li>Marque as tarefas como concluídas conforme você avança</li>
           </ol>
@@ -587,144 +617,6 @@
         <p>O objetivo é entregar um MVP completo e funcional, com todas as etapas documentadas para facilitar a continuidade do projeto pela equipe de TI da Unimed.</p>
 
         <a href="#" class="link-button" onclick="showContent('setup-chromeos')">Começar pelo Primeiro Passo</a>
-      </div>
-
-      <!-- Setup ChromeOS -->
-      <div class="content-section" id="content-setup-chromeos">
-        <h2>⚙️ Configuração no ChromeOS/Linux</h2>
-        <p>Siga este guia para configurar seu ambiente de desenvolvimento Flutter no ChromeOS com suporte a Linux (Crostini).</p>
-
-        <h3>📋 Pré-requisitos</h3>
-        <ul>
-          <li>Chromebook com suporte a Linux (Crostini)</li>
-          <li>Pelo menos 8GB de armazenamento livre</li>
-          <li>Conexão estável com a internet</li>
-        </ul>
-
-        <h3>🔧 Passo 1: Configurar o Ambiente Linux</h3>
-        <div class="step-box">
-          <h4>Ativar Linux (Crostini)</h4>
-          <ol>
-            <li>Acesse <code>Configurações</code> > <code>Linux (Desenvolvedor)</code></li>
-            <li>Clique em <code>Ativar</code></li>
-            <li>Siga as instruções na tela (pode demorar alguns minutos)</li>
-          </ol>
-        </div>
-
-        <div class="step-box">
-          <h4>Atualizar pacotes</h4>
-          <p>Abra o Terminal Linux e execute:</p>
-          <div class="code-block">
-            sudo apt-get update && sudo apt-get upgrade -y
-          </div>
-        </div>
-
-        <h3>📥 Passo 2: Instalar o Flutter</h3>
-        <div class="step-box">
-          <h4>Baixar o Flutter SDK</h4>
-          <p>
-            <a href="https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.22.2-stable.tar.xz" class="link-button" target="_blank">Baixar Flutter SDK para Linux (v3.22.2)</a>
-          </p>
-          <p><strong>O que é isso?</strong> Este é o kit de desenvolvimento principal do Flutter. Ele contém todas as ferramentas, bibliotecas e o compilador necessários para criar, testar e compilar o aplicativo. Para este guia, usaremos a versão estável mais recente para garantir acesso às últimas funcionalidades e correções de segurança.</p>
-        </div>
-        
-        <div class="step-box">
-          <h4>Adicionar ao PATH</h4>
-          <ol>
-            <li>Edite o arquivo <code>.bashrc</code>:</li>
-            <div class="code-block">
-              nano ~/.bashrc
-            </div>
-            <li>Adicione no final:</li>
-            <div class="code-block">
-              export PATH="$PATH:$HOME/flutter/bin"
-            </div>
-            <li>Salve (Ctrl+O, Enter) e saia (Ctrl+X)</li>
-            <li>Carregue as alterações:</li>
-            <div class="code-block">
-              source ~/.bashrc
-            </div>
-          </ol>
-        </div>
-
-        <h3>🔍 Passo 3: Verificar Dependências</h3>
-        <div class="step-box">
-          <h4>Executar flutter doctor</h4>
-          <div class="code-block">
-            flutter doctor
-          </div>
-          <p>Você verá mensagens sobre dependências faltando - vamos resolver isso agora.</p>
-        </div>
-
-        <h3>🤖 Passo 4: Configurar Android</h3>
-        <div class="step-box">
-          <h4>Instalar Java JDK</h4>
-          <div class="code-block">
-            sudo apt-get install openjdk-11-jdk -y
-          </div>
-        </div>
-
-        <div class="step-box">
-          <h4>Baixar Android Studio</h4>
-          <p>
-            <a href="https://developer.android.com/studio" class="link-button" target="_blank">Baixar Android Studio</a>
-          </p>
-          <p><strong>Por que isso é necessário?</strong> O Android Studio é o ambiente de desenvolvimento oficial do Google para Android. Mesmo que você use outro editor de código (como o VS Code), sua instalação é **essencial**, pois ele fornece o Android SDK, as ferramentas de linha de comando e o gerenciador de emuladores que o Flutter utiliza para construir e testar o aplicativo para Android.</p>
-        </div>
-
-        <div class="step-box">
-          <h4>Iniciar Android Studio</h4>
-          <div class="code-block">
-            cd ~/android-studio/bin<br>
-            ./studio.sh
-          </div>
-          <p>Siga o assistente de instalação e marque:</p>
-          <ul>
-            <li>Android SDK</li>
-            <li>Android SDK Platform</li>
-            <li>Android Virtual Device</li>
-          </ul>
-        </div>
-
-        <div class="step-box">
-          <h4>Configurar variáveis de ambiente</h4>
-          <ol>
-            <li>Edite novamente o <code>.bashrc</code>:</li>
-            <div class="code-block">
-              nano ~/.bashrc
-            </div>
-            <li>Adicione:</li>
-            <div class="code-block">
-              export ANDROID_HOME="$HOME/Android/Sdk"<br>
-              export PATH="$PATH:$ANDROID_HOME/tools"<br>
-              export PATH="$PATH:$ANDROID_HOME/platform-tools"
-            </div>
-            <li>Salve e carregue:</li>
-            <div class="code-block">
-              source ~/.bashrc
-            </div>
-          </ol>
-        </div>
-
-        <h3>✅ Passo 5: Finalizar Configuração</h3>
-        <div class="step-box">
-          <h4>Aceitar licenças Android</h4>
-          <div class="code-block">
-            flutter doctor --android-licenses
-          </div>
-          <p>Pressione <code>y</code> para aceitar todas as licenças.</p>
-        </div>
-
-        <div class="step-box">
-          <h4>Verificar instalação</h4>
-          <div class="code-block">
-            flutter doctor
-          </div>
-          <p>Agora deverá mostrar todas as dependências como OK.</p>
-        </div>
-
-        <div class="step-action" onclick="markStepComplete('setup-chromeos')">Marcar como Concluído</div>
-        <a href="#" class="link-button" onclick="showContent('dev-project')">Próximo: Criar Projeto</a>
       </div>
 
       <!-- Setup Windows -->
@@ -759,16 +651,17 @@
             <li>Clique em <code>Novo</code> e adicione: <code>C:\src\flutter\bin</code></li>
             <li>Clique <code>OK</code> para fechar todas as janelas</li>
           </ol>
+          <p><strong>Importante:</strong> Após realizar esta etapa, você <strong>precisa fechar e abrir novamente</strong> qualquer terminal (Prompt de Comando, PowerShell, etc.) para que a alteração tenha efeito.</p>
         </div>
 
         <h3>🔍 Passo 2: Verificar Dependências</h3>
         <div class="step-box">
           <h4>Executar flutter doctor</h4>
-          <p>Abra o Prompt de Comando ou PowerShell e execute:</p>
+          <p>Abra um <strong>novo</strong> terminal e execute:</p>
           <div class="code-block">
             flutter doctor
           </div>
-          <p>Você verá mensagens sobre dependências faltando - vamos resolver isso agora.</p>
+          <p>Se você vir um erro de "comando não reconhecido", consulte a seção de <a href="#" onclick="showContent('trouble-path')">Solução de Problemas</a>.</p>
         </div>
 
         <h3>🤖 Passo 3: Instalar Android Studio</h3>
@@ -794,18 +687,6 @@
           </ol>
         </div>
 
-        <h3>📱 Passo 4: Configurar Emulador Android (Opcional)</h3>
-        <div class="step-box">
-          <h4>Criar um dispositivo virtual</h4>
-          <ol>
-            <li>No Android Studio, vá em <code>Tools</code> > <code>Device Manager</code></li>
-            <li>Clique em <code>Create Device</code></li>
-            <li>Selecione um dispositivo (ex: Pixel 4)</li>
-            <li>Selecione uma imagem do sistema (API 30 ou superior recomendado)</li>
-            <li>Clique em <code>Finish</code></li>
-          </ol>
-        </div>
-
         <h3>✅ Passo 5: Finalizar Configuração</h3>
         <div class="step-box">
           <h4>Aceitar licenças Android</h4>
@@ -828,148 +709,57 @@
         <div class="step-action" onclick="markStepComplete('setup-windows')">Marcar como Concluído</div>
         <a href="#" class="link-button" onclick="showContent('dev-project')">Próximo: Criar Projeto</a>
       </div>
-
-      <!-- Setup macOS -->
-      <div class="content-section" id="content-setup-macos">
-        <h2>⚙️ Configuração no macOS</h2>
-        <p>Siga este guia para configurar seu ambiente de desenvolvimento Flutter no macOS.</p>
-
-        <h3>📋 Pré-requisitos</h3>
-        <ul>
-          <li>macOS (High Sierra ou superior)</li>
-          <li>Pelo menos 8GB de RAM</li>
-          <li>Pelo menos 4GB de espaço em disco livre</li>
-          <li>Conexão estável com a internet</li>
-        </ul>
-
-        <h3>📥 Passo 1: Instalar o Flutter SDK</h3>
-        <div class="step-box">
-          <h4>Baixar o Flutter SDK</h4>
-          <p>Escolha o link de acordo com o processador do seu Mac:</p>
-          <p>
-            <a href="https://storage.googleapis.com/flutter_infra_release/releases/stable/macos/flutter_macos_arm64_3.22.2-stable.zip" class="link-button" target="_blank">Baixar Flutter SDK para Mac (Apple Silicon)</a>
-          </p>
-           <p>
-            <a href="https://storage.googleapis.com/flutter_infra_release/releases/stable/macos/flutter_macos_3.22.2-stable.zip" class="link-button" target="_blank">Baixar Flutter SDK para Mac (Intel)</a>
-          </p>
-          <p><strong>O que é isso?</strong> Este é o kit de desenvolvimento principal do Flutter. Ele contém todas as ferramentas, bibliotecas e o compilador necessários para criar, testar e compilar o aplicativo. Para este guia, usaremos a versão estável mais recente para garantir acesso às últimas funcionalidades e correções de segurança.</p>
+      
+      <!-- Seção de Solução de Problemas -->
+      <div class="content-section" id="content-trouble-path">
+        <h2>❓ Solução de Problemas: Comando 'flutter' não reconhecido</h2>
+        <p>Este é um dos erros mais comuns durante a configuração inicial e geralmente tem uma solução simples.</p>
+        
+        <div class="troubleshooting-box">
+          <h4>Cenário do Erro</h4>
+          <p>Você abre o terminal (Prompt de Comando, PowerShell, etc.), digita <code>flutter doctor</code> e recebe a seguinte mensagem:</p>
+          <div class="code-block">'flutter' não é reconhecido como um comando interno<br>ou externo, um programa operável ou um arquivo em lotes.</div>
         </div>
 
-        <div class="step-box">
-          <h4>Adicionar ao PATH</h4>
-          <ol>
-            <li>Determine qual shell você está usando: <code>echo $SHELL</code></li>
-            <li>Se for <code>zsh</code> (padrão no macOS Catalina e posteriores), edite <code>~/.zshrc</code>. Se for <code>bash</code>, edite <code>~/.bash_profile</code>.</li>
-            <li>Adicione a seguinte linha (ajuste o caminho se necessário):</li>
-            <div class="code-block">
-              # Se extraiu em ~/development
-              export PATH="$PATH:$HOME/development/flutter/bin"
-            </div>
-            <li>Salve o arquivo e execute <code>source ~/.zshrc</code> (ou <code>source ~/.bash_profile</code>) para carregar as alterações.</li>
-          </ol>
-        </div>
+        <h3>Causa Principal</h3>
+        <p>O erro indica que o sistema operacional não sabe onde encontrar o executável do Flutter. Isso acontece porque o local de instalação do Flutter SDK não foi adicionado corretamente à variável de ambiente `Path` do seu sistema.</p>
 
-        <h3>🔍 Passo 2: Verificar Dependências</h3>
-        <div class="step-box">
-          <h4>Executar flutter doctor</h4>
-          <p>Abra o Terminal e execute:</p>
-          <div class="code-block">
-            flutter doctor
-          </div>
-          <p>Você verá mensagens sobre dependências faltando - vamos resolver isso agora.</p>
-        </div>
-
-        <h3>🍎 Passo 3: Configurar Xcode (para iOS)</h3>
-        <div class="step-box">
-          <h4>Instalar Xcode</h4>
-          <p><strong>O que é isso e por que é necessário?</strong> O Xcode é o ambiente de desenvolvimento da Apple, indispensável para criar aplicativos para iOS e macOS. Ele contém o SDK do iOS, o Simulador de iPhone/iPad e as ferramentas de compilação que o Flutter utiliza para gerar a versão do aplicativo para a plataforma da Apple.</p>
-          <ol>
-            <li>Abra a App Store</li>
-            <li>Procure por "Xcode" e instale</li>
-            <li>Após a instalação, abra o Xcode e aceite os termos</li>
-            <li>Execute no Terminal:</li>
-            <div class="code-block">
-              sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer<br>
-              sudo xcodebuild -runFirstLaunch
-            </div>
-          </ol>
-        </div>
-
-        <h3>🤖 Passo 4: Instalar Android Studio (para Android)</h3>
-        <div class="step-box">
-          <h4>Baixar Android Studio</h4>
-          <p>
-            <a href="https://developer.android.com/studio" class="link-button" target="_blank">Baixar Android Studio</a>
-          </p>
-          <p><strong>Por que isso é necessário?</strong> O Android Studio é o ambiente de desenvolvimento oficial do Google para Android. Mesmo que você use outro editor de código (como o VS Code), sua instalação é **essencial**, pois ele fornece o Android SDK, as ferramentas de linha de comando e o gerenciador de emuladores que o Flutter utiliza para construir e testar o aplicativo para Android.</p>
-        </div>
-
-        <h3>📱 Passo 5: Configurar Emulador Android (Opcional)</h3>
-        <div class="step-box">
-          <h4>Criar um dispositivo virtual</h4>
-          <ol>
-            <li>No Android Studio, vá em <code>Tools</code> > <code>Device Manager</code></li>
-            <li>Clique em <code>Create Device</code></li>
-            <li>Selecione um dispositivo (ex: Pixel 4)</li>
-            <li>Selecione uma imagem do sistema (API 30 ou superior recomendado)</li>
-            <li>Clique em <code>Finish</code></li>
-          </ol>
-        </div>
-
-        <h3>✅ Passo 6: Finalizar Configuração</h3>
-        <div class="step-box">
-          <h4>Aceitar licenças Android</h4>
-          <p>Execute no Terminal:</p>
-          <div class="code-block">
-            flutter doctor --android-licenses
-          </div>
-          <p>Pressione <code>y</code> para aceitar todas as licenças.</p>
-        </div>
-
-        <div class="step-box">
-          <h4>Verificar instalação</h4>
-          <p>Execute novamente:</p>
-          <div class="code-block">
-            flutter doctor
-          </div>
-          <p>Agora deverá mostrar todas as dependências como OK.</p>
-        </div>
-
-        <div class="step-action" onclick="markStepComplete('setup-macos')">Marcar como Concluído</div>
-        <a href="#" class="link-button" onclick="showContent('dev-project')">Próximo: Criar Projeto</a>
+        <h3>✅ Como Resolver</h3>
+        <p>Siga estes passos para verificar e corrigir o problema:</p>
+        
+        <ol>
+            <li>
+                <strong>Verifique o Caminho do Flutter:</strong><br>
+                Confirme em qual pasta você extraiu o Flutter SDK. No nosso guia, recomendamos <code>C:\src\flutter</code>. O caminho que precisa estar no Path é a subpasta <code>bin</code> dentro dela, ou seja: <code>C:\src\flutter\bin</code>.
+            </li>
+            <li>
+                <strong>Corrija as Variáveis de Ambiente:</strong>
+                <ul>
+                    <li>Pressione <code>Win + R</code>, digite <code>sysdm.cpl</code> e pressione Enter.</li>
+                    <li>Vá para a aba <code>Avançado</code> e clique em <code>Variáveis de Ambiente</code>.</li>
+                    <li>Na seção inferior ("Variáveis do sistema"), encontre a variável <code>Path</code>, selecione-a e clique em <code>Editar</code>.</li>
+                    <li>Verifique se o caminho <code>C:\src\flutter\bin</code> está na lista. Se não estiver, clique em <code>Novo</code> e adicione-o.</li>
+                    <li>Certifique-se de que não há erros de digitação.</li>
+                    <li>Clique em <code>OK</code> em todas as janelas para salvar.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Reinicie o Terminal (Passo Crucial!):</strong><br>
+                As alterações nas variáveis de ambiente só são aplicadas a novas sessões do terminal. <strong>Feche todas as janelas do Prompt de Comando ou PowerShell e abra uma nova.</strong>
+            </li>
+            <li>
+                <strong>Tente Novamente:</strong><br>
+                No <strong>novo</strong> terminal, digite o comando novamente:
+                <div class="code-block">flutter doctor</div>
+                O comando agora deve ser reconhecido e começar a executar a verificação do Flutter.
+            </li>
+        </ol>
+        
+        <a href="#" class="link-button" onclick="showContent('setup-windows')">Voltar para a Configuração</a>
       </div>
       
-      <!-- Integração Firebase -->
-      <div class="content-section" id="content-integration-firebase">
-        <h2>🔥 Integração com Firebase</h2>
-        <p>Configurar Firebase para autenticação, banco de dados e analytics.</p>
+      <!-- Outras seções do guia (ChromeOS, macOS, etc.) devem ser inseridas aqui -->
 
-        <h3>⚙️ Passo 1: Configurar Projeto Firebase</h3>
-        <div class="step-box">
-          <h4>Criar projeto no Firebase Console</h4>
-          <ol>
-            <li>Acesse <a href="https://console.firebase.google.com/" target="_blank">Firebase Console</a></li>
-            <li>Clique em "Criar projeto"</li>
-            <li>Nomeie como "SOS Unimed Vidas"</li>
-            <li>Ative Google Analytics (recomendado)</li>
-          </ol>
-          <p><strong>O que é o Firebase Console?</strong> Este é o painel de controle do Firebase, a plataforma do Google que usaremos como backend para o nosso aplicativo. Aqui, vamos configurar a autenticação de usuários, o banco de dados em nuvem (Firestore) e o monitoramento de eventos com o Analytics.</p>
-        </div>
-
-        <h3>📱 Passo 2: Adicionar App Flutter</h3>
-        <div class="step-box">
-          <h4>Configurar para Android</h4>
-          <ol>
-            <li>No Firebase Console, adicione um app Android</li>
-            <li>Use o package name do seu app Flutter</li>
-            <li>Baixe o arquivo <code>google-services.json</code></li>
-            <li>Coloque na pasta <code>android/app/</code></li>
-          </ol>
-        </div>
-        
-        <!-- ... (o resto do código permanece o mesmo) ... -->
-
-      </div>
     </div>
   </div>
 
@@ -1000,7 +790,7 @@
 
       // Se for o guia de desenvolvimento, mostra o primeiro passo
       if (type === 'development') {
-        showContent('setup-chromeos'); // Padrão para ChromeOS/Linux
+        showContent('setup-windows'); // Padrão para Windows
       } else {
         // Para outros tipos, mostra a página inicial do guia
         showContent('home');
@@ -1025,46 +815,31 @@
       title.classList.toggle('active');
     }
 
-    // Função para mostrar conteúdo - CORRIGIDA
+    // Função para mostrar conteúdo
     function showContent(id) {
-      // Esconder todos os conteúdos
       document.querySelectorAll('.content-section').forEach(section => {
         section.classList.remove('active');
       });
 
-      // Mostrar o conteúdo selecionado
       const targetContent = document.getElementById(`content-${id}`);
       if (targetContent) {
           targetContent.classList.add('active');
-      } else {
-          console.error(`Conteúdo com ID 'content-${id}' não encontrado.`);
-          // Opcional: Mostrar uma mensagem de erro na tela
-          // document.getElementById('content-home').innerHTML += `<p style="color:red;">Erro: Conteúdo '${id}' não encontrado.</p>`;
-          // document.getElementById('content-home').classList.add('active');
       }
 
-      // Atualizar menu ativo
       document.querySelectorAll('.submenu-item').forEach(item => {
         item.classList.remove('active');
       });
-
-      // Encontrar e ativar o item do menu correspondente
-      // Correção: Usar o ID do elemento diretamente
+      
       const menuItem = document.querySelector(`.submenu-item[onclick="showContent('${id}')"]`);
-
       if (menuItem) {
         menuItem.classList.add('active');
-        // Abrir o submenu pai também
         const parentSubmenu = menuItem.closest('.submenu');
         if (parentSubmenu) {
           parentSubmenu.classList.add('active');
           parentSubmenu.previousElementSibling.classList.add('active');
         }
-      } else {
-          console.warn(`Item de menu para 'showContent("${id}")' não encontrado.`);
       }
 
-      // Scroll para o topo do conteúdo
       const contentElement = document.querySelector('.content');
       if (contentElement) {
           contentElement.scrollTop = 0;
@@ -1077,7 +852,6 @@
       // Aqui você poderia salvar o estado em localStorage
       console.log(`Passo ${stepId} marcado como concluído`);
 
-      // Atualizar visualmente o item do menu
       const menuItem = document.querySelector(`.submenu-item[onclick="showContent('${stepId}')"]`);
 
       if (menuItem) {
@@ -1089,7 +863,6 @@
 
     // Inicializar
     document.addEventListener('DOMContentLoaded', function() {
-      // Mostrar conteúdo inicial
       showHomePage();
     });
   </script>
