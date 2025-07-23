@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Guia de Desenvolvimento Ponta a Ponta - SOS Unimed Vidas</title>
+  <title>SOS Unimed Vidas - Guia de Desenvolvimento</title>
   <style>
     /* Esquema de cores verde Unimed */
     :root {
@@ -33,27 +33,120 @@
       display: flex;
       flex-direction: column;
     }
-    header {
-      background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
-      color: white;
+    
+    /* Página Inicial */
+    .home-page {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
       text-align: center;
-      padding: 25px 20px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-    h1 {
-      font-size: 2.4rem;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-      margin-bottom: 10px;
-    }
-    .subtitle {
-      font-size: 1.2rem;
-      opacity: 0.9;
+      background: linear-gradient(135deg, #E5F5E9 0%, #F5FBF7 100%);
     }
     
-    /* Layout principal */
-    .main-container {
+    .logo {
+      width: 120px;
+      height: 120px;
+      background: var(--primary-color);
+      border-radius: 50%;
       display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 30px;
+      box-shadow: var(--box-shadow);
+    }
+    
+    .logo span {
+      font-size: 60px;
+      color: white;
+      font-weight: bold;
+    }
+    
+    h1 {
+      font-size: 2.5rem;
+      color: var(--primary-dark);
+      margin-bottom: 15px;
+    }
+    
+    .subtitle {
+      font-size: 1.2rem;
+      color: var(--secondary-color);
+      max-width: 600px;
+      margin-bottom: 40px;
+    }
+    
+    .buttons {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .main-button {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 250px;
+      height: 200px;
+      padding: 25px;
+      background: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      text-decoration: none;
+      color: var(--text-dark);
+      transition: var(--transition);
+      border: 2px solid var(--primary-light);
+    }
+    
+    .main-button:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      border-color: var(--primary-color);
+    }
+    
+    .main-button i {
+      font-size: 3rem;
+      margin-bottom: 15px;
+      color: var(--primary-color);
+    }
+    
+    .main-button h2 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      color: var(--primary-dark);
+    }
+    
+    .main-button p {
+      font-size: 0.9rem;
+      color: #666;
+    }
+    
+    footer {
+      text-align: center;
+      padding: 25px;
+      background: linear-gradient(135deg, var(--primary-dark) 0%, #006837 100%);
+      color: white;
+      margin-top: auto;
+      font-size: 16px;
+    }
+    
+    footer a {
+      color: white;
+      text-decoration: underline;
+      margin: 0 10px;
+      transition: opacity 0.3s;
+    }
+    
+    footer a:hover {
+      opacity: 0.8;
+    }
+    
+    /* Layout principal do guia */
+    .main-container {
+      display: none; /* Inicialmente oculto */
       flex: 1;
       padding: 20px;
       gap: 20px;
@@ -264,28 +357,38 @@
       background: #CCCCCC;
     }
     
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: linear-gradient(135deg, var(--primary-dark) 0%, #006837 100%);
+    /* Botão Voltar */
+    .back-button {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: var(--primary-color);
       color: white;
-      margin-top: 20px;
-      font-size: 16px;
+      padding: 10px 15px;
+      border-radius: var(--border-radius);
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: var(--box-shadow);
+      z-index: 1000;
+      display: none; /* Inicialmente oculto */
     }
     
-    footer a {
-      color: white;
-      text-decoration: underline;
-      margin: 0 10px;
-      transition: opacity 0.3s;
-    }
-    
-    footer a:hover {
-      opacity: 0.8;
+    .back-button:hover {
+      background: var(--primary-dark);
     }
     
     /* Responsividade */
-    @media (max-width: 992px) {
+    @media (max-width: 768px) {
+      .buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .main-button {
+        width: 100%;
+        max-width: 300px;
+      }
+      
       .main-container {
         flex-direction: column;
       }
@@ -303,12 +406,34 @@
   </style>
 </head>
 <body>
-  <header>
-    <h1>Guia de Desenvolvimento Ponta a Ponta</h1>
-    <p class="subtitle">SOS Unimed Vidas - MVP Completo</p>
-  </header>
+  <!-- Página Inicial -->
+  <div class="home-page" id="home-page">
+    <div class="logo">
+      <span>+</span>
+    </div>
+    <h1>SOS Unimed Vidas</h1>
+    <p class="subtitle">Guia Completo de Desenvolvimento e Entrega do MVP</p>
+    
+    <div class="buttons">
+      <a href="#" class="main-button" onclick="showGuide('structure')">
+        <i>📘</i>
+        <h2>Guia de Estrutura</h2>
+        <p>Visão geral e documentação do projeto</p>
+      </a>
+      
+      <a href="#" class="main-button" onclick="showGuide('development')">
+        <i>🛠️</i>
+        <h2>Guia de Desenvolvimento</h2>
+        <p>Passo a passo completo para criar o MVP</p>
+      </a>
+    </div>
+  </div>
   
-  <div class="main-container">
+  <!-- Botão Voltar -->
+  <a href="#" class="back-button" id="back-button" onclick="showHomePage()">← Voltar</a>
+  
+  <!-- Layout do Guia -->
+  <div class="main-container" id="main-container">
     <!-- Menu Lateral -->
     <div class="sidebar">
       <h2>🗺️ Navegação</h2>
@@ -386,7 +511,7 @@
     
     <!-- Conteúdo Principal -->
     <div class="content">
-      <!-- Página Inicial -->
+      <!-- Página Inicial do Guia -->
       <div class="content-section active" id="content-home">
         <h2>🎯 Bem-vindo ao Guia de Desenvolvimento</h2>
         <p>Este guia foi criado para te orientar em cada etapa do desenvolvimento do aplicativo SOS Unimed Vidas, desde a configuração inicial até a entrega final do MVP.</p>
@@ -997,6 +1122,30 @@
   </footer>
   
   <script>
+    // Função para mostrar a página inicial
+    function showHomePage() {
+      document.getElementById('home-page').style.display = 'flex';
+      document.getElementById('main-container').style.display = 'none';
+      document.getElementById('back-button').style.display = 'none';
+      document.body.style.background = 'linear-gradient(135deg, #F5FBF7 0%, #E5F5E9 100%)';
+    }
+    
+    // Função para mostrar o guia
+    function showGuide(type) {
+      document.getElementById('home-page').style.display = 'none';
+      document.getElementById('main-container').style.display = 'flex';
+      document.getElementById('back-button').style.display = 'block';
+      document.body.style.background = 'linear-gradient(135deg, #F5FBF7 0%, #E5F5E9 100%)';
+      
+      // Se for o guia de desenvolvimento, mostra o primeiro passo
+      if (type === 'development') {
+        showContent('setup-chromeos');
+      } else {
+        // Para outros tipos, mostra a página inicial do guia
+        showContent('home');
+      }
+    }
+    
     // Função para alternar visibilidade do submenu
     function toggleSubmenu(id) {
       const submenu = document.getElementById(`submenu-${id}`);
@@ -1069,7 +1218,7 @@
     // Inicializar
     document.addEventListener('DOMContentLoaded', function() {
       // Mostrar conteúdo inicial
-      showContent('home');
+      showHomePage();
     });
   </script>
 </body>
