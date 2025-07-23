@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -18,13 +19,11 @@
       --box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       --transition: all 0.3s ease;
     }
-    
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
-    
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: linear-gradient(135deg, #F5FBF7 0%, #E5F5E9 100%);
@@ -33,7 +32,6 @@
       min-height: 100vh;
       padding-bottom: 60px;
     }
-    
     header {
       background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
       color: white;
@@ -41,14 +39,12 @@
       padding: 25px 20px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
-    
     h1 {
       font-size: 2.4rem;
       font-weight: 700;
       letter-spacing: -0.5px;
       margin-bottom: 10px;
     }
-    
     nav {
       display: flex;
       background: var(--primary-dark);
@@ -60,7 +56,6 @@
       z-index: 100;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
-    
     nav button {
       background: transparent;
       border: none;
@@ -76,28 +71,23 @@
       align-items: center;
       gap: 10px;
     }
-    
     nav button:hover, 
     nav button.active-tab {
       background: rgba(255, 255, 255, 0.2);
       transform: translateY(-2px);
     }
-    
     .tab-content {
       display: none;
       padding: 20px;
       animation: fadeIn 0.5s ease;
     }
-    
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    
     .active {
       display: block;
     }
-    
     .container {
       background: rgba(255, 255, 255, 0.95);
       border-radius: var(--border-radius);
@@ -107,12 +97,10 @@
       box-shadow: var(--box-shadow);
       border: 1px solid rgba(0, 166, 81, 0.1);
     }
-    
     h2, h3 {
       color: var(--primary-dark);
       margin-bottom: 20px;
     }
-    
     h2 {
       font-size: 1.9rem;
       margin-top: 35px;
@@ -121,7 +109,6 @@
       border-bottom: 2px solid var(--primary-color);
       padding-bottom: 10px;
     }
-    
     h2 .section-icon {
       position: absolute;
       left: 0;
@@ -129,23 +116,19 @@
       transform: translateY(-50%);
       font-size: 1.5em;
     }
-    
     p {
       margin-bottom: 18px;
       line-height: 1.8;
     }
-    
     ul, ol {
       margin-left: 30px;
       margin-bottom: 25px;
     }
-    
     li {
       margin-bottom: 12px;
       position: relative;
       padding-left: 30px;
     }
-    
     li:before {
       content: "•";
       color: var(--primary-color);
@@ -154,7 +137,6 @@
       left: 0;
       top: 0;
     }
-    
     .status-box {
       margin: 18px 0;
       padding: 20px;
@@ -165,12 +147,10 @@
       align-items: center;
       gap: 15px;
     }
-    
     .status-box span {
       font-size: 24px;
       color: var(--primary-dark);
     }
-    
     label.checkbox {
       display: flex;
       align-items: center;
@@ -183,13 +163,11 @@
       border: 1px solid #D5E8D9;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
     }
-    
     label.checkbox:hover {
       background-color: rgba(0, 166, 81, 0.05);
       transform: translateX(5px);
       border-color: #A3D1A9;
     }
-    
     .indice ul {
       list-style: none;
       padding-left: 0;
@@ -198,21 +176,17 @@
       padding: 25px;
       box-shadow: var(--box-shadow);
     }
-    
     .indice li {
       margin: 15px 0;
       padding: 12px 0;
       border-bottom: 1px solid #D5E8D9;
     }
-    
     .indice li:last-child {
       border-bottom: none;
     }
-    
     .indice li:before {
       display: none;
     }
-    
     .indice a {
       color: var(--primary-dark);
       text-decoration: none;
@@ -223,12 +197,10 @@
       transition: var(--transition);
       font-size: 18px;
     }
-    
     .indice a:hover {
       color: var(--primary-color);
       text-decoration: underline;
     }
-    
     form {
       margin-top: 25px;
       background: var(--primary-light);
@@ -237,11 +209,9 @@
       border: 1px solid #D5E8D9;
       box-shadow: var(--box-shadow);
     }
-    
     .form-group {
       margin-bottom: 25px;
     }
-    
     label {
       display: block;
       margin-bottom: 12px;
@@ -249,7 +219,6 @@
       color: var(--primary-dark);
       font-size: 18px;
     }
-    
     input, textarea, select {
       width: 100%;
       padding: 15px;
@@ -260,7 +229,6 @@
       font-size: 17px;
       transition: var(--transition);
     }
-    
     input:focus, 
     textarea:focus, 
     select:focus {
@@ -268,7 +236,6 @@
       border-color: var(--primary-color);
       box-shadow: 0 0 0 3px rgba(0, 166, 81, 0.2);
     }
-    
     button.submit {
       background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
       color: white;
@@ -284,12 +251,10 @@
       gap: 12px;
       box-shadow: 0 4px 10px rgba(0, 166, 81, 0.3);
     }
-    
     button.submit:hover {
       transform: translateY(-3px);
       box-shadow: 0 6px 15px rgba(0, 166, 81, 0.4);
     }
-    
     .reload {
       background: linear-gradient(135deg, var(--primary-dark) 0%, #006837 100%);
       color: white;
@@ -306,12 +271,10 @@
       font-size: 17px;
       box-shadow: 0 4px 10px rgba(0, 120, 60, 0.3);
     }
-    
     .reload:hover {
       transform: translateY(-3px);
       box-shadow: 0 6px 15px rgba(0, 120, 60, 0.4);
     }
-    
     .progress-container {
       margin: 25px 0;
       background: #E0E8E2;
@@ -320,7 +283,6 @@
       overflow: hidden;
       box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
     }
-    
     .progress-bar {
       height: 100%;
       background: linear-gradient(90deg, var(--primary-color) 0%, var(--primary-dark) 100%);
@@ -335,7 +297,6 @@
       font-weight: bold;
       transition: width 1s ease;
     }
-    
     .version-info {
       background: white;
       padding: 12px 20px;
@@ -346,7 +307,6 @@
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
       border: 1px solid #E0E8E2;
     }
-    
     .tooltip {
       position: relative;
       display: inline-block;
@@ -354,7 +314,6 @@
       margin-left: 8px;
       font-size: 18px;
     }
-    
     .tooltip .tooltiptext {
       visibility: hidden;
       width: 250px;
@@ -374,12 +333,10 @@
       font-weight: normal;
       box-shadow: var(--box-shadow);
     }
-    
     .tooltip:hover .tooltiptext {
       visibility: visible;
       opacity: 1;
     }
-    
     .continuity-section {
       background: linear-gradient(135deg, #E5F5E9 0%, #D0EBD7 100%);
       border: 2px solid var(--primary-color);
@@ -389,7 +346,6 @@
       position: relative;
       box-shadow: var(--box-shadow);
     }
-    
     .continuity-section::before {
       content: "🔄 Guia de Continuidade";
       position: absolute;
@@ -403,7 +359,6 @@
       font-weight: bold;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
-    
     .warning-box {
       background: #FFF8E6;
       border-left: 5px solid var(--accent-color);
@@ -412,7 +367,6 @@
       border-radius: 0 var(--border-radius) var(--border-radius) 0;
       font-size: 17px;
     }
-    
     .toast {
       position: fixed;
       bottom: 30px;
@@ -430,12 +384,10 @@
       opacity: 0;
       transition: transform 0.4s ease, opacity 0.4s ease;
     }
-    
     .toast.show {
       transform: translateY(0);
       opacity: 1;
     }
-    
     .accordion {
       background: white;
       border-radius: var(--border-radius);
@@ -444,7 +396,6 @@
       overflow: hidden;
       border: 1px solid #E0E8E2;
     }
-    
     .accordion-header {
       padding: 20px;
       background: #F0F9F2;
@@ -456,23 +407,19 @@
       font-size: 18px;
       transition: background 0.3s ease;
     }
-    
     .accordion-header:hover {
       background: #E5F5E9;
     }
-    
     .accordion-content {
       padding: 0 20px;
       max-height: 0;
       overflow: hidden;
       transition: max-height 0.3s ease, padding 0.3s ease;
     }
-    
     .accordion.active .accordion-content {
       padding: 20px;
       max-height: 1000px;
     }
-    
     .step-action {
       display: inline-block;
       background: var(--primary-color);
@@ -485,13 +432,11 @@
       transition: var(--transition);
       box-shadow: 0 2px 5px rgba(0, 166, 81, 0.3);
     }
-    
     .step-action:hover {
       background: var(--primary-dark);
       transform: translateY(-2px);
       box-shadow: 0 4px 8px rgba(0, 166, 81, 0.4);
     }
-    
     .knowledge-source {
       display: flex;
       align-items: center;
@@ -503,7 +448,6 @@
       font-size: 14px;
       border: 1px solid #E0E8E2;
     }
-
     footer {
       text-align: center;
       padding: 25px;
@@ -512,74 +456,60 @@
       margin-top: 40px;
       font-size: 16px;
     }
-    
     footer a {
       color: white;
       text-decoration: underline;
       margin: 0 10px;
       transition: opacity 0.3s;
     }
-    
     footer a:hover {
       opacity: 0.8;
     }
-    
     /* Responsividade */
     @media (max-width: 768px) {
       nav {
         flex-direction: column;
         align-items: stretch;
       }
-      
       nav div {
         display: flex;
         flex-direction: column;
       }
-      
       nav button {
         width: 100%;
         margin: 5px 0;
         text-align: left;
       }
-      
       .container {
         padding: 20px;
         margin: 15px;
       }
-      
       h1 {
         font-size: 2rem;
       }
-      
       h2 {
         font-size: 1.6rem;
       }
-      
       footer {
         padding: 20px 15px;
       }
-      
       footer a {
         display: block;
         margin: 8px 0;
       }
     }
-    
     @media (max-width: 480px) {
       .indice ul {
         padding: 20px;
       }
-      
       form {
         padding: 20px;
       }
-      
       .status-box {
         flex-direction: column;
         align-items: flex-start;
         gap: 10px;
       }
-      
       h2 {
         padding-left: 0;
       }
@@ -587,12 +517,10 @@
   </style>
 </head>
 <body>
-
   <header>
     <h1>Guia de Continuidade SOS Unimed Vidas</h1>
     <p>Assistente Técnico para Transição e Manutenção</p>
   </header>
-
   <nav>
     <div>
       <button id="tab-guia" onclick="showTab('guia')" class="active-tab">📘 Guia</button>
@@ -600,16 +528,13 @@
       <button id="tab-feedback" onclick="showTab('feedback')">📝 Feedback</button>
     </div>
   </nav>
-
   <!-- Guia -->
   <div id="guia" class="tab-content active">
     <div class="container">
       <div class="version-info">Versão 2.0 • Foco em Continuidade • Atualizado em 19/07/2025</div>
-      
       <div class="warning-box">
         <strong>⚠️ Contexto Importante:</strong> Este guia foi reformulado para focar na continuidade do projeto após entrega para a equipe de TI da Unimed Cachoeiro do Itapemirim.
       </div>
-
       <div class="indice">
         <h2>🔗 Índice Rápido</h2>
         <ul>
@@ -621,10 +546,8 @@
           <li><a href="#referencias"><span>🔎</span> Referências</a></li>
         </ul>
       </div>
-
       <h2 id="objetivo">🎯 Objetivo do Guia de Continuidade</h2>
       <p>Este documento tem como principal objetivo garantir a transição suave e a manutenção contínua do aplicativo SOS Unimed Vidas após sua entrega à equipe de TI.</p>
-      
       <div class="continuity-section">
         <h3>Principais Benefícios:</h3>
         <ul>
@@ -635,9 +558,7 @@
           <li>Facilidade no onboarding de novos membros</li>
         </ul>
       </div>
-
       <h2 id="fluxo">🔄 Fluxo de Continuidade</h2>
-      
       <div class="accordion active">
         <div class="accordion-header">
           <span>1. Transição de Conhecimento</span>
@@ -657,7 +578,6 @@
           <div class="step-action" onclick="markStepComplete('transicao')">Marcar como Concluído</div>
         </div>
       </div>
-      
       <div class="accordion">
         <div class="accordion-header">
           <span>2. Monitoramento Inicial</span>
@@ -677,7 +597,6 @@
           <div class="step-action" onclick="markStepComplete('monitoramento')">Marcar como Concluído</div>
         </div>
       </div>
-      
       <div class="accordion">
         <div class="accordion-header">
           <span>3. Manutenção Contínua</span>
@@ -697,9 +616,7 @@
           <div class="step-action" onclick="markStepComplete('manutencao')">Marcar como Concluído</div>
         </div>
       </div>
-
       <h2 id="ferramentas">🧰 Ferramentas de Continuidade</h2>
-      
       <div class="accordion active">
         <div class="accordion-header">
           <span>Sistema de Monitoramento</span>
@@ -718,7 +635,6 @@
           </ol>
         </div>
       </div>
-      
       <div class="accordion">
         <div class="accordion-header">
           <span>Gestão de Acessos</span>
@@ -737,9 +653,7 @@
           </ol>
         </div>
       </div>
-
       <h2 id="responsabilidades">👥 Responsabilidades de Continuidade</h2>
-      
       <table>
         <thead>
           <tr>
@@ -771,10 +685,8 @@
           </tr>
         </tbody>
       </table>
-
       <div class="continuity-section">
         <h2 id="manutencao">🔧 Manutenção Preventiva</h2>
-        
         <h3>🔑 Rotinas Essenciais</h3>
         <div class="accordion active">
           <div class="accordion-header">
@@ -790,7 +702,6 @@
             </ol>
           </div>
         </div>
-        
         <h3>🛡️ Atualizações de Segurança</h3>
         <div class="accordion">
           <div class="accordion-header">
@@ -807,22 +718,19 @@
           </div>
         </div>
       </div>
-
       <h2 id="referencias">🔎 Referências de Continuidade</h2>
       <ul>
         <li><a href="https://vercel.com/docs" target="_blank">Documentação Vercel</a></li>
         <li><a href="https://firebase.google.com/docs" target="_blank">Guia Firebase</a></li>
         <li><a href="https://github.com/Tomgit-cyber/guiaweb-sos" target="_blank">Repositório GitHub do Guia</a></li>
-        <li><a href="https://www.unimed.coop.br/site/web/cachoeirodoes/home" target="_blank">Portal Unimed Cachoeiro</a></li>
+        <li><a href="https://www.unimed.coop.br/site/web/sulcapixaba" target="_blank">Portal Unimed Sul Capixaba</a></li>
       </ul>
     </div>
   </div>
-
   <!-- Painel -->
   <div id="painel" class="tab-content">
     <div class="container">
       <h2>Painel de Continuidade</h2>
-      
       <div class="status-box">
         <span>📋</span>
         <div>
@@ -832,7 +740,6 @@
           </div>
         </div>
       </div>
-      
       <div class="status-box">
         <span>👥</span>
         <div>
@@ -843,7 +750,6 @@
           </ul>
         </div>
       </div>
-      
       <h3>Próximas Ações de Continuidade</h3>
       <div class="accordion active">
         <div class="accordion-header">
@@ -862,7 +768,6 @@
           </ul>
         </div>
       </div>
-      
       <h3>Checklist de Continuidade</h3>
       <div class="accordion">
         <div class="accordion-header">
@@ -880,24 +785,20 @@
       </div>
     </div>
   </div>
-
   <!-- Feedback -->
   <div id="feedback" class="tab-content">
     <div class="container">
       <h2>📬 Canal de Continuidade</h2>
       <p>Utilize este formulário para questões relacionadas à continuidade do projeto:</p>
-      
       <form id="feedback-form" action="https://formspree.io/f/xdkdkyjj" method="POST">
         <div class="form-group">
           <label for="nome">Seu Nome:</label>
           <input type="text" id="nome" name="nome" required placeholder="Nome completo">
         </div>
-        
         <div class="form-group">
           <label for="email">Email:</label>
           <input type="email" id="email" name="email" required placeholder="seu.email@unimedci.com.br">
         </div>
-        
         <div class="form-group">
           <label for="tipo">Tipo de Solicitação:</label>
           <select id="tipo" name="tipo" required>
@@ -908,33 +809,28 @@
             <option value="acesso">Solicitação de Acesso</option>
           </select>
         </div>
-        
         <div class="form-group">
           <label for="mensagem">Mensagem:</label>
           <textarea id="mensagem" name="mensagem" required rows="6" placeholder="Descreva sua solicitação aqui..."></textarea>
         </div>
-        
         <button class="submit" type="submit">
           <span>📤</span> Enviar Solicitação
         </button>
       </form>
     </div>
   </div>
-  
   <footer>
     <p>Guia de Continuidade - SOS Unimed Vidas v2.0 • © 2025 Unimed Cachoeiro do Itapemirim</p>
     <div style="margin-top: 15px;">
       <a href="https://github.com/Tomgit-cyber/guiaweb-sos" target="_blank">Repositório GitHub</a> • 
-      <a href="https://www.unimed.coop.br/site/web/cachoeirodoes/home" target="_blank">Portal Unimed Cachoeiro</a> • 
+      <a href="https://www.unimed.coop.br/site/web/sulcapixaba" target="_blank">Portal Unimed Sul Capixaba</a> • 
       <a href="mailto:ti@unimedci.com.br">Contato TI</a>
     </div>
   </footer>
-
   <div id="toast" class="toast">
     <span>🔔</span>
     <div id="toast-message">Mensagem de notificação</div>
   </div>
-
   <script>
     // Função para mostrar a aba selecionada
     function showTab(tabId) {
@@ -942,35 +838,27 @@
       document.querySelectorAll('.tab-content').forEach(el => {
         el.classList.remove('active');
       });
-      
       // Remove a classe ativa de todos os botões
       document.querySelectorAll('nav button').forEach(btn => {
         btn.classList.remove('active-tab');
       });
-      
       // Mostra a aba selecionada
       document.getElementById(tabId).classList.add('active');
-      
       // Adiciona classe ativa ao botão correspondente
       document.getElementById('tab-' + tabId).classList.add('active-tab');
-      
       // Salva a aba selecionada no localStorage
       localStorage.setItem('lastTab', tabId);
     }
-    
     // Função para mostrar notificação toast
     function showToast(message) {
       const toast = document.getElementById('toast');
       const toastMessage = document.getElementById('toast-message');
-      
       toastMessage.textContent = message;
       toast.classList.add('show');
-      
       setTimeout(() => {
         toast.classList.remove('show');
       }, 3000);
     }
-    
     // Accordion functionality
     document.querySelectorAll('.accordion-header').forEach(header => {
       header.addEventListener('click', () => {
@@ -978,27 +866,22 @@
         accordion.classList.toggle('active');
       });
     });
-    
     // Mark step as complete
     function markStepComplete(stepId) {
       showToast(`Passo "${stepId}" marcado como concluído!`);
     }
-    
     // Verifica se há uma aba salva no localStorage
     document.addEventListener('DOMContentLoaded', function() {
       // Carrega a última aba aberta
       const lastTab = localStorage.getItem('lastTab') || 'guia';
       showTab(lastTab);
-      
       // Adiciona evento ao formulário de feedback
       const form = document.getElementById('feedback-form');
       if (form) {
         form.addEventListener('submit', function(e) {
           e.preventDefault();
-          
           // Mostra notificação
           showToast('Solicitação enviada com sucesso!');
-          
           // Envia o formulário
           setTimeout(() => {
             form.submit();
@@ -1009,3 +892,4 @@
   </script>
 </body>
 </html>
+```
