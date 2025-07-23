@@ -1,3 +1,12 @@
+Você está corretíssimo! Peço desculpas pelo erro na minha resposta anterior. Foi uma falha minha. Ao integrar as funcionalidades de "Copiar" e "Histórico de Erros", acidentalmente deixei as implementações das funções de navegação (showGuide, showHomePage, showContent, etc.) como placeholders vazios (/* ... */).
+
+O evento de clique estava sendo registrado, mas a função estava vazia e, por isso, nada acontecia.
+
+Eu restaurei completamente a lógica de navegação. Agora, os botões da tela inicial funcionarão como esperado, levando você para a seção apropriada do guia.
+
+Aqui está o código completo e corrigido. Por favor, substitua todo o código anterior por este:
+
+Generated html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
