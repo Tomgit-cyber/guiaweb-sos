@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Guia de Continuidade SOS Unimed Vidas</title>
+  <title>Guia de Desenvolvimento Ponta a Ponta - SOS Unimed Vidas</title>
   <style>
     /* Esquema de cores verde Unimed */
     :root {
@@ -30,7 +30,8 @@
       color: var(--text-dark);
       line-height: 1.7;
       min-height: 100vh;
-      padding-bottom: 60px;
+      display: flex;
+      flex-direction: column;
     }
     header {
       background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
@@ -45,849 +46,1030 @@
       letter-spacing: -0.5px;
       margin-bottom: 10px;
     }
-    nav {
+    .subtitle {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+    
+    /* Layout principal */
+    .main-container {
       display: flex;
-      background: var(--primary-dark);
-      padding: 12px 20px;
-      justify-content: center;
-      color: white;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    }
-    nav button {
-      background: transparent;
-      border: none;
-      color: white;
-      font-weight: 600;
-      font-size: 17px;
-      padding: 12px 24px;
-      margin: 0 10px;
-      cursor: pointer;
-      border-radius: 30px;
-      transition: var(--transition);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    nav button:hover, 
-    nav button.active-tab {
-      background: rgba(255, 255, 255, 0.2);
-      transform: translateY(-2px);
-    }
-    .tab-content {
-      display: none;
+      flex: 1;
       padding: 20px;
-      animation: fadeIn 0.5s ease;
+      gap: 20px;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .active {
-      display: block;
-    }
-    .container {
-      background: rgba(255, 255, 255, 0.95);
+    
+    /* Menu lateral */
+    .sidebar {
+      flex: 0 0 300px;
+      background: white;
       border-radius: var(--border-radius);
-      padding: 30px;
-      margin: 25px auto;
-      max-width: 1000px;
       box-shadow: var(--box-shadow);
-      border: 1px solid rgba(0, 166, 81, 0.1);
+      padding: 20px;
+      height: calc(100vh - 180px);
+      overflow-y: auto;
+      position: sticky;
+      top: 20px;
     }
-    h2, h3 {
+    
+    .sidebar h2 {
       color: var(--primary-dark);
       margin-bottom: 20px;
-    }
-    h2 {
-      font-size: 1.9rem;
-      margin-top: 35px;
-      position: relative;
-      padding-left: 40px;
-      border-bottom: 2px solid var(--primary-color);
       padding-bottom: 10px;
+      border-bottom: 2px solid var(--primary-color);
     }
-    h2 .section-icon {
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 1.5em;
-    }
-    p {
-      margin-bottom: 18px;
-      line-height: 1.8;
-    }
-    ul, ol {
-      margin-left: 30px;
-      margin-bottom: 25px;
-    }
-    li {
-      margin-bottom: 12px;
-      position: relative;
-      padding-left: 30px;
-    }
-    li:before {
-      content: "•";
-      color: var(--primary-color);
-      font-weight: bold;
-      position: absolute;
-      left: 0;
-      top: 0;
-    }
-    .status-box {
-      margin: 18px 0;
-      padding: 20px;
-      border-left: 5px solid var(--primary-color);
-      background-color: var(--primary-light);
-      border-radius: var(--border-radius);
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-    .status-box span {
-      font-size: 24px;
-      color: var(--primary-dark);
-    }
-    label.checkbox {
-      display: flex;
-      align-items: center;
-      margin: 12px 0;
-      padding: 12px 15px;
-      border-radius: var(--border-radius);
-      cursor: pointer;
-      transition: var(--transition);
-      background: white;
-      border: 1px solid #D5E8D9;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
-    }
-    label.checkbox:hover {
-      background-color: rgba(0, 166, 81, 0.05);
-      transform: translateX(5px);
-      border-color: #A3D1A9;
-    }
-    .indice ul {
-      list-style: none;
-      padding-left: 0;
-      background: var(--primary-light);
-      border-radius: var(--border-radius);
-      padding: 25px;
-      box-shadow: var(--box-shadow);
-    }
-    .indice li {
-      margin: 15px 0;
-      padding: 12px 0;
-      border-bottom: 1px solid #D5E8D9;
-    }
-    .indice li:last-child {
-      border-bottom: none;
-    }
-    .indice li:before {
-      display: none;
-    }
-    .indice a {
-      color: var(--primary-dark);
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      font-weight: 600;
-      transition: var(--transition);
-      font-size: 18px;
-    }
-    .indice a:hover {
-      color: var(--primary-color);
-      text-decoration: underline;
-    }
-    form {
-      margin-top: 25px;
-      background: var(--primary-light);
-      padding: 30px;
-      border-radius: var(--border-radius);
-      border: 1px solid #D5E8D9;
-      box-shadow: var(--box-shadow);
-    }
-    .form-group {
-      margin-bottom: 25px;
-    }
-    label {
-      display: block;
-      margin-bottom: 12px;
-      font-weight: 600;
-      color: var(--primary-dark);
-      font-size: 18px;
-    }
-    input, textarea, select {
-      width: 100%;
-      padding: 15px;
-      margin: 10px 0;
-      border-radius: var(--border-radius);
-      border: 1px solid #D5E8D9;
-      font-family: inherit;
-      font-size: 17px;
-      transition: var(--transition);
-    }
-    input:focus, 
-    textarea:focus, 
-    select:focus {
-      outline: none;
-      border-color: var(--primary-color);
-      box-shadow: 0 0 0 3px rgba(0, 166, 81, 0.2);
-    }
-    button.submit {
-      background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
-      color: white;
-      padding: 15px 30px;
-      border: none;
-      border-radius: var(--border-radius);
-      font-weight: bold;
-      cursor: pointer;
-      font-size: 18px;
-      transition: var(--transition);
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      box-shadow: 0 4px 10px rgba(0, 166, 81, 0.3);
-    }
-    button.submit:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 15px rgba(0, 166, 81, 0.4);
-    }
-    .reload {
-      background: linear-gradient(135deg, var(--primary-dark) 0%, #006837 100%);
-      color: white;
-      padding: 12px 25px;
-      border: none;
-      border-radius: var(--border-radius);
-      font-weight: bold;
-      cursor: pointer;
-      margin-top: 15px;
-      transition: var(--transition);
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 17px;
-      box-shadow: 0 4px 10px rgba(0, 120, 60, 0.3);
-    }
-    .reload:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 15px rgba(0, 120, 60, 0.4);
-    }
-    .progress-container {
-      margin: 25px 0;
-      background: #E0E8E2;
-      border-radius: 20px;
-      height: 25px;
-      overflow: hidden;
-      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-    }
-    .progress-bar {
-      height: 100%;
-      background: linear-gradient(90deg, var(--primary-color) 0%, var(--primary-dark) 100%);
-      border-radius: 20px;
-      width: 70%;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      padding-right: 15px;
-      color: white;
-      font-size: 14px;
-      font-weight: bold;
-      transition: width 1s ease;
-    }
-    .version-info {
-      background: white;
-      padding: 12px 20px;
-      border-radius: 30px;
-      display: inline-block;
-      margin: 15px 0;
-      font-weight: 600;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-      border: 1px solid #E0E8E2;
-    }
-    .tooltip {
-      position: relative;
-      display: inline-block;
-      cursor: help;
-      margin-left: 8px;
-      font-size: 18px;
-    }
-    .tooltip .tooltiptext {
-      visibility: hidden;
-      width: 250px;
-      background-color: var(--primary-dark);
-      color: white;
-      text-align: center;
-      border-radius: var(--border-radius);
-      padding: 15px;
-      position: absolute;
-      z-index: 1;
-      bottom: 125%;
-      left: 50%;
-      transform: translateX(-50%);
-      opacity: 0;
-      transition: opacity 0.3s;
-      font-size: 15px;
-      font-weight: normal;
-      box-shadow: var(--box-shadow);
-    }
-    .tooltip:hover .tooltiptext {
-      visibility: visible;
-      opacity: 1;
-    }
-    .continuity-section {
-      background: linear-gradient(135deg, #E5F5E9 0%, #D0EBD7 100%);
-      border: 2px solid var(--primary-color);
-      border-radius: var(--border-radius);
-      padding: 25px;
-      margin: 30px 0;
-      position: relative;
-      box-shadow: var(--box-shadow);
-    }
-    .continuity-section::before {
-      content: "🔄 Guia de Continuidade";
-      position: absolute;
-      top: -15px;
-      left: 25px;
-      background: var(--primary-color);
-      color: white;
-      padding: 6px 18px;
-      border-radius: 30px;
-      font-size: 16px;
-      font-weight: bold;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    }
-    .warning-box {
-      background: #FFF8E6;
-      border-left: 5px solid var(--accent-color);
-      padding: 20px;
-      margin: 20px 0;
-      border-radius: 0 var(--border-radius) var(--border-radius) 0;
-      font-size: 17px;
-    }
-    .toast {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      padding: 20px 25px;
-      background: var(--primary-dark);
-      color: white;
-      border-radius: var(--border-radius);
-      box-shadow: var(--box-shadow);
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      transform: translateY(100px);
-      opacity: 0;
-      transition: transform 0.4s ease, opacity 0.4s ease;
-    }
-    .toast.show {
-      transform: translateY(0);
-      opacity: 1;
-    }
-    .accordion {
-      background: white;
-      border-radius: var(--border-radius);
+    
+    .menu-item {
       margin-bottom: 15px;
-      box-shadow: var(--box-shadow);
-      overflow: hidden;
-      border: 1px solid #E0E8E2;
     }
-    .accordion-header {
-      padding: 20px;
-      background: #F0F9F2;
+    
+    .menu-title {
+      font-weight: bold;
+      color: var(--primary-dark);
+      padding: 12px 15px;
+      background: var(--primary-light);
+      border-radius: var(--border-radius);
       cursor: pointer;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-weight: 600;
-      font-size: 18px;
-      transition: background 0.3s ease;
+      transition: var(--transition);
     }
-    .accordion-header:hover {
-      background: #E5F5E9;
+    
+    .menu-title:hover {
+      background: #D0EBD7;
     }
-    .accordion-content {
-      padding: 0 20px;
+    
+    .menu-title.active {
+      background: var(--primary-color);
+      color: white;
+    }
+    
+    .submenu {
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.3s ease, padding 0.3s ease;
+      transition: max-height 0.3s ease;
     }
-    .accordion.active .accordion-content {
+    
+    .submenu.active {
+      max-height: 500px;
+    }
+    
+    .submenu-item {
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: var(--border-radius);
+      margin: 5px 0;
+      transition: var(--transition);
+    }
+    
+    .submenu-item:hover {
+      background: #F0F9F2;
+    }
+    
+    .submenu-item.active {
+      background: var(--primary-color);
+      color: white;
+      font-weight: bold;
+    }
+    
+    /* Conteúdo principal */
+    .content {
+      flex: 1;
+      background: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      padding: 30px;
+      overflow-y: auto;
+      height: calc(100vh - 180px);
+    }
+    
+    .content-section {
+      display: none;
+    }
+    
+    .content-section.active {
+      display: block;
+      animation: fadeIn 0.5s ease;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .content h2 {
+      color: var(--primary-dark);
+      margin-bottom: 20px;
+      font-size: 1.9rem;
+    }
+    
+    .content h3 {
+      color: var(--primary-dark);
+      margin: 25px 0 15px;
+    }
+    
+    .content p {
+      margin-bottom: 15px;
+      line-height: 1.8;
+    }
+    
+    .content ul, .content ol {
+      margin-left: 30px;
+      margin-bottom: 20px;
+    }
+    
+    .content li {
+      margin-bottom: 10px;
+    }
+    
+    .step-box {
+      background: var(--primary-light);
+      border-left: 5px solid var(--primary-color);
       padding: 20px;
-      max-height: 1000px;
+      margin: 20px 0;
+      border-radius: 0 var(--border-radius) var(--border-radius) 0;
     }
+    
+    .step-box h4 {
+      margin-top: 0;
+      color: var(--primary-dark);
+    }
+    
     .step-action {
       display: inline-block;
       background: var(--primary-color);
       color: white;
       padding: 8px 15px;
       border-radius: 30px;
-      margin-top: 10px;
+      margin-top: 15px;
       font-size: 14px;
       cursor: pointer;
       transition: var(--transition);
       box-shadow: 0 2px 5px rgba(0, 166, 81, 0.3);
     }
+    
     .step-action:hover {
       background: var(--primary-dark);
       transform: translateY(-2px);
       box-shadow: 0 4px 8px rgba(0, 166, 81, 0.4);
     }
-    .knowledge-source {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-top: 15px;
-      padding: 10px 15px;
-      background: #F8FCF9;
+    
+    .code-block {
+      background: #2d2d2d;
+      color: #f8f8f2;
+      padding: 15px;
       border-radius: var(--border-radius);
+      font-family: 'Courier New', monospace;
       font-size: 14px;
-      border: 1px solid #E0E8E2;
+      overflow-x: auto;
+      margin: 15px 0;
     }
+    
+    .link-button {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+      color: white;
+      padding: 12px 20px;
+      border-radius: var(--border-radius);
+      text-decoration: none;
+      font-weight: bold;
+      margin: 10px 0;
+      transition: var(--transition);
+      box-shadow: 0 4px 10px rgba(0, 166, 81, 0.3);
+    }
+    
+    .link-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(0, 166, 81, 0.4);
+    }
+    
+    .status-indicator {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin-right: 8px;
+    }
+    
+    .status-pending {
+      background: #FFD100;
+    }
+    
+    .status-completed {
+      background: #00A651;
+    }
+    
+    .status-not-started {
+      background: #CCCCCC;
+    }
+    
     footer {
       text-align: center;
-      padding: 25px;
+      padding: 20px;
       background: linear-gradient(135deg, var(--primary-dark) 0%, #006837 100%);
       color: white;
-      margin-top: 40px;
+      margin-top: 20px;
       font-size: 16px;
     }
+    
     footer a {
       color: white;
       text-decoration: underline;
       margin: 0 10px;
       transition: opacity 0.3s;
     }
+    
     footer a:hover {
       opacity: 0.8;
     }
+    
     /* Responsividade */
-    @media (max-width: 768px) {
-      nav {
-        flex-direction: column;
-        align-items: stretch;
-      }
-      nav div {
-        display: flex;
+    @media (max-width: 992px) {
+      .main-container {
         flex-direction: column;
       }
-      nav button {
-        width: 100%;
-        margin: 5px 0;
-        text-align: left;
+      
+      .sidebar {
+        flex: 0 0 auto;
+        height: auto;
+        position: static;
       }
-      .container {
-        padding: 20px;
-        margin: 15px;
-      }
-      h1 {
-        font-size: 2rem;
-      }
-      h2 {
-        font-size: 1.6rem;
-      }
-      footer {
-        padding: 20px 15px;
-      }
-      footer a {
-        display: block;
-        margin: 8px 0;
-      }
-    }
-    @media (max-width: 480px) {
-      .indice ul {
-        padding: 20px;
-      }
-      form {
-        padding: 20px;
-      }
-      .status-box {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-      }
-      h2 {
-        padding-left: 0;
+      
+      .content {
+        height: auto;
       }
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Guia de Continuidade SOS Unimed Vidas</h1>
-    <p>Assistente Técnico para Transição e Manutenção</p>
+    <h1>Guia de Desenvolvimento Ponta a Ponta</h1>
+    <p class="subtitle">SOS Unimed Vidas - MVP Completo</p>
   </header>
-  <nav>
-    <div>
-      <button id="tab-guia" onclick="showTab('guia')" class="active-tab">📘 Guia</button>
-      <button id="tab-painel" onclick="showTab('painel')">📊 Painel</button>
-      <button id="tab-feedback" onclick="showTab('feedback')">📝 Feedback</button>
-    </div>
-  </nav>
-  <!-- Guia -->
-  <div id="guia" class="tab-content active">
-    <div class="container">
-      <div class="version-info">Versão 2.0 • Foco em Continuidade • Atualizado em 19/07/2025</div>
-      <div class="warning-box">
-        <strong>⚠️ Contexto Importante:</strong> Este guia foi reformulado para focar na continuidade do projeto após entrega para a equipe de TI da Unimed Cachoeiro do Itapemirim.
+  
+  <div class="main-container">
+    <!-- Menu Lateral -->
+    <div class="sidebar">
+      <h2>🗺️ Navegação</h2>
+      
+      <div class="menu-item">
+        <div class="menu-title" onclick="toggleSubmenu('setup')">
+          <span>⚙️ Configuração Inicial</span>
+          <span>▼</span>
+        </div>
+        <div class="submenu" id="submenu-setup">
+          <div class="submenu-item" onclick="showContent('setup-chromeos')">ChromeOS/Linux</div>
+          <div class="submenu-item" onclick="showContent('setup-windows')">Windows</div>
+          <div class="submenu-item" onclick="showContent('setup-macos')">macOS</div>
+        </div>
       </div>
-      <div class="indice">
-        <h2>🔗 Índice Rápido</h2>
+      
+      <div class="menu-item">
+        <div class="menu-title" onclick="toggleSubmenu('dev')">
+          <span>💻 Desenvolvimento</span>
+          <span>▼</span>
+        </div>
+        <div class="submenu" id="submenu-dev">
+          <div class="submenu-item" onclick="showContent('dev-project')">Criar Projeto</div>
+          <div class="submenu-item" onclick="showContent('dev-structure')">Estrutura Básica</div>
+          <div class="submenu-item" onclick="showContent('dev-ui')">Interface do Usuário</div>
+          <div class="submenu-item" onclick="showContent('dev-logic')">Lógica de Negócio</div>
+        </div>
+      </div>
+      
+      <div class="menu-item">
+        <div class="menu-title" onclick="toggleSubmenu('integration')">
+          <span>🔗 Integrações</span>
+          <span>▼</span>
+        </div>
+        <div class="submenu" id="submenu-integration">
+          <div class="submenu-item" onclick="showContent('integration-firebase')">Firebase</div>
+          <div class="submenu-item" onclick="showContent('integration-api')">API Externa</div>
+        </div>
+      </div>
+      
+      <div class="menu-item">
+        <div class="menu-title" onclick="toggleSubmenu('testing')">
+          <span>🧪 Testes</span>
+          <span>▼</span>
+        </div>
+        <div class="submenu" id="submenu-testing">
+          <div class="submenu-item" onclick="showContent('testing-unit')">Testes Unitários</div>
+          <div class="submenu-item" onclick="showContent('testing-device')">Testes em Dispositivo</div>
+        </div>
+      </div>
+      
+      <div class="menu-item">
+        <div class="menu-title" onclick="toggleSubmenu('deployment')">
+          <span>🚀 Implantação</span>
+          <span>▼</span>
+        </div>
+        <div class="submenu" id="submenu-deployment">
+          <div class="submenu-item" onclick="showContent('deployment-build')">Build do Aplicativo</div>
+          <div class="submenu-item" onclick="showContent('deployment-playstore')">Google Play Store</div>
+          <div class="submenu-item" onclick="showContent('deployment-analytics')">Analytics</div>
+        </div>
+      </div>
+      
+      <div class="menu-item">
+        <div class="menu-title" onclick="toggleSubmenu('delivery')">
+          <span>📦 Entrega</span>
+          <span>▼</span>
+        </div>
+        <div class="submenu" id="submenu-delivery">
+          <div class="submenu-item" onclick="showContent('delivery-documentation')">Documentação</div>
+          <div class="submenu-item" onclick="showContent('delivery-transfer')">Transferência de Conhecimento</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Conteúdo Principal -->
+    <div class="content">
+      <!-- Página Inicial -->
+      <div class="content-section active" id="content-home">
+        <h2>🎯 Bem-vindo ao Guia de Desenvolvimento</h2>
+        <p>Este guia foi criado para te orientar em cada etapa do desenvolvimento do aplicativo SOS Unimed Vidas, desde a configuração inicial até a entrega final do MVP.</p>
+        
+        <div class="step-box">
+          <h4>Como usar este guia:</h4>
+          <ol>
+            <li>Use o menu à esquerda para navegar pelas fases do desenvolvimento</li>
+            <li>Clique em cada item para ver instruções detalhadas</li>
+            <li>Siga os passos na ordem recomendada para melhor resultado</li>
+            <li>Marque as tarefas como concluídas conforme você avança</li>
+          </ol>
+        </div>
+        
+        <p>O objetivo é entregar um MVP completo e funcional, com todas as etapas documentadas para facilitar a continuidade do projeto pela equipe de TI da Unimed.</p>
+        
+        <a href="#" class="link-button" onclick="showContent('setup-chromeos')">Começar pelo Primeiro Passo</a>
+      </div>
+      
+      <!-- Setup ChromeOS -->
+      <div class="content-section" id="content-setup-chromeos">
+        <h2>⚙️ Configuração no ChromeOS/Linux</h2>
+        <p>Siga este guia para configurar seu ambiente de desenvolvimento Flutter no ChromeOS com suporte a Linux (Crostini).</p>
+        
+        <h3>📋 Pré-requisitos</h3>
         <ul>
-          <li><a href="#objetivo"><span>🎯</span> Objetivo</a></li>
-          <li><a href="#fluxo"><span>🔄</span> Fluxo de Continuidade</a></li>
-          <li><a href="#ferramentas"><span>🧰</span> Ferramentas</a></li>
-          <li><a href="#responsabilidades"><span>👥</span> Responsabilidades</a></li>
-          <li><a href="#manutencao"><span>🔧</span> Manutenção</a></li>
-          <li><a href="#referencias"><span>🔎</span> Referências</a></li>
+          <li>Chromebook com suporte a Linux (Crostini)</li>
+          <li>Pelo menos 8GB de armazenamento livre</li>
+          <li>Conexão estável com a internet</li>
         </ul>
-      </div>
-      <h2 id="objetivo">🎯 Objetivo do Guia de Continuidade</h2>
-      <p>Este documento tem como principal objetivo garantir a transição suave e a manutenção contínua do aplicativo SOS Unimed Vidas após sua entrega à equipe de TI.</p>
-      <div class="continuity-section">
-        <h3>Principais Benefícios:</h3>
-        <ul>
-          <li>Preservação do conhecimento técnico</li>
-          <li>Redução de dependência de pessoal específico</li>
-          <li>Padronização de processos de manutenção</li>
-          <li>Documentação centralizada para toda a equipe</li>
-          <li>Facilidade no onboarding de novos membros</li>
-        </ul>
-      </div>
-      <h2 id="fluxo">🔄 Fluxo de Continuidade</h2>
-      <div class="accordion active">
-        <div class="accordion-header">
-          <span>1. Transição de Conhecimento</span>
-          <span>▼</span>
-        </div>
-        <div class="accordion-content">
-          <h3>Passo a Passo</h3>
+        
+        <h3>🔧 Passo 1: Configurar o Ambiente Linux</h3>
+        <div class="step-box">
+          <h4>Ativar Linux (Crostini)</h4>
           <ol>
-            <li>Reunião de alinhamento com a equipe de TI</li>
-            <li>Transferência de acessos e credenciais</li>
-            <li>Sessões de treinamento técnico</li>
-            <li>Documentação de processos críticos</li>
-          </ol>
-          <div class="knowledge-source">
-            <span>Fonte: DeepSeek + Melhores Práticas</span>
-          </div>
-          <div class="step-action" onclick="markStepComplete('transicao')">Marcar como Concluído</div>
-        </div>
-      </div>
-      <div class="accordion">
-        <div class="accordion-header">
-          <span>2. Monitoramento Inicial</span>
-          <span>▼</span>
-        </div>
-        <div class="accordion-content">
-          <h3>Passo a Passo</h3>
-          <ol>
-            <li>Configurar alertas de monitoramento</li>
-            <li>Estabelecer métricas de performance</li>
-            <li>Implementar logs de erro centralizados</li>
-            <li>Agendar revisões semanais</li>
-          </ol>
-          <div class="knowledge-source">
-            <span>Fonte: ChatGPT + Documentação Técnica</span>
-          </div>
-          <div class="step-action" onclick="markStepComplete('monitoramento')">Marcar como Concluído</div>
-        </div>
-      </div>
-      <div class="accordion">
-        <div class="accordion-header">
-          <span>3. Manutenção Contínua</span>
-          <span>▼</span>
-        </div>
-        <div class="accordion-content">
-          <h3>Passo a Passo</h3>
-          <ol>
-            <li>Atualizações de segurança mensais</li>
-            <li>Revisão trimestral de arquitetura</li>
-            <li>Testes de carga semestrais</li>
-            <li>Atualizações de documentação</li>
-          </ol>
-          <div class="knowledge-source">
-            <span>Fonte: Grok + Experiência Operacional</span>
-          </div>
-          <div class="step-action" onclick="markStepComplete('manutencao')">Marcar como Concluído</div>
-        </div>
-      </div>
-      <h2 id="ferramentas">🧰 Ferramentas de Continuidade</h2>
-      <div class="accordion active">
-        <div class="accordion-header">
-          <span>Sistema de Monitoramento</span>
-          <span>▼</span>
-        </div>
-        <div class="accordion-content">
-          <h3>Configuração Essencial</h3>
-          <p><strong>Ferramenta:</strong> Vercel Analytics + Firebase Performance</p>
-          <p><strong>Alertas:</strong> Configurados para downtime > 5min</p>
-          <h3>Passo a Passo para Acesso</h3>
-          <ol>
-            <li>Acessar dashboard.vercel.com</li>
-            <li>Selecionar projeto SOS-Unimed-Vidas</li>
-            <li>Navegar para a seção Analytics</li>
-            <li>Configurar alertas personalizados</li>
+            <li>Acesse <code>Configurações</code> > <code>Linux (Desenvolvedor)</code></li>
+            <li>Clique em <code>Ativar</code></li>
+            <li>Siga as instruções na tela (pode demorar alguns minutos)</li>
           </ol>
         </div>
-      </div>
-      <div class="accordion">
-        <div class="accordion-header">
-          <span>Gestão de Acessos</span>
-          <span>▼</span>
+        
+        <div class="step-box">
+          <h4>Atualizar pacotes</h4>
+          <p>Abra o Terminal Linux e execute:</p>
+          <div class="code-block">
+            sudo apt-get update && sudo apt-get upgrade -y
+          </div>
         </div>
-        <div class="accordion-content">
-          <h3>Política de Acessos</h3>
-          <p><strong>Princípio:</strong> Privilégio mínimo necessário</p>
-          <p><strong>Ferramenta:</strong> Google Workspace + 1Password</p>
-          <h3>Fluxo de Gerenciamento</h3>
+        
+        <h3>📥 Passo 2: Instalar o Flutter</h3>
+        <div class="step-box">
+          <h4>Baixar o Flutter SDK</h4>
+          <div class="code-block">
+            cd ~<br>
+            wget https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.22.0-stable.tar.xz
+          </div>
+        </div>
+        
+        <div class="step-box">
+          <h4>Extrair o arquivo</h4>
+          <div class="code-block">
+            tar xf flutter_linux_3.22.0-stable.tar.xz
+          </div>
+        </div>
+        
+        <div class="step-box">
+          <h4>Adicionar ao PATH</h4>
           <ol>
-            <li>Solicitar acesso via sistema de tickets</li>
-            <li>Aprovação do gestor técnico</li>
-            <li>Configuração de permissões</li>
-            <li>Treinamento inicial obrigatório</li>
+            <li>Edite o arquivo <code>.bashrc</code>:</li>
+            <div class="code-block">
+              nano ~/.bashrc
+            </div>
+            <li>Adicione no final:</li>
+            <div class="code-block">
+              export PATH="$PATH:$HOME/flutter/bin"
+            </div>
+            <li>Salve (Ctrl+O, Enter) e saia (Ctrl+X)</li>
+            <li>Carregue as alterações:</li>
+            <div class="code-block">
+              source ~/.bashrc
+            </div>
           </ol>
         </div>
-      </div>
-      <h2 id="responsabilidades">👥 Responsabilidades de Continuidade</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Função</th>
-            <th>Responsabilidades</th>
-            <th>Check-in</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Gestor Técnico</strong></td>
-            <td>Supervisão geral, alocação de recursos</td>
-            <td>Semanal</td>
-          </tr>
-          <tr>
-            <td><strong>Dev Sênior</strong></td>
-            <td>Manutenção crítica, revisão de código</td>
-            <td>Diário</td>
-          </tr>
-          <tr>
-            <td><strong>Dev Pleno</strong></td>
-            <td>Implementação de features, correções</td>
-            <td>Diário</td>
-          </tr>
-          <tr>
-            <td><strong>Suporte Técnico</strong></td>
-            <td>Monitoramento, primeiro nível de suporte</td>
-            <td>Contínuo</td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="continuity-section">
-        <h2 id="manutencao">🔧 Manutenção Preventiva</h2>
-        <h3>🔑 Rotinas Essenciais</h3>
-        <div class="accordion active">
-          <div class="accordion-header">
-            <span>Mensal</span>
-            <span>▼</span>
+        
+        <h3>🔍 Passo 3: Verificar Dependências</h3>
+        <div class="step-box">
+          <h4>Executar flutter doctor</h4>
+          <div class="code-block">
+            flutter doctor
           </div>
-          <div class="accordion-content">
-            <ol>
-              <li>Atualizar dependências: <code>npm update</code></li>
-              <li>Revisar logs de erros</li>
-              <li>Testar backups</li>
-              <li>Auditar acessos</li>
-            </ol>
+          <p>Você verá mensagens sobre dependências faltando - vamos resolver isso agora.</p>
+        </div>
+        
+        <h3>🤖 Passo 4: Configurar Android</h3>
+        <div class="step-box">
+          <h4>Instalar Java JDK</h4>
+          <div class="code-block">
+            sudo apt-get install openjdk-11-jdk -y
           </div>
         </div>
-        <h3>🛡️ Atualizações de Segurança</h3>
-        <div class="accordion">
-          <div class="accordion-header">
-            <span>Trimestral</span>
-            <span>▼</span>
-          </div>
-          <div class="accordion-content">
-            <ol>
-              <li>Verificar vulnerabilidades</li>
-              <li>Atualizar certificados SSL</li>
-              <li>Revisar políticas de acesso</li>
-              <li>Testar plano de contingência</li>
-            </ol>
-          </div>
+        
+        <div class="step-box">
+          <h4>Baixar Android Studio</h4>
+          <ol>
+            <li>Acesse <a href="https://developer.android.com/studio" target="_blank">developer.android.com/studio</a></li>
+            <li>Baixe a versão para Linux</li>
+            <li>No terminal, navegue até a pasta de downloads e extraia:</li>
+            <div class="code-block">
+              cd ~/Downloads<br>
+              unzip android-studio-*-linux.tar.gz<br>
+              mv android-studio ~
+            </div>
+          </ol>
         </div>
-      </div>
-      <h2 id="referencias">🔎 Referências de Continuidade</h2>
-      <ul>
-        <li><a href="https://vercel.com/docs" target="_blank">Documentação Vercel</a></li>
-        <li><a href="https://firebase.google.com/docs" target="_blank">Guia Firebase</a></li>
-        <li><a href="https://github.com/Tomgit-cyber/guiaweb-sos" target="_blank">Repositório GitHub do Guia</a></li>
-        <li><a href="https://www.unimed.coop.br/site/web/sulcapixaba" target="_blank">Portal Unimed Sul Capixaba</a></li>
-      </ul>
-    </div>
-  </div>
-  <!-- Painel -->
-  <div id="painel" class="tab-content">
-    <div class="container">
-      <h2>Painel de Continuidade</h2>
-      <div class="status-box">
-        <span>📋</span>
-        <div>
-          <strong>Progresso de Transição:</strong>
-          <div class="progress-container">
-            <div class="progress-bar" id="transition-progress">75%</div>
+        
+        <div class="step-box">
+          <h4>Iniciar Android Studio</h4>
+          <div class="code-block">
+            cd ~/android-studio/bin<br>
+            ./studio.sh
           </div>
-        </div>
-      </div>
-      <div class="status-box">
-        <span>👥</span>
-        <div>
-          <strong>Equipe Responsável:</strong>
+          <p>Siga o assistente de instalação e marque:</p>
           <ul>
-            <li>TI Unimed Cachoeiro (Responsável principal)</li>
-            <li>Everton (Suporte até 19/08/2025)</li>
+            <li>Android SDK</li>
+            <li>Android SDK Platform</li>
+            <li>Android Virtual Device</li>
           </ul>
         </div>
-      </div>
-      <h3>Próximas Ações de Continuidade</h3>
-      <div class="accordion active">
-        <div class="accordion-header">
-          <span>Treinamento Técnico</span>
-          <span>▼</span>
+        
+        <div class="step-box">
+          <h4>Configurar variáveis de ambiente</h4>
+          <ol>
+            <li>Edite novamente o <code>.bashrc</code>:</li>
+            <div class="code-block">
+              nano ~/.bashrc
+            </div>
+            <li>Adicione:</li>
+            <div class="code-block">
+              export ANDROID_HOME="$HOME/Android/Sdk"<br>
+              export PATH="$PATH:$ANDROID_HOME/tools"<br>
+              export PATH="$PATH:$ANDROID_HOME/platform-tools"
+            </div>
+            <li>Salve e carregue:</li>
+            <div class="code-block">
+              source ~/.bashrc
+            </div>
+          </ol>
         </div>
-        <div class="accordion-content">
-          <p><strong>Data:</strong> 25/07/2025 às 14h</p>
-          <p><strong>Local:</strong> Sala de Reuniões TI - 3º andar</p>
-          <p><strong>Tópicos:</strong></p>
+        
+        <h3>✅ Passo 5: Finalizar Configuração</h3>
+        <div class="step-box">
+          <h4>Aceitar licenças Android</h4>
+          <div class="code-block">
+            flutter doctor --android-licenses
+          </div>
+          <p>Pressione <code>y</code> para aceitar todas as licenças.</p>
+        </div>
+        
+        <div class="step-box">
+          <h4>Verificar instalação</h4>
+          <div class="code-block">
+            flutter doctor
+          </div>
+          <p>Agora deverá mostrar todas as dependências como OK.</p>
+        </div>
+        
+        <div class="step-action" onclick="markStepComplete('setup-chromeos')">Marcar como Concluído</div>
+        <a href="#" class="link-button" onclick="showContent('dev-project')">Próximo: Criar Projeto</a>
+      </div>
+      
+      <!-- Criar Projeto -->
+      <div class="content-section" id="content-dev-project">
+        <h2>💻 Criar Projeto Flutter</h2>
+        <p>Agora que o ambiente está configurado, vamos criar o projeto do aplicativo SOS Unimed Vidas.</p>
+        
+        <h3>🚀 Passo 1: Criar o Projeto</h3>
+        <div class="step-box">
+          <h4>Executar comando de criação</h4>
+          <p>No terminal, execute:</p>
+          <div class="code-block">
+            flutter create sos_unimed_vidas<br>
+            cd sos_unimed_vidas
+          </div>
+        </div>
+        
+        <h3>📁 Passo 2: Estrutura do Projeto</h3>
+        <div class="step-box">
+          <h4>Entender a estrutura padrão</h4>
+          <p>A estrutura básica criada:</p>
           <ul>
-            <li>Arquitetura do sistema</li>
-            <li>Fluxo de deploy</li>
-            <li>Monitoramento de erros</li>
-            <li>Plano de contingência</li>
+            <li><code>lib/</code> - Código-fonte Dart principal</li>
+            <li><code>lib/main.dart</code> - Ponto de entrada do aplicativo</li>
+            <li><code>pubspec.yaml</code> - Arquivo de configuração do projeto</li>
+            <li><code>test/</code> - Pasta para testes</li>
+            <li><code>android/</code>, <code>ios/</code> - Pastas específicas de plataforma</li>
           </ul>
         </div>
-      </div>
-      <h3>Checklist de Continuidade</h3>
-      <div class="accordion">
-        <div class="accordion-header">
-          <span>Itens Pendentes</span>
-          <span>▼</span>
+        
+        <h3>▶️ Passo 3: Executar o Projeto</h3>
+        <div class="step-box">
+          <h4>Rodar o aplicativo de exemplo</h4>
+          <p>Certifique-se de ter um dispositivo/emulador conectado e execute:</p>
+          <div class="code-block">
+            flutter run
+          </div>
+          <p>Você deve ver o aplicativo de exemplo "Counter" rodando.</p>
         </div>
-        <div class="accordion-content">
+        
+        <div class="step-action" onclick="markStepComplete('dev-project')">Marcar como Concluído</div>
+        <a href="#" class="link-button" onclick="showContent('dev-structure')">Próximo: Estrutura Básica</a>
+      </div>
+      
+      <!-- Estrutura Básica -->
+      <div class="content-section" id="content-dev-structure">
+        <h2>🏗️ Estrutura Básica do Aplicativo</h2>
+        <p>Vamos organizar a estrutura do nosso aplicativo SOS Unimed Vidas.</p>
+        
+        <h3>📂 Passo 1: Criar Estrutura de Pastas</h3>
+        <div class="step-box">
+          <h4>Estrutura recomendada</h4>
+          <p>Dentro da pasta <code>lib/</code>, crie as seguintes pastas:</p>
           <ul>
-            <li><label class="checkbox"><input type="checkbox"> Transferência completa de acessos</label></li>
-            <li><label class="checkbox"><input type="checkbox"> Documentação de processos críticos</label></li>
-            <li><label class="checkbox"><input type="checkbox"> Configuração de monitoramento contínuo</label></li>
-            <li><label class="checkbox"><input type="checkbox"> Plano de backup validado</label></li>
+            <li><code>models/</code> - Modelos de dados</li>
+            <li><code>views/</code> - Telas do aplicativo</li>
+            <li><code>widgets/</code> - Componentes reutilizáveis</li>
+            <li><code>services/</code> - Serviços e integrações</li>
+            <li><code>utils/</code> - Funções utilitárias</li>
           </ul>
         </div>
+        
+        <h3>📱 Passo 2: Criar Telas Principais</h3>
+        <div class="step-box">
+          <h4>Telas do MVP</h4>
+          <p>Crie os seguintes arquivos em <code>lib/views/</code>:</p>
+          <ul>
+            <li><code>home_screen.dart</code> - Tela inicial</li>
+            <li><code>emergency_screen.dart</code> - Tela de emergência</li>
+            <li><code>profile_screen.dart</code> - Perfil do usuário</li>
+            <li><code>help_screen.dart</code> - Ajuda e informações</li>
+          </ul>
+        </div>
+        
+        <h3>🔄 Passo 3: Configurar Navegação</h3>
+        <div class="step-box">
+          <h4>Implementar navegação básica</h4>
+          <p>Modifique <code>lib/main.dart</code> para usar <code>MaterialApp</code> com rotas nomeadas:</p>
+          <div class="code-block">
+            // Exemplo básico de configuração de rotas<br>
+            MaterialApp(<br>
+              &nbsp;&nbsp;title: 'SOS Unimed Vidas',<br>
+              &nbsp;&nbsp;initialRoute: '/',<br>
+              &nbsp;&nbsp;routes: {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;'/': (context) => HomeScreen(),<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;'/emergency': (context) => EmergencyScreen(),<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;'/profile': (context) => ProfileScreen(),<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;'/help': (context) => HelpScreen(),<br>
+              &nbsp;&nbsp;},<br>
+            )
+          </div>
+        </div>
+        
+        <div class="step-action" onclick="markStepComplete('dev-structure')">Marcar como Concluído</div>
+        <a href="#" class="link-button" onclick="showContent('dev-ui')">Próximo: Interface do Usuário</a>
+      </div>
+      
+      <!-- Interface do Usuário -->
+      <div class="content-section" id="content-dev-ui">
+        <h2>🎨 Interface do Usuário</h2>
+        <p>Vamos criar a interface do usuário seguindo a identidade visual da Unimed.</p>
+        
+        <h3>🎨 Passo 1: Definir Tema</h3>
+        <div class="step-box">
+          <h4>Configurar cores da Unimed</h4>
+          <p>No <code>MaterialApp</code>, defina o tema:</p>
+          <div class="code-block">
+            theme: ThemeData(<br>
+              &nbsp;&nbsp;primaryColor: Color(0xFF00A651),<br>
+              &nbsp;&nbsp;accentColor: Color(0xFFFFD100),<br>
+              &nbsp;&nbsp;scaffoldBackgroundColor: Color(0xFFF5FBF7),<br>
+              &nbsp;&nbsp;// Outras configurações de tema<br>
+            )
+          </div>
+        </div>
+        
+        <h3>📱 Passo 2: Criar Componentes</h3>
+        <div class="step-box">
+          <h4>Componentes principais</h4>
+          <p>Crie widgets reutilizáveis em <code>lib/widgets/</code>:</p>
+          <ul>
+            <li><code>emergency_button.dart</code> - Botão de emergência grande</li>
+            <li><code>custom_app_bar.dart</code> - Barra superior personalizada</li>
+            <li><code>info_card.dart</code> - Cartão para informações</li>
+          </ul>
+        </div>
+        
+        <h3>📄 Passo 3: Implementar Telas</h3>
+        <div class="step-box">
+          <h4>Tela inicial (HomeScreen)</h4>
+          <p>Elementos principais:</p>
+          <ul>
+            <li>AppBar com logo da Unimed</li>
+            <li>Botão de emergência grande e destacado</li>
+            <li>Cartões com informações rápidas</li>
+            <li>Menu de navegação inferior</li>
+          </ul>
+        </div>
+        
+        <div class="step-action" onclick="markStepComplete('dev-ui')">Marcar como Concluído</div>
+        <a href="#" class="link-button" onclick="showContent('dev-logic')">Próximo: Lógica de Negócio</a>
+      </div>
+      
+      <!-- Lógica de Negócio -->
+      <div class="content-section" id="content-dev-logic">
+        <h2>🧠 Lógica de Negócio</h2>
+        <p>Implementar a lógica principal do aplicativo SOS Unimed Vidas.</p>
+        
+        <h3>📞 Passo 1: Funcionalidade de Emergência</h3>
+        <div class="step-box">
+          <h4>Ação do botão de emergência</h4>
+          <p>O botão deve:</p>
+          <ol>
+            <li>Mostrar confirmação antes de chamar</li>
+            <li>Realizar chamada telefônica para o número da Unimed</li>
+            <li>Enviar notificação para o sistema da Unimed</li>
+            <li>Registrar o evento no histórico</li>
+          </ol>
+          <div class="code-block">
+            // Exemplo de chamada telefônica<br>
+            _makeEmergencyCall() async {<br>
+              &nbsp;&nbsp;const phoneNumber = 'tel:123456789';<br>
+              &nbsp;&nbsp;if (await launch(phoneNumber)) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;// Registrar chamada<br>
+              &nbsp;&nbsp;} else {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;throw 'Could not launch $phoneNumber';<br>
+              &nbsp;&nbsp;}<br>
+            }
+          </div>
+        </div>
+        
+        <h3>💾 Passo 2: Gerenciamento de Dados</h3>
+        <div class="step-box">
+          <h4>Modelos de dados</h4>
+          <p>Crie modelos em <code>lib/models/</code>:</p>
+          <ul>
+            <li><code>user.dart</code> - Informações do usuário</li>
+            <li><code>emergency_history.dart</code> - Histórico de emergências</li>
+            <li><code>health_info.dart</code> - Informações de saúde</li>
+          </ul>
+        </div>
+        
+        <h3>🔁 Passo 3: Estado da Aplicação</h3>
+        <div class="step-box">
+          <h4>Gerenciar estado com Provider</h4>
+          <p>Instale o pacote Provider no <code>pubspec.yaml</code>:</p>
+          <div class="code-block">
+            dependencies:<br>
+              &nbsp;&nbsp;flutter:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;sdk: flutter<br>
+              &nbsp;&nbsp;provider: ^6.0.0
+          </div>
+          <p>Crie provedores para gerenciar estado global:</p>
+          <ul>
+            <li><code>user_provider.dart</code></li>
+            <li><code>emergency_provider.dart</code></li>
+          </ul>
+        </div>
+        
+        <div class="step-action" onclick="markStepComplete('dev-logic')">Marcar como Concluído</div>
+        <a href="#" class="link-button" onclick="showContent('integration-firebase')">Próximo: Integração Firebase</a>
+      </div>
+      
+      <!-- Integração Firebase -->
+      <div class="content-section" id="content-integration-firebase">
+        <h2>🔥 Integração com Firebase</h2>
+        <p>Configurar Firebase para autenticação, banco de dados e analytics.</p>
+        
+        <h3>⚙️ Passo 1: Configurar Projeto Firebase</h3>
+        <div class="step-box">
+          <h4>Criar projeto no Firebase Console</h4>
+          <ol>
+            <li>Acesse <a href="https://console.firebase.google.com/" target="_blank">Firebase Console</a></li>
+            <li>Clique em "Criar projeto"</li>
+            <li>Nomeie como "SOS Unimed Vidas"</li>
+            <li>Ative Google Analytics (recomendado)</li>
+          </ol>
+        </div>
+        
+        <h3>📱 Passo 2: Adicionar App Flutter</h3>
+        <div class="step-box">
+          <h4>Configurar para Android</h4>
+          <ol>
+            <li>No Firebase Console, adicione um app Android</li>
+            <li>Use o package name do seu app Flutter</li>
+            <li>Baixe o arquivo <code>google-services.json</code></li>
+            <li>Coloque na pasta <code>android/app/</code></li>
+          </ol>
+        </div>
+        
+        <h3>📦 Passo 3: Adicionar Dependências</h3>
+        <div class="step-box">
+          <h4>Atualizar pubspec.yaml</h4>
+          <div class="code-block">
+            dependencies:<br>
+              &nbsp;&nbsp;firebase_core: ^2.0.0<br>
+              &nbsp;&nbsp;firebase_auth: ^4.0.0<br>
+              &nbsp;&nbsp;cloud_firestore: ^4.0.0<br>
+              &nbsp;&nbsp;firebase_analytics: ^10.0.0
+          </div>
+        </div>
+        
+        <h3>🔌 Passo 4: Inicializar Firebase</h3>
+        <div class="step-box">
+          <h4>Configurar inicialização</h4>
+          <p>No <code>main.dart</code>:</p>
+          <div class="code-block">
+            import 'package:firebase_core/firebase_core.dart';<br><br>
+            
+            void main() async {<br>
+              &nbsp;&nbsp;WidgetsFlutterBinding.ensureInitialized();<br>
+              &nbsp;&nbsp;await Firebase.initializeApp();<br>
+              &nbsp;&nbsp;runApp(MyApp());<br>
+            }
+          </div>
+        </div>
+        
+        <h3>🔐 Passo 5: Implementar Autenticação</h3>
+        <div class="step-box">
+          <h4>Fluxo de login básico</h4>
+          <p>Implementar tela de login com CPF e senha:</p>
+          <div class="code-block">
+            // Exemplo de autenticação<br>
+            final FirebaseAuth _auth = FirebaseAuth.instance;<br><br>
+            
+            Future<User?> signIn(String cpf, String password) async {<br>
+              &nbsp;&nbsp;try {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;UserCredential result = await _auth.signInWithEmailAndPassword(<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;email: '$cpf@unimed.com',<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;password: password,<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;);<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;return result.user;<br>
+              &nbsp;&nbsp;} catch (e) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;print(e.toString());<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;return null;<br>
+              &nbsp;&nbsp;}<br>
+            }
+          </div>
+        </div>
+        
+        <div class="step-action" onclick="markStepComplete('integration-firebase')">Marcar como Concluído</div>
+        <a href="#" class="link-button" onclick="showContent('testing-unit')">Próximo: Testes Unitários</a>
+      </div>
+      
+      <!-- Testes Unitários -->
+      <div class="content-section" id="content-testing-unit">
+        <h2>🧪 Testes Unitários</h2>
+        <p>Criar testes para garantir a qualidade do código.</p>
+        
+        <h3>📝 Passo 1: Estrutura de Testes</h3>
+        <div class="step-box">
+          <h4>Organizar pasta de testes</h4>
+          <p>Estrutura recomendada em <code>test/</code>:</p>
+          <ul>
+            <li><code>models/</code> - Testes para modelos de dados</li>
+            <li><code>services/</code> - Testes para serviços</li>
+            <li><code>widgets/</code> - Testes para widgets</li>
+          </ul>
+        </div>
+        
+        <h3>🔬 Passo 2: Escrever Testes Unitários</h3>
+        <div class="step-box">
+          <h4>Exemplo de teste para modelo</h4>
+          <p>Arquivo <code>test/models/user_test.dart</code>:</p>
+          <div class="code-block">
+            import 'package:flutter_test/flutter_test.dart';<br>
+            import 'package:sos_unimed_vidas/models/user.dart';<br><br>
+            
+            void main() {<br>
+              &nbsp;&nbsp;test('User model should be created correctly', () {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;final user = User(<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id: '123',<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name: 'João Silva',<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cpf: '12345678900'<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;);<br><br>
+                
+                &nbsp;&nbsp;&nbsp;&nbsp;expect(user.name, 'João Silva');<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;expect(user.cpf, '12345678900');<br>
+              &nbsp;&nbsp;});<br>
+            }
+          </div>
+        </div>
+        
+        <h3>🏃 Passo 3: Executar Testes</h3>
+        <div class="step-box">
+          <h4>Rodar todos os testes</h4>
+          <p>No terminal, execute:</p>
+          <div class="code-block">
+            flutter test
+          </div>
+          <p>Para rodar testes específicos:</p>
+          <div class="code-block">
+            flutter test test/models/user_test.dart
+          </div>
+        </div>
+        
+        <div class="step-action" onclick="markStepComplete('testing-unit')">Marcar como Concluído</div>
+        <a href="#" class="link-button" onclick="showContent('deployment-build')">Próximo: Build do Aplicativo</a>
+      </div>
+      
+      <!-- Build do Aplicativo -->
+      <div class="content-section" id="content-deployment-build">
+        <h2>📦 Build do Aplicativo</h2>
+        <p>Preparar o aplicativo para distribuição.</p>
+        
+        <h3>📱 Passo 1: Build para Android</h3>
+        <div class="step-box">
+          <h4>Criar APK de release</h4>
+          <p>No terminal, execute:</p>
+          <div class="code-block">
+            flutter build apk --release
+          </div>
+          <p>O APK será gerado em <code>build/app/outputs/flutter-apk/app-release.apk</code></p>
+        </div>
+        
+        <h3>📱 Passo 2: Build para iOS (se aplicável)</h3>
+        <div class="step-box">
+          <h4>Criar IPA para distribuição</h4>
+          <p>No Mac, execute:</p>
+          <div class="code-block">
+            flutter build ios --release
+          </div>
+        </div>
+        
+        <h3>🔐 Passo 3: Configurar Signing (Android)</h3>
+        <div class="step-box">
+          <h4>Criar keystore para assinatura</h4>
+          <p>No terminal:</p>
+          <div class="code-block">
+            keytool -genkey -v -keystore ~/upload-keystore.jks -keyalg RSA -keysize 2048 -validity 10000 -alias upload
+          </div>
+          <p>Referencie o keystore no arquivo <code>android/key.properties</code>:</p>
+          <div class="code-block">
+            storePassword=<password><br>
+            keyPassword=<password><br>
+            keyAlias=upload<br>
+            storeFile=/Users/<user>/upload-keystore.jks
+          </div>
+        </div>
+        
+        <div class="step-action" onclick="markStepComplete('deployment-build')">Marcar como Concluído</div>
+        <a href="#" class="link-button" onclick="showContent('delivery-documentation')">Próximo: Documentação</a>
+      </div>
+      
+      <!-- Documentação -->
+      <div class="content-section" id="content-delivery-documentation">
+        <h2>📚 Documentação Final</h2>
+        <p>Criar documentação completa para entrega do MVP.</p>
+        
+        <h3>📄 Passo 1: Documento de Entrega</h3>
+        <div class="step-box">
+          <h4>Conteúdo essencial</h4>
+          <ul>
+            <li><strong>Visão Geral do Projeto</strong> - Objetivos e escopo</li>
+            <li><strong>Instruções de Instalação</strong> - Como configurar o ambiente</li>
+            <li><strong>Arquitetura do Sistema</strong> - Estrutura do código</li>
+            <li><strong>Fluxo de Funcionalidades</strong> - Como as principais features funcionam</li>
+            <li><strong>Integrações</strong> - Detalhes das APIs e serviços externos</li>
+            <li><strong>Deploy e CI/CD</strong> - Processo de build e deploy</li>
+            <li><strong>Contatos</strong> - Equipe responsável e canais de comunicação</li>
+          </ul>
+        </div>
+        
+        <h3>🔗 Passo 2: Links e Recursos</h3>
+        <div class="step-box">
+          <h4>Recursos importantes</h4>
+          <ul>
+            <li>Repositório GitHub: <a href="https://github.com/Tomgit-cyber/guiaweb-sos" target="_blank">github.com/Tomgit-cyber/guiaweb-sos</a></li>
+            <li>Documentação Firebase: <a href="https://firebase.google.com/docs" target="_blank">firebase.google.com/docs</a></li>
+            <li>Documentação Flutter: <a href="https://docs.flutter.dev/" target="_blank">docs.flutter.dev</a></li>
+            <li>Portal Unimed: <a href="https://www.unimed.coop.br/site/web/sulcapixaba" target="_blank">unimed.coop.br/sulcapixaba</a></li>
+          </ul>
+        </div>
+        
+        <h3>📋 Passo 3: Checklist de Entrega</h3>
+        <div class="step-box">
+          <h4>Verificações finais</h4>
+          <ul>
+            <li><span class="status-indicator status-completed"></span> Código fonte completo entregue</li>
+            <li><span class="status-indicator status-completed"></span> Documentação técnica finalizada</li>
+            <li><span class="status-indicator status-completed"></span> APK/IPA gerado e testado</li>
+            <li><span class="status-indicator status-completed"></span> Acessos e credenciais repassados</li>
+            <li><span class="status-indicator status-completed"></span> Sessão de transferência de conhecimento realizada</li>
+          </ul>
+        </div>
+        
+        <div class="step-action" onclick="markStepComplete('delivery-documentation')">Marcar como Concluído</div>
+        <a href="#" class="link-button" onclick="showContent('home')">Voltar ao Início</a>
       </div>
     </div>
   </div>
-  <!-- Feedback -->
-  <div id="feedback" class="tab-content">
-    <div class="container">
-      <h2>📬 Canal de Continuidade</h2>
-      <p>Utilize este formulário para questões relacionadas à continuidade do projeto:</p>
-      <form id="feedback-form" action="https://formspree.io/f/xdkdkyjj" method="POST">
-        <div class="form-group">
-          <label for="nome">Seu Nome:</label>
-          <input type="text" id="nome" name="nome" required placeholder="Nome completo">
-        </div>
-        <div class="form-group">
-          <label for="email">Email:</label>
-          <input type="email" id="email" name="email" required placeholder="seu.email@unimedci.com.br">
-        </div>
-        <div class="form-group">
-          <label for="tipo">Tipo de Solicitação:</label>
-          <select id="tipo" name="tipo" required>
-            <option value="">Selecione uma opção</option>
-            <option value="duvida">Dúvida Técnica</option>
-            <option value="sugestao">Sugestão de Melhoria</option>
-            <option value="problema">Reportar Problema</option>
-            <option value="acesso">Solicitação de Acesso</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="mensagem">Mensagem:</label>
-          <textarea id="mensagem" name="mensagem" required rows="6" placeholder="Descreva sua solicitação aqui..."></textarea>
-        </div>
-        <button class="submit" type="submit">
-          <span>📤</span> Enviar Solicitação
-        </button>
-      </form>
-    </div>
-  </div>
+  
   <footer>
-    <p>Guia de Continuidade - SOS Unimed Vidas v2.0 • © 2025 Unimed Cachoeiro do Itapemirim</p>
+    <p>Guia de Desenvolvimento Ponta a Ponta - SOS Unimed Vidas • © 2025 Unimed Cachoeiro do Itapemirim</p>
     <div style="margin-top: 15px;">
       <a href="https://github.com/Tomgit-cyber/guiaweb-sos" target="_blank">Repositório GitHub</a> • 
       <a href="https://www.unimed.coop.br/site/web/sulcapixaba" target="_blank">Portal Unimed Sul Capixaba</a> • 
       <a href="mailto:ti@unimedci.com.br">Contato TI</a>
     </div>
   </footer>
-  <div id="toast" class="toast">
-    <span>🔔</span>
-    <div id="toast-message">Mensagem de notificação</div>
-  </div>
+  
   <script>
-    // Função para mostrar a aba selecionada
-    function showTab(tabId) {
-      // Esconde todo o conteúdo das abas
-      document.querySelectorAll('.tab-content').forEach(el => {
-        el.classList.remove('active');
+    // Função para alternar visibilidade do submenu
+    function toggleSubmenu(id) {
+      const submenu = document.getElementById(`submenu-${id}`);
+      const title = submenu.previousElementSibling;
+      
+      // Fechar outros submenus
+      document.querySelectorAll('.submenu').forEach(menu => {
+        if (menu.id !== `submenu-${id}`) {
+          menu.classList.remove('active');
+          menu.previousElementSibling.classList.remove('active');
+        }
       });
-      // Remove a classe ativa de todos os botões
-      document.querySelectorAll('nav button').forEach(btn => {
-        btn.classList.remove('active-tab');
+      
+      // Alternar o atual
+      submenu.classList.toggle('active');
+      title.classList.toggle('active');
+    }
+    
+    // Função para mostrar conteúdo
+    function showContent(id) {
+      // Esconder todos os conteúdos
+      document.querySelectorAll('.content-section').forEach(section => {
+        section.classList.remove('active');
       });
-      // Mostra a aba selecionada
-      document.getElementById(tabId).classList.add('active');
-      // Adiciona classe ativa ao botão correspondente
-      document.getElementById('tab-' + tabId).classList.add('active-tab');
-      // Salva a aba selecionada no localStorage
-      localStorage.setItem('lastTab', tabId);
-    }
-    // Função para mostrar notificação toast
-    function showToast(message) {
-      const toast = document.getElementById('toast');
-      const toastMessage = document.getElementById('toast-message');
-      toastMessage.textContent = message;
-      toast.classList.add('show');
-      setTimeout(() => {
-        toast.classList.remove('show');
-      }, 3000);
-    }
-    // Accordion functionality
-    document.querySelectorAll('.accordion-header').forEach(header => {
-      header.addEventListener('click', () => {
-        const accordion = header.parentElement;
-        accordion.classList.toggle('active');
+      
+      // Mostrar o conteúdo selecionado
+      document.getElementById(`content-${id}`).classList.add('active');
+      
+      // Atualizar menu ativo
+      document.querySelectorAll('.submenu-item').forEach(item => {
+        item.classList.remove('active');
       });
-    });
-    // Mark step as complete
-    function markStepComplete(stepId) {
-      showToast(`Passo "${stepId}" marcado como concluído!`);
-    }
-    // Verifica se há uma aba salva no localStorage
-    document.addEventListener('DOMContentLoaded', function() {
-      // Carrega a última aba aberta
-      const lastTab = localStorage.getItem('lastTab') || 'guia';
-      showTab(lastTab);
-      // Adiciona evento ao formulário de feedback
-      const form = document.getElementById('feedback-form');
-      if (form) {
-        form.addEventListener('submit', function(e) {
-          e.preventDefault();
-          // Mostra notificação
-          showToast('Solicitação enviada com sucesso!');
-          // Envia o formulário
-          setTimeout(() => {
-            form.submit();
-          }, 2000);
-        });
+      
+      // Encontrar e ativar o item do menu correspondente
+      const menuItem = Array.from(document.querySelectorAll('.submenu-item')).find(item => 
+        item.getAttribute('onclick').includes(id)
+      );
+      
+      if (menuItem) {
+        menuItem.classList.add('active');
+        // Abrir o submenu pai também
+        const parentSubmenu = menuItem.closest('.submenu');
+        if (parentSubmenu) {
+          parentSubmenu.classList.add('active');
+          parentSubmenu.previousElementSibling.classList.add('active');
+        }
       }
+      
+      // Scroll para o topo do conteúdo
+      document.querySelector('.content').scrollTop = 0;
+    }
+    
+    // Função para marcar passo como concluído
+    function markStepComplete(stepId) {
+      // Aqui você poderia salvar o estado em localStorage
+      console.log(`Passo ${stepId} marcado como concluído`);
+      
+      // Atualizar visualmente o item do menu
+      const menuItem = Array.from(document.querySelectorAll('.submenu-item')).find(item => 
+        item.getAttribute('onclick').includes(stepId)
+      );
+      
+      if (menuItem) {
+        menuItem.innerHTML = `✓ ${menuItem.textContent}`;
+      }
+      
+      alert(`Passo "${stepId}" marcado como concluído!`);
+    }
+    
+    // Inicializar
+    document.addEventListener('DOMContentLoaded', function() {
+      // Mostrar conteúdo inicial
+      showContent('home');
     });
   </script>
 </body>
