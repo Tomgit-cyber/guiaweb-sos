@@ -1,3 +1,8 @@
+Com certeza! Incluir links diretos para os downloads torna o guia muito mais prático. Atualizei o código HTML para transformar as menções de download em links clicáveis, direcionando para as páginas oficiais do Flutter e do Android Studio.
+
+Aqui está o código HTML com os links de download integrados nos passos a passo de cada sistema operacional:
+
+Generated html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -622,16 +627,12 @@
         <h3>📥 Passo 2: Instalar o Flutter</h3>
         <div class="step-box">
           <h4>Baixar o Flutter SDK</h4>
+          <p>Acesse a <a href="https://docs.flutter.dev/get-started/install/linux" target="_blank">página de download do Flutter</a> e baixe a versão mais recente para Linux. Em seguida, no terminal, execute:</p>
           <div class="code-block">
-            cd ~<br>
-            wget https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.22.0-stable.tar.xz
-          </div>
-        </div>
-
-        <div class="step-box">
-          <h4>Extrair o arquivo</h4>
-          <div class="code-block">
-            tar xf flutter_linux_3.22.0-stable.tar.xz
+            # Navegue para a pasta onde você quer instalar o Flutter
+            cd ~ 
+            # Extraia o arquivo baixado (substitua o nome do arquivo se necessário)
+            tar xf ~/Downloads/flutter_linux_x.x.x-stable.tar.xz
           </div>
         </div>
 
@@ -674,11 +675,11 @@
         <div class="step-box">
           <h4>Baixar Android Studio</h4>
           <ol>
-            <li>Acesse <a href="https://developer.android.com/studio" target="_blank">developer.android.com/studio</a></li>
-            <li>Baixe a versão para Linux</li>
+            <li><a href="https://developer.android.com/studio" target="_blank">Faça o download do Android Studio para Linux.</a></li>
             <li>No terminal, navegue até a pasta de downloads e extraia:</li>
             <div class="code-block">
               cd ~/Downloads<br>
+              # Extraia o arquivo baixado (o nome pode variar)
               unzip android-studio-*-linux.tar.gz<br>
               mv android-studio ~
             </div>
@@ -757,9 +758,8 @@
         <div class="step-box">
           <h4>Baixar o Flutter SDK</h4>
           <ol>
-            <li>Acesse <a href="https://docs.flutter.dev/get-started/install/windows" target="_blank">docs.flutter.dev/get-started/install/windows</a></li>
-            <li>Baixe o arquivo <code>flutter_windows_x.x.x-stable.zip</code></li>
-            <li>Extraia o arquivo em <code>C:\src\flutter</code> (crie a pasta se necessário)</li>
+            <li><a href="https://docs.flutter.dev/get-started/install/windows" target="_blank">Acesse a página de instalação do Flutter para Windows</a> e faça o download.</li>
+            <li>Extraia o arquivo em <code>C:\src\flutter</code> (crie a pasta se necessário). <strong>Não instale em pastas que exigem privilégios elevados, como <code>C:\Program Files\</code>.</strong></li>
           </ol>
         </div>
 
@@ -769,7 +769,7 @@
             <li>Pressione <code>Win + R</code>, digite <code>sysdm.cpl</code> e pressione Enter</li>
             <li>Clique na aba <code>Avançado</code></li>
             <li>Clique em <code>Variáveis de Ambiente</code></li>
-            <li>Na seção <code>Variáveis do sistema</code>, selecione <code>Path</code> e clique em <code>Editar</code></li>
+            <li>Na seção <code>Variáveis de sistema</code>, selecione <code>Path</code> e clique em <code>Editar</code></li>
             <li>Clique em <code>Novo</code> e adicione: <code>C:\src\flutter\bin</code></li>
             <li>Clique <code>OK</code> para fechar todas as janelas</li>
           </ol>
@@ -789,23 +789,22 @@
         <div class="step-box">
           <h4>Baixar Android Studio</h4>
           <ol>
-            <li>Acesse <a href="https://developer.android.com/studio" target="_blank">developer.android.com/studio</a></li>
-            <li>Baixe a versão para Windows</li>
-            <li>Execute o instalador e siga as instruções</li>
+            <li><a href="https://developer.android.com/studio" target="_blank">Acesse o site oficial do Android Studio</a> e faça o download da versão para Windows. [1, 5]</li>
+            <li>Execute o instalador e siga as instruções.</li>
           </ol>
         </div>
 
         <div class="step-box">
           <h4>Configurar Android Studio</h4>
           <ol>
-            <li>Abra o Android Studio</li>
-            <li>No assistente de instalação, marque:</li>
+            <li>Abra o Android Studio.</li>
+            <li>No assistente de instalação, certifique-se de marcar:</li>
             <ul>
               <li>Android SDK</li>
               <li>Android SDK Platform</li>
               <li>Android Virtual Device</li>
             </ul>
-            <li>Clique em <code>Next</code> e complete a instalação</li>
+            <li>Clique em <code>Next</code> e complete a instalação.</li>
           </ol>
         </div>
 
@@ -861,9 +860,8 @@
         <div class="step-box">
           <h4>Baixar o Flutter SDK</h4>
           <ol>
-            <li>Acesse <a href="https://docs.flutter.dev/get-started/install/macos" target="_blank">docs.flutter.dev/get-started/install/macos</a></li>
-            <li>Baixe o arquivo <code>flutter_macos_arm64_x.x.x-stable.zip</code> (para Apple Silicon) ou <code>flutter_macos_x64_x.x.x-stable.zip</code> (para Intel)</li>
-            <li>Extraia o arquivo na sua pasta <code>Applications</code> ou em um diretório de sua escolha (ex: <code>~/development</code>)</li>
+            <li><a href="https://docs.flutter.dev/get-started/install/macos" target="_blank">Acesse a página de instalação do Flutter para macOS</a> e faça o download da versão correta para seu processador (Apple Silicon ou Intel).</li>
+            <li>Extraia o arquivo na sua pasta <code>Applications</code> ou em um diretório de sua escolha (ex: <code>~/development</code>).</li>
           </ol>
         </div>
 
@@ -874,10 +872,7 @@
             <li>Se for <code>zsh</code> (padrão no macOS Catalina e posteriores), edite <code>~/.zshrc</code>. Se for <code>bash</code>, edite <code>~/.bash_profile</code>.</li>
             <li>Adicione a seguinte linha (ajuste o caminho se necessário):</li>
             <div class="code-block">
-              export PATH="$PATH:`pwd`/flutter/bin"
-            </div>
-            <li>ou, se extraiu em <code>~/development</code>:</li>
-            <div class="code-block">
+              # Se extraiu em ~/development
               export PATH="$PATH:$HOME/development/flutter/bin"
             </div>
             <li>Salve o arquivo e execute <code>source ~/.zshrc</code> (ou <code>source ~/.bash_profile</code>) para carregar as alterações.</li>
@@ -913,10 +908,9 @@
         <div class="step-box">
           <h4>Baixar Android Studio</h4>
           <ol>
-            <li>Acesse <a href="https://developer.android.com/studio" target="_blank">developer.android.com/studio</a></li>
-            <li>Baixe a versão para macOS</li>
-            <li>Abra o arquivo <code>.dmg</code> e arraste o Android Studio para a pasta <code>Applications</code></li>
-            <li>Abra o Android Studio e siga o assistente de instalação</li>
+            <li><a href="https://developer.android.com/studio" target="_blank">Acesse o site oficial do Android Studio</a> e faça o download da versão para macOS. [1, 5]</li>
+            <li>Abra o arquivo <code>.dmg</code> e arraste o Android Studio para a pasta <code>Applications</code>.</li>
+            <li>Abra o Android Studio e siga o assistente de instalação.</li>
           </ol>
         </div>
 
@@ -1034,14 +1028,14 @@
           <div class="code-block">
             // Exemplo básico de configuração de rotas<br>
             MaterialApp(<br>
-              &nbsp;&nbsp;title: 'SOS Unimed Vidas',<br>
-              &nbsp;&nbsp;initialRoute: '/',<br>
-              &nbsp;&nbsp;routes: {<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;'/': (context) => HomeScreen(),<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;'/emergency': (context) => EmergencyScreen(),<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;'/profile': (context) => ProfileScreen(),<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;'/help': (context) => HelpScreen(),<br>
-              &nbsp;&nbsp;},<br>
+                title: 'SOS Unimed Vidas',<br>
+                initialRoute: '/',<br>
+                routes: {<br>
+                    '/': (context) => HomeScreen(),<br>
+                    '/emergency': (context) => EmergencyScreen(),<br>
+                    '/profile': (context) => ProfileScreen(),<br>
+                    '/help': (context) => HelpScreen(),<br>
+                },<br>
             )
           </div>
         </div>
@@ -1061,10 +1055,10 @@
           <p>No <code>MaterialApp</code>, defina o tema:</p>
           <div class="code-block">
             theme: ThemeData(<br>
-              &nbsp;&nbsp;primaryColor: Color(0xFF00A651),<br>
-              &nbsp;&nbsp;accentColor: Color(0xFFFFD100),<br>
-              &nbsp;&nbsp;scaffoldBackgroundColor: Color(0xFFF5FBF7),<br>
-              &nbsp;&nbsp;// Outras configurações de tema<br>
+                primaryColor: Color(0xFF00A651),<br>
+                accentColor: Color(0xFFFFD100),<br>
+                scaffoldBackgroundColor: Color(0xFFF5FBF7),<br>
+                // Outras configurações de tema<br>
             )
           </div>
         </div>
@@ -1114,12 +1108,12 @@
           <div class="code-block">
             // Exemplo de chamada telefônica<br>
             _makeEmergencyCall() async {<br>
-              &nbsp;&nbsp;const phoneNumber = 'tel:123456789';<br>
-              &nbsp;&nbsp;if (await launch(phoneNumber)) {<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;// Registrar chamada<br>
-              &nbsp;&nbsp;} else {<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;throw 'Could not launch $phoneNumber';<br>
-              &nbsp;&nbsp;}<br>
+                const phoneNumber = 'tel:123456789';<br>
+                if (await launch(phoneNumber)) {<br>
+                    // Registrar chamada<br>
+                } else {<br>
+                    throw 'Could not launch $phoneNumber';<br>
+                }<br>
             }
           </div>
         </div>
@@ -1141,9 +1135,9 @@
           <p>Instale o pacote Provider no <code>pubspec.yaml</code>:</p>
           <div class="code-block">
             dependencies:<br>
-              &nbsp;&nbsp;flutter:<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;sdk: flutter<br>
-              &nbsp;&nbsp;provider: ^6.0.0
+                flutter:<br>
+                    sdk: flutter<br>
+                provider: ^6.0.0
           </div>
           <p>Crie provedores para gerenciar estado global:</p>
           <ul>
@@ -1188,10 +1182,10 @@
           <h4>Atualizar pubspec.yaml</h4>
           <div class="code-block">
             dependencies:<br>
-              &nbsp;&nbsp;firebase_core: ^2.0.0<br>
-              &nbsp;&nbsp;firebase_auth: ^4.0.0<br>
-              &nbsp;&nbsp;cloud_firestore: ^4.0.0<br>
-              &nbsp;&nbsp;firebase_analytics: ^10.0.0
+                firebase_core: ^2.0.0<br>
+                firebase_auth: ^4.0.0<br>
+                cloud_firestore: ^4.0.0<br>
+                firebase_analytics: ^10.0.0
           </div>
         </div>
 
@@ -1203,9 +1197,9 @@
             import 'package:firebase_core/firebase_core.dart';<br><br>
 
             void main() async {<br>
-              &nbsp;&nbsp;WidgetsFlutterBinding.ensureInitialized();<br>
-              &nbsp;&nbsp;await Firebase.initializeApp();<br>
-              &nbsp;&nbsp;runApp(MyApp());<br>
+                WidgetsFlutterBinding.ensureInitialized();<br>
+                await Firebase.initializeApp();<br>
+                runApp(MyApp());<br>
             }
           </div>
         </div>
@@ -1219,16 +1213,16 @@
             final FirebaseAuth _auth = FirebaseAuth.instance;<br><br>
 
             Future<User?> signIn(String cpf, String password) async {<br>
-              &nbsp;&nbsp;try {<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;UserCredential result = await _auth.signInWithEmailAndPassword(<br>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;email: '$cpf@unimed.com',<br>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;password: password,<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;);<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;return result.user;<br>
-              &nbsp;&nbsp;} catch (e) {<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;print(e.toString());<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;return null;<br>
-              &nbsp;&nbsp;}<br>
+                try {<br>
+                    UserCredential result = await _auth.signInWithEmailAndPassword(<br>
+                        email: '$cpf@unimed.com',<br>
+                        password: password,<br>
+                    );<br>
+                    return result.user;<br>
+                } catch (e) {<br>
+                    print(e.toString());<br>
+                    return null;<br>
+                }<br>
             }
           </div>
         </div>
@@ -1248,7 +1242,7 @@
           <p>Adicione ao <code>pubspec.yaml</code>:</p>
           <div class="code-block">
             dependencies:<br>
-              &nbsp;&nbsp;http: ^0.13.5
+                http: ^0.13.5
           </div>
         </div>
 
@@ -1261,17 +1255,17 @@
             import 'package:http/http.dart' as http;<br><br>
 
             class ApiService {<br>
-              &nbsp;&nbsp;static const String baseUrl = 'https://api.example.com';<br><br>
+                static const String baseUrl = 'https://api.example.com';<br><br>
 
-              &nbsp;&nbsp;Future<Map<String, dynamic>> fetchData(String endpoint) async {<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;final response = await http.get(Uri.parse('$baseUrl/$endpoint'));<br><br>
+                Future<Map<String, dynamic>> fetchData(String endpoint) async {<br>
+                    final response = await http.get(Uri.parse('$baseUrl/$endpoint'));<br><br>
 
-                &nbsp;&nbsp;&nbsp;&nbsp;if (response.statusCode == 200) {<br>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return json.decode(response.body);<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;} else {<br>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;throw Exception('Falha ao carregar dados');<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;}<br>
-              &nbsp;&nbsp;}<br>
+                    if (response.statusCode == 200) {<br>
+                        return json.decode(response.body);<br>
+                    } else {<br>
+                        throw Exception('Falha ao carregar dados');<br>
+                    }<br>
+                }<br>
             }
           </div>
         </div>
@@ -1282,13 +1276,13 @@
           <p>Adicione headers para APIs que requerem autenticação:</p>
           <div class="code-block">
             Future<http.Response> getDataWithAuth(String token) async {<br>
-              &nbsp;&nbsp;return await http.get(<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;Uri.parse('https://api.example.com/data'),<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;headers: {<br>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'Authorization': 'Bearer $token',<br>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'Content-Type': 'application/json',<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;},<br>
-              &nbsp;&nbsp;);<br>
+                return await http.get(<br>
+                    Uri.parse('https://api.example.com/data'),<br>
+                    headers: {<br>
+                        'Authorization': 'Bearer $token',<br>
+                        'Content-Type': 'application/json',<br>
+                    },<br>
+                );<br>
             }
           </div>
         </div>
@@ -1299,18 +1293,18 @@
           <p>Adicione tratamento para diferentes códigos de status:</p>
           <div class="code-block">
             try {<br>
-              &nbsp;&nbsp;final response = await http.get(Uri.parse(url));<br>
-              &nbsp;&nbsp;if (response.statusCode == 200) {<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;// Sucesso<br>
-              &nbsp;&nbsp;} else if (response.statusCode == 401) {<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;// Não autorizado<br>
-              &nbsp;&nbsp;} else if (response.statusCode == 404) {<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;// Não encontrado<br>
-              &nbsp;&nbsp;} else {<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;// Outro erro<br>
-              &nbsp;&nbsp;}<br>
+                final response = await http.get(Uri.parse(url));<br>
+                if (response.statusCode == 200) {<br>
+                    // Sucesso<br>
+                } else if (response.statusCode == 401) {<br>
+                    // Não autorizado<br>
+                } else if (response.statusCode == 404) {<br>
+                    // Não encontrado<br>
+                } else {<br>
+                    // Outro erro<br>
+                }<br>
             } catch (e) {<br>
-              &nbsp;&nbsp;// Erro de conexão<br>
+                // Erro de conexão<br>
             }
           </div>
         </div>
@@ -1344,16 +1338,16 @@
             import 'package:sos_unimed_vidas/models/user.dart';<br><br>
 
             void main() {<br>
-              &nbsp;&nbsp;test('User model should be created correctly', () {<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;final user = User(<br>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id: '123',<br>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name: 'João Silva',<br>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cpf: '12345678900'<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;);<br><br>
+                test('User model should be created correctly', () {<br>
+                    final user = User(<br>
+                        id: '123',<br>
+                        name: 'João Silva',<br>
+                        cpf: '12345678900'<br>
+                    );<br><br>
 
-                &nbsp;&nbsp;&nbsp;&nbsp;expect(user.name, 'João Silva');<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;expect(user.cpf, '12345678900');<br>
-              &nbsp;&nbsp;});<br>
+                    expect(user.name, 'João Silva');<br>
+                    expect(user.cpf, '12345678900');<br>
+                });<br>
             }
           </div>
         </div>
@@ -1646,3 +1640,8 @@
   </script>
 </body>
 </html>
+
+Google Search Suggestions
+Display of Search Suggestions is required when using Grounding with Google Search. Learn more
+página oficial de download do Flutter SDK
+página oficial de download do Android Studio
