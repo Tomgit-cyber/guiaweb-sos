@@ -741,6 +741,110 @@
         <a href="#" class="link-button" onclick="showContent('dev-project')">Próximo: Criar Projeto</a>
       </div>
       
+      <!-- Setup Windows -->
+      <div class="content-section" id="content-setup-windows">
+        <h2>⚙️ Configuração no Windows</h2>
+        <p>Siga este guia para configurar seu ambiente de desenvolvimento Flutter no Windows.</p>
+        
+        <h3>📋 Pré-requisitos</h3>
+        <ul>
+          <li>Windows 10 ou superior (64-bit)</li>
+          <li>Pelo menos 8GB de RAM</li>
+          <li>Pelo menos 4GB de espaço em disco livre</li>
+          <li>Conexão estável com a internet</li>
+        </ul>
+        
+        <h3>📥 Passo 1: Instalar o Flutter SDK</h3>
+        <div class="step-box">
+          <h4>Baixar o Flutter SDK</h4>
+          <ol>
+            <li>Acesse <a href="https://docs.flutter.dev/get-started/install/windows" target="_blank">docs.flutter.dev/get-started/install/windows</a></li>
+            <li>Baixe o arquivo <code>flutter_windows_x.x.x-stable.zip</code></li>
+            <li>Extraia o arquivo em <code>C:\src\flutter</code> (crie a pasta se necessário)</li>
+          </ol>
+        </div>
+        
+        <div class="step-box">
+          <h4>Adicionar ao PATH</h4>
+          <ol>
+            <li>Pressione <code>Win + R</code>, digite <code>sysdm.cpl</code> e pressione Enter</li>
+            <li>Clique na aba <code>Avançado</code></li>
+            <li>Clique em <code>Variáveis de Ambiente</code></li>
+            <li>Na seção <code>Variáveis do sistema</code>, selecione <code>Path</code> e clique em <code>Editar</code></li>
+            <li>Clique em <code>Novo</code> e adicione: <code>C:\src\flutter\bin</code></li>
+            <li>Clique <code>OK</code> para fechar todas as janelas</li>
+          </ol>
+        </div>
+        
+        <h3>🔍 Passo 2: Verificar Dependências</h3>
+        <div class="step-box">
+          <h4>Executar flutter doctor</h4>
+          <p>Abra o Prompt de Comando ou PowerShell e execute:</p>
+          <div class="code-block">
+            flutter doctor
+          </div>
+          <p>Você verá mensagens sobre dependências faltando - vamos resolver isso agora.</p>
+        </div>
+        
+        <h3>🤖 Passo 3: Instalar Android Studio</h3>
+        <div class="step-box">
+          <h4>Baixar Android Studio</h4>
+          <ol>
+            <li>Acesse <a href="https://developer.android.com/studio" target="_blank">developer.android.com/studio</a></li>
+            <li>Baixe a versão para Windows</li>
+            <li>Execute o instalador e siga as instruções</li>
+          </ol>
+        </div>
+        
+        <div class="step-box">
+          <h4>Configurar Android Studio</h4>
+          <ol>
+            <li>Abra o Android Studio</li>
+            <li>No assistente de instalação, marque:</li>
+            <ul>
+              <li>Android SDK</li>
+              <li>Android SDK Platform</li>
+              <li>Android Virtual Device</li>
+            </ul>
+            <li>Clique em <code>Next</code> e complete a instalação</li>
+          </ol>
+        </div>
+        
+        <h3>📱 Passo 4: Configurar Emulador Android (Opcional)</h3>
+        <div class="step-box">
+          <h4>Criar um dispositivo virtual</h4>
+          <ol>
+            <li>No Android Studio, vá em <code>Tools</code> > <code>Device Manager</code></li>
+            <li>Clique em <code>Create Device</code></li>
+            <li>Selecione um dispositivo (ex: Pixel 4)</li>
+            <li>Selecione uma imagem do sistema (API 30 ou superior recomendado)</li>
+            <li>Clique em <code>Finish</code></li>
+          </ol>
+        </div>
+        
+        <h3>✅ Passo 5: Finalizar Configuração</h3>
+        <div class="step-box">
+          <h4>Aceitar licenças Android</h4>
+          <p>Execute no Prompt de Comando ou PowerShell:</p>
+          <div class="code-block">
+            flutter doctor --android-licenses
+          </div>
+          <p>Pressione <code>y</code> para aceitar todas as licenças.</p>
+        </div>
+        
+        <div class="step-box">
+          <h4>Verificar instalação</h4>
+          <p>Execute novamente:</p>
+          <div class="code-block">
+            flutter doctor
+          </div>
+          <p>Agora deverá mostrar todas as dependências como OK.</p>
+        </div>
+        
+        <div class="step-action" onclick="markStepComplete('setup-windows')">Marcar como Concluído</div>
+        <a href="#" class="link-button" onclick="showContent('dev-project')">Próximo: Criar Projeto</a>
+      </div>
+      
       <!-- Criar Projeto -->
       <div class="content-section" id="content-dev-project">
         <h2>💻 Criar Projeto Flutter</h2>
@@ -1023,6 +1127,88 @@
         <a href="#" class="link-button" onclick="showContent('testing-unit')">Próximo: Testes Unitários</a>
       </div>
       
+      <!-- Integração API Externa -->
+      <div class="content-section" id="content-integration-api">
+        <h2>🌐 Integração com API Externa</h2>
+        <p>Configurar integração com APIs externas para funcionalidades adicionais.</p>
+        
+        <h3>🔌 Passo 1: Configurar Cliente HTTP</h3>
+        <div class="step-box">
+          <h4>Adicionar dependência</h4>
+          <p>Adicione ao <code>pubspec.yaml</code>:</p>
+          <div class="code-block">
+            dependencies:<br>
+              &nbsp;&nbsp;http: ^0.13.5
+          </div>
+        </div>
+        
+        <h3>📡 Passo 2: Criar Serviço de API</h3>
+        <div class="step-box">
+          <h4>Exemplo de serviço</h4>
+          <p>Crie <code>lib/services/api_service.dart</code>:</p>
+          <div class="code-block">
+            import 'dart:convert';<br>
+            import 'package:http/http.dart' as http;<br><br>
+            
+            class ApiService {<br>
+              &nbsp;&nbsp;static const String baseUrl = 'https://api.example.com';<br><br>
+              
+              &nbsp;&nbsp;Future&lt;Map&lt;String, dynamic&gt;&gt; fetchData(String endpoint) async {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;final response = await http.get(Uri.parse('$baseUrl/$endpoint'));<br><br>
+                
+                &nbsp;&nbsp;&nbsp;&nbsp;if (response.statusCode == 200) {<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return json.decode(response.body);<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;} else {<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;throw Exception('Falha ao carregar dados');<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+              &nbsp;&nbsp;}<br>
+            }
+          </div>
+        </div>
+        
+        <h3>🔒 Passo 3: Gerenciar Autenticação</h3>
+        <div class="step-box">
+          <h4>Headers de autenticação</h4>
+          <p>Adicione headers para APIs que requerem autenticação:</p>
+          <div class="code-block">
+            Future&lt;http.Response&gt; getDataWithAuth(String token) async {<br>
+              &nbsp;&nbsp;return await http.get(<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;Uri.parse('https://api.example.com/data'),<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;headers: {<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'Authorization': 'Bearer $token',<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'Content-Type': 'application/json',<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;},<br>
+              &nbsp;&nbsp;);<br>
+            }
+          </div>
+        </div>
+        
+        <h3>🔄 Passo 4: Tratar Erros</h3>
+        <div class="step-box">
+          <h4>Implementar tratamento de erros</h4>
+          <p>Adicione tratamento para diferentes códigos de status:</p>
+          <div class="code-block">
+            try {<br>
+              &nbsp;&nbsp;final response = await http.get(Uri.parse(url));<br>
+              &nbsp;&nbsp;if (response.statusCode == 200) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;// Sucesso<br>
+              &nbsp;&nbsp;} else if (response.statusCode == 401) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;// Não autorizado<br>
+              &nbsp;&nbsp;} else if (response.statusCode == 404) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;// Não encontrado<br>
+              &nbsp;&nbsp;} else {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;// Outro erro<br>
+              &nbsp;&nbsp;}<br>
+            } catch (e) {<br>
+              &nbsp;&nbsp;// Erro de conexão<br>
+            }
+          </div>
+        </div>
+        
+        <div class="step-action" onclick="markStepComplete('integration-api')">Marcar como Concluído</div>
+        <a href="#" class="link-button" onclick="showContent('testing-unit')">Próximo: Testes Unitários</a>
+      </div>
+      
       <!-- Testes Unitários -->
       <div class="content-section" id="content-testing-unit">
         <h2>🧪 Testes Unitários</h2>
@@ -1076,6 +1262,63 @@
         </div>
         
         <div class="step-action" onclick="markStepComplete('testing-unit')">Marcar como Concluído</div>
+        <a href="#" class="link-button" onclick="showContent('deployment-build')">Próximo: Build do Aplicativo</a>
+      </div>
+      
+      <!-- Testes em Dispositivo -->
+      <div class="content-section" id="content-testing-device">
+        <h2>📱 Testes em Dispositivo</h2>
+        <p>Realizar testes em dispositivos físicos para validar funcionalidades.</p>
+        
+        <h3>🔌 Passo 1: Conectar Dispositivo</h3>
+        <div class="step-box">
+          <h4>Habilitar depuração USB</h4>
+          <ol>
+            <li>Vá em <code>Configurações</code> > <code>Sobre o telefone</code></li>
+            <li>Toque 7 vezes em <code>Número da versão</code> para ativar as opções de desenvolvedor</li>
+            <li>Vá em <code>Configurações</code> > <code>Opções do desenvolvedor</code></li>
+            <li>Ative <code>Depuração USB</code></li>
+            <li>Conecte o dispositivo ao computador via USB</li>
+            <li>Aceite a solicitação de autorização no dispositivo</li>
+          </ol>
+        </div>
+        
+        <h3>🔍 Passo 2: Verificar Conexão</h3>
+        <div class="step-box">
+          <h4>Listar dispositivos conectados</h4>
+          <p>No terminal, execute:</p>
+          <div class="code-block">
+            flutter devices
+          </div>
+          <p>Seu dispositivo deve aparecer na lista.</p>
+        </div>
+        
+        <h3>🏃 Passo 3: Executar Testes</h3>
+        <div class="step-box">
+          <h4>Rodar aplicativo no dispositivo</h4>
+          <p>Execute o aplicativo no dispositivo conectado:</p>
+          <div class="code-block">
+            flutter run
+          </div>
+          <p>Ou especifique o dispositivo:</p>
+          <div class="code-block">
+            flutter run -d &lt;device_id&gt;
+          </div>
+        </div>
+        
+        <h3>📋 Passo 4: Testar Funcionalidades</h3>
+        <div class="step-box">
+          <h4>Verificar pontos críticos</h4>
+          <ul>
+            <li>Funcionamento do botão de emergência</li>
+            <li>Navegação entre telas</li>
+            <li>Carregamento de dados</li>
+            <li>Integração com Firebase</li>
+            <li>Performance em diferentes condições de rede</li>
+          </ul>
+        </div>
+        
+        <div class="step-action" onclick="markStepComplete('testing-device')">Marcar como Concluído</div>
         <a href="#" class="link-button" onclick="showContent('deployment-build')">Próximo: Build do Aplicativo</a>
       </div>
       
