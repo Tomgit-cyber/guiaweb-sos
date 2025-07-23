@@ -1,12 +1,3 @@
-Você está corretíssimo! Peço desculpas pelo erro na minha resposta anterior. Foi uma falha minha. Ao integrar as funcionalidades de "Copiar" e "Histórico de Erros", acidentalmente deixei as implementações das funções de navegação (showGuide, showHomePage, showContent, etc.) como placeholders vazios (/* ... */).
-
-O evento de clique estava sendo registrado, mas a função estava vazia e, por isso, nada acontecia.
-
-Eu restaurei completamente a lógica de navegação. Agora, os botões da tela inicial funcionarão como esperado, levando você para a seção apropriada do guia.
-
-Aqui está o código completo e corrigido. Por favor, substitua todo o código anterior por este:
-
-Generated html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -178,12 +169,13 @@ Generated html
     .link-button:hover { transform: translateY(-3px); box-shadow: 0 6px 15px rgba(0, 166, 81, 0.4); }
 
     /* --- Seção de Histórico de Erros --- */
-    #error-log-form textarea { width: 100%; min-height: 100px; padding: 10px; border-radius: 5px; border: 1px solid #ccc; font-family: 'Courier New', monospace; }
+    #error-log-form textarea { width: 100%; min-height: 100px; padding: 10px; border-radius: 5px; border: 1px solid #ccc; font-family: 'Courier New', monospace; margin-top: 5px; }
     #error-log-form select { width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid #ccc; }
+    #error-log-form label { font-weight: 600; }
     .error-entry { border: 1px solid #ddd; padding: 15px; margin-bottom: 15px; border-radius: var(--border-radius); }
     .error-entry.pending { background: #FFFBE6; border-left: 5px solid #FFC107; }
     .error-entry.resolved { background: #E8F5E9; border-left: 5px solid #4CAF50; }
-    .error-entry.resolved .error-body { text-decoration: line-through; }
+    .error-entry.resolved .error-body { text-decoration: line-through; opacity: 0.7; }
     .error-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-size: 0.9rem; color: #555; }
     .error-body { font-family: 'Courier New', monospace; background: #f0f0f0; padding: 10px; border-radius: 5px; white-space: pre-wrap; word-wrap: break-word; }
     .resolve-button { background: var(--secondary-color); color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; }
@@ -248,13 +240,10 @@ Generated html
         </div>
       </div>
       <div class="menu-item">
-        <div class="menu-title" onclick="toggleSubmenu('dev')">
-          <span>💻 Desenvolvimento</span>
-          <span>▼</span>
-        </div>
+        <div class="menu-title" onclick="toggleSubmenu('dev')"><span>💻 Desenvolvimento</span><span>▼</span></div>
         <div class="submenu" id="submenu-dev">
-          <div class="submenu-item" onclick="showContent('dev-project')">Criar Projeto</div>
-          <!-- Adicionar outras seções de desenvolvimento aqui -->
+          <div class="submenu-item" onclick="showContent('dev-project')">1. Criar Projeto</div>
+          <div class="submenu-item" onclick="showContent('deployment-build')">2. Build e Assinatura</div>
         </div>
       </div>
     </div>
@@ -263,46 +252,121 @@ Generated html
     <div class="content">
       <div class="content-section active" id="content-home">
         <h2>🎯 Bem-vindo ao Guia de Desenvolvimento</h2>
-        <p>Use o menu para navegar. Se encontrar um problema, verifique a seção <strong>Solução de Problemas</strong> ou registre-o no <strong>Histórico de Erros</strong>.</p>
-        <a href="#" class="link-button" onclick="showContent('setup-windows')">Começar pelo Primeiro Passo</a>
+        <p>Este guia foi criado para te orientar em cada etapa do desenvolvimento do aplicativo SOS Unimed Vidas, desde a configuração inicial até a entrega final do MVP.</p>
+        <div class="step-box">
+          <h4>Como usar este guia:</h4>
+          <ol>
+            <li>Use o menu à esquerda para navegar pelas fases do desenvolvimento.</li>
+            <li>Se encontrar um problema, verifique a seção <strong>Solução de Problemas</strong>.</li>
+            <li>Use o <strong>Histórico de Erros</strong> para registrar e acompanhar issues.</li>
+            <li>Siga os passos na ordem recomendada para melhor resultado.</li>
+          </ol>
+        </div>
+        <p>O objetivo é entregar um MVP completo e funcional, com todas as etapas documentadas para facilitar a continuidade do projeto pela equipe de TI da Unimed.</p>
+        <a href="#" class="link-button" onclick="showContent('setup-windows')">Começar Pela Configuração</a>
       </div>
       
       <div class="content-section" id="content-setup-windows">
         <h2>⚙️ Configuração no Windows</h2>
         <div class="step-box">
-          <h4>Baixar o Flutter SDK</h4>
-          <p>Este é o kit principal para criar o aplicativo.</p>
+          <h4>1. Baixar o Flutter SDK</h4>
+          <p>Este é o kit de desenvolvimento principal do Flutter, necessário para criar, testar e compilar o aplicativo.</p>
           <a href="https://storage.googleapis.com/flutter_infra_release/releases/stable/windows/flutter_windows_3.22.2-stable.zip" class="link-button" target="_blank">Baixar Flutter SDK para Windows</a>
         </div>
         <div class="step-box">
-          <h4>Verificar Dependências</h4>
-          <p>Abra um <strong>novo</strong> terminal e execute:</p>
-          <div class="code-container">
-            <pre class="code-block">flutter doctor</pre>
-          </div>
-          <p>Se o comando não for reconhecido, veja a solução <a href="#" onclick="showContent('trouble-path')">aqui</a>.</p>
+          <h4>2. Adicionar ao PATH</h4>
+          <p>Esta etapa informa ao Windows onde encontrar o Flutter, permitindo que você execute comandos como `flutter doctor` de qualquer local no terminal.</p>
+          <ol>
+              <li>Pressione a tecla <strong>Windows + R</strong> para abrir a caixa "Executar".</li>
+              <li>Digite <strong>sysdm.cpl</strong> e pressione Enter.</li>
+              <li>Na janela "Propriedades do Sistema", clique na aba <strong>Avançado</strong>.</li>
+              <li>Clique no botão <strong>Variáveis de Ambiente...</strong>.</li>
+              <li>Na seção inferior ("Variáveis do sistema"), encontre a variável <strong>Path</strong>, selecione-a e clique em <strong>Editar...</strong>.</li>
+              <li>Na nova janela, clique em <strong>Novo</strong>.</li>
+              <li>Cole o caminho completo para a pasta `bin` do Flutter (ex: <strong>C:\src\flutter\bin</strong>).</li>
+              <li>Clique em <strong>OK</strong> em todas as janelas para salvar.</li>
+          </ol>
+          <p><strong>Importante:</strong> Após realizar esta etapa, você <strong>precisa fechar e abrir novamente</strong> qualquer terminal para que a alteração tenha efeito.</p>
         </div>
-        <!-- ... outros passos do setup ... -->
+        <div class="step-box">
+            <h4>3. Executar Flutter Doctor</h4>
+            <p>Este comando verifica se o ambiente está totalmente configurado. Abra um <strong>novo</strong> terminal e execute:</p>
+            <div class="code-container"><pre class="code-block">flutter doctor</pre></div>
+            <p>Se o comando não for reconhecido, veja a solução <a href="#" onclick="showContent('trouble-path')">aqui</a>.</p>
+        </div>
+        <div class="step-box">
+          <h4>4. Baixar o Android Studio</h4>
+          <p>O Android Studio é essencial pois instala as ferramentas (SDK) que o Flutter usa para criar a versão Android do aplicativo.</p>
+          <a href="https://developer.android.com/studio" class="link-button" target="_blank">Baixar Android Studio</a>
+        </div>
       </div>
       
       <div class="content-section" id="content-trouble-path">
         <h2>❓ Solução: Comando 'flutter' não reconhecido</h2>
         <div class="troubleshooting-box">
           <h4>Cenário do Erro</h4>
-          <p>Você abre o terminal e recebe a mensagem:</p>
-          <div class="code-container">
-            <pre class="code-block">'flutter' não é reconhecido como um comando interno
-ou externo, um programa operável ou um arquivo em lotes.</pre>
-          </div>
+          <p>Você abre o terminal, digita <code>flutter doctor</code> e recebe a seguinte mensagem:</p>
+          <div class="code-container"><pre class="code-block">'flutter' não é reconhecido como um comando interno ou externo...</pre></div>
         </div>
         <h3>Causa Principal</h3>
-        <p>O sistema não sabe onde encontrar o Flutter. Isso ocorre porque o caminho para a pasta `bin` do SDK não foi adicionado corretamente às Variáveis de Ambiente do Windows.</p>
-        <h3>✅ Como Resolver</h3>
+        <p>O sistema operacional não sabe onde encontrar o executável do Flutter. Isso ocorre porque o caminho para a pasta `bin` do SDK não foi adicionado corretamente às Variáveis de Ambiente do Windows.</p>
+        <h3>✅ Como Resolver (Passo a Passo Detalhado)</h3>
         <ol>
-          <li><strong>Confirme o Caminho:</strong> Verifique se a pasta `bin` está dentro do local onde você extraiu o Flutter (ex: <code>C:\src\flutter\bin</code>).</li>
-          <li><strong>Corrija as Variáveis de Ambiente:</strong> Use o painel <code>sysdm.cpl</code> para adicionar o caminho completo da pasta `bin` à variável `Path` do sistema.</li>
-          <li><strong>Reinicie o Terminal:</strong> Feche TODAS as janelas do terminal e abra uma nova para que a mudança tenha efeito.</li>
+          <li><strong>Confirme o Caminho:</strong> Usando o Explorador de Arquivos, navegue até a pasta onde você extraiu o Flutter. Entre na pasta `bin`. Clique na barra de endereço na parte superior e copie este caminho. Ele deve ser algo como `C:\src\flutter\bin`.</li>
+          <li><strong>Abra as Propriedades do Sistema:</strong> Pressione a tecla **Windows + R**. Na caixa "Executar", digite `sysdm.cpl` e clique em OK.</li>
+          <li><strong>Acesse as Variáveis de Ambiente:</strong> Na janela que abriu, vá para a aba **Avançado** e clique no botão **Variáveis de Ambiente...**.</li>
+          <li><strong>Edite a Variável Path:</strong> Na seção de baixo ("Variáveis do sistema"), encontre e selecione a linha que diz `Path`. Em seguida, clique em **Editar...**.</li>
+          <li><strong>Adicione o Caminho do Flutter:</strong> Na nova janela, clique em **Novo** no lado direito. Um novo campo de texto aparecerá no final da lista. Cole o caminho que você copiou no passo 1 (ex: `C:\src\flutter\bin`).</li>
+          <li><strong>Salve Tudo:</strong> Clique em **OK** para fechar a janela de edição do Path. Clique em **OK** novamente para fechar as Variáveis de Ambiente. Clique em **OK** uma última vez para fechar as Propriedades do Sistema.</li>
+          <li><strong>Reinicie o Terminal (Crucial):</strong> Feche TODAS as janelas do Prompt de Comando ou PowerShell que estiverem abertas. Abra uma nova janela de terminal. Esta nova sessão agora conhecerá o novo caminho.</li>
+          <li><strong>Verifique Novamente:</strong> No novo terminal, digite `flutter doctor`. O comando deve funcionar.</li>
         </ol>
+      </div>
+
+      <div class="content-section" id="content-dev-project">
+        <h2>💻 1. Criar o Projeto Flutter</h2>
+        <div class="step-box">
+            <h4>Executar Comando de Criação</h4>
+            <p>Este comando cria uma nova pasta com toda a estrutura básica de um projeto Flutter.</p>
+            <div class="code-container"><pre class="code-block">flutter create sos_unimed_vidas</pre></div>
+        </div>
+        <div class="step-box">
+            <h4>Navegar para a Pasta</h4>
+            <p>Entre na pasta do projeto recém-criado para executar os próximos comandos.</p>
+            <div class="code-container"><pre class="code-block">cd sos_unimed_vidas</pre></div>
+        </div>
+      </div>
+
+      <div class="content-section" id="content-deployment-build">
+        <h2>📦 2. Build e Assinatura (Android)</h2>
+        <div class="step-box">
+            <h4>1. Criar uma Chave de Assinatura</h4>
+            <p>Esta chave é um certificado digital único que prova que você é o autor do aplicativo. É obrigatória para publicar na Google Play Store.</p>
+            <div class="code-container"><pre class="code-block">keytool -genkey -v -keystore C:\Users\SEU_USUARIO\upload-keystore.jks -keyalg RSA -keysize 2048 -validity 10000 -alias upload</pre></div>
+            <p>Substitua `SEU_USUARIO` pelo seu nome de usuário do Windows. O terminal pedirá para você criar uma senha e preencher algumas informações. Guarde a senha em um local seguro.</p>
+        </div>
+        <div class="step-box">
+            <h4>2. Configurar a Referência da Chave</h4>
+            <p>Agora, precisamos dizer ao projeto onde encontrar a chave e a senha que você acabou de criar.</p>
+            <ol>
+                <li>Dentro do seu projeto Flutter, navegue até a pasta `android`.</li>
+                <li>Dentro da pasta `android`, crie um <strong>novo arquivo de texto</strong> e nomeie-o exatamente como `key.properties`.</li>
+                <li>Abra este novo arquivo e adicione as seguintes linhas, substituindo os valores conforme necessário:</li>
+            </ol>
+            <div class="code-container"><pre class="code-block">
+storePassword=SUA_SENHA_DA_CHAVE
+keyPassword=SUA_SENHA_DA_CHAVE
+keyAlias=upload
+storeFile=C:\\Users\\SEU_USUARIO\\upload-keystore.jks
+            </pre></div>
+            <p><strong>Atenção:</strong> Use barras duplas (`\\`) no caminho do `storeFile` como mostrado acima.</p>
+        </div>
+        <div class="step-box">
+            <h4>3. Gerar o Aplicativo (APK)</h4>
+            <p>Este comando compila o código e empacota o aplicativo em um arquivo `.apk` assinado e pronto para instalação.</p>
+            <div class="code-container"><pre class="code-block">flutter build apk --release</pre></div>
+            <p>O arquivo final estará em `build\app\outputs\flutter-apk\app-release.apk`.</p>
+        </div>
       </div>
 
       <div class="content-section" id="content-log-viewer">
@@ -331,7 +395,6 @@ ou externo, um programa operável ou um arquivo em lotes.</pre>
         <h3>Erros Registrados</h3>
         <div id="error-log-list"></div>
       </div>
-      <!-- Outras seções aqui -->
     </div>
   </div>
 
@@ -345,7 +408,7 @@ ou externo, um programa operável ou um arquivo em lotes.</pre>
   </footer>
 
   <script>
-    // --- LÓGICA DE NAVEGAÇÃO (CORRIGIDA) ---
+    // --- LÓGICA DE NAVEGAÇÃO ---
     function showHomePage() {
       document.getElementById('home-page').style.display = 'flex';
       document.getElementById('main-container').style.display = 'none';
@@ -394,8 +457,7 @@ ou externo, um programa operável ou um arquivo em lotes.</pre>
         menuItem.classList.add('active');
         const parentSubmenu = menuItem.closest('.submenu');
         if (parentSubmenu && !parentSubmenu.classList.contains('active')) {
-          parentSubmenu.classList.add('active');
-          parentSubmenu.previousElementSibling.classList.add('active');
+          toggleSubmenu(parentSubmenu.id.split('-')[1]);
         }
       }
       document.querySelector('.content').scrollTop = 0;
@@ -410,6 +472,7 @@ ou externo, um programa operável ou um arquivo em lotes.</pre>
 
     function initializeCopyButtons() {
       document.querySelectorAll('.code-container').forEach(container => {
+        if (container.querySelector('.copy-button')) return; // Evita adicionar botões duplicados
         const block = container.querySelector('.code-block');
         if (block) {
           const button = document.createElement('button');
@@ -419,6 +482,8 @@ ou externo, um programa operável ou um arquivo em lotes.</pre>
             navigator.clipboard.writeText(block.innerText).then(() => {
               button.innerText = 'Copiado!';
               setTimeout(() => { button.innerText = 'Copiar'; }, 2000);
+            }).catch(err => {
+              console.error('Falha ao copiar: ', err);
             });
           };
           container.appendChild(button);
