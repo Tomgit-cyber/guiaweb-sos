@@ -173,7 +173,8 @@
     #error-log-form select { width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid #ccc; }
     .error-entry { border: 1px solid #ddd; padding: 15px; margin-bottom: 15px; border-radius: var(--border-radius); }
     .error-entry.pending { background: #FFFBE6; border-left: 5px solid #FFC107; }
-    .error-entry.resolved { background: #E8F5E9; border-left: 5px solid #4CAF50; text-decoration: line-through; }
+    .error-entry.resolved { background: #E8F5E9; border-left: 5px solid #4CAF50; }
+    .error-entry.resolved .error-body { text-decoration: line-through; }
     .error-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-size: 0.9rem; color: #555; }
     .error-body { font-family: 'Courier New', monospace; background: #f0f0f0; padding: 10px; border-radius: 5px; white-space: pre-wrap; word-wrap: break-word; }
     .resolve-button { background: var(--secondary-color); color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; }
@@ -237,41 +238,67 @@
           <div class="submenu-item" onclick="showContent('log-viewer')">Ver e Registrar Erros</div>
         </div>
       </div>
-      <!-- ... (outros menus) ... -->
+      <div class="menu-item">
+        <div class="menu-title" onclick="toggleSubmenu('dev')">
+          <span>💻 Desenvolvimento</span>
+          <span>▼</span>
+        </div>
+        <div class="submenu" id="submenu-dev">
+          <div class="submenu-item" onclick="showContent('dev-project')">Criar Projeto</div>
+          <!-- Adicionar outras seções de desenvolvimento aqui -->
+        </div>
+      </div>
     </div>
 
     <!-- Conteúdo Principal -->
     <div class="content">
-      <!-- ... (outras seções de conteúdo) ... -->
+      <div class="content-section active" id="content-home">
+        <h2>🎯 Bem-vindo ao Guia de Desenvolvimento</h2>
+        <p>Use o menu para navegar. Se encontrar um problema, verifique a seção <strong>Solução de Problemas</strong> ou registre-o no <strong>Histórico de Erros</strong>.</p>
+        <a href="#" class="link-button" onclick="showContent('setup-windows')">Começar pelo Primeiro Passo</a>
+      </div>
       
-      <!-- Seção de Solução de Problemas -->
+      <div class="content-section" id="content-setup-windows">
+        <h2>⚙️ Configuração no Windows</h2>
+        <div class="step-box">
+          <h4>Baixar o Flutter SDK</h4>
+          <p>Este é o kit principal para criar o aplicativo.</p>
+          <a href="https://storage.googleapis.com/flutter_infra_release/releases/stable/windows/flutter_windows_3.22.2-stable.zip" class="link-button" target="_blank">Baixar Flutter SDK para Windows</a>
+        </div>
+        <div class="step-box">
+          <h4>Verificar Dependências</h4>
+          <p>Abra um <strong>novo</strong> terminal e execute:</p>
+          <div class="code-container">
+            <pre class="code-block">flutter doctor</pre>
+          </div>
+          <p>Se o comando não for reconhecido, veja a solução <a href="#" onclick="showContent('trouble-path')">aqui</a>.</p>
+        </div>
+        <!-- ... outros passos do setup ... -->
+      </div>
+      
       <div class="content-section" id="content-trouble-path">
         <h2>❓ Solução: Comando 'flutter' não reconhecido</h2>
-        <p>Este é um dos erros mais comuns durante a configuração inicial e geralmente tem uma solução simples.</p>
         <div class="troubleshooting-box">
           <h4>Cenário do Erro</h4>
-          <p>Você abre o terminal, digita <code>flutter doctor</code> e recebe a seguinte mensagem:</p>
+          <p>Você abre o terminal e recebe a mensagem:</p>
           <div class="code-container">
             <pre class="code-block">'flutter' não é reconhecido como um comando interno
 ou externo, um programa operável ou um arquivo em lotes.</pre>
           </div>
         </div>
         <h3>Causa Principal</h3>
-        <p>O erro indica que o sistema operacional não sabe onde encontrar o executável do Flutter. Isso acontece porque o local de instalação do Flutter SDK não foi adicionado corretamente à variável de ambiente `Path` do seu sistema.</p>
+        <p>O sistema não sabe onde encontrar o Flutter. Isso ocorre porque o caminho para a pasta `bin` do SDK não foi adicionado corretamente às Variáveis de Ambiente do Windows.</p>
         <h3>✅ Como Resolver</h3>
         <ol>
-          <li><strong>Verifique o Caminho do Flutter:</strong> Confirme em qual pasta você extraiu o Flutter SDK (ex: <code>C:\src\flutter</code>). O caminho que precisa estar no Path é a subpasta <code>bin</code>: <code>C:\src\flutter\bin</code>.</li>
-          <li><strong>Corrija as Variáveis de Ambiente:</strong> Use <code>Win + R</code> > <code>sysdm.cpl</code> > <code>Avançado</code> para verificar e adicionar o caminho correto à variável <code>Path</code> do sistema.</li>
-          <li><strong>Reinicie o Terminal (Passo Crucial!):</strong> Feche <strong>TODAS</strong> as janelas do terminal e abra uma nova para que a alteração tenha efeito.</li>
-          <li><strong>Tente Novamente:</strong> No novo terminal, digite o comando novamente.</li>
+          <li><strong>Confirme o Caminho:</strong> Verifique se a pasta `bin` está dentro do local onde você extraiu o Flutter (ex: <code>C:\src\flutter\bin</code>).</li>
+          <li><strong>Corrija as Variáveis de Ambiente:</strong> Use o painel <code>sysdm.cpl</code> para adicionar o caminho completo da pasta `bin` à variável `Path` do sistema.</li>
+          <li><strong>Reinicie o Terminal:</strong> Feche TODAS as janelas do terminal e abra uma nova para que a mudança tenha efeito.</li>
         </ol>
       </div>
 
-      <!-- Seção de Histórico de Erros -->
       <div class="content-section" id="content-log-viewer">
         <h2>🐞 Histórico de Erros do Projeto</h2>
-        <p>Use esta seção para registrar qualquer problema ou erro que encontrar durante o desenvolvimento. O histórico ficará salvo no seu navegador.</p>
-        
+        <p>Use esta seção para registrar qualquer problema ou erro que encontrar. O histórico ficará salvo no seu navegador.</p>
         <div class="step-box">
           <h4>Registrar Novo Erro</h4>
           <form id="error-log-form" onsubmit="logError(event)">
@@ -288,16 +315,14 @@ ou externo, um programa operável ou um arquivo em lotes.</pre>
               <option value="Outro">Outro</option>
             </select>
             <label for="error-details">Cole o erro ou descreva o problema:</label>
-            <textarea id="error-details" placeholder="Ex: Erro ao rodar 'flutter run': Could not resolve all files for configuration ':app:debugRuntimeClasspath'." required></textarea>
+            <textarea id="error-details" placeholder="Ex: Erro ao rodar 'flutter run': Could not resolve all files..." required></textarea>
             <button type="submit" class="link-button">Registrar Erro</button>
           </form>
         </div>
-
         <h3>Erros Registrados</h3>
-        <div id="error-log-list">
-          <!-- Erros serão renderizados aqui pelo JavaScript -->
-        </div>
+        <div id="error-log-list"></div>
       </div>
+      <!-- Outras seções aqui -->
     </div>
   </div>
 
@@ -311,25 +336,73 @@ ou externo, um programa operável ou um arquivo em lotes.</pre>
   </footer>
 
   <script>
-    // --- Lógica Principal do Guia ---
-    function showHomePage() { /* ... */ }
-    function showGuide(type) { /* ... */ }
-    function toggleSubmenu(id) { /* ... */ }
-    function showContent(id) { /* ... */ }
-    function markStepComplete(stepId) { /* ... */ }
+    // --- LÓGICA DE NAVEGAÇÃO (CORRIGIDA) ---
+    function showHomePage() {
+      document.getElementById('home-page').style.display = 'flex';
+      document.getElementById('main-container').style.display = 'none';
+      document.getElementById('back-button').style.display = 'none';
+    }
 
+    function showGuide(type) {
+      document.getElementById('home-page').style.display = 'none';
+      document.getElementById('main-container').style.display = 'flex';
+      document.getElementById('back-button').style.display = 'block';
+
+      if (type === 'development') {
+        showContent('setup-windows');
+      } else {
+        showContent('home'); 
+      }
+    }
+
+    function toggleSubmenu(id) {
+      const submenu = document.getElementById(`submenu-${id}`);
+      const title = submenu.previousElementSibling;
+      document.querySelectorAll('.submenu.active').forEach(menu => {
+        if (menu !== submenu) {
+          menu.classList.remove('active');
+          menu.previousElementSibling.classList.remove('active');
+        }
+      });
+      submenu.classList.toggle('active');
+      title.classList.toggle('active');
+    }
+
+    function showContent(id) {
+      document.querySelectorAll('.content-section').forEach(section => {
+        section.classList.remove('active');
+      });
+      const targetContent = document.getElementById(`content-${id}`);
+      if (targetContent) {
+          targetContent.classList.add('active');
+      }
+      
+      document.querySelectorAll('.submenu-item').forEach(item => {
+        item.classList.remove('active');
+      });
+      const menuItem = document.querySelector(`.submenu-item[onclick="showContent('${id}')"]`);
+      if (menuItem) {
+        menuItem.classList.add('active');
+        const parentSubmenu = menuItem.closest('.submenu');
+        if (parentSubmenu && !parentSubmenu.classList.contains('active')) {
+          parentSubmenu.classList.add('active');
+          parentSubmenu.previousElementSibling.classList.add('active');
+        }
+      }
+      document.querySelector('.content').scrollTop = 0;
+    }
+    
+    // --- INICIALIZAÇÃO E NOVAS FUNCIONALIDADES ---
     document.addEventListener('DOMContentLoaded', function() {
       showHomePage();
       initializeCopyButtons();
-      renderErrorLog(); // Renderiza o log de erros ao carregar a página
+      renderErrorLog();
     });
 
-    // --- BOTÃO DE COPIAR ---
     function initializeCopyButtons() {
-      const codeBlocks = document.querySelectorAll('.code-block');
-      codeBlocks.forEach(block => {
-        const container = block.parentElement;
-        if (container.classList.contains('code-container')) {
+      document.querySelectorAll('.code-container').forEach(container => {
+        const block = container.querySelector('.code-block');
+        if (block) {
           const button = document.createElement('button');
           button.className = 'copy-button';
           button.innerText = 'Copiar';
@@ -344,34 +417,23 @@ ou externo, um programa operável ou um arquivo em lotes.</pre>
       });
     }
 
-    // --- HISTÓRICO DE ERROS ---
     const ERROR_LOG_KEY = 'unimedErrorLog';
 
     function logError(event) {
       event.preventDefault();
       const step = document.getElementById('error-step').value;
       const details = document.getElementById('error-details').value;
-      
-      const newError = {
-        id: Date.now(),
-        timestamp: new Date().toLocaleString('pt-BR'),
-        step: step,
-        details: details,
-        status: 'pending'
-      };
-
+      const newError = { id: Date.now(), timestamp: new Date().toLocaleString('pt-BR'), step, details, status: 'pending' };
       const errors = JSON.parse(localStorage.getItem(ERROR_LOG_KEY)) || [];
-      errors.unshift(newError); // Adiciona no início
+      errors.unshift(newError);
       localStorage.setItem(ERROR_LOG_KEY, JSON.stringify(errors));
-
       renderErrorLog();
-      document.getElementById('error-log-form').reset();
+      event.target.reset();
     }
 
     function resolveError(errorId) {
       let errors = JSON.parse(localStorage.getItem(ERROR_LOG_KEY)) || [];
       const errorIndex = errors.findIndex(e => e.id === errorId);
-
       if (errorIndex > -1) {
         errors[errorIndex].status = 'resolved';
         localStorage.setItem(ERROR_LOG_KEY, JSON.stringify(errors));
@@ -382,20 +444,15 @@ ou externo, um programa operável ou um arquivo em lotes.</pre>
     function renderErrorLog() {
       const errors = JSON.parse(localStorage.getItem(ERROR_LOG_KEY)) || [];
       const container = document.getElementById('error-log-list');
-      
-      if (!container) return; // Não faz nada se o container não existir
-      
-      container.innerHTML = ''; // Limpa a lista
-      
+      if (!container) return;
+      container.innerHTML = '';
       if (errors.length === 0) {
         container.innerHTML = '<p>Nenhum erro registrado ainda. Ótimo trabalho!</p>';
         return;
       }
-
       errors.forEach(error => {
         const entryDiv = document.createElement('div');
         entryDiv.className = `error-entry ${error.status}`;
-        
         entryDiv.innerHTML = `
           <div class="error-header">
             <span><strong>Data:</strong> ${error.timestamp} | <strong>Etapa:</strong> ${error.step}</span>
@@ -412,9 +469,6 @@ ou externo, um programa operável ou um arquivo em lotes.</pre>
       div.innerText = text;
       return div.innerHTML;
     }
-
-    // As implementações das funções do guia (showHomePage, showGuide, etc.) continuam aqui
-    // ...
   </script>
 </body>
 </html>
