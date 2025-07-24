@@ -8,15 +8,15 @@
 <!-- <link rel="icon" type="image/png" href="./favicon.png?v=1.0"> -->
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Roboto:wght@400;500;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
 <style>
-/* Esquema de cores verde Unimed com tema preto */
+/* Mantém os estilos CSS existentes, sem alterações */
 :root {
-  --primary-color: #00A651; /* Verde Unimed principal */
-  --primary-dark: #00703C; /* Verde mais escuro */
-  --primary-light: #00A65122; /* Verde claro para fundos */
-  --accent-color: #FFD100; /* Amarelo Unimed */
-  --background-dark: #1E1E1E; /* Fundo escuro */
-  --text-dark: #E0E0E0; /* Texto claro */
-  --text-light: #FFFFFF; /* Texto branco */
+  --primary-color: #00A651;
+  --primary-dark: #00703C;
+  --primary-light: #00A65122;
+  --accent-color: #FFD100;
+  --background-dark: #1E1E1E;
+  --text-dark: #E0E0E0;
+  --text-light: #FFFFFF;
   --border-radius: 12px;
   --box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
   --box-glow: 0 0 15px rgba(0, 166, 81, 0.5);
@@ -1550,7 +1550,9 @@ function showHomePage() {
 
 function toggleSubmenu(menuId) {
   const submenu = document.getElementById(`submenu-${menuId}`);
-  const title = document.querySelector(`#submenu-${menuId}`).parentElement.querySelector('.menu-title');
+  const title = submenu ? submenu.parentElement.querySelector('.menu-title') : null;
+  if (!submenu || !title) return;
+
   const isActive = submenu.classList.contains('active');
   submenu.classList.toggle('active');
   title.setAttribute('aria-expanded', !isActive);
@@ -1558,10 +1560,20 @@ function toggleSubmenu(menuId) {
 }
 
 function showContent(contentId) {
-  document.querySelectorAll('.content-section').forEach(section => {
-    section.classList.remove('active');
+  const sections = document.querySelectorAll('.content-section');
+  sections.forEach(section => section.classList.remove('active'));
+  const section = document.getElementById(`content-${contentId}`);
+  if (section) section.classList.add('active');
+
+  // Atualizar estado ativo no menu
+  document.querySelectorAll('.submenu-item').forEach(item => {
+    const itemContentId = item.getAttribute('onclick')?.match(/showContent\('([^']+)'\)/)?.[1];
+    if (itemContentId === contentId) {
+      item.classList.add('active');
+    } else {
+      item.classList.remove('active');
+    }
   });
-  document.getElementById(`content-${contentId}`).classList.add('active');
 }
 
 function markStepComplete(stepId) {
@@ -1572,19 +1584,8 @@ function markStepComplete(stepId) {
   }
 }
 
-// Carregar estado salvo ao iniciar
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.submenu-item').forEach(item => {
-    const stepId = item.getAttribute('onclick')?.match(/showContent\('([^']+)'\)/)?.[1];
-    if (stepId && localStorage.getItem(`step-${stepId}`) === 'completed') {
-      item.classList.add('completed');
-    }
-  });
-});
-</script>
+// Delegação de eventos para todos os cliques
+document.addEventListener('click', (e) => {
+  const target = e.target;
 
-<footer>
-  <p>© 2025 Unimed - Todos os direitos reservados | <a href="#">Contato</a> | <a href="#">Suporte</a></p>
-</footer>
-</body>
-</html>
+  // Alternar submenu
