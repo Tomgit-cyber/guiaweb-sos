@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SOS Unimed Vidas - Guia de Desenvolvimento</title>
-<link rel="icon" type="image/png" href="/favicon.png?v=1.0">
+<!-- Favicon comentado até ser fornecido -->
+<!-- <link rel="icon" type="image/png" href="./favicon.png?v=1.0"> -->
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Roboto:wght@400;500;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
 <style>
 /* Esquema de cores verde Unimed com tema preto */
@@ -211,13 +212,16 @@ h1 {
 }
 
 .submenu {
-  max-height: 0;
   overflow: hidden;
-  transition: max-height 0.3s ease;
+  transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+  visibility: hidden;
+  opacity: 0;
 }
 
 .submenu.active {
-  max-height: 500px;
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.3s ease;
 }
 
 .submenu-item {
@@ -466,6 +470,8 @@ a:hover {
   
   .content {
     height: auto;
+    max-height: 70vh;
+    overflow-y: auto;
   }
   
   h1 {
@@ -536,77 +542,77 @@ footer a:hover {
     
     <!-- Configuração Inicial -->
     <div class="menu-item">
-      <div class="menu-title" onclick="toggleSubmenu('setup')">
+      <div class="menu-title" onclick="toggleSubmenu('setup')" aria-expanded="false" aria-controls="submenu-setup">
         <span>⚙️ Configuração Inicial</span>
         <span>▼</span>
       </div>
       <div class="submenu" id="submenu-setup">
-        <div class="submenu-item" onclick="showContent('setup-windows')">Windows</div>
-        <div class="submenu-item" onclick="showContent('setup-macos')">macOS</div>
-        <div class="submenu-item" onclick="showContent('setup-chromeos')">ChromeOS/Linux</div>
+        <div class="submenu-item" onclick="showContent('setup-windows')" aria-label="Configuração para Windows">Windows</div>
+        <div class="submenu-item" onclick="showContent('setup-macos')" aria-label="Configuração para macOS">macOS</div>
+        <div class="submenu-item" onclick="showContent('setup-chromeos')" aria-label="Configuração para ChromeOS/Linux">ChromeOS/Linux</div>
       </div>
     </div>
     
     <!-- Desenvolvimento -->
     <div class="menu-item">
-      <div class="menu-title" onclick="toggleSubmenu('dev')">
+      <div class="menu-title" onclick="toggleSubmenu('dev')" aria-expanded="false" aria-controls="submenu-dev">
         <span>💻 Desenvolvimento</span>
         <span>▼</span>
       </div>
       <div class="submenu" id="submenu-dev">
-        <div class="submenu-item" onclick="showContent('dev-project')">Criar Projeto</div>
-        <div class="submenu-item" onclick="showContent('dev-structure')">Estrutura Básica</div>
-        <div class="submenu-item" onclick="showContent('dev-ui')">Interface do Usuário</div>
-        <div class="submenu-item" onclick="showContent('dev-logic')">Lógica de Negócio</div>
+        <div class="submenu-item" onclick="showContent('dev-project')" aria-label="Criar novo projeto">Criar Projeto</div>
+        <div class="submenu-item" onclick="showContent('dev-structure')" aria-label="Estrutura básica do projeto">Estrutura Básica</div>
+        <div class="submenu-item" onclick="showContent('dev-ui')" aria-label="Interface do usuário">Interface do Usuário</div>
+        <div class="submenu-item" onclick="showContent('dev-logic')" aria-label="Lógica de negócio">Lógica de Negócio</div>
       </div>
     </div>
     
     <!-- Integrações -->
     <div class="menu-item">
-      <div class="menu-title" onclick="toggleSubmenu('integration')">
+      <div class="menu-title" onclick="toggleSubmenu('integration')" aria-expanded="false" aria-controls="submenu-integration">
         <span>🔗 Integrações</span>
         <span>▼</span>
       </div>
       <div class="submenu" id="submenu-integration">
-        <div class="submenu-item" onclick="showContent('integration-firebase')">Firebase</div>
-        <div class="submenu-item" onclick="showContent('integration-api')">API Externa</div>
+        <div class="submenu-item" onclick="showContent('integration-firebase')" aria-label="Integração com Firebase">Firebase</div>
+        <div class="submenu-item" onclick="showContent('integration-api')" aria-label="Integração com API externa">API Externa</div>
       </div>
     </div>
     
     <!-- Testes -->
     <div class="menu-item">
-      <div class="menu-title" onclick="toggleSubmenu('testing')">
+      <div class="menu-title" onclick="toggleSubmenu('testing')" aria-expanded="false" aria-controls="submenu-testing">
         <span>🧪 Testes</span>
         <span>▼</span>
       </div>
       <div class="submenu" id="submenu-testing">
-        <div class="submenu-item" onclick="showContent('testing-unit')">Testes Unitários</div>
-        <div class="submenu-item" onclick="showContent('testing-widget')">Testes de Widget</div>
+        <div class="submenu-item" onclick="showContent('testing-unit')" aria-label="Testes unitários">Testes Unitários</div>
+        <div class="submenu-item" onclick="showContent('testing-widget')" aria-label="Testes de widget">Testes de Widget</div>
       </div>
     </div>
     
     <!-- Documentação -->
     <div class="menu-item">
-      <div class="menu-title" onclick="toggleSubmenu('docs')">
+      <div class="menu-title" onclick="toggleSubmenu('docs')" aria-expanded="false" aria-controls="submenu-docs">
         <span>📚 Documentação</span>
         <span>▼</span>
       </div>
       <div class="submenu" id="submenu-docs">
-        <div class="submenu-item" onclick="showContent('docs-readme')">README</div>
-        <div class="submenu-item" onclick="showContent('docs-tech')">Documentação Técnica</div>
+        <div class="submenu-item" onclick="showContent('docs-readme')" aria-label="Documentação README">README</div>
+        <div class="submenu-item" onclick="showContent('docs-tech')" aria-label="Documentação técnica">Documentação Técnica</div>
       </div>
     </div>
     
     <!-- Solução de Problemas -->
     <div class="menu-item">
-      <div class="menu-title" onclick="toggleSubmenu('troubleshooting')">
+      <div class="menu-title" onclick="toggleSubmenu('troubleshooting')" aria-expanded="false" aria-controls="submenu-troubleshooting">
         <span>❓ Solução de Problemas</span>
         <span>▼</span>
       </div>
       <div class="submenu" id="submenu-troubleshooting">
-        <div class="submenu-item" onclick="showContent('trouble-path')">Comando 'flutter' não reconhecido</div>
-        <div class="submenu-item" onclick="showContent('trouble-licenses')">Erro de licenças Android</div>
-        <div class="submenu-item" onclick="showContent('trouble-emulator')">Problemas com Emulador</div>
+        <div class="submenu-item" onclick="showContent('trouble-path')" aria-label="Comando 'flutter' não reconhecido">Comando 'flutter' não reconhecido</div>
+        <div class="submenu-item" onclick="showContent('trouble-licenses')" aria-label="Erro de licenças Android">Erro de licenças Android</div>
+        <div class="submenu-item" onclick="showContent('trouble-emulator')" aria-label="Problemas com emulador">Problemas com Emulador</div>
       </div>
     </div>
   </div>
@@ -678,7 +684,12 @@ footer a:hover {
         <h4>Executar flutter doctor</h4>
         <p>Abra um <strong>novo</strong> terminal e execute:</p>
         <div class="code-block">flutter doctor</div>
-        <p>Se aparecer um erro como "'flutter' não é reconhecido", vá para <a href="#" onclick="showContent('trouble-path')">Solução de Problemas</a>.</p>
+        <p>Se aparecer um erro como "'flutter' não é reconhecido", verifique:</p>
+        <ul>
+          <li>O caminho no PATH está correto (ex.: `D:\flutter\bin`).</li>
+          <li>Reinicie o terminal após adicionar o PATH.</li>
+          <li>Consulte <a href="#" onclick="showContent('trouble-path')">Solução de Problemas</a> para mais detalhes.</li>
+        </ul>
       </div>
       
       <h3>🤖 Passo 4: Instalar Android Studio</h3>
@@ -930,13 +941,13 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
         <p>Adicione as dependências necessárias ao <code class="inline">pubspec.yaml</code>:</p>
         <div class="code-block">
 dependencies:<br>
-&nbsp;&nbsp;flutter:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;sdk: flutter<br>
-&nbsp;&nbsp;http: ^0.13.5<br>
-&nbsp;&nbsp;provider: ^6.0.5<br>
-&nbsp;&nbsp;firebase_core: ^2.1.1<br>
-&nbsp;&nbsp;firebase_auth: ^4.1.1<br>
-&nbsp;&nbsp;cloud_firestore: ^4.0.4
+  flutter:<br>
+    sdk: flutter<br>
+  http: ^0.13.5<br>
+  provider: ^6.0.5<br>
+  firebase_core: ^2.1.1<br>
+  firebase_auth: ^4.1.1<br>
+  cloud_firestore: ^4.0.4
         </div>
         <p><strong>Por que isso?</strong> <code class="inline">http</code> para chamadas de API, <code class="inline">provider</code> para gerenciar estado, e <code class="inline">firebase_core</code> para integração com Firebase.</p>
         
@@ -973,10 +984,10 @@ dependencies:<br>
         <p>No <code class="inline">MaterialApp</code>, defina o tema:</p>
         <div class="code-block">
 theme: ThemeData(<br>
-&nbsp;&nbsp;primaryColor: Color(0xFF00A651),<br>
-&nbsp;&nbsp;accentColor: Color(0xFFFFD100),<br>
-&nbsp;&nbsp;scaffoldBackgroundColor: Color(0xFFF5FBF7),<br>
-&nbsp;&nbsp;// Outras configurações de tema<br>
+  primaryColor: Color(0xFF00A651),<br>
+  accentColor: Color(0xFFFFD100),<br>
+  scaffoldBackgroundColor: Color(0xFFF5FBF7),<br>
+  // Outras configurações de tema<br>
 )
         </div>
       </div>
@@ -988,36 +999,36 @@ theme: ThemeData(<br>
         <div class="code-block">
 import 'package:flutter/material.dart';<br><br>
 class HomeScreen extends StatelessWidget {<br>
-&nbsp;&nbsp;@override<br>
-&nbsp;&nbsp;Widget build(BuildContext context) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;return Scaffold(<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;appBar: AppBar(<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;title: Text('SOS Unimed Vidas'),<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;backgroundColor: Theme.of(context).primaryColor,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;body: Center(<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;child: Column(<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mainAxisAlignment: MainAxisAlignment.center,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;children: [<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Text(<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'Bem-vindo ao SOS Unimed Vidas',<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;style: TextStyle(fontSize: 24, color: Colors.white),<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ElevatedButton(<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;onPressed: () {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Implementar ação de emergência<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;style: ElevatedButton.styleFrom(<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;primary: Theme.of(context).accentColor,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;child: Text('Chamada de Emergência', style: TextStyle(fontSize: 18)),<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;],<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),<br>
-&nbsp;&nbsp;&nbsp;&nbsp;);<br>
-&nbsp;&nbsp;}<br>
+  @override<br>
+  Widget build(BuildContext context) {<br>
+    return Scaffold(<br>
+      appBar: AppBar(<br>
+        title: Text('SOS Unimed Vidas'),<br>
+        backgroundColor: Theme.of(context).primaryColor,<br>
+      ),<br>
+      body: Center(<br>
+        child: Column(<br>
+          mainAxisAlignment: MainAxisAlignment.center,<br>
+          children: [<br>
+            Text(<br>
+              'Bem-vindo ao SOS Unimed Vidas',<br>
+              style: TextStyle(fontSize: 24, color: Colors.white),<br>
+            ),<br>
+            ElevatedButton(<br>
+              onPressed: () {<br>
+                // Implementar ação de emergência<br>
+              },<br>
+              style: ElevatedButton.styleFrom(<br>
+                primary: Theme.of(context).accentColor,<br>
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),<br>
+              ),<br>
+              child: Text('Chamada de Emergência', style: TextStyle(fontSize: 18)),<br>
+            ),<br>
+          ],<br>
+        ),<br>
+      ),<br>
+    );<br>
+  }<br>
 }
         </div>
         <p><strong>O que isso faz?</strong> Cria uma tela inicial com um botão de emergência, usando as cores da Unimed.</p>
@@ -1040,21 +1051,21 @@ class HomeScreen extends StatelessWidget {<br>
 import 'package:http/http.dart' as http;<br>
 import 'dart:convert';<br><br>
 class EmergencyService {<br>
-&nbsp;&nbsp;final String baseUrl = 'https://api.exemplo.com'; // Substitua pela URL real<br><br>
-&nbsp;&nbsp;Future<void> sendEmergencyRequest() async {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;final url = Uri.parse('$baseUrl/emergency');<br>
-&nbsp;&nbsp;&nbsp;&nbsp;final response = await http.post(<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;url,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;headers: {'Content-Type': 'application/json'},<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;body: jsonEncode({<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'timestamp': DateTime.now().toIso8601String(),<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'location': 'Localização do usuário', // Implementar geolocalização<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}),<br>
-&nbsp;&nbsp;&nbsp;&nbsp;);<br><br>
-&nbsp;&nbsp;&nbsp;&nbsp;if (response.statusCode != 200) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;throw Exception('Falha ao enviar emergência: ${response.statusCode}');<br>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br>
-&nbsp;&nbsp;}<br>
+  final String baseUrl = 'https://api.exemplo.com'; // Substitua pela URL real<br><br>
+  Future<void> sendEmergencyRequest() async {<br>
+    final url = Uri.parse('$baseUrl/emergency');<br>
+    final response = await http.post(<br>
+      url,<br>
+      headers: {'Content-Type': 'application/json'},<br>
+      body: jsonEncode({<br>
+        'timestamp': DateTime.now().toIso8601String(),<br>
+        'location': 'Localização do usuário', // Implementar geolocalização<br>
+      }),<br>
+    );<br><br>
+    if (response.statusCode != 200) {<br>
+      throw Exception('Falha ao enviar emergência: ${response.statusCode}');<br>
+    }<br>
+  }<br>
 }
         </div>
       </div>
@@ -1067,40 +1078,40 @@ class EmergencyService {<br>
 import 'package:flutter/material.dart';<br>
 import '../services/emergency_service.dart';<br><br>
 class HomeScreen extends StatelessWidget {<br>
-&nbsp;&nbsp;final EmergencyService emergencyService = EmergencyService();<br><br>
-&nbsp;&nbsp;@override<br>
-&nbsp;&nbsp;Widget build(BuildContext context) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;return Scaffold(<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;appBar: AppBar(<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;title: Text('SOS Unimed Vidas'),<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;backgroundColor: Theme.of(context).primaryColor,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;body: Center(<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;child: Column(<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mainAxisAlignment: MainAxisAlignment.center,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;children: [<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Text(<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'Bem-vindo ao SOS Unimed Vidas',<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;style: TextStyle(fontSize: 24, color: Colors.white),<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ElevatedButton(<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;onPressed: () async {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;await emergencyService.sendEmergencyRequest();<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ScaffoldMessenger.of(context).showSnackBar(<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SnackBar(content: Text('Emergência enviada!')),<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;style: ElevatedButton.styleFrom(<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;primary: Theme.of(context).accentColor,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;child: Text('Chamada de Emergência', style: TextStyle(fontSize: 18)),<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;],<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),<br>
-&nbsp;&nbsp;&nbsp;&nbsp;);<br>
-&nbsp;&nbsp;}<br>
+  final EmergencyService emergencyService = EmergencyService();<br><br>
+  @override<br>
+  Widget build(BuildContext context) {<br>
+    return Scaffold(<br>
+      appBar: AppBar(<br>
+        title: Text('SOS Unimed Vidas'),<br>
+        backgroundColor: Theme.of(context).primaryColor,<br>
+      ),<br>
+      body: Center(<br>
+        child: Column(<br>
+          mainAxisAlignment: MainAxisAlignment.center,<br>
+          children: [<br>
+            Text(<br>
+              'Bem-vindo ao SOS Unimed Vidas',<br>
+              style: TextStyle(fontSize: 24, color: Colors.white),<br>
+            ),<br>
+            ElevatedButton(<br>
+              onPressed: () async {<br>
+                await emergencyService.sendEmergencyRequest();<br>
+                ScaffoldMessenger.of(context).showSnackBar(<br>
+                  SnackBar(content: Text('Emergência enviada!')),<br>
+                );<br>
+              },<br>
+              style: ElevatedButton.styleFrom(<br>
+                primary: Theme.of(context).accentColor,<br>
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),<br>
+              ),<br>
+              child: Text('Chamada de Emergência', style: TextStyle(fontSize: 18)),<br>
+            ),<br>
+          ],<br>
+        ),<br>
+      ),<br>
+    );<br>
+  }<br>
 }
         </div>
       </div>
@@ -1150,8 +1161,8 @@ class HomeScreen extends StatelessWidget {<br>
         <p>Em <code class="inline">android/build.gradle</code>:</p>
         <div class="code-block">
 dependencies {<br>
-&nbsp;&nbsp;// ... outras dependências<br>
-&nbsp;&nbsp;classpath 'com.google.gms:google-services:4.3.15'<br>
+  // ... outras dependências<br>
+  classpath 'com.google.gms:google-services:4.3.15'<br>
 }
         </div>
         
@@ -1159,8 +1170,8 @@ dependencies {<br>
         <div class="code-block">
 apply plugin: 'com.google.gms.google-services'<br><br>
 dependencies {<br>
-&nbsp;&nbsp;// ... outras dependências<br>
-&nbsp;&nbsp;implementation 'com.google.firebase:firebase-analytics'<br>
+  // ... outras dependências<br>
+  implementation 'com.google.firebase:firebase-analytics'<br>
 }
         </div>
       </div>
@@ -1173,14 +1184,14 @@ dependencies {<br>
 import 'package:firebase_core/firebase_core.dart';<br>
 import 'firebase_options.dart';<br><br>
 void main() async {<br>
-&nbsp;&nbsp;WidgetsFlutterBinding.ensureInitialized();<br>
-&nbsp;&nbsp;await Firebase.initializeApp(<br>
-&nbsp;&nbsp;&nbsp;&nbsp;options: DefaultFirebaseOptions.currentPlatform,<br>
-&nbsp;&nbsp;);<br>
-&nbsp;&nbsp;runApp(MyApp());<br>
+  WidgetsFlutterBinding.ensureInitialized();<br>
+  await Firebase.initializeApp(<br>
+    options: DefaultFirebaseOptions.currentPlatform,<br>
+  );<br>
+  runApp(MyApp());<br>
 }
         </div>
-        <p><strong>Nota:</strong> O arquivo <code class="inline">firebase_options.dart</code> é gerado automaticamente pelo Firebase CLI.</p>
+        <p><strong>Nota:</strong> Gere o arquivo <code class="inline">firebase_options.dart</code> usando o Firebase CLI com <code>dart pub global activate flutterfire_cli</code> e <code>flutterfire configure</code>.</p>
       </div>
       
       <div class="step-action" onclick="markStepComplete('integration-firebase')">Marcar como Concluído</div>
@@ -1200,15 +1211,15 @@ void main() async {<br>
 import 'package:http/http.dart' as http;<br>
 import 'dart:convert';<br><br>
 class ApiService {<br>
-&nbsp;&nbsp;Future<Map<String, dynamic>> fetchData() async {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;final url = Uri.parse('https://api.exemplo.com/data');<br>
-&nbsp;&nbsp;&nbsp;&nbsp;final response = await http.get(url);<br><br>
-&nbsp;&nbsp;&nbsp;&nbsp;if (response.statusCode == 200) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return jsonDecode(response.body);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;} else {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;throw Exception('Falha ao carregar dados');<br>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br>
-&nbsp;&nbsp;}<br>
+  Future<Map<String, dynamic>> fetchData() async {<br>
+    final url = Uri.parse('https://api.exemplo.com/data');<br>
+    final response = await http.get(url);<br><br>
+    if (response.statusCode == 200) {<br>
+      return jsonDecode(response.body);<br>
+    } else {<br>
+      throw Exception('Falha ao carregar dados');<br>
+    }<br>
+  }<br>
 }
         </div>
       </div>
@@ -1221,33 +1232,33 @@ class ApiService {<br>
 import 'package:flutter/material.dart';<br>
 import '../services/api_service.dart';<br><br>
 class DataScreen extends StatelessWidget {<br>
-&nbsp;&nbsp;final ApiService apiService = ApiService();<br><br>
-&nbsp;&nbsp;@override<br>
-&nbsp;&nbsp;Widget build(BuildContext context) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;return Scaffold(<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;appBar: AppBar(<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;title: Text('SOS Unimed Vidas'),<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;backgroundColor: Theme.of(context).primaryColor,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;body: FutureBuilder<Map<String, dynamic>>(<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;future: apiService.fetchData(),<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;builder: (context, snapshot) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (snapshot.connectionState == ConnectionState.waiting) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return Center(child: CircularProgressIndicator());<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} else if (snapshot.hasError) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return Center(child: Text('Erro ao carregar dados'));<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} else {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return Center(<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;child: Text(<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'Dados: ${snapshot.data.toString()}',<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;style: TextStyle(color: Colors.white),<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),<br>
-&nbsp;&nbsp;&nbsp;&nbsp;);<br>
-&nbsp;&nbsp;}<br>
+  final ApiService apiService = ApiService();<br><br>
+  @override<br>
+  Widget build(BuildContext context) {<br>
+    return Scaffold(<br>
+      appBar: AppBar(<br>
+        title: Text('SOS Unimed Vidas'),<br>
+        backgroundColor: Theme.of(context).primaryColor,<br>
+      ),<br>
+      body: FutureBuilder<Map<String, dynamic>>(<br>
+        future: apiService.fetchData(),<br>
+        builder: (context, snapshot) {<br>
+          if (snapshot.connectionState == ConnectionState.waiting) {<br>
+            return Center(child: CircularProgressIndicator());<br>
+          } else if (snapshot.hasError) {<br>
+            return Center(child: Text('Erro ao carregar dados'));<br>
+          } else {<br>
+            return Center(<br>
+              child: Text(<br>
+                'Dados: ${snapshot.data.toString()}',<br>
+                style: TextStyle(color: Colors.white),<br>
+              ),<br>
+            );<br>
+          }<br>
+        },<br>
+      ),<br>
+    );<br>
+  }<br>
 }
         </div>
       </div>
@@ -1286,24 +1297,24 @@ import 'package:mockito/annotations.dart';<br><br>
 @GenerateMocks([http.Client])<br>
 import 'emergency_service_test.mocks.dart';<br><br>
 void main() {<br>
-&nbsp;&nbsp;group('EmergencyService', () {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;late EmergencyService service;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;late MockClient mockClient;<br><br>
-&nbsp;&nbsp;&nbsp;&nbsp;setUp(() {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;service = EmergencyService();<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mockClient = MockClient();<br>
-&nbsp;&nbsp;&nbsp;&nbsp;});<br><br>
-&nbsp;&nbsp;&nbsp;&nbsp;test('deve enviar requisição com sucesso', () async {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;when(<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mockClient.post(<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;any,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;headers: anyNamed('headers'),<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;body: anyNamed('body'),<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;).thenAnswer((_) async => http.Response('{"status": "ok"}', 200));<br><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;expect(() async => await service.sendEmergencyRequest(), returnsNormally);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;});<br>
-&nbsp;&nbsp;});<br>
+  group('EmergencyService', () {<br>
+    late EmergencyService service;<br>
+    late MockClient mockClient;<br><br>
+    setUp(() {<br>
+      service = EmergencyService();<br>
+      mockClient = MockClient();<br>
+    });<br><br>
+    test('deve enviar requisição com sucesso', () async {<br>
+      when(<br>
+        mockClient.post(<br>
+          any,<br>
+          headers: anyNamed('headers'),<br>
+          body: anyNamed('body'),<br>
+        ),<br>
+      ).thenAnswer((_) async => http.Response('{"status": "ok"}', 200));<br><br>
+      expect(() async => await service.sendEmergencyRequest(), returnsNormally);<br>
+    });<br>
+  });<br>
 }
         </div>
       </div>
@@ -1337,14 +1348,14 @@ import 'package:flutter/material.dart';<br>
 import 'package:flutter_test/flutter_test.dart';<br>
 import 'package:sos_unimed_vidas/screens/home_screen.dart';<br><br>
 void main() {<br>
-&nbsp;&nbsp;testWidgets('HomeScreen tem título e botão', (WidgetTester tester) async {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;// Construir o widget<br>
-&nbsp;&nbsp;&nbsp;&nbsp;await tester.pumpWidget(MaterialApp(home: HomeScreen()));<br><br>
-&nbsp;&nbsp;&nbsp;&nbsp;// Verificar se o título está presente<br>
-&nbsp;&nbsp;&nbsp;&nbsp;expect(find.text('SOS Unimed Vidas'), findsOneWidget);<br><br>
-&nbsp;&nbsp;&nbsp;&nbsp;// Verificar se o botão está presente<br>
-&nbsp;&nbsp;&nbsp;&nbsp;expect(find.text('Chamada de Emergência'), findsOneWidget);<br>
-&nbsp;&nbsp;});<br>
+  testWidgets('HomeScreen tem título e botão', (WidgetTester tester) async {<br>
+    // Construir o widget<br>
+    await tester.pumpWidget(MaterialApp(home: HomeScreen()));<br><br>
+    // Verificar se o título está presente<br>
+    expect(find.text('SOS Unimed Vidas'), findsOneWidget);<br><br>
+    // Verificar se o botão está presente<br>
+    expect(find.text('Chamada de Emergência'), findsOneWidget);<br>
+  });<br>
 }
         </div>
       </div>
@@ -1448,3 +1459,132 @@ flutter build ios --release<br>
 ### Web<br>
 ```bash<br>
 flutter build web<br>
+```
+        </div>
+      </div>
+      
+      <div class="step-action" onclick="markStepComplete('docs-tech')">Marcar como Concluído</div>
+    </div>
+    
+    <!-- Solução de Problemas: Comando 'flutter' não reconhecido -->
+    <div class="content-section" id="content-trouble-path">
+      <h2>❓ Solução de Problemas: Comando 'flutter' não reconhecido</h2>
+      <div class="troubleshooting-box">
+        <h4>Problema</h4>
+        <p>Ao executar <code class="inline">flutter doctor</code>, o terminal retorna "'flutter' não é reconhecido como comando interno ou externo."</p>
+      </div>
+      
+      <div class="step-box">
+        <h4>Solução</h4>
+        <ol>
+          <li>Verifique se o caminho do Flutter foi adicionado corretamente ao PATH (ex.: <code class="inline">D:\flutter\bin</code>).</li>
+          <li>Reabra o terminal após atualizar o PATH.</li>
+          <li>Execute o comando completo para teste: <code class="inline">& "D:\flutter\bin\flutter.bat" doctor</code> (ajuste o caminho).</li>
+          <li>Se ainda falhar, reinstale o Flutter em um caminho sem espaços (ex.: <code class="inline">C:\flutter</code>) e reconfigure o PATH.</li>
+        </ol>
+      </div>
+      
+      <div class="step-action" onclick="markStepComplete('trouble-path')">Marcar como Resolvido</div>
+      <a href="#" class="link-button" onclick="showContent('setup-windows')">Voltar ao Setup</a>
+    </div>
+    
+    <!-- Solução de Problemas: Erro de licenças Android -->
+    <div class="content-section" id="content-trouble-licenses">
+      <h2>❓ Solução de Problemas: Erro de licenças Android</h2>
+      <div class="troubleshooting-box">
+        <h4>Problema</h4>
+        <p>O comando <code class="inline">flutter doctor --android-licenses</code> falha ou solicita licenças não aceitas.</p>
+      </div>
+      
+      <div class="step-box">
+        <h4>Solução</h4>
+        <ol>
+          <li>Certifique-se de que o Android SDK está instalado via Android Studio.</li>
+          <li>Execute novamente: <code class="inline">flutter doctor --android-licenses</code>.</li>
+          <li>Pressione <code class="inline">y</code> para aceitar todas as licenças exibidas.</li>
+          <li>Se persistir, verifique as permissões do diretório do SDK.</li>
+        </ol>
+      </div>
+      
+      <div class="step-action" onclick="markStepComplete('trouble-licenses')">Marcar como Resolvido</div>
+      <a href="#" class="link-button" onclick="showContent('setup-windows')">Voltar ao Setup</a>
+    </div>
+    
+    <!-- Solução de Problemas: Problemas com Emulador -->
+    <div class="content-section" id="content-trouble-emulator">
+      <h2>❓ Solução de Problemas: Problemas com Emulador</h2>
+      <div class="troubleshooting-box">
+        <h4>Problema</h4>
+        <p>O emulador Android não inicia ou não é detectado pelo Flutter.</p>
+      </div>
+      
+      <div class="step-box">
+        <h4>Solução</h4>
+        <ol>
+          <li>Abra o Android Studio e crie/inicie um emulador via AVD Manager.</li>
+          <li>Execute <code class="inline">flutter emulators --launch nome_do_emulador</code> para iniciar.</li>
+          <li>Verifique se o HAXM ou Hyper-V está habilitado no Windows.</li>
+          <li>Reinicie o computador se necessário.</li>
+        </ol>
+      </div>
+      
+      <div class="step-action" onclick="markStepComplete('trouble-emulator')">Marcar como Resolvido</div>
+      <a href="#" class="link-button" onclick="showContent('dev-project')">Voltar ao Desenvolvimento</a>
+    </div>
+  </div>
+</div>
+
+<script>
+function showGuide(section) {
+  document.getElementById('home-page').style.display = 'none';
+  document.getElementById('main-container').style.display = 'flex';
+  document.getElementById('back-button').style.display = 'block';
+  showContent(section === 'structure' ? 'setup-windows' : 'dev-project');
+}
+
+function showHomePage() {
+  document.getElementById('home-page').style.display = 'flex';
+  document.getElementById('main-container').style.display = 'none';
+  document.getElementById('back-button').style.display = 'none';
+}
+
+function toggleSubmenu(menuId) {
+  const submenu = document.getElementById(`submenu-${menuId}`);
+  const title = document.querySelector(`#submenu-${menuId}`).parentElement.querySelector('.menu-title');
+  const isActive = submenu.classList.contains('active');
+  submenu.classList.toggle('active');
+  title.setAttribute('aria-expanded', !isActive);
+  title.classList.toggle('active', !isActive);
+}
+
+function showContent(contentId) {
+  document.querySelectorAll('.content-section').forEach(section => {
+    section.classList.remove('active');
+  });
+  document.getElementById(`content-${contentId}`).classList.add('active');
+}
+
+function markStepComplete(stepId) {
+  const item = document.querySelector(`[onclick="showContent('${stepId}')"]`);
+  if (item) {
+    item.classList.add('completed');
+    localStorage.setItem(`step-${stepId}`, 'completed');
+  }
+}
+
+// Carregar estado salvo ao iniciar
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.submenu-item').forEach(item => {
+    const stepId = item.getAttribute('onclick')?.match(/showContent\('([^']+)'\)/)?.[1];
+    if (stepId && localStorage.getItem(`step-${stepId}`) === 'completed') {
+      item.classList.add('completed');
+    }
+  });
+});
+</script>
+
+<footer>
+  <p>© 2025 Unimed - Todos os direitos reservados | <a href="#">Contato</a> | <a href="#">Suporte</a></p>
+</footer>
+</body>
+</html>
