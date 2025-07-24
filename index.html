@@ -5,24 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SOS Unimed Vidas - Guia de Desenvolvimento</title>
   <link rel="icon" type="image/png" href="/favicon.png?v=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Roboto:wght@400;500;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    /* Esquema de cores verde Unimed */
+    /* Esquema de cores verde Unimed com tema preto */
     :root {
       --primary-color: #00A651; /* Verde Unimed principal */
       --primary-dark: #00703C; /* Verde mais escuro */
-      --primary-light: #E5F5E9; /* Verde claro para fundos */
+      --primary-light: #E5F5E9; /* Verde claro para outros elementos */
       --secondary-color: #006837; /* Verde secundário */
       --accent-color: #FFD100; /* Amarelo para destaques */
-      --text-dark: #333333;
+      --text-dark: #E5E5E5; /* Texto claro para tema escuro */
       --text-light: #FFFFFF;
+      --background-dark: #1E1E1E; /* Preto estilo terminal */
       --border-radius: 8px;
-      --box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      --box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      --box-glow: 0 0 8px rgba(0, 166, 81, 0.5); /* Brilho verde */
       --transition: all 0.3s ease;
 
       /* Fontes */
       --font-primary: 'Open Sans', sans-serif;
       --font-secondary: 'Roboto', sans-serif;
+      --font-code: 'Source Code Pro', monospace;
     }
 
     @font-face {
@@ -35,6 +38,11 @@
       font-display: swap;
       src: url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700');
     }
+    @font-face {
+      font-family: 'Source Code Pro';
+      font-display: swap;
+      src: url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600');
+    }
 
     * {
       box-sizing: border-box;
@@ -44,7 +52,7 @@
 
     body {
       font-family: var(--font-primary);
-      background: linear-gradient(135deg, #F5FBF7 0%, #E5F5E9 100%);
+      background: linear-gradient(135deg, #2A2A2A 0%, #1E1E1E 100%);
       color: var(--text-dark);
       line-height: 1.7;
       min-height: 100vh;
@@ -54,16 +62,11 @@
 
     /* Suporte a modo escuro */
     @media (prefers-color-scheme: dark) {
-      :root {
-        --primary-light: #1A3C2A;
-        --text-dark: #E5F5E9;
-        --text-light: #333333;
-      }
       body {
-        background: linear-gradient(135deg, #1A3C2A 0%, #2A4B3A 100%);
+        background: linear-gradient(135deg, #2A2A2A 0%, #1E1E1E 100%);
       }
       .content, .sidebar {
-        background: #2A2A2A;
+        background: var(--background-dark);
         color: var(--text-dark);
       }
     }
@@ -77,7 +80,7 @@
       min-height: 100vh;
       padding: 20px;
       text-align: center;
-      background: linear-gradient(135deg, #E5F5E9 0%, #F5FBF7 100%);
+      background: linear-gradient(135deg, #2A2A2A 0%, #1E1E1E 100%);
     }
 
     .logo {
@@ -93,7 +96,7 @@
       font-family: var(--font-secondary);
       font-size: 2.5rem;
       font-weight: 700;
-      color: var(--primary-dark);
+      color: var(--text-light);
       margin-bottom: 15px;
       letter-spacing: -0.5px;
     }
@@ -102,7 +105,7 @@
       font-family: var(--font-primary);
       font-size: 1.2rem;
       font-weight: 400;
-      color: var(--secondary-color);
+      color: var(--primary-color);
       max-width: 600px;
       margin-bottom: 40px;
       line-height: 1.6;
@@ -123,19 +126,19 @@
       width: 250px;
       height: 200px;
       padding: 25px;
-      background: white;
+      background: var(--background-dark);
       border-radius: var(--border-radius);
       box-shadow: var(--box-shadow);
       text-decoration: none;
       color: var(--text-dark);
       transition: var(--transition);
-      border: 2px solid var(--primary-light);
+      border: 2px solid var(--primary-color);
     }
 
     .main-button:hover {
       transform: translateY(-10px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-      border-color: var(--primary-color);
+      box-shadow: var(--box-glow);
+      border-color: var(--accent-color);
     }
 
     .main-button i {
@@ -149,14 +152,14 @@
       font-size: 1.5rem;
       font-weight: 700;
       margin-bottom: 10px;
-      color: var(--primary-dark);
+      color: var(--text-light);
     }
 
     .main-button p {
       font-family: var(--font-primary);
       font-size: 0.9rem;
       font-weight: 400;
-      color: #666;
+      color: var(--text-dark);
       line-height: 1.5;
     }
 
@@ -164,14 +167,14 @@
       text-align: center;
       padding: 25px;
       background: linear-gradient(135deg, var(--primary-dark) 0%, #006837 100%);
-      color: white;
+      color: var(--text-light);
       margin-top: auto;
       font-size: 16px;
       font-family: var(--font-primary);
     }
 
     footer a {
-      color: white;
+      color: var(--text-light);
       text-decoration: underline;
       margin: 0 10px;
       transition: opacity 0.3s;
@@ -193,7 +196,7 @@
     /* Menu lateral */
     .sidebar {
       flex: 0 0 300px;
-      background: white;
+      background: var(--background-dark);
       border-radius: var(--border-radius);
       box-shadow: var(--box-shadow);
       padding: 20px;
@@ -202,14 +205,14 @@
       position: sticky;
       top: 20px;
       scrollbar-width: thin;
-      scrollbar-color: var(--primary-color) var(--primary-light);
+      scrollbar-color: var(--primary-color) #333;
     }
 
     .sidebar::-webkit-scrollbar {
       width: 8px;
     }
     .sidebar::-webkit-scrollbar-track {
-      background: var(--primary-light);
+      background: #333;
     }
     .sidebar::-webkit-scrollbar-thumb {
       background: var(--primary-color);
@@ -218,7 +221,7 @@
 
     .sidebar h2 {
       font-family: var(--font-secondary);
-      color: var(--primary-dark);
+      color: var(--text-light);
       margin-bottom: 20px;
       padding-bottom: 10px;
       border-bottom: 2px solid var(--primary-color);
@@ -233,9 +236,9 @@
     .menu-title {
       font-family: var(--font-secondary);
       font-weight: 600;
-      color: var(--primary-dark);
+      color: var(--text-light);
       padding: 12px 15px;
-      background: var(--primary-light);
+      background: #2A2A2A;
       border-radius: var(--border-radius);
       cursor: pointer;
       display: flex;
@@ -246,12 +249,13 @@
     }
 
     .menu-title:hover {
-      background: #D0EBD7;
+      background: #333;
+      box-shadow: var(--box-glow);
     }
 
     .menu-title.active {
       background: var(--primary-color);
-      color: white;
+      color: var(--text-light);
     }
 
     .submenu {
@@ -275,15 +279,16 @@
       font-weight: 400;
       display: flex;
       align-items: center;
+      color: var(--text-dark);
     }
 
     .submenu-item:hover {
-      background: #F0F9F2;
+      background: #333;
     }
 
     .submenu-item.active {
       background: var(--primary-color);
-      color: white;
+      color: var(--text-light);
       font-weight: 600;
     }
 
@@ -295,21 +300,21 @@
     /* Conteúdo principal */
     .content {
       flex: 1;
-      background: white;
+      background: var(--background-dark);
       border-radius: var(--border-radius);
       box-shadow: var(--box-shadow);
       padding: 30px;
       overflow-y: auto;
       min-height: calc(100vh - 180px);
       scrollbar-width: thin;
-      scrollbar-color: var(--primary-color) var(--primary-light);
+      scrollbar-color: var(--primary-color) #333;
     }
 
     .content::-webkit-scrollbar {
       width: 8px;
     }
     .content::-webkit-scrollbar-track {
-      background: var(--primary-light);
+      background: #333;
     }
     .content::-webkit-scrollbar-thumb {
       background: var(--primary-color);
@@ -332,7 +337,7 @@
 
     .content h2 {
       font-family: var(--font-secondary);
-      color: var(--primary-dark);
+      color: var(--text-light);
       margin-bottom: 20px;
       font-size: 1.9rem;
       font-weight: 700;
@@ -341,7 +346,7 @@
 
     .content h3 {
       font-family: var(--font-secondary);
-      color: var(--primary-dark);
+      color: var(--text-light);
       margin: 25px 0 15px;
       font-size: 1.4rem;
       font-weight: 600;
@@ -353,6 +358,7 @@
       line-height: 1.8;
       font-size: 1rem;
       font-weight: 400;
+      color: var(--text-dark);
     }
 
     .content ul, .content ol {
@@ -367,25 +373,27 @@
     }
 
     .step-box {
-      background: var(--primary-light);
+      background: var(--background-dark);
       border-left: 5px solid var(--primary-color);
       padding: 20px;
       margin: 20px 0;
       border-radius: 0 var(--border-radius) var(--border-radius) 0;
+      box-shadow: var(--box-glow);
     }
 
     .troubleshooting-box {
-      background: #FFFBE6;
+      background: var(--background-dark);
       border-left: 5px solid var(--accent-color);
       padding: 20px;
       margin: 20px 0;
       border-radius: 0 var(--border-radius) var(--border-radius) 0;
+      box-shadow: var(--box-glow);
     }
 
     .step-box h4, .troubleshooting-box h4 {
-      font-family: var(--font-secondary);
+      font-family: var(--font-code);
       margin-top: 0;
-      color: var(--primary-dark);
+      color: var(--primary-color);
       font-size: 1.2rem;
       font-weight: 600;
     }
@@ -393,14 +401,14 @@
     .step-action {
       display: inline-block;
       background: var(--primary-color);
-      color: white;
+      color: var(--text-light);
       padding: 8px 15px;
       border-radius: 30px;
       margin-top: 15px;
       font-size: 14px;
       cursor: pointer;
       transition: var(--transition);
-      box-shadow: 0 2px 5px rgba(0, 166, 81, 0.3);
+      box-shadow: var(--box-glow);
       font-family: var(--font-primary);
       font-weight: 600;
       border: none;
@@ -409,7 +417,7 @@
     .step-action:hover {
       background: var(--primary-dark);
       transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(0, 166, 81, 0.4);
+      box-shadow: 0 4px 8px rgba(0, 166, 81, 0.6);
     }
 
     .code-block {
@@ -417,23 +425,24 @@
       color: #f8f8f2;
       padding: 15px;
       border-radius: var(--border-radius);
-      font-family: 'Courier New', monospace;
+      font-family: var(--font-code);
       font-size: 14px;
       overflow-x: auto;
       margin: 15px 0;
+      border: 1px solid var(--primary-color);
     }
 
     .link-button {
       display: inline-block;
       background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
-      color: white;
+      color: var(--text-light);
       padding: 12px 20px;
       border-radius: var(--border-radius);
       text-decoration: none;
       font-weight: bold;
       margin: 10px 0;
       transition: var(--transition);
-      box-shadow: 0 4px 10px rgba(0, 166, 81, 0.3);
+      box-shadow: var(--box-glow);
       font-family: var(--font-primary);
       font-weight: 600;
       border: none;
@@ -443,7 +452,7 @@
 
     .link-button:hover {
       transform: translateY(-3px);
-      box-shadow: 0 6px 15px rgba(0, 166, 81, 0.4);
+      box-shadow: 0 6px 15px rgba(0, 166, 81, 0.6);
     }
 
     .status-indicator {
@@ -455,15 +464,15 @@
     }
 
     .status-pending {
-      background: #FFD100;
+      background: var(--accent-color);
     }
 
     .status-completed {
-      background: #00A651;
+      background: var(--primary-color);
     }
 
     .status-not-started {
-      background: #CCCCCC;
+      background: #555;
     }
 
     /* Botão Voltar */
@@ -472,7 +481,7 @@
       top: 20px;
       left: 20px;
       background: var(--primary-color);
-      color: white;
+      color: var(--text-light);
       padding: 10px 15px;
       border-radius: var(--border-radius);
       text-decoration: none;
@@ -487,6 +496,7 @@
 
     .back-button:hover {
       background: var(--primary-dark);
+      box-shadow: var(--box-glow);
     }
 
     /* Responsividade */
@@ -754,30 +764,186 @@
         <a href="#" class="link-button" onclick="showContent('dev-project')" role="button" aria-label="Ir para criar projeto">Próximo: Criar Projeto</a>
       </div>
 
-      <!-- Setup macOS (Placeholder) -->
+      <!-- Setup macOS -->
       <div class="content-section" id="content-setup-macos">
         <h2>⚙️ Configuração no macOS</h2>
-        <p>Este é um espaço reservado para instruções de configuração no macOS. Siga passos semelhantes aos do Windows, ajustando para o macOS:</p>
+        <p>Siga este guia para configurar seu ambiente de desenvolvimento Flutter no macOS. Ele é feito para ser simples, mesmo para iniciantes!</p>
+
+        <h3>📋 Pré-requisitos</h3>
         <ul>
-          <li>Baixe o Flutter SDK de <a href="https://flutter.dev/docs/get-started/install/macos" target="_blank">flutter.dev</a>.</li>
-          <li>Adicione o Flutter ao PATH em <code>~/.zshrc</code>.</li>
-          <li>Instale o Android Studio e aceite as licenças.</li>
-          <li>Execute <code>flutter doctor</code> para verificar a configuração.</li>
+          <li>macOS 10.15 (Catalina) ou superior</li>
+          <li>Pelo menos 8GB de RAM</li>
+          <li>Pelo menos 4GB de espaço em disco livre</li>
+          <li>Conexão estável com a internet</li>
         </ul>
+
+        <h3>📥 Passo 1: Instalar o Flutter SDK</h3>
+        <div class="step-box">
+          <h4>Baixar o Flutter SDK</h4>
+          <p>
+            <a href="https://flutter.dev/docs/get-started/install/macos" class="link-button" target="_blank" role="button" aria-label="Baixar Flutter SDK">Baixar Flutter SDK para macOS (Versão Estável Mais Recente)</a>
+          </p>
+          <p><strong>O que é isso?</strong> O Flutter SDK é a caixa de ferramentas para criar o aplicativo. Ele contém tudo que você precisa para desenvolver, testar e construir o app.</p>
+          <ol>
+            <li>Extraia o arquivo baixado para uma pasta como <code>~/development/flutter</code>.</li>
+            <li>Abra o Terminal e adicione o Flutter ao PATH:
+              <div class="code-block">export PATH="$PATH:~/development/flutter/bin"</div>
+            </li>
+            <li>Para tornar isso permanente, edite o arquivo <code>~/.zshrc</code>:
+              <div class="code-block">nano ~/.zshrc</div>
+            </li>
+            <li>Adicione a linha acima, salve e execute:
+              <div class="code-block">source ~/.zshrc</div>
+            </li>
+          </ol>
+        </div>
+
+        <h3>🔍 Passo 2: Verificar Dependências</h3>
+        <div class="step-box">
+          <h4>Executar flutter doctor</h4>
+          <p>Abra o Terminal e execute:</p>
+          <div class="code-block">
+            flutter doctor
+          </div>
+          <p>Se você vir um erro como "'flutter' não é reconhecido", vá para a seção <a href="#" onclick="showContent('trouble-path')" role="button" aria-label="Solução para comando flutter não reconhecido">Solução de Problemas</a>.</p>
+        </div>
+
+        <h3>🤖 Passo 3: Instalar Android Studio</h3>
+        <div class="step-box">
+          <h4>Baixar Android Studio</h4>
+          <p>
+            <a href="https://developer.android.com/studio" class="link-button" target="_blank" role="button" aria-label="Baixar Android Studio">Baixar Android Studio</a>
+          </p>
+          <p><strong>Por que isso é necessário?</strong> O Android Studio fornece ferramentas para o Flutter construir e testar o aplicativo no Android.</p>
+        </div>
+
+        <div class="step-box">
+          <h4>Configurar Android Studio</h4>
+          <ol>
+            <li>Abra o Android Studio.</li>
+            <li>No assistente de instalação, marque:
+              <ul>
+                <li>Android SDK</li>
+                <li>Android SDK Platform</li>
+                <li>Android Virtual Device</li>
+              </ul>
+            </li>
+            <li>Clique em <code>Next</code> e complete a instalação.</li>
+          </ol>
+        </div>
+
+        <h3>✅ Passo 4: Finalizar Configuração</h3>
+        <div class="step-box">
+          <h4>Aceitar licenças Android</h4>
+          <p>Execute no Terminal:</p>
+          <div class="code-block">
+            flutter doctor --android-licenses
+          </div>
+          <p>Pressione <code>y</code> para aceitar todas as licenças.</p>
+        </div>
+
+        <div class="step-box">
+          <h4>Verificar instalação</h4>
+          <p>Execute novamente:</p>
+          <div class="code-block">
+            flutter doctor
+          </div>
+          <p>Verifique se todas as dependências estão marcadas como OK.</p>
+        </div>
+
         <div class="step-action" onclick="markStepComplete('setup-macos')" role="button" aria-label="Marcar configuração do macOS como concluída">Marcar como Concluído</div>
+        <a href="#" class="link-button" onclick="showContent('dev-project')" role="button" aria-label="Ir para criar projeto">Próximo: Criar Projeto</a>
       </div>
 
-      <!-- Setup ChromeOS/Linux (Placeholder) -->
+      <!-- Setup ChromeOS/Linux -->
       <div class="content-section" id="content-setup-chromeos">
         <h2>⚙️ Configuração no ChromeOS/Linux</h2>
-        <p>Este é um espaço reservado para instruções de configuração no ChromeOS/Linux. Siga passos semelhantes aos do Windows, ajustando para Linux:</p>
+        <p>Siga este guia para configurar seu ambiente de desenvolvimento Flutter no ChromeOS ou Linux. Ele é feito para ser simples, mesmo para iniciantes!</p>
+
+        <h3>📋 Pré-requisitos</h3>
         <ul>
-          <li>Baixe o Flutter SDK de <a href="https://flutter.dev/docs/get-started/install/linux" target="_blank">flutter.dev</a>.</li>
-          <li>Adicione o Flutter ao PATH em <code>~/.bashrc</code> ou <code>~/.zshrc</code>.</li>
-          <li>Instale o Android Studio e aceite as licenças.</li>
-          <li>Execute <code>flutter doctor</code> para verificar a configuração.</li>
+          <li>ChromeOS com suporte a Linux (Beta) ou distribuição Linux (Ubuntu, Debian, etc.)</li>
+          <li>Pelo menos 8GB de RAM</li>
+          <li>Pelo menos 4GB de espaço em disco livre</li>
+          <li>Conexão estável com a internet</li>
         </ul>
+
+        <h3>📥 Passo 1: Instalar o Flutter SDK</h3>
+        <div class="step-box">
+          <h4>Baixar o Flutter SDK</h4>
+          <p>
+            <a href="https://flutter.dev/docs/get-started/install/linux" class="link-button" target="_blank" role="button" aria-label="Baixar Flutter SDK">Baixar Flutter SDK para Linux (Versão Estável Mais Recente)</a>
+          </p>
+          <p><strong>O que é isso?</strong> O Flutter SDK é a caixa de ferramentas para criar o aplicativo. Ele contém tudo que você precisa para desenvolver, testar e construir o app.</p>
+          <ol>
+            <li>Extraia o arquivo baixado para uma pasta como <code>~/flutter</code>.</li>
+            <li>Abra o Terminal e adicione o Flutter ao PATH:
+              <div class="code-block">export PATH="$PATH:~/flutter/bin"</div>
+            </li>
+            <li>Para tornar isso permanente, edite o arquivo <code>~/.bashrc</code> ou <code>~/.zshrc</code>:
+              <div class="code-block">nano ~/.bashrc</div>
+            </li>
+            <li>Adicione a linha acima, salve e execute:
+              <div class="code-block">source ~/.bashrc</div>
+            </li>
+          </ol>
+        </div>
+
+        <h3>🔍 Passo 2: Verificar Dependências</h3>
+        <div class="step-box">
+          <h4>Executar flutter doctor</h4>
+          <p>Abra o Terminal e execute:</p>
+          <div class="code-block">
+            flutter doctor
+          </div>
+          <p>Se você vir um erro como "'flutter' não é reconhecido", vá para a seção <a href="#" onclick="showContent('trouble-path')" role="button" aria-label="Solução para comando flutter não reconhecido">Solução de Problemas</a>.</p>
+        </div>
+
+        <h3>🤖 Passo 3: Instalar Android Studio</h3>
+        <div class="step-box">
+          <h4>Baixar Android Studio</h4>
+          <p>
+            <a href="https://developer.android.com/studio" class="link-button" target="_blank" role="button" aria-label="Baixar Android Studio">Baixar Android Studio</a>
+          </p>
+          <p><strong>Por que isso é necessário?</strong> O Android Studio fornece ferramentas para o Flutter construir e testar o aplicativo no Android.</p>
+        </div>
+
+        <div class="step-box">
+          <h4>Configurar Android Studio</h4>
+          <ol>
+            <li>Abra o Android Studio.</li>
+            <li>No assistente de instalação, marque:
+              <ul>
+                <li>Android SDK</li>
+                <li>Android SDK Platform</li>
+                <li>Android Virtual Device</li>
+              </ul>
+            </li>
+            <li>Clique em <code>Next</code> e complete a instalação.</li>
+          </ol>
+        </div>
+
+        <h3>✅ Passo 4: Finalizar Configuração</h3>
+        <div class="step-box">
+          <h4>Aceitar licenças Android</h4>
+          <p>Execute no Terminal:</p>
+          <div class="code-block">
+            flutter doctor --android-licenses
+          </div>
+          <p>Pressione <code>y</code> para aceitar todas as licenças.</p>
+        </div>
+
+        <div class="step-box">
+          <h4>Verificar instalação</h4>
+          <p>Execute novamente:</p>
+          <div class="code-block">
+            flutter doctor
+          </div>
+          <p>Verifique se todas as dependências estão marcadas como OK.</p>
+        </div>
+
         <div class="step-action" onclick="markStepComplete('setup-chromeos')" role="button" aria-label="Marcar configuração do ChromeOS/Linux como concluída">Marcar como Concluído</div>
+        <a href="#" class="link-button" onclick="showContent('dev-project')" role="button" aria-label="Ir para criar projeto">Próximo: Criar Projeto</a>
       </div>
 
       <!-- Seção de Solução de Problemas: Comando 'flutter' não reconhecido -->
@@ -905,6 +1071,54 @@
         <h2>💻 Criar Projeto</h2>
         <p>Este é um espaço reservado para instruções sobre como criar um novo projeto Flutter. Execute <code>flutter create meu_projeto</code> no terminal e siga as instruções.</p>
       </div>
+      <div class="content-section" id="content-dev-structure">
+        <h2>📂 Estrutura Básica</h2>
+        <p>Este é um espaço reservado para instruções sobre a estrutura básica do projeto Flutter.</p>
+      </div>
+      <div class="content-section" id="content-dev-ui">
+        <h2>🎨 Interface do Usuário</h2>
+        <p>Este é um espaço reservado para instruções sobre como criar a interface do usuário no Flutter.</p>
+      </div>
+      <div class="content-section" id="content-dev-logic">
+        <h2>⚙️ Lógica de Negócio</h2>
+        <p>Este é um espaço reservado para instruções sobre como implementar a lógica de negócio no Flutter.</p>
+      </div>
+      <div class="content-section" id="content-integration-firebase">
+        <h2>🔥 Integração com Firebase</h2>
+        <p>Este é um espaço reservado para instruções sobre como integrar o Firebase ao projeto Flutter.</p>
+      </div>
+      <div class="content-section" id="content-integration-api">
+        <h2>🌐 Integração com API Externa</h2>
+        <p>Este é um espaço reservado para instruções sobre como integrar APIs externas ao projeto Flutter.</p>
+      </div>
+      <div class="content-section" id="content-testing-unit">
+        <h2>🧪 Testes Unitários</h2>
+        <p>Este é um espaço reservado para instruções sobre como criar testes unitários no Flutter.</p>
+      </div>
+      <div class="content-section" id="content-testing-device">
+        <h2>📱 Testes em Dispositivo</h2>
+        <p>Este é um espaço reservado para instruções sobre como realizar testes em dispositivos físicos ou emuladores.</p>
+      </div>
+      <div class="content-section" id="content-deployment-build">
+        <h2>🏗️ Build do Aplicativo</h2>
+        <p>Este é um espaço reservado para instruções sobre como construir o aplicativo Flutter para produção.</p>
+      </div>
+      <div class="content-section" id="content-deployment-playstore">
+        <h2>🏪 Google Play Store</h2>
+        <p>Este é um espaço reservado para instruções sobre como publicar o aplicativo na Google Play Store.</p>
+      </div>
+      <div class="content-section" id="content-deployment-analytics">
+        <h2>📊 Analytics</h2>
+        <p>Este é um espaço reservado para instruções sobre como configurar analytics no aplicativo Flutter.</p>
+      </div>
+      <div class="content-section" id="content-delivery-documentation">
+        <h2>📜 Documentação</h2>
+        <p>Este é um espaço reservado para instruções sobre como documentar o projeto Flutter.</p>
+      </div>
+      <div class="content-section" id="content-delivery-transfer">
+        <h2>🤝 Transferência de Conhecimento</h2>
+        <p>Este é um espaço reservado para instruções sobre como realizar a transferência de conhecimento para a equipe de TI.</p>
+      </div>
     </div>
   </div>
 
@@ -923,7 +1137,7 @@
       document.getElementById('home-page').style.display = 'flex';
       document.getElementById('main-container').style.display = 'none';
       document.getElementById('back-button').style.display = 'none';
-      document.body.style.background = 'linear-gradient(135deg, #F5FBF7 0%, #E5F5E9 100%)';
+      document.body.style.background = 'linear-gradient(135deg, #2A2A2A 0%, #1E1E1E 100%)';
     }
 
     // Função para mostrar o guia
@@ -931,7 +1145,7 @@
       document.getElementById('home-page').style.display = 'none';
       document.getElementById('main-container').style.display = 'flex';
       document.getElementById('back-button').style.display = 'block';
-      document.body.style.background = 'linear-gradient(135deg, #F5FBF7 0%, #E5F5E9 100%)';
+      document.body.style.background = 'linear-gradient(135deg, #2A2A2A 0%, #1E1E1E 100%)';
 
       if (type === 'development') {
         const platform = navigator.platform.toLowerCase();
