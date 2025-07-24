@@ -537,77 +537,77 @@ footer a:hover {
     
     <!-- Configuração Inicial -->
     <div class="menu-item">
-      <div class="menu-title" onclick="toggleSubmenu('setup')" aria-expanded="false" aria-controls="submenu-setup">
+      <div class="menu-title" onclick="toggleSubmenu('setup')">
         <span>⚙️ Configuração Inicial</span>
         <span>▼</span>
       </div>
       <div class="submenu" id="submenu-setup">
-        <div class="submenu-item" id="menu-setup-windows" onclick="showContent('setup-windows')" aria-label="Configuração para Windows">Windows</div>
-        <div class="submenu-item" id="menu-setup-macos" onclick="showContent('setup-macos')" aria-label="Configuração para macOS">macOS</div>
-        <div class="submenu-item" id="menu-setup-chromeos" onclick="showContent('setup-chromeos')" aria-label="Configuração para ChromeOS/Linux">ChromeOS/Linux</div>
+        <div class="submenu-item" onclick="showContent('setup-windows')">Windows</div>
+        <div class="submenu-item" onclick="showContent('setup-macos')">macOS</div>
+        <div class="submenu-item" onclick="showContent('setup-chromeos')">ChromeOS/Linux</div>
       </div>
     </div>
 
     <!-- Desenvolvimento -->
     <div class="menu-item">
-      <div class="menu-title" onclick="toggleSubmenu('dev')" aria-expanded="false" aria-controls="submenu-dev">
+      <div class="menu-title" onclick="toggleSubmenu('dev')">
         <span>💻 Desenvolvimento</span>
         <span>▼</span>
       </div>
       <div class="submenu" id="submenu-dev">
-        <div class="submenu-item" id="menu-dev-project" onclick="showContent('dev-project')" aria-label="Criar novo projeto">Criar Projeto</div>
-        <div class="submenu-item" id="menu-dev-structure" onclick="showContent('dev-structure')" aria-label="Estrutura básica do projeto">Estrutura Básica</div>
-        <div class="submenu-item" id="menu-dev-ui" onclick="showContent('dev-ui')" aria-label="Interface do usuário">Interface do Usuário</div>
-        <div class="submenu-item" id="menu-dev-logic" onclick="showContent('dev-logic')" aria-label="Lógica de negócio">Lógica de Negócio</div>
+        <div class="submenu-item" onclick="showContent('dev-project')">Criar Projeto</div>
+        <div class="submenu-item" onclick="showContent('dev-structure')">Estrutura Básica</div>
+        <div class="submenu-item" onclick="showContent('dev-ui')">Interface do Usuário</div>
+        <div class="submenu-item" onclick="showContent('dev-logic')">Lógica de Negócio</div>
       </div>
     </div>
 
     <!-- Integrações -->
     <div class="menu-item">
-      <div class="menu-title" onclick="toggleSubmenu('integration')" aria-expanded="false" aria-controls="submenu-integration">
+      <div class="menu-title" onclick="toggleSubmenu('integration')">
         <span>🔗 Integrações</span>
         <span>▼</span>
       </div>
       <div class="submenu" id="submenu-integration">
-        <div class="submenu-item" id="menu-integration-firebase" onclick="showContent('integration-firebase')" aria-label="Integração com Firebase">Firebase</div>
-        <div class="submenu-item" id="menu-integration-api" onclick="showContent('integration-api')" aria-label="Integração com API externa">API Externa</div>
+        <div class="submenu-item" onclick="showContent('integration-firebase')">Firebase</div>
+        <div class="submenu-item" onclick="showContent('integration-api')">API Externa</div>
       </div>
     </div>
 
     <!-- Testes -->
     <div class="menu-item">
-      <div class="menu-title" onclick="toggleSubmenu('testing')" aria-expanded="false" aria-controls="submenu-testing">
+      <div class="menu-title" onclick="toggleSubmenu('testing')">
         <span>🧪 Testes</span>
         <span>▼</span>
       </div>
       <div class="submenu" id="submenu-testing">
-        <div class="submenu-item" id="menu-testing-unit" onclick="showContent('testing-unit')" aria-label="Testes unitários">Testes Unitários</div>
-        <div class="submenu-item" id="menu-testing-widget" onclick="showContent('testing-widget')" aria-label="Testes de widget">Testes de Widget</div>
+        <div class="submenu-item" onclick="showContent('testing-unit')">Testes Unitários</div>
+        <div class="submenu-item" onclick="showContent('testing-widget')">Testes de Widget</div>
       </div>
     </div>
 
     <!-- Documentação -->
     <div class="menu-item">
-      <div class="menu-title" onclick="toggleSubmenu('docs')" aria-expanded="false" aria-controls="submenu-docs">
+      <div class="menu-title" onclick="toggleSubmenu('docs')">
         <span>📚 Documentação</span>
         <span>▼</span>
       </div>
       <div class="submenu" id="submenu-docs">
-        <div class="submenu-item" id="menu-docs-readme" onclick="showContent('docs-readme')" aria-label="Documentação README">README</div>
-        <div class="submenu-item" id="menu-docs-tech" onclick="showContent('docs-tech')" aria-label="Documentação técnica">Documentação Técnica</div>
+        <div class="submenu-item" onclick="showContent('docs-readme')">README</div>
+        <div class="submenu-item" onclick="showContent('docs-tech')">Documentação Técnica</div>
       </div>
     </div>
 
     <!-- Solução de Problemas -->
     <div class="menu-item">
-      <div class="menu-title" onclick="toggleSubmenu('troubleshooting')" aria-expanded="false" aria-controls="submenu-troubleshooting">
+      <div class="menu-title" onclick="toggleSubmenu('troubleshooting')">
         <span>❓ Solução de Problemas</span>
         <span>▼</span>
       </div>
       <div class="submenu" id="submenu-troubleshooting">
-        <div class="submenu-item" id="menu-trouble-path" onclick="showContent('trouble-path')" aria-label="Comando 'flutter' não reconhecido">Comando 'flutter' não reconhecido</div>
-        <div class="submenu-item" id="menu-trouble-licenses" onclick="showContent('trouble-licenses')" aria-label="Erro de licenças Android">Erro de licenças Android</div>
-        <div class="submenu-item" id="menu-trouble-emulator" onclick="showContent('trouble-emulator')" aria-label="Problemas com emulador">Problemas com Emulador</div>
+        <div class="submenu-item" onclick="showContent('trouble-path')">Comando 'flutter' não reconhecido</div>
+        <div class="submenu-item" onclick="showContent('trouble-licenses')">Erro de licenças Android</div>
+        <div class="submenu-item" onclick="showContent('trouble-emulator')">Problemas com Emulador</div>
       </div>
     </div>
   </div>
@@ -1663,10 +1663,6 @@ function toggleSubmenu(menuId) {
   // Toggle do submenu
   submenu.classList.toggle('active');
   title.classList.toggle('active');
-  
-  // Atualizar atributo aria-expanded
-  const isExpanded = submenu.classList.contains('active');
-  title.setAttribute('aria-expanded', isExpanded);
 }
 
 function markStepComplete(stepId) {
@@ -1694,24 +1690,6 @@ document.addEventListener('DOMContentLoaded', function() {
       e.preventDefault();
       const guide = this.querySelector('h2').textContent.includes('Estrutura') ? 'structure' : 'development';
       showGuide(guide);
-    });
-  });
-  
-  // Adicionar event listeners para os itens de menu
-  document.querySelectorAll('.submenu-item').forEach(item => {
-    item.addEventListener('click', function(e) {
-      e.preventDefault();
-      const contentId = this.getAttribute('onclick').match(/'([^']+)'/)[1];
-      showContent(contentId);
-    });
-  });
-  
-  // Adicionar event listeners para os títulos de menu
-  document.querySelectorAll('.menu-title').forEach(title => {
-    title.addEventListener('click', function(e) {
-      e.preventDefault();
-      const menuId = this.getAttribute('onclick').match(/'([^']+)'/)[1];
-      toggleSubmenu(menuId);
     });
   });
 });
