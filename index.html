@@ -655,20 +655,20 @@
       <!-- Página Inicial do Guia -->
       <div class="content-section active" id="content-home">
         <h2>🎯 Bem-vindo ao Guia de Desenvolvimento</h2>
-        <p>Este guia foi criado para te orientar em cada etapa do desenvolvimento do aplicativo SOS Unimed Vidas, desde a configuração inicial até a entrega final do MVP.</p>
+        <p>Este guia orienta você em cada etapa do desenvolvimento do aplicativo SOS Unimed Vidas, desde a configuração inicial até a entrega do MVP funcional.</p>
 
         <div class="step-box">
           <h4>Como usar este guia:</h4>
           <ol>
-            <li>Use o menu à esquerda para navegar pelas fases do desenvolvimento</li>
-            <li>Clique em cada item para ver instruções detalhadas</li>
-            <li>Se encontrar um problema, verifique a seção <strong>Solução de Problemas</strong>.</li>
-            <li>Siga os passos na ordem recomendada para melhor resultado</li>
-            <li>Marque as tarefas como concluídas conforme você avança</li>
+            <li>Use o menu à esquerda para navegar pelas fases do desenvolvimento.</li>
+            <li>Clique em cada item para ver instruções detalhadas.</li>
+            <li>Consulte a seção <strong>Solução de Problemas</strong> caso encontre dificuldades.</li>
+            <li>Siga os passos na ordem para melhores resultados.</li>
+            <li>Marque as tarefas como concluídas para acompanhar seu progresso.</li>
           </ol>
         </div>
 
-        <p>O objetivo é entregar um MVP completo e funcional, com todas as etapas documentadas para facilitar a continuidade do projeto pela equipe de TI da Unimed.</p>
+        <p>O objetivo é criar um aplicativo funcional com documentação clara para a equipe de TI da Unimed continuar o projeto.</p>
 
         <a href="#" class="link-button" onclick="showContent('setup-windows')" role="button" aria-label="Iniciar configuração para Windows">Começar pelo Primeiro Passo</a>
       </div>
@@ -676,13 +676,13 @@
       <!-- Setup Windows -->
       <div class="content-section" id="content-setup-windows">
         <h2>⚙️ Configuração no Windows</h2>
-        <p>Siga este guia para configurar seu ambiente de desenvolvimento Flutter no Windows. Ele é feito para ser simples, mesmo para iniciantes!</p>
+        <p>Configure seu ambiente de desenvolvimento Flutter no Windows com este guia simples, ideal para iniciantes.</p>
 
         <h3>📋 Pré-requisitos</h3>
         <ul>
           <li>Windows 10 ou superior (64-bit)</li>
-          <li>Pelo menos 8GB de RAM</li>
-          <li>Pelo menos 4GB de espaço em disco livre</li>
+          <li>Mínimo de 8GB de RAM</li>
+          <li>4GB de espaço livre em disco</li>
           <li>Conexão estável com a internet</li>
         </ul>
 
@@ -690,32 +690,35 @@
         <div class="step-box">
           <h4>Baixar o Flutter SDK</h4>
           <p>
-            <a href="https://flutter.dev/docs/get-started/install/windows" class="link-button" target="_blank" role="button" aria-label="Baixar Flutter SDK">Baixar Flutter SDK para Windows (Versão Estável Mais Recente)</a>
+            <a href="https://flutter.dev/docs/get-started/install/windows" class="link-button" target="_blank" role="button" aria-label="Baixar Flutter SDK">Baixar Flutter SDK para Windows</a>
           </p>
-          <p><strong>O que é isso?</strong> O Flutter SDK é como a caixa de ferramentas para criar o aplicativo. Ele contém tudo que você precisa para desenvolver, testar e construir o app. Usamos a versão mais recente para garantir que você tenha as últimas funcionalidades e segurança.</p>
+          <p><strong>O que é isso?</strong> O Flutter SDK é a ferramenta principal para criar o aplicativo. Ele inclui tudo necessário para desenvolvimento, testes e build.</p>
+          <ol>
+            <li>Baixe o arquivo ZIP e extraia-o para <code>C:\src\flutter</code>.</li>
+            <li>Evite pastas com permissões restritas, como <code>C:\Program Files</code>.</li>
+          </ol>
         </div>
 
         <div class="step-box">
           <h4>Adicionar ao PATH</h4>
           <ol>
-            <li>Pressione <code>Win + R</code>, digite <code>sysdm.cpl</code> e pressione Enter</li>
-            <li>Clique na aba <code>Avançado</code></li>
-            <li>Clique em <code>Variáveis de Ambiente</code></li>
-            <li>Na seção <code>Variáveis do sistema</code>, selecione <code>Path</code> e clique em <code>Editar</code></li>
-            <li>Clique em <code>Novo</code> e adicione: <code>C:\src\flutter\bin</code></li>
-            <li>Clique <code>OK</code> para fechar todas as janelas</li>
+            <li>Pressione <code>Win + R</code>, digite <code>sysdm.cpl</code> e pressione Enter.</li>
+            <li>Na aba <code>Avançado</code>, clique em <code>Variáveis de Ambiente</code>.</li>
+            <li>Em <code>Variáveis do sistema</code>, selecione <code>Path</code> e clique em <code>Editar</code>.</li>
+            <li>Clique em <code>Novo</code> e adicione: <code>C:\src\flutter\bin</code>.</li>
+            <li>Clique em <code>OK</code> para salvar.</li>
           </ol>
-          <p><strong>Importante:</strong> Após realizar esta etapa, você <strong>precisa fechar e abrir novamente</strong> qualquer terminal (Prompt de Comando, PowerShell, etc.) para que a alteração tenha efeito.</p>
+          <p><strong>Nota:</strong> Feche e reabra o terminal (Prompt de Comando ou PowerShell) para aplicar as mudanças.</p>
         </div>
 
         <h3>🔍 Passo 2: Verificar Dependências</h3>
         <div class="step-box">
           <h4>Executar flutter doctor</h4>
-          <p>Abra um <strong>novo</strong> terminal e execute:</p>
+          <p>Abra um novo terminal e execute:</p>
           <div class="code-block">
             flutter doctor
           </div>
-          <p>Se você vir um erro como "'flutter' não é reconhecido", vá para a seção <a href="#" onclick="showContent('trouble-path')" role="button" aria-label="Solução para comando flutter não reconhecido">Solução de Problemas</a>.</p>
+          <p>Se aparecer um erro como "'flutter' não é reconhecido", vá para <a href="#" onclick="showContent('trouble-path')" role="button" aria-label="Solução para comando flutter não reconhecido">Solução de Problemas</a>.</p>
         </div>
 
         <h3>🤖 Passo 3: Instalar Android Studio</h3>
@@ -724,27 +727,28 @@
           <p>
             <a href="https://developer.android.com/studio" class="link-button" target="_blank" role="button" aria-label="Baixar Android Studio">Baixar Android Studio</a>
           </p>
-          <p><strong>Por que isso é necessário?</strong> O Android Studio é o programa oficial do Google para desenvolver apps Android. Mesmo que você use outro editor (como VS Code), ele é essencial porque fornece ferramentas para o Flutter construir e testar o aplicativo no Android.</p>
+          <p><strong>Por que isso é necessário?</strong> O Android Studio fornece ferramentas para testar e construir o app no Android.</p>
         </div>
 
         <div class="step-box">
           <h4>Configurar Android Studio</h4>
           <ol>
             <li>Abra o Android Studio.</li>
-            <li>No assistente de instalação, certifique-se de marcar:</li>
-            <ul>
-              <li>Android SDK</li>
-              <li>Android SDK Platform</li>
-              <li>Android Virtual Device</li>
-            </ul>
-            <li>Clique em <code>Next</code> e complete a instalação.</li>
+            <li>No assistente de instalação, marque:
+              <ul>
+                <li>Android SDK</li>
+                <li>Android SDK Platform</li>
+                <li>Android Virtual Device</li>
+              </ul>
+            </li>
+            <li>Clique em <code>Next</code> e conclua a instalação.</li>
           </ol>
         </div>
 
-        <h3>✅ Passo 5: Finalizar Configuração</h3>
+        <h3>✅ Passo 4: Finalizar Configuração</h3>
         <div class="step-box">
           <h4>Aceitar licenças Android</h4>
-          <p>Execute no Prompt de Comando ou PowerShell:</p>
+          <p>Execute:</p>
           <div class="code-block">
             flutter doctor --android-licenses
           </div>
@@ -757,7 +761,7 @@
           <div class="code-block">
             flutter doctor
           </div>
-          <p>Agora deverá mostrar todas as dependências como OK.</p>
+          <p>Confirme que todas as dependências estão marcadas como OK.</p>
         </div>
 
         <div class="step-action" onclick="markStepComplete('setup-windows')" role="button" aria-label="Marcar configuração do Windows como concluída">Marcar como Concluído</div>
@@ -767,13 +771,13 @@
       <!-- Setup macOS -->
       <div class="content-section" id="content-setup-macos">
         <h2>⚙️ Configuração no macOS</h2>
-        <p>Siga este guia para configurar seu ambiente de desenvolvimento Flutter no macOS. Ele é feito para ser simples, mesmo para iniciantes!</p>
+        <p>Configure seu ambiente de desenvolvimento Flutter no macOS com este guia simples.</p>
 
         <h3>📋 Pré-requisitos</h3>
         <ul>
           <li>macOS 10.15 (Catalina) ou superior</li>
-          <li>Pelo menos 8GB de RAM</li>
-          <li>Pelo menos 4GB de espaço em disco livre</li>
+          <li>Mínimo de 8GB de RAM</li>
+          <li>4GB de espaço livre em disco</li>
           <li>Conexão estável com a internet</li>
         </ul>
 
@@ -781,18 +785,17 @@
         <div class="step-box">
           <h4>Baixar o Flutter SDK</h4>
           <p>
-            <a href="https://flutter.dev/docs/get-started/install/macos" class="link-button" target="_blank" role="button" aria-label="Baixar Flutter SDK">Baixar Flutter SDK para macOS (Versão Estável Mais Recente)</a>
+            <a href="https://flutter.dev/docs/get-started/install/macos" class="link-button" target="_blank" role="button" aria-label="Baixar Flutter SDK">Baixar Flutter SDK para macOS</a>
           </p>
-          <p><strong>O que é isso?</strong> O Flutter SDK é a caixa de ferramentas para criar o aplicativo. Ele contém tudo que você precisa para desenvolver, testar e construir o app.</p>
+          <p><strong>O que é isso?</strong> O Flutter SDK é a ferramenta principal para criar o aplicativo.</p>
           <ol>
-            <li>Extraia o arquivo baixado para uma pasta como <code>~/development/flutter</code>.</li>
-            <li>Abra o Terminal e adicione o Flutter ao PATH:
+            <li>Extraia o arquivo ZIP para <code>~/development/flutter</code>.</li>
+            <li>Abra o Terminal e adicione ao PATH:
               <div class="code-block">export PATH="$PATH:~/development/flutter/bin"</div>
             </li>
-            <li>Para tornar isso permanente, edite o arquivo <code>~/.zshrc</code>:
+            <li>Para tornar permanente, edite <code>~/.zshrc</code>:
               <div class="code-block">nano ~/.zshrc</div>
-            </li>
-            <li>Adicione a linha acima, salve e execute:
+              Adicione a linha acima, salve e execute:
               <div class="code-block">source ~/.zshrc</div>
             </li>
           </ol>
@@ -801,11 +804,11 @@
         <h3>🔍 Passo 2: Verificar Dependências</h3>
         <div class="step-box">
           <h4>Executar flutter doctor</h4>
-          <p>Abra o Terminal e execute:</p>
+          <p>Execute:</p>
           <div class="code-block">
             flutter doctor
           </div>
-          <p>Se você vir um erro como "'flutter' não é reconhecido", vá para a seção <a href="#" onclick="showContent('trouble-path')" role="button" aria-label="Solução para comando flutter não reconhecido">Solução de Problemas</a>.</p>
+          <p>Se aparecer um erro, vá para <a href="#" onclick="showContent('trouble-path')" role="button" aria-label="Solução para comando flutter não reconhecido">Solução de Problemas</a>.</p>
         </div>
 
         <h3>🤖 Passo 3: Instalar Android Studio</h3>
@@ -814,28 +817,27 @@
           <p>
             <a href="https://developer.android.com/studio" class="link-button" target="_blank" role="button" aria-label="Baixar Android Studio">Baixar Android Studio</a>
           </p>
-          <p><strong>Por que isso é necessário?</strong> O Android Studio fornece ferramentas para o Flutter construir e testar o aplicativo no Android.</p>
         </div>
 
         <div class="step-box">
           <h4>Configurar Android Studio</h4>
           <ol>
             <li>Abra o Android Studio.</li>
-            <li>No assistente de instalação, marque:
+            <li>Marque:
               <ul>
                 <li>Android SDK</li>
                 <li>Android SDK Platform</li>
                 <li>Android Virtual Device</li>
               </ul>
             </li>
-            <li>Clique em <code>Next</code> e complete a instalação.</li>
+            <li>Conclua a instalação.</li>
           </ol>
         </div>
 
         <h3>✅ Passo 4: Finalizar Configuração</h3>
         <div class="step-box">
           <h4>Aceitar licenças Android</h4>
-          <p>Execute no Terminal:</p>
+          <p>Execute:</p>
           <div class="code-block">
             flutter doctor --android-licenses
           </div>
@@ -844,11 +846,11 @@
 
         <div class="step-box">
           <h4>Verificar instalação</h4>
-          <p>Execute novamente:</p>
+          <p>Execute:</p>
           <div class="code-block">
             flutter doctor
           </div>
-          <p>Verifique se todas as dependências estão marcadas como OK.</p>
+          <p>Confirme que todas as dependências estão OK.</p>
         </div>
 
         <div class="step-action" onclick="markStepComplete('setup-macos')" role="button" aria-label="Marcar configuração do macOS como concluída">Marcar como Concluído</div>
@@ -858,13 +860,13 @@
       <!-- Setup ChromeOS/Linux -->
       <div class="content-section" id="content-setup-chromeos">
         <h2>⚙️ Configuração no ChromeOS/Linux</h2>
-        <p>Siga este guia para configurar seu ambiente de desenvolvimento Flutter no ChromeOS ou Linux. Ele é feito para ser simples, mesmo para iniciantes!</p>
+        <p>Configure seu ambiente de desenvolvimento Flutter no ChromeOS ou Linux.</p>
 
         <h3>📋 Pré-requisitos</h3>
         <ul>
-          <li>ChromeOS com suporte a Linux (Beta) ou distribuição Linux (Ubuntu, Debian, etc.)</li>
-          <li>Pelo menos 8GB de RAM</li>
-          <li>Pelo menos 4GB de espaço em disco livre</li>
+          <li>ChromeOS com Linux (Beta) ou distribuição Linux (Ubuntu, Debian, etc.)</li>
+          <li>Mínimo de 8GB de RAM</li>
+          <li>4GB de espaço livre em disco</li>
           <li>Conexão estável com a internet</li>
         </ul>
 
@@ -872,18 +874,16 @@
         <div class="step-box">
           <h4>Baixar o Flutter SDK</h4>
           <p>
-            <a href="https://flutter.dev/docs/get-started/install/linux" class="link-button" target="_blank" role="button" aria-label="Baixar Flutter SDK">Baixar Flutter SDK para Linux (Versão Estável Mais Recente)</a>
+            <a href="https://flutter.dev/docs/get-started/install/linux" class="link-button" target="_blank" role="button" aria-label="Baixar Flutter SDK">Baixar Flutter SDK para Linux</a>
           </p>
-          <p><strong>O que é isso?</strong> O Flutter SDK é a caixa de ferramentas para criar o aplicativo. Ele contém tudo que você precisa para desenvolver, testar e construir o app.</p>
           <ol>
-            <li>Extraia o arquivo baixado para uma pasta como <code>~/flutter</code>.</li>
-            <li>Abra o Terminal e adicione o Flutter ao PATH:
+            <li>Extraia o arquivo ZIP para <code>~/flutter</code>.</li>
+            <li>Adicione ao PATH:
               <div class="code-block">export PATH="$PATH:~/flutter/bin"</div>
             </li>
-            <li>Para tornar isso permanente, edite o arquivo <code>~/.bashrc</code> ou <code>~/.zshrc</code>:
+            <li>Edite <code>~/.bashrc</code> ou <code>~/.zshrc</code>:
               <div class="code-block">nano ~/.bashrc</div>
-            </li>
-            <li>Adicione a linha acima, salve e execute:
+              Adicione a linha acima, salve e execute:
               <div class="code-block">source ~/.bashrc</div>
             </li>
           </ol>
@@ -892,11 +892,11 @@
         <h3>🔍 Passo 2: Verificar Dependências</h3>
         <div class="step-box">
           <h4>Executar flutter doctor</h4>
-          <p>Abra o Terminal e execute:</p>
+          <p>Execute:</p>
           <div class="code-block">
             flutter doctor
           </div>
-          <p>Se você vir um erro como "'flutter' não é reconhecido", vá para a seção <a href="#" onclick="showContent('trouble-path')" role="button" aria-label="Solução para comando flutter não reconhecido">Solução de Problemas</a>.</p>
+          <p>Se houver erro, consulte <a href="#" onclick="showContent('trouble-path')" role="button" aria-label="Solução para comando flutter não reconhecido">Solução de Problemas</a>.</p>
         </div>
 
         <h3>🤖 Passo 3: Instalar Android Studio</h3>
@@ -905,28 +905,27 @@
           <p>
             <a href="https://developer.android.com/studio" class="link-button" target="_blank" role="button" aria-label="Baixar Android Studio">Baixar Android Studio</a>
           </p>
-          <p><strong>Por que isso é necessário?</strong> O Android Studio fornece ferramentas para o Flutter construir e testar o aplicativo no Android.</p>
         </div>
 
         <div class="step-box">
           <h4>Configurar Android Studio</h4>
           <ol>
             <li>Abra o Android Studio.</li>
-            <li>No assistente de instalação, marque:
+            <li>Marque:
               <ul>
                 <li>Android SDK</li>
                 <li>Android SDK Platform</li>
                 <li>Android Virtual Device</li>
               </ul>
             </li>
-            <li>Clique em <code>Next</code> e complete a instalação.</li>
+            <li>Conclua a instalação.</li>
           </ol>
         </div>
 
         <h3>✅ Passo 4: Finalizar Configuração</h3>
         <div class="step-box">
           <h4>Aceitar licenças Android</h4>
-          <p>Execute no Terminal:</p>
+          <p>Execute:</p>
           <div class="code-block">
             flutter doctor --android-licenses
           </div>
@@ -935,318 +934,721 @@
 
         <div class="step-box">
           <h4>Verificar instalação</h4>
-          <p>Execute novamente:</p>
+          <p>Execute:</p>
           <div class="code-block">
             flutter doctor
           </div>
-          <p>Verifique se todas as dependências estão marcadas como OK.</p>
+          <p>Confirme que todas as dependências estão OK.</p>
         </div>
 
         <div class="step-action" onclick="markStepComplete('setup-chromeos')" role="button" aria-label="Marcar configuração do ChromeOS/Linux como concluída">Marcar como Concluído</div>
         <a href="#" class="link-button" onclick="showContent('dev-project')" role="button" aria-label="Ir para criar projeto">Próximo: Criar Projeto</a>
       </div>
 
-      <!-- Seção de Solução de Problemas: Comando 'flutter' não reconhecido -->
+      <!-- Solução de Problemas: Comando 'flutter' não reconhecido -->
       <div class="content-section" id="content-trouble-path">
         <h2>❓ Solução de Problemas: Comando 'flutter' não reconhecido</h2>
-        <p>Este erro ocorre quando o sistema não encontra o programa Flutter. É comum e fácil de resolver! Ele acontece porque o caminho para o Flutter não foi configurado corretamente nas variáveis de ambiente do seu computador.</p>
+        <p>Este erro ocorre quando o sistema não encontra o Flutter. Vamos corrigir!</p>
 
         <h3>Windows</h3>
         <div class="troubleshooting-box">
           <h4>Cenário do Erro</h4>
-          <p>Você abre o terminal (Prompt de Comando ou PowerShell), digita <code>flutter doctor</code> e vê:</p>
-          <div class="code-block">'flutter' não é reconhecido como um comando interno<br>ou externo, um programa operável ou um arquivo em lotes.</div>
+          <p>Você digita <code>flutter doctor</code> e vê:</p>
+          <div class="code-block">'flutter' não é reconhecido como um comando interno ou externo, um programa operável ou um arquivo em lotes.</div>
         </div>
 
         <div class="troubleshooting-box">
           <h4>Como Resolver</h4>
           <ol>
-            <li><strong>Verifique o Caminho do Flutter:</strong><br>
-                Confirme onde você extraiu o Flutter SDK. No nosso guia, usamos <code>C:\src\flutter</code>. O caminho a adicionar é a subpasta <code>bin</code>: <code>C:\src\flutter\bin</code>.</li>
-            <li><strong>Corrija as Variáveis de Ambiente:</strong>
-                <ul>
-                  <li>Pressione <code>Win + R</code>, digite <code>sysdm.cpl</code> e pressione Enter.</li>
-                  <li>Vá para a aba <code>Avançado</code> e clique em <code>Variáveis de Ambiente</code>.</li>
-                  <li>Na seção <code>Variáveis do sistema</code>, selecione <code>Path</code> e clique em <code>Editar</code>.</li>
-                  <li>Verifique se <code>C:\src\flutter\bin</code> está na lista. Se não, clique em <code>Novo</code> e adicione-o.</li>
-                  <li>Confirme que não há erros de digitação.</li>
-                  <li>Clique em <code>OK</code> para salvar.</li>
-                </ul>
-                <p><strong>Nota:</strong> Se o erro persistir, verifique se o Flutter SDK foi extraído corretamente e se você tem permissões de escrita na pasta <code>C:\src\flutter</code>. Tente executar o terminal como administrador.</p>
-                <img src="/images/path-variable-windows.png?v=1.0" alt="Configuração da variável PATH no Windows" style="max-width: 100%; border-radius: var(--border-radius); margin: 10px 0;">
+            <li>Confirme que o Flutter SDK está em <code>C:\src\flutter</code>.</li>
+            <li>Verifique o PATH:
+              <ul>
+                <li>Pressione <code>Win + R</code>, digite <code>sysdm.cpl</code>, Enter.</li>
+                <li>Aba <code>Avançado</code> > <code>Variáveis de Ambiente</code>.</li>
+                <li>Em <code>Variáveis do sistema</code>, edite <code>Path</code>.</li>
+                <li>Adicione <code>C:\src\flutter\bin</code> se não estiver presente.</li>
+                <li>Salve com <code>OK</code>.</li>
+              </ul>
             </li>
-            <li><strong>Reinicie o Terminal:</strong><br>
-                Feche todas as janelas do Prompt de Comando ou PowerShell e abra uma nova. Isso é essencial!</li>
-            <li><strong>Tente Novamente:</strong><br>
-                No novo terminal, execute:
-                <div class="code-block">flutter doctor</div>
-                O comando agora deve funcionar e verificar sua configuração.</li>
+            <li>Feche e reabra o terminal.</li>
+            <li>Execute:
+              <div class="code-block">flutter doctor</div>
+            </li>
           </ol>
+          <p><strong>Nota:</strong> Se persistir, verifique permissões na pasta <code>C:\src\flutter</code> ou execute o terminal como administrador.</p>
         </div>
 
         <h3>macOS</h3>
         <div class="troubleshooting-box">
-          <h4>Verificar e Corrigir</h4>
+          <h4>Como Resolver</h4>
           <ol>
             <li>Confirme que o Flutter SDK está em <code>~/development/flutter</code>.</li>
-            <li>Abra o terminal e edite o arquivo de perfil (<code>~/.zshrc</code> ou <code>~/.bashrc</code>):
+            <li>Edite <code>~/.zshrc</code>:
               <div class="code-block">nano ~/.zshrc</div>
             </li>
-            <li>Adicione a linha:
+            <li>Adicione:
               <div class="code-block">export PATH="$PATH:~/development/flutter/bin"</div>
             </li>
-            <li>Salve e atualize o perfil:
+            <li>Salve e execute:
               <div class="code-block">source ~/.zshrc</div>
             </li>
-            <li>Teste com:
+            <li>Teste:
               <div class="code-block">flutter doctor</div>
             </li>
           </ol>
-          <p><strong>Nota:</strong> Se o erro persistir, verifique as permissões da pasta <code>~/development/flutter</code> e tente executar como administrador com <code>sudo</code>.</p>
         </div>
 
         <h3>Linux/ChromeOS</h3>
         <div class="troubleshooting-box">
-          <h4>Verificar e Corrigir</h4>
+          <h4>Como Resolver</h4>
           <ol>
             <li>Confirme que o Flutter SDK está em <code>~/flutter</code>.</li>
-            <li>Abra o terminal e edite <code>~/.bashrc</code> ou <code>~/.zshrc</code>:
+            <li>Edite <code>~/.bashrc</code> ou <code>~/.zshrc</code>:
               <div class="code-block">nano ~/.bashrc</div>
             </li>
-            <li>Adicione a linha:
+            <li>Adicione:
               <div class="code-block">export PATH="$PATH:~/flutter/bin"</div>
             </li>
-            <li>Salve e atualize:
+            <li>Salve e execute:
               <div class="code-block">source ~/.bashrc</div>
             </li>
-            <li>Teste com:
+            <li>Teste:
               <div class="code-block">flutter doctor</div>
             </li>
           </ol>
-          <p><strong>Nota:</strong> Se o erro persistir, verifique as permissões da pasta <code>~/flutter</code> e tente executar como administrador com <code>sudo</code>.</p>
         </div>
 
         <a href="#" class="link-button" id="trouble-path-back" onclick="showContent('setup-windows')" role="button" aria-label="Voltar para a configuração">Voltar para a Configuração</a>
       </div>
 
-      <!-- Seção de Solução de Problemas: Erro de Licenças Android -->
+      <!-- Solução de Problemas: Erro de Licenças Android -->
       <div class="content-section" id="content-trouble-licenses">
         <h2>❓ Solução de Problemas: Erro de Licenças Android</h2>
-        <p>Se o <code>flutter doctor</code> indicar que as licenças Android não estão aceitas, siga estes passos simples:</p>
+        <p>Se o <code>flutter doctor</code> indicar que as licenças Android não estão aceitas:</p>
         <div class="troubleshooting-box">
           <h4>Como Resolver</h4>
           <ol>
-            <li>Execute no terminal:
+            <li>Execute:
               <div class="code-block">flutter doctor --android-licenses</div>
             </li>
             <li>Pressione <code>y</code> para aceitar todas as licenças.</li>
-            <li>Reexecute <code>flutter doctor</code> para verificar.</li>
+            <li>Verifique:
+              <div class="code-block">flutter doctor</div>
+            </li>
           </ol>
-          <p><strong>Nota:</strong> Certifique-se de que o Android Studio está instalado, pois ele fornece as ferramentas necessárias para as licenças.</p>
+          <p><strong>Nota:</strong> O Android Studio deve estar instalado.</p>
         </div>
         <a href="#" class="link-button" id="trouble-licenses-back" onclick="showContent('setup-windows')" role="button" aria-label="Voltar para a configuração">Voltar para a Configuração</a>
       </div>
 
-      <!-- Seção de Solução de Problemas: Problemas com Emulador -->
+      <!-- Solução de Problemas: Problemas com Emulador -->
       <div class="content-section" id="content-trouble-emulator">
         <h2>❓ Solução de Problemas: Problemas com Emulador</h2>
-        <p>Se o emulador Android não iniciar ou o Flutter não o detectar, siga estes passos:</p>
+        <p>Se o emulador Android não iniciar ou não for detectado:</p>
         <div class="troubleshooting-box">
           <h4>Como Resolver</h4>
           <ol>
-            <li>Abra o Android Studio e vá para <code>Configure > AVD Manager</code>.</li>
-            <li>Crie um novo dispositivo virtual (escolha um dispositivo como Pixel 4 e uma API recente).</li>
-            <li>Inicie o emulador e verifique se ele aparece ao executar:
+            <li>Abra o Android Studio > <code>Configure > AVD Manager</code>.</li>
+            <li>Crie um dispositivo virtual (ex.: Pixel 4, API recente).</li>
+            <li>Inicie o emulador e verifique:
               <div class="code-block">flutter devices</div>
             </li>
-            <li>Se não for detectado, verifique se o Android SDK está configurado corretamente no Android Studio.</li>
+            <li>Se não detectado, confirme o Android SDK no Android Studio.</li>
           </ol>
-          <p><strong>Nota:</strong> Emuladores exigem um computador com bom desempenho. Considere testar em um dispositivo físico se o emulador for lento.</p>
+          <p><strong>Nota:</strong> Emuladores exigem bom desempenho. Considere um dispositivo físico se for lento.</p>
         </div>
         <a href="#" class="link-button" id="trouble-emulator-back" onclick="showContent('setup-windows')" role="button" aria-label="Voltar para a configuração">Voltar para a Configuração</a>
       </div>
 
-      <!-- Placeholder para outras seções -->
+      <!-- Criar Projeto -->
       <div class="content-section" id="content-dev-project">
         <h2>💻 Criar Projeto</h2>
-        <p>Este é um espaço reservado para instruções sobre como criar um novo projeto Flutter. Execute <code>flutter create meu_projeto</code> no terminal e siga as instruções.</p>
+        <p>Crie um novo projeto Flutter para o SOS Unimed Vidas.</p>
+
+        <h3>📋 Passo 1: Criar o Projeto</h3>
+        <div class="step-box">
+          <h4>Iniciar Novo Projeto</h4>
+          <p>Abra o terminal e execute:</p>
+          <div class="code-block">
+            flutter create sos_unimed_vidas
+          </div>
+          <p><strong>O que isso faz?</strong> Cria uma estrutura básica de aplicativo Flutter com o nome <code>sos_unimed_vidas</code>.</p>
+        </div>
+
+        <h3>🔍 Passo 2: Acessar o Projeto</h3>
+        <div class="step-box">
+          <h4>Entrar na Pasta do Projeto</h4>
+          <p>Execute:</p>
+          <div class="code-block">
+            cd sos_unimed_vidas
+          </div>
+        </div>
+
+        <h3>🚀 Passo 3: Testar o Projeto</h3>
+        <div class="step-box">
+          <h4>Executar o App</h4>
+          <p>Certifique-se de que um emulador ou dispositivo está conectado e execute:</p>
+          <div class="code-block">
+            flutter run
+          </div>
+          <p>Você verá um aplicativo de exemplo com um contador. Este é o ponto de partida!</p>
+        </div>
+
+        <div class="step-action" onclick="markStepComplete('dev-project')" role="button" aria-label="Marcar criação do projeto como concluída">Marcar como Concluído</div>
+        <a href="#" class="link-button" onclick="showContent('dev-structure')" role="button" aria-label="Ir para estrutura básica">Próximo: Estrutura Básica</a>
       </div>
+
+      <!-- Estrutura Básica -->
       <div class="content-section" id="content-dev-structure">
         <h2>📂 Estrutura Básica</h2>
-        <p>Este é um espaço reservado para instruções sobre a estrutura básica do projeto Flutter.</p>
+        <p>Entenda a estrutura do projeto Flutter para organizar o código do SOS Unimed Vidas.</p>
+
+        <h3>📋 Passo 1: Conhecer a Estrutura</h3>
+        <div class="step-box">
+          <h4>Estrutura de Pastas</h4>
+          <p>Após criar o projeto, a pasta <code>sos_unimed_vidas</code> contém:</p>
+          <ul>
+            <li><code>lib/</code>: Código-fonte principal (onde você vai trabalhar).</li>
+            <li><code>android/</code> e <code>ios/</code>: Configurações específicas para cada plataforma.</li>
+            <li><code>pubspec.yaml</code>: Arquivo para gerenciar dependências.</li>
+          </ul>
+        </div>
+
+        <h3>📝 Passo 2: Configurar o pubspec.yaml</h3>
+        <div class="step-box">
+          <h4>Adicionar Dependências</h4>
+          <p>Edite <code>pubspec.yaml</code> para adicionar dependências básicas:</p>
+          <div class="code-block">
+dependencies:
+  flutter:
+    sdk: flutter
+  http: ^0.13.5
+  provider: ^6.0.5
+  firebase_core: ^2.4.0
+          </div>
+          <p>Execute:</p>
+          <div class="code-block">
+            flutter pub get
+          </div>
+          <p><strong>Por que isso?</strong> <code>http</code> para chamadas de API, <code>provider</code> para gerenciar estado, e <code>firebase_core</code> para integração com Firebase.</p>
+        </div>
+
+        <h3>🗂️ Passo 3: Organizar o Código</h3>
+        <div class="step-box">
+          <h4>Criar Estrutura de Pastas</h4>
+          <p>Crie na pasta <code>lib/</code>:</p>
+          <ul>
+            <li><code>lib/screens/</code>: Telas do aplicativo.</li>
+            <li><code>lib/services/</code>: Lógica de negócio (ex.: chamadas de API).</li>
+            <li><code>lib/models/</code>: Modelos de dados.</li>
+            <li><code>lib/widgets/</code>: Componentes reutilizáveis.</li>
+          </ul>
+        </div>
+
+        <div class="step-action" onclick="markStepComplete('dev-structure')" role="button" aria-label="Marcar estrutura básica como concluída">Marcar como Concluído</div>
+        <a href="#" class="link-button" onclick="showContent('dev-ui')" role="button" aria-label="Ir para interface do usuário">Próximo: Interface do Usuário</a>
       </div>
+
+      <!-- Interface do Usuário -->
       <div class="content-section" id="content-dev-ui">
         <h2>🎨 Interface do Usuário</h2>
-        <p>Este é um espaço reservado para instruções sobre como criar a interface do usuário no Flutter.</p>
+        <p>Crie a interface do SOS Unimed Vidas com Flutter, usando cores da Unimed.</p>
+
+        <h3>📋 Passo 1: Configurar Tema</h3>
+        <div class="step-box">
+          <h4>Definir Tema Global</h4>
+          <p>Edite <code>lib/main.dart</code> para definir as cores da Unimed:</p>
+          <div class="code-block">
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'SOS Unimed Vidas',
+      theme: ThemeData(
+        primaryColor: Color(0xFF00A651),
+        accentColor: Color(0xFFFFD100),
+        scaffoldBackgroundColor: Color(0xFF1E1E1E),
+        textTheme: TextTheme(
+          bodyText1: TextStyle(color: Color(0xFFE5E5E5)),
+        ),
+      ),
+      home: HomeScreen(),
+    );
+  }
+}
+          </div>
+        </div>
+
+        <h3>🖼️ Passo 2: Criar Tela Inicial</h3>
+        <div class="step-box">
+          <h4>Implementar HomeScreen</h4>
+          <p>Crie <code>lib/screens/home_screen.dart</code>:</p>
+          <div class="code-block">
+import 'package:flutter/material.dart';
+
+class HomeScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('SOS Unimed Vidas'),
+        backgroundColor: Theme.of(context).primaryColor,
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Bem-vindo ao SOS Unimed Vidas',
+              style: TextStyle(fontSize: 24, color: Colors.white),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                // Implementar ação de emergência
+              },
+              style: ElevatedButton.styleFrom(
+                primary: Theme.of(context).accentColor,
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+              ),
+              child: Text('Chamada de Emergência', style: TextStyle(fontSize: 18)),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+          </div>
+          <p><strong>O que isso faz?</strong> Cria uma tela inicial com um botão de emergência, usando as cores da Unimed.</p>
+        </div>
+
+        <div class="step-action" onclick="markStepComplete('dev-ui')" role="button" aria-label="Marcar interface do usuário como concluída">Marcar como Concluído</div>
+        <a href="#" class="link-button" onclick="showContent('dev-logic')" role="button" aria-label="Ir para lógica de negócio">Próximo: Lógica de Negócio</a>
       </div>
+
+      <!-- Lógica de Negócio -->
       <div class="content-section" id="content-dev-logic">
         <h2>⚙️ Lógica de Negócio</h2>
-        <p>Este é um espaço reservado para instruções sobre como implementar a lógica de negócio no Flutter.</p>
+        <p>Adicione a lógica para a funcionalidade de emergência do SOS Unimed Vidas.</p>
+
+        <h3>📋 Passo 1: Criar Serviço de Emergência</h3>
+        <div class="step-box">
+          <h4>Implementar Serviço</h4>
+          <p>Crie <code>lib/services/emergency_service.dart</code>:</p>
+          <div class="code-block">
+import 'package:http/http.dart' as http;
+
+class EmergencyService {
+  Future<void> sendEmergencyRequest() async {
+    try {
+      final response = await http.post(
+        Uri.parse('https://api.unimed.com/emergency'), // Substitua pela URL real
+        body: {'user_id': '123', 'location': 'lat: -20.123, long: -40.456'},
+      );
+      if (response.statusCode == 200) {
+        print('Emergência enviada com sucesso');
+      } else {
+        throw Exception('Falha ao enviar emergência');
+      }
+    } catch (e) {
+      print('Erro: $e');
+    }
+  }
+}
+          </div>
+        </div>
+
+        <h3>🔗 Passo 2: Conectar à Tela</h3>
+        <div class="step-box">
+          <h4>Atualizar HomeScreen</h4>
+          <p>Edite <code>lib/screens/home_screen.dart</code> para usar o serviço:</p>
+          <div class="code-block">
+import 'package:flutter/material.dart';
+import '../services/emergency_service.dart';
+
+class HomeScreen extends StatelessWidget {
+  final EmergencyService emergencyService = EmergencyService();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('SOS Unimed Vidas'),
+        backgroundColor: Theme.of(context).primaryColor,
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Bem-vindo ao SOS Unimed Vidas',
+              style: TextStyle(fontSize: 24, color: Colors.white),
+            ),
+            ElevatedButton(
+              onPressed: () async {
+                await emergencyService.sendEmergencyRequest();
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Emergência enviada!')),
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                primary: Theme.of(context).accentColor,
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+              ),
+              child: Text('Chamada de Emergência', style: TextStyle(fontSize: 18)),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+          </div>
+        </div>
+
+        <div class="step-action" onclick="markStepComplete('dev-logic')" role="button" aria-label="Marcar lógica de negócio como concluída">Marcar como Concluído</div>
+        <a href="#" class="link-button" onclick="showContent('integration-firebase')" role="button" aria-label="Ir para integração com Firebase">Próximo: Integração com Firebase</a>
       </div>
+
+      <!-- Integração com Firebase -->
       <div class="content-section" id="content-integration-firebase">
         <h2>🔥 Integração com Firebase</h2>
-        <p>Este é um espaço reservado para instruções sobre como integrar o Firebase ao projeto Flutter.</p>
+        <p>Integre o Firebase para autenticação e notificações no SOS Unimed Vidas.</p>
+
+        <h3>📋 Passo 1: Configurar Firebase</h3>
+        <div class="step-box">
+          <h4>Criar Projeto no Firebase</h4>
+          <p>
+            <a href="https://console.firebase.google.com" class="link-button" target="_blank" role="button" aria-label="Acessar Firebase Console">Ir para Firebase Console</a>
+          </p>
+          <ol>
+            <li>Crie um novo projeto chamado "SOS Unimed Vidas".</li>
+            <li>Adicione um app Android (pacote: <code>com.unimed.sosvidas</code>).</li>
+            <li>Baixe o arquivo <code>google-services.json</code> e coloque em <code>android/app/</code>.</li>
+          </ol>
+        </div>
+
+        <h3>🔧 Passo 2: Configurar Flutter</h3>
+        <div class="step-box">
+          <h4>Adicionar Firebase ao Projeto</h4>
+          <p>Edite <code>android/build.gradle</code>:</p>
+          <div class="code-block">
+buildscript {
+  dependencies {
+    classpath 'com.google.gms:google-services:4.3.15'
+  }
+}
+          </div>
+          <p>Edite <code>android/app/build.gradle</code>:</p>
+          <div class="code-block">
+apply plugin: 'com.google.gms.google-services'
+          </div>
+          <p>Adicione ao <code>pubspec.yaml</code>:</p>
+          <div class="code-block">
+dependencies:
+  firebase_auth: ^4.2.5
+  firebase_messaging: ^14.2.1
+          </div>
+          <p>Execute:</p>
+          <div class="code-block">
+            flutter pub get
+          </div>
+        </div>
+
+        <h3>🚀 Passo 3: Inicializar Firebase</h3>
+        <div class="step-box">
+          <h4>Atualizar main.dart</h4>
+          <p>Edite <code>lib/main.dart</code>:</p>
+          <div class="code-block">
+import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
+}
+          </div>
+        </div>
+
+        <div class="step-action" onclick="markStepComplete('integration-firebase')" role="button" aria-label="Marcar integração com Firebase como concluída">Marcar como Concluído</div>
+        <a href="#" class="link-button" onclick="showContent('integration-api')" role="button" aria-label="Ir para integração com API externa">Próximo: Integração com API Externa</a>
       </div>
+
+      <!-- Integração com API Externa -->
       <div class="content-section" id="content-integration-api">
         <h2>🌐 Integração com API Externa</h2>
-        <p>Este é um espaço reservado para instruções sobre como integrar APIs externas ao projeto Flutter.</p>
+        <p>Integre uma API externa para funcionalidades adicionais.</p>
+
+        <h3>📋 Passo 1: Configurar HTTP</h3>
+        <div class="step-box">
+          <h4>Usar Pacote HTTP</h4>
+          <p>Certifique-se de que <code>http</code> está no <code>pubspec.yaml</code>. Crie <code>lib/services/api_service.dart</code>:</p>
+          <div class="code-block">
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
+class ApiService {
+  Future<Map<String, dynamic>> fetchData() async {
+    final response = await http.get(Uri.parse('https://api.unimed.com/data')); // Substitua pela URL real
+    if (response.statusCode == 200) {
+      return jsonDecode(response.body);
+    } else {
+      throw Exception('Falha ao carregar dados');
+    }
+  }
+}
+          </div>
+        </div>
+
+        <h3>🔗 Passo 2: Usar API na Tela</h3>
+        <div class="step-box">
+          <h4>Atualizar HomeScreen</h4>
+          <p>Edite <code>lib/screens/home_screen.dart</code> para exibir dados:</p>
+          <div class="code-block">
+import 'package:flutter/material.dart';
+import '../services/api_service.dart';
+
+class HomeScreen extends StatelessWidget {
+  final ApiService apiService = ApiService();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('SOS Unimed Vidas'),
+        backgroundColor: Theme.of(context).primaryColor,
+      ),
+      body: FutureBuilder<Map<String, dynamic>>(
+        future: apiService.fetchData(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return Center(child: Text('Erro ao carregar dados'));
+          } else {
+            return Center(
+              child: Text(
+                'Dados: ${snapshot.data.toString()}',
+                style: TextStyle(color: Colors.white),
+              ),
+            );
+          }
+        },
+      ),
+    );
+  }
+}
+          </div>
+        </div>
+
+        <div class="step-action" onclick="markStepComplete('integration-api')" role="button" aria-label="Marcar integração com API externa como concluída">Marcar como Concluído</div>
+        <a href="#" class="link-button" onclick="showContent('testing-unit')" role="button" aria-label="Ir para testes unitários">Próximo: Testes Unitários</a>
       </div>
+
+      <!-- Testes Unitários -->
       <div class="content-section" id="content-testing-unit">
         <h2>🧪 Testes Unitários</h2>
-        <p>Este é um espaço reservado para instruções sobre como criar testes unitários no Flutter.</p>
+        <p>Crie testes unitários para garantir a qualidade do código.</p>
+
+        <h3>📋 Passo 1: Configurar Testes</h3>
+        <div class="step-box">
+          <h4>Adicionar Dependência de Teste</h4>
+          <p>Edite <code>pubspec.yaml</code>:</p>
+          <div class="code-block">
+dev_dependencies:
+  test: ^1.21.0
+          </div>
+          <p>Execute:</p>
+          <div class="code-block">
+            flutter pub get
+          </div>
+        </div>
+
+        <h3>🧪 Passo 2: Criar Teste</h3>
+        <div class="step-box">
+          <h4>Testar EmergencyService</h4>
+          <p>Crie <code>test/emergency_service_test.dart</code>:</p>
+          <div class="code-block">
+import 'package:test/test.dart';
+import 'package:sos_unimed_vidas/services/emergency_service.dart';
+import 'package:http/http.dart' as http;
+
+void main() {
+  test('EmergencyService envia solicitação com sucesso', () async {
+    final service = EmergencyService();
+    // Mock da resposta da API
+    expect(await service.sendEmergencyRequest(), isA<void>());
+  });
+}
+          </div>
+          <p>Execute:</p>
+          <div class="code-block">
+            flutter test
+          </div>
+        </div>
+
+        <div class="step-action" onclick="markStepComplete('testing-unit')" role="button" aria-label="Marcar testes unitários como concluídos">Marcar como Concluído</div>
+        <a href="#" class="link-button" onclick="showContent('testing-device')" role="button" aria-label="Ir para testes em dispositivo">Próximo: Testes em Dispositivo</a>
       </div>
+
+      <!-- Testes em Dispositivo -->
       <div class="content-section" id="content-testing-device">
         <h2>📱 Testes em Dispositivo</h2>
-        <p>Este é um espaço reservado para instruções sobre como realizar testes em dispositivos físicos ou emuladores.</p>
+        <p>Teste o aplicativo em um dispositivo físico ou emulador.</p>
+
+        <h3>📋 Passo 1: Conectar Dispositivo</h3>
+        <div class="step-box">
+          <h4>Habilitar Depuração USB</h4>
+          <p>Em um dispositivo Android:</p>
+          <ol>
+            <li>Vá para <code>Configurações > Sobre o telefone</code>.</li>
+            <li>Toque 7 vezes em <code>Número da versão</code> para ativar o modo desenvolvedor.</li>
+            <li>Vá para <code>Opções do desenvolvedor</code> e ative <code>Depuração USB</code>.</li>
+            <li>Conecte o dispositivo ao computador via USB.</li>
+          </ol>
+        </div>
+
+        <h3>🚀 Passo 2: Executar no Dispositivo</h3>
+        <div class="step-box">
+          <h4>Testar o App</h4>
+          <p>Execute:</p>
+          <div class="code-block">
+            flutter devices
+          </div>
+          <p>Confirme que o dispositivo aparece. Depois, execute:</p>
+          <div class="code-block">
+            flutter run
+          </div>
+          <p>Teste o botão de emergência e verifique se a notificação aparece.</p>
+        </div>
+
+        <div class="step-action" onclick="markStepComplete('testing-device')" role="button" aria-label="Marcar testes em dispositivo como concluídos">Marcar como Concluído</div>
+        <a href="#" class="link-button" onclick="showContent('deployment-build')" role="button" aria-label="Ir para build do aplicativo">Próximo: Build do Aplicativo</a>
       </div>
+
+      <!-- Build do Aplicativo -->
       <div class="content-section" id="content-deployment-build">
         <h2>🏗️ Build do Aplicativo</h2>
-        <p>Este é um espaço reservado para instruções sobre como construir o aplicativo Flutter para produção.</p>
+        <p>Construa o aplicativo para produção.</p>
+
+        <h3>📋 Passo 1: Configurar Ícone e Nome</h3>
+        <div class="step-box">
+          <h4>Atualizar Ícone</h4>
+          <p>Substitua o ícone em <code>android/app/src/main/res/mipmap-*</code> por um ícone da Unimed (use PNGs nas resoluções adequadas).</p>
+          <p>Edite <code>pubspec.yaml</code> para o nome:</p>
+          <div class="code-block">
+flutter:
+  app_name: SOS Unimed Vidas
+          </div>
+        </div>
+
+        <h3>🚀 Passo 2: Gerar APK</h3>
+        <div class="step-box">
+          <h4>Construir APK</h4>
+          <p>Execute:</p>
+          <div class="code-block">
+            flutter build apk --release
+          </div>
+          <p>O APK estará em <code>build/app/outputs/flutter-apk/app-release.apk</code>.</p>
+        </div>
+
+        <div class="step-action" onclick="markStepComplete('deployment-build')" role="button" aria-label="Marcar build do aplicativo como concluído">Marcar como Concluído</div>
+        <a href="#" class="link-button" onclick="showContent('deployment-playstore')" role="button" aria-label="Ir para Google Play Store">Próximo: Google Play Store</a>
       </div>
+
+      <!-- Google Play Store -->
       <div class="content-section" id="content-deployment-playstore">
         <h2>🏪 Google Play Store</h2>
-        <p>Este é um espaço reservado para instruções sobre como publicar o aplicativo na Google Play Store.</p>
+        <p>Publique o aplicativo na Google Play Store.</p>
+
+        <h3>📋 Passo 1: Criar Conta de Desenvolvedor</h3>
+        <div class="step-box">
+          <h4>Registrar Conta</h4>
+          <p>
+            <a href="https://play.google.com/console" class="link-button" target="_blank" role="button" aria-label="Acessar Google Play Console">Ir para Google Play Console</a>
+          </p>
+          <p>Crie uma conta de desenvolvedor (custo de $25, pago uma vez).</p>
+        </div>
+
+        <h3>🚀 Passo 2: Publicar o App</h3>
+        <div class="step-box">
+          <h4>Enviar APK</h4>
+          <ol>
+            <li>No Google Play Console, crie um novo app.</li>
+            <li>Faça upload do APK gerado (<code>app-release.apk</code>).</li>
+            <li>Preencha os detalhes do app (nome, descrição, capturas de tela).</li>
+            <li>Envie para revisão.</li>
+          </ol>
+        </div>
+
+        <div class="step-action" onclick="markStepComplete('deployment-playstore')" role="button" aria-label="Marcar publicação na Play Store como concluída">Marcar como Concluído</div>
+        <a href="#" class="link-button" onclick="showContent('deployment-analytics')" role="button" aria-label="Ir para analytics">Próximo: Analytics</a>
       </div>
+
+      <!-- Analytics -->
       <div class="content-section" id="content-deployment-analytics">
         <h2>📊 Analytics</h2>
-        <p>Este é um espaço reservado para instruções sobre como configurar analytics no aplicativo Flutter.</p>
+        <p>Configure o Firebase Analytics para monitorar o uso do app.</p>
+
+        <h3>📋 Passo 1: Habilitar Analytics</h3>
+        <div class="step-box">
+          <h4>Adicionar Firebase Analytics</h4>
+          <p>Edite <code>pubspec.yaml</code>:</p>
+          <div class="code-block">
+dependencies:
+  firebase_analytics: ^10.1.0
+          </div>
+          <p>Execute:</p>
+          <div class="code-block">
+            flutter pub get
+          </div>
+        </div>
+
+        <h3>📊 Passo 2: Configurar Eventos</h3>
+        <div class="step-box">
+          <h4>Rastrear Chamadas de Emergência</h4>
+          <p>Edite <code>lib/main.dart</code>:</p>
+          <div class="code-block">
+import 'package:firebase_analytics/firebase_analytics.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+  await analytics.logEvent(name: 'app_open');
+  runApp(MyApp());
+}
+          </div>
+          <p>Adicione ao <code>EmergencyService</code>:</p>
+          <div class="code-block">
+import 'package:firebase_analytics/firebase_analytics.dart';
+
+class EmergencyService {
+  Future<void> sendEmergencyRequest() async {
+    await FirebaseAnalytics.instance.logEvent(name: 'emergency_call');
+    // Código existente...
+  }
+}
+          </div>
+        </div>
+
+        <div class="step-action" onclick="markStepComplete('deployment-analytics')" role="button" aria-label="Marcar configuração de analytics como concluída">Marcar como Concluído</div>
+        <a href="#" class="link-button" onclick="showContent('delivery-documentation')" role="button" aria-label="Ir para documentação">Próximo: Documentação</a>
       </div>
+
+      <!-- Documentação -->
       <div class="content-section" id="content-delivery-documentation">
         <h2>📜 Documentação</h2>
-        <p>Este é um espaço reservado para instruções sobre como documentar o projeto Flutter.</p>
-      </div>
-      <div class="content-section" id="content-delivery-transfer">
-        <h2>🤝 Transferência de Conhecimento</h2>
-        <p>Este é um espaço reservado para instruções sobre como realizar a transferência de conhecimento para a equipe de TI.</p>
-      </div>
-    </div>
-  </div>
+        <p>Documente o projeto para facilitar a manutenção.</p>
 
-  <footer>
-    <p>Guia de Desenvolvimento Ponta a Ponta - SOS Unimed Vidas • © 2025 Unimed Cachoeiro do Itapemirim</p>
-    <div style="margin-top: 15px;">
-      <a href="https://github.com/Tomgit-cyber/guiaweb-sos" target="_blank">Repositório GitHub</a> •
-      <a href="https://www.unimed.coop.br/site/web/sulcapixaba" target="_blank">Portal Unimed Sul Capixaba</a> •
-      <a href="mailto:ti@unimedci.com.br">Contato TI</a>
-    </div>
-  </footer>
-
-  <script>
-    // Função para mostrar a página inicial
-    function showHomePage() {
-      document.getElementById('home-page').style.display = 'flex';
-      document.getElementById('main-container').style.display = 'none';
-      document.getElementById('back-button').style.display = 'none';
-      document.body.style.background = 'linear-gradient(135deg, #2A2A2A 0%, #1E1E1E 100%)';
-    }
-
-    // Função para mostrar o guia
-    function showGuide(type) {
-      document.getElementById('home-page').style.display = 'none';
-      document.getElementById('main-container').style.display = 'flex';
-      document.getElementById('back-button').style.display = 'block';
-      document.body.style.background = 'linear-gradient(135deg, #2A2A2A 0%, #1E1E1E 100%)';
-
-      if (type === 'development') {
-        const platform = navigator.platform.toLowerCase();
-        let defaultSection = 'setup-windows';
-        if (platform.includes('mac')) {
-          defaultSection = 'setup-macos';
-        } else if (platform.includes('linux')) {
-          defaultSection = 'setup-chromeos';
-        }
-        showContent(defaultSection);
-      } else {
-        showContent('home');
-      }
-    }
-
-    // Função para alternar visibilidade do submenu
-    function toggleSubmenu(id) {
-      const submenu = document.getElementById(`submenu-${id}`);
-      const title = submenu.previousElementSibling;
-      const isExpanded = submenu.classList.toggle('active');
-      title.classList.toggle('active');
-      title.setAttribute('aria-expanded', isExpanded);
-
-      document.querySelectorAll('.submenu').forEach(menu => {
-        if (menu.id !== `submenu-${id}`) {
-          menu.classList.remove('active');
-          menu.previousElementSibling.classList.remove('active');
-          menu.previousElementSibling.setAttribute('aria-expanded', 'false');
-        }
-      });
-    }
-
-    // Função para mostrar conteúdo
-    function showContent(id) {
-      const targetContent = document.getElementById(`content-${id}`);
-      if (!targetContent) {
-        console.error(`Seção de conteúdo content-${id} não encontrada`);
-        showContent('home');
-        return;
-      }
-
-      document.querySelectorAll('.content-section').forEach(section => {
-        section.classList.remove('active');
-      });
-      targetContent.classList.add('active');
-
-      document.querySelectorAll('.submenu-item').forEach(item => {
-        item.classList.remove('active');
-      });
-
-      const menuItem = document.querySelector(`.submenu-item[onclick="showContent('${id}')"]`);
-      if (menuItem) {
-        menuItem.classList.add('active');
-        const parentSubmenu = menuItem.closest('.submenu');
-        if (parentSubmenu) {
-          parentSubmenu.classList.add('active');
-          parentSubmenu.previousElementSibling.classList.add('active');
-          parentSubmenu.previousElementSibling.setAttribute('aria-expanded', 'true');
-        }
-      }
-
-      // Atualizar botão de voltar dinamicamente
-      const backLinks = document.querySelectorAll('#content-trouble-path .link-button, #content-trouble-licenses .link-button, #content-trouble-emulator .link-button');
-      backLinks.forEach(link => {
-        const platform = navigator.platform.toLowerCase();
-        let setupSection = 'setup-windows';
-        if (platform.includes('mac')) setupSection = 'setup-macos';
-        else if (platform.includes('linux')) setupSection = 'setup-chromeos';
-        link.setAttribute('onclick', `showContent('${setupSection}')`);
-        link.textContent = `Voltar para a Configuração (${setupSection.split('-')[1].charAt(0).toUpperCase() + setupSection.split('-')[1].slice(1)})`;
-        link.setAttribute('aria-label', `Voltar para a configuração de ${setupSection.split('-')[1]}`);
-      });
-
-      const contentElement = document.querySelector('.content');
-      if (contentElement) {
-        contentElement.scrollTop = 0;
-      }
-    }
-
-    // Função para marcar passo como concluído
-    function markStepComplete(stepId) {
-      localStorage.setItem(`step-${stepId}`, 'completed');
-      const menuItem = document.querySelector(`.submenu-item[onclick="showContent('${stepId}')"]`);
-      if (menuItem) {
-        menuItem.innerHTML = `<span class="status-indicator status-completed"></span>${menuItem.textContent.replace(/✓ |<span.*<\/span>/, '')}`;
-        menuItem.classList.add('completed');
-      }
-      alert(`Passo "${stepId}" marcado como concluído!`);
-    }
-
-    // Inicializar
-    document.addEventListener('DOMContentLoaded', function() {
-      document.querySelectorAll('.submenu-item').forEach(item => {
-        const stepId = item.getAttribute('onclick').match(/'([^']+)'/)[1];
-        if (localStorage.getItem(`step-${stepId}`) === 'completed') {
-          item.innerHTML = `<span class="status-indicator status-completed"></span>${item.textContent.replace(/✓ |<span.*<\/span>/, '')}`;
-          item.classList.add('completed');
-        }
-      });
-      showHomePage();
-    });
-  </script>
-</body>
-</html>
+        <h3>📋 Passo 1: Criar README</h3>
+        <div class="step-box">
+          <h4>Escrever README</h4>
+          <p>Crie <code>README.md</code
