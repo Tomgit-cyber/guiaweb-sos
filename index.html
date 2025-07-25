@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -1042,7 +1041,7 @@ import 'package:http/http.dart' as http;<br>
 import 'dart:convert';<br><br>
 class EmergencyService {<br>
 &nbsp;&nbsp;final String baseUrl = 'https://api.exemplo.com'; // Substitua pela URL real<br><br>
-&nbsp;&nbsp;Future&lt;void&gt; sendEmergencyRequest() async {<br>
+&nbsp;&nbsp;Future<void> sendEmergencyRequest() async {<br>
 &nbsp;&nbsp;&nbsp;&nbsp;final url = Uri.parse('$baseUrl/emergency');<br>
 &nbsp;&nbsp;&nbsp;&nbsp;final response = await http.post(<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;url,<br>
@@ -1201,7 +1200,7 @@ void main() async {<br>
 import 'package:http/http.dart' as http;<br>
 import 'dart:convert';<br><br>
 class ApiService {<br>
-&nbsp;&nbsp;Future&lt;Map&lt;String, dynamic&gt;&gt; fetchData() async {<br>
+&nbsp;&nbsp;Future<Map<String, dynamic>> fetchData() async {<br>
 &nbsp;&nbsp;&nbsp;&nbsp;final url = Uri.parse('https://api.exemplo.com/data');<br>
 &nbsp;&nbsp;&nbsp;&nbsp;final response = await http.get(url);<br><br>
 &nbsp;&nbsp;&nbsp;&nbsp;if (response.statusCode == 200) {<br>
@@ -1230,7 +1229,7 @@ class DataScreen extends StatelessWidget {<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;title: Text('SOS Unimed Vidas'),<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;backgroundColor: Theme.of(context).primaryColor,<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;body: FutureBuilder&lt;Map&lt;String, dynamic&gt;&gt;(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;body: FutureBuilder<Map<String, dynamic>>(<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;future: apiService.fetchData(),<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;builder: (context, snapshot) {<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (snapshot.connectionState == ConnectionState.waiting) {<br>
@@ -1449,251 +1448,3 @@ flutter build ios --release<br>
 ### Web<br>
 ```bash<br>
 flutter build web<br>
-```
-        </div>
-      </div>
-      
-      <div class="step-action" onclick="markStepComplete('docs-tech')">Marcar como Concluído</div>
-      <a href="#" class="link-button" onclick="showContent('delivery-checklist')">Próximo: Checklist de Entrega</a>
-    </div>
-    
-    <!-- Solução de Problemas: Comando 'flutter' não reconhecido -->
-    <div class="content-section" id="content-trouble-path">
-      <h2>❓ Solução de Problemas: Comando 'flutter' não reconhecido</h2>
-      <p>Este erro ocorre quando o sistema não encontra o Flutter. Vamos corrigir!</p>
-      
-      <h3>Windows</h3>
-      <div class="troubleshooting-box">
-        <h4>Cenário do Erro</h4>
-        <p>Você digita <code class="inline">flutter doctor</code> e vê:</p>
-        <div class="code-block">'flutter' não é reconhecido como um comando interno ou externo, um programa operável ou um arquivo em lotes.</div>
-      </div>
-      
-      <div class="troubleshooting-box">
-        <h4>Como Resolver</h4>
-        <ol>
-          <li>Confirme que o Flutter SDK está no local correto (ex: <code class="inline">D:\flutter</code>).</li>
-          <li>Verifique se o arquivo <code class="inline">flutter.bat</code> existe em <code class="inline">D:\flutter\bin\</code>.</li>
-          <li>Verifique o PATH:
-            <ul>
-              <li>Pressione <code class="inline">Win + R</code>, digite <code class="inline">sysdm.cpl</code>, Enter.</li>
-              <li>Aba <code class="inline">Avançado</code> > <code class="inline">Variáveis de Ambiente</code>.</li>
-              <li>Em <code class="inline">Variáveis do sistema</code>, edite <code class="inline">Path</code>.</li>
-              <li>Adicione <code class="inline">D:\flutter\bin</code> se não estiver presente.</li>
-              <li>Salve com <code class="inline">OK</code>.</li>
-            </ul>
-          </li>
-          <li>Feche e reabra o terminal.</li>
-          <li>Execute:
-            <div class="code-block">flutter doctor</div>
-          </li>
-        </ol>
-        <p><strong>Nota:</strong> Se persistir, verifique permissões na pasta <code class="inline">D:\flutter</code> ou execute o terminal como administrador.</p>
-      </div>
-      
-      <h3>macOS</h3>
-      <div class="troubleshooting-box">
-        <h4>Como Resolver</h4>
-        <ol>
-          <li>Confirme que o Flutter SDK está em <code class="inline">~/development/flutter</code>.</li>
-          <li>Edite <code class="inline">~/.zshrc</code>:
-            <div class="code-block">nano ~/.zshrc</div>
-          </li>
-          <li>Adicione:
-            <div class="code-block">export PATH="$PATH:~/development/flutter/bin"</div>
-          </li>
-          <li>Salve e execute:
-            <div class="code-block">source ~/.zshrc</div>
-          </li>
-          <li>Teste:
-            <div class="code-block">flutter doctor</div>
-          </li>
-        </ol>
-      </div>
-      
-      <h3>Linux/ChromeOS</h3>
-      <div class="troubleshooting-box">
-        <h4>Como Resolver</h4>
-        <ol>
-          <li>Confirme que o Flutter SDK está em <code class="inline">~/development/flutter</code>.</li>
-          <li>Edite <code class="inline">~/.bashrc</code>:
-            <div class="code-block">nano ~/.bashrc</div>
-          </li>
-          <li>Adicione:
-            <div class="code-block">export PATH="$PATH:~/development/flutter/bin"</div>
-          </li>
-          <li>Salve e execute:
-            <div class="code-block">source ~/.bashrc</div>
-          </li>
-          <li>Teste:
-            <div class="code-block">flutter doctor</div>
-          </li>
-        </ol>
-      </div>
-      
-      <a href="#" class="link-button" id="trouble-path-back" onclick="showContent('setup-windows')">Voltar para a Configuração</a>
-    </div>
-    
-    <!-- Solução de Problemas: Erro de Licenças Android -->
-    <div class="content-section" id="content-trouble-licenses">
-      <h2>❓ Solução de Problemas: Erro de Licenças Android</h2>
-      <p>Se o <code class="inline">flutter doctor</code> indicar que as licenças Android não estão aceitas:</p>
-      
-      <div class="troubleshooting-box">
-        <h4>Como Resolver</h4>
-        <ol>
-          <li>Execute:
-            <div class="code-block">flutter doctor --android-licenses</div>
-          </li>
-          <li>Pressione <code class="inline">y</code> para aceitar todas as licenças.</li>
-          <li>Verifique:
-            <div class="code-block">flutter doctor</div>
-          </li>
-        </ol>
-      </div>
-      
-      <a href="#" class="link-button" id="trouble-licenses-back" onclick="showContent('setup-windows')">Voltar para a Configuração</a>
-    </div>
-    
-    <!-- Solução de Problemas: Problemas com Emulador -->
-    <div class="content-section" id="content-trouble-emulator">
-      <h2>❓ Solução de Problemas: Problemas com Emulador</h2>
-      <p>Se o emulador Android não iniciar ou não for detectado:</p>
-      
-      <div class="troubleshooting-box">
-        <h4>Como Resolver</h4>
-        <ol>
-          <li>Abra o Android Studio.</li>
-          <li>Vá para <strong>Configure > AVD Manager</strong>.</li>
-          <li>Crie ou inicie um emulador Android.</li>
-          <li>Verifique se o emulador aparece em:
-            <div class="code-block">flutter devices</div>
-          </li>
-          <li>Se não aparecer, reinicie o ADB:
-            <div class="code-block">adb kill-server && adb start-server</div>
-          </li>
-        </ol>
-      </div>
-      
-      <a href="#" class="link-button" onclick="showContent('setup-windows')">Voltar para a Configuração</a>
-    </div>
-  </div>
-</div>
-
-<!-- Footer -->
-<footer>
-  <p>Guia de Desenvolvimento SOS Unimed Vidas &copy; 2025</p>
-  <p>
-    <a href="https://flutter.dev" target="_blank">Documentação Flutter</a> | 
-    <a href="https://www.unimed.coop.br/site/web/sulcapixaba" target="_blank">Portal Unimed</a>
-  </p>
-</footer>
-
-<script>
-// Funções de navegação
-function showHomePage() {
-  document.getElementById('home-page').style.display = 'flex';
-  document.getElementById('main-container').style.display = 'none';
-  document.getElementById('back-button').style.display = 'none';
-  document.querySelector('.content-section.active')?.classList.remove('active');
-  document.getElementById('content-home').classList.add('active');
-  
-  // Resetar menus ativos
-  document.querySelectorAll('.submenu-item.active').forEach(item => {
-    item.classList.remove('active');
-  });
-  document.querySelectorAll('.menu-title.active').forEach(title => {
-    title.classList.remove('active');
-    title.nextElementSibling.classList.remove('active');
-  });
-}
-
-function showGuide(guide) {
-  document.getElementById('home-page').style.display = 'none';
-  document.getElementById('main-container').style.display = 'flex';
-  document.getElementById('back-button').style.display = 'block';
-  
-  if (guide === 'structure') {
-    showContent('setup-windows');
-  } else if (guide === 'development') {
-    showContent('setup-windows');
-  }
-}
-
-function showContent(contentId) {
-  // Ocultar todos os conteúdos
-  document.querySelectorAll('.content-section').forEach(section => {
-    section.classList.remove('active');
-  });
-  
-  // Mostrar conteúdo solicitado
-  document.getElementById(`content-${contentId}`).classList.add('active');
-  
-  // Atualizar menu ativo
-  updateActiveMenu(contentId);
-  
-  // Scroll para o topo
-  document.querySelector('.content').scrollTop = 0;
-}
-
-function updateActiveMenu(contentId) {
-  // Remover classe active de todos os itens
-  document.querySelectorAll('.submenu-item').forEach(item => {
-    item.classList.remove('active');
-  });
-  
-  // Adicionar classe active ao item correspondente
-  const activeItem = document.querySelector(`.submenu-item[onclick="showContent('${contentId}')"]`);
-  if (activeItem) {
-    activeItem.classList.add('active');
-    
-    // Expandir o submenu pai
-    const submenu = activeItem.closest('.submenu');
-    if (submenu) {
-      submenu.classList.add('active');
-      submenu.previousElementSibling.classList.add('active');
-    }
-  }
-}
-
-function toggleSubmenu(menuId) {
-  const submenu = document.getElementById(`submenu-${menuId}`);
-  const title = submenu.previousElementSibling;
-  
-  // Toggle do submenu
-  submenu.classList.toggle('active');
-  title.classList.toggle('active');
-}
-
-function markStepComplete(stepId) {
-  // Marcar visualmente como concluído
-  const menuItem = Array.from(document.querySelectorAll('.submenu-item')).find(item => 
-    item.getAttribute('onclick').includes(stepId)
-  );
-  
-  if (menuItem) {
-    menuItem.classList.add('completed');
-    menuItem.innerHTML = `✓ ${menuItem.textContent.replace('✓ ', '')}`;
-  }
-  
-  alert(`Passo "${stepId}" marcado como concluído!`);
-}
-
-// Inicializar
-document.addEventListener('DOMContentLoaded', function() {
-  // Mostrar conteúdo inicial
-  showHomePage();
-  
-  // Adicionar event listeners para os botões principais
-  document.querySelectorAll('.main-button').forEach(button => {
-    button.addEventListener('click', function(e) {
-      e.preventDefault();
-      const guide = this.querySelector('h2').textContent.includes('Estrutura') ? 'structure' : 'development';
-      showGuide(guide);
-    });
-  });
-});
-</script>
-</body>
-</html>
-```
