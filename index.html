@@ -1,12 +1,9 @@
-# Código Completo Reorganizado - SOS Unimed Vidas
-
-```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SOS Unimed Vidas - Guia Completo</title>
+  <title>Guia de Continuidade SOS Unimed Vidas</title>
   <style>
     /* Esquema de cores verde Unimed */
     :root {
@@ -592,254 +589,20 @@
 <body>
 
   <header>
-    <h1>SOS Unimed Vidas</h1>
-    <p>Guia Completo de Desenvolvimento e Entrega do MVP</p>
+    <h1>Guia de Continuidade SOS Unimed Vidas</h1>
+    <p>Assistente Técnico para Transição e Manutenção</p>
   </header>
 
   <nav>
     <div>
-      <button id="tab-estrutura" onclick="showTab('estrutura')">🏗️ Guia de Estrutura</button>
-      <button id="tab-desenvolvimento" onclick="showTab('desenvolvimento')">👨‍💻 Guia de Desenvolvimento</button>
-      <button id="tab-continuidade" onclick="showTab('continuidade')" class="active-tab">🔄 Guia de Continuidade</button>
+      <button id="tab-guia" onclick="showTab('guia')" class="active-tab">📘 Guia</button>
+      <button id="tab-painel" onclick="showTab('painel')">📊 Painel</button>
+      <button id="tab-feedback" onclick="showTab('feedback')">📝 Feedback</button>
     </div>
   </nav>
 
-  <!-- Guia de Estrutura -->
-  <div id="estrutura" class="tab-content">
-    <div class="container">
-      <div class="version-info">Versão 2.0 • Foco em Arquitetura • Atualizado em 19/07/2025</div>
-      
-      <div class="warning-box">
-        <strong>⚠️ Importante:</strong> Este guia contém a documentação arquitetural completa do projeto SOS Unimed Vidas.
-      </div>
-
-      <div class="indice">
-        <h2>🔗 Índice Rápido</h2>
-        <ul>
-          <li><a href="#visao-geral"><span>🌐</span> Visão Geral</a></li>
-          <li><a href="#arquitetura"><span>🏛️</span> Arquitetura do Sistema</a></li>
-          <li><a href="#tecnologias"><span>💻</span> Tecnologias Utilizadas</a></li>
-          <li><a href="#fluxos"><span>🔄</span> Fluxos Principais</a></li>
-          <li><a href="#dependencias"><span>📦</span> Dependências Externas</a></li>
-        </ul>
-      </div>
-
-      <h2 id="visao-geral">🌐 Visão Geral do Projeto</h2>
-      <p>O SOS Unimed Vidas é uma plataforma desenvolvida para auxiliar os beneficiários da Unimed Cachoeiro do Itapemirim no acesso rápido a serviços de saúde emergenciais.</p>
-      
-      <div class="continuity-section">
-        <h3>Principais Características:</h3>
-        <ul>
-          <li>Acesso rápido a serviços médicos</li>
-          <li>Integração com prontuário eletrônico</li>
-          <li>Localização de unidades de saúde próximas</li>
-          <li>Chat de emergência com profissionais</li>
-          <li>Histórico de atendimentos</li>
-        </ul>
-      </div>
-
-      <h2 id="arquitetura">🏛️ Arquitetura do Sistema</h2>
-      
-      <div class="accordion active">
-        <div class="accordion-header">
-          <span>Diagrama de Componentes</span>
-          <span>▼</span>
-        </div>
-        <div class="accordion-content">
-          <h3>Estrutura em Camadas</h3>
-          <ol>
-            <li><strong>Frontend:</strong> Aplicação React.js</li>
-            <li><strong>Backend:</strong> API Node.js</li>
-            <li><strong>Banco de Dados:</strong> Firebase Firestore</li>
-            <li><strong>Autenticação:</strong> Firebase Auth</li>
-            <li><strong>Hospedagem:</strong> Vercel</li>
-          </ol>
-          <div class="knowledge-source">
-            <span>Fonte: Documentação Técnica do Projeto</span>
-          </div>
-        </div>
-      </div>
-      
-      <div class="accordion">
-        <div class="accordion-header">
-          <span>Fluxo de Dados</span>
-          <span>▼</span>
-        </div>
-        <div class="accordion-content">
-          <h3>Sequência Típica</h3>
-          <ol>
-            <li>Requisição do cliente (React)</li>
-            <li>Processamento pelo backend (Node.js)</li>
-            <li>Acesso ao banco de dados (Firebase)</li>
-            <li>Resposta ao cliente</li>
-          </ol>
-        </div>
-      </div>
-
-      <h2 id="tecnologias">💻 Tecnologias Utilizadas</h2>
-      
-      <div class="accordion active">
-        <div class="accordion-header">
-          <span>Frontend</span>
-          <span>▼</span>
-        </div>
-        <div class="accordion-content">
-          <ul>
-            <li>React.js v18</li>
-            <li>React Router v6</li>
-            <li>Material-UI v5</li>
-            <li>Axios para requisições HTTP</li>
-          </ul>
-        </div>
-      </div>
-      
-      <div class="accordion">
-        <div class="accordion-header">
-          <span>Backend</span>
-          <span>▼</span>
-        </div>
-        <div class="accordion-content">
-          <ul>
-            <li>Node.js v16</li>
-            <li>Express.js</li>
-            <li>Firebase Admin SDK</li>
-            <li>JWT para autenticação</li>
-          </ul>
-        </div>
-      </div>
-
-      <h2 id="referencias">🔎 Referências Técnicas</h2>
-      <ul>
-        <li><a href="https://reactjs.org/docs/getting-started.html" target="_blank">Documentação React</a></li>
-        <li><a href="https://firebase.google.com/docs" target="_blank">Guia Firebase</a></li>
-        <li><a href="https://github.com/Tomgit-cyber/guiaweb-sos" target="_blank">Repositório GitHub</a></li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- Guia de Desenvolvimento -->
-  <div id="desenvolvimento" class="tab-content">
-    <div class="container">
-      <div class="version-info">Versão 2.0 • Passo a Passo • Atualizado em 19/07/2025</div>
-      
-      <div class="warning-box">
-        <strong>⚠️ Atenção:</strong> Siga cuidadosamente cada etapa para garantir o desenvolvimento correto do MVP.
-      </div>
-
-      <div class="indice">
-        <h2>🔗 Índice Rápido</h2>
-        <ul>
-          <li><a href="#ambiente"><span>🛠️</span> Configuração do Ambiente</a></li>
-          <li><a href="#frontend"><span>🖥️</span> Desenvolvimento Frontend</a></li>
-          <li><a href="#backend"><span>⚙️</span> Desenvolvimento Backend</a></li>
-          <li><a href="#integracao"><span>🔗</span> Integração</a></li>
-          <li><a href="#deploy"><span>🚀</span> Deploy</a></li>
-        </ul>
-      </div>
-
-      <h2 id="ambiente">🛠️ Configuração do Ambiente</h2>
-      
-      <div class="accordion active">
-        <div class="accordion-header">
-          <span>1. Pré-requisitos</span>
-          <span>▼</span>
-        </div>
-        <div class="accordion-content">
-          <h3>Softwares Necessários</h3>
-          <ol>
-            <li>Node.js v16+</li>
-            <li>NPM v8+</li>
-            <li>Git</li>
-            <li>Editor de código (VS Code recomendado)</li>
-          </ol>
-        </div>
-      </div>
-      
-      <div class="accordion">
-        <div class="accordion-header">
-          <span>2. Clonar Repositório</span>
-          <span>▼</span>
-        </div>
-        <div class="accordion-content">
-          <h3>Passo a Passo</h3>
-          <ol>
-            <li>Abrir terminal</li>
-            <li>Executar: <code>git clone https://github.com/Tomgit-cyber/guiaweb-sos</code></li>
-            <li>Navegar até a pasta: <code>cd guiaweb-sos</code></li>
-          </ol>
-        </div>
-      </div>
-      
-      <div class="accordion">
-        <div class="accordion-header">
-          <span>3. Instalar Dependências</span>
-          <span>▼</span>
-        </div>
-        <div class="accordion-content">
-          <h3>Comandos Necessários</h3>
-          <ol>
-            <li>Frontend: <code>cd frontend && npm install</code></li>
-            <li>Backend: <code>cd backend && npm install</code></li>
-          </ol>
-        </div>
-      </div>
-
-      <h2 id="frontend">🖥️ Desenvolvimento Frontend</h2>
-      
-      <div class="accordion active">
-        <div class="accordion-header">
-          <span>Estrutura de Pastas</span>
-          <span>▼</span>
-        </div>
-        <div class="accordion-content">
-          <h3>Principais Diretórios</h3>
-          <ul>
-            <li><code>src/components/</code> - Componentes reutilizáveis</li>
-            <li><code>src/pages/</code> - Páginas da aplicação</li>
-            <li><code>src/services/</code> - Conexão com API</li>
-            <li><code>src/styles/</code> - Estilos globais</li>
-          </ul>
-        </div>
-      </div>
-      
-      <div class="accordion">
-        <div class="accordion-header">
-          <span>Executando o Frontend</span>
-          <span>▼</span>
-        </div>
-        <div class="accordion-content">
-          <h3>Passo a Passo</h3>
-          <ol>
-            <li>Navegar até a pasta frontend: <code>cd frontend</code></li>
-            <li>Iniciar servidor de desenvolvimento: <code>npm start</code></li>
-            <li>Acessar no navegador: <code>http://localhost:3000</code></li>
-          </ol>
-        </div>
-      </div>
-
-      <h2 id="deploy">🚀 Deploy e Publicação</h2>
-      
-      <div class="accordion active">
-        <div class="accordion-header">
-          <span>Configuração do Vercel</span>
-          <span>▼</span>
-        </div>
-        <div class="accordion-content">
-          <h3>Passo a Passo</h3>
-          <ol>
-            <li>Criar conta no Vercel</li>
-            <li>Conectar com GitHub</li>
-            <li>Selecionar repositório</li>
-            <li>Configurar variáveis de ambiente</li>
-            <li>Realizar deploy</li>
-          </ol>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Guia de Continuidade -->
-  <div id="continuidade" class="tab-content active">
+  <!-- Guia -->
+  <div id="guia" class="tab-content active">
     <div class="container">
       <div class="version-info">Versão 2.0 • Foco em Continuidade • Atualizado em 19/07/2025</div>
       
@@ -981,4 +744,268 @@
         <thead>
           <tr>
             <th>Função</th>
-            <th>Responsabilidades</
+            <th>Responsabilidades</th>
+            <th>Check-in</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Gestor Técnico</strong></td>
+            <td>Supervisão geral, alocação de recursos</td>
+            <td>Semanal</td>
+          </tr>
+          <tr>
+            <td><strong>Dev Sênior</strong></td>
+            <td>Manutenção crítica, revisão de código</td>
+            <td>Diário</td>
+          </tr>
+          <tr>
+            <td><strong>Dev Pleno</strong></td>
+            <td>Implementação de features, correções</td>
+            <td>Diário</td>
+          </tr>
+          <tr>
+            <td><strong>Suporte Técnico</strong></td>
+            <td>Monitoramento, primeiro nível de suporte</td>
+            <td>Contínuo</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="continuity-section">
+        <h2 id="manutencao">🔧 Manutenção Preventiva</h2>
+        
+        <h3>🔑 Rotinas Essenciais</h3>
+        <div class="accordion active">
+          <div class="accordion-header">
+            <span>Mensal</span>
+            <span>▼</span>
+          </div>
+          <div class="accordion-content">
+            <ol>
+              <li>Atualizar dependências: <code>npm update</code></li>
+              <li>Revisar logs de erros</li>
+              <li>Testar backups</li>
+              <li>Auditar acessos</li>
+            </ol>
+          </div>
+        </div>
+        
+        <h3>🛡️ Atualizações de Segurança</h3>
+        <div class="accordion">
+          <div class="accordion-header">
+            <span>Trimestral</span>
+            <span>▼</span>
+          </div>
+          <div class="accordion-content">
+            <ol>
+              <li>Verificar vulnerabilidades</li>
+              <li>Atualizar certificados SSL</li>
+              <li>Revisar políticas de acesso</li>
+              <li>Testar plano de contingência</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <h2 id="referencias">🔎 Referências de Continuidade</h2>
+      <ul>
+        <li><a href="https://vercel.com/docs" target="_blank">Documentação Vercel</a></li>
+        <li><a href="https://firebase.google.com/docs" target="_blank">Guia Firebase</a></li>
+        <li><a href="https://github.com/Tomgit-cyber/guiaweb-sos" target="_blank">Repositório GitHub do Guia</a></li>
+        <li><a href="https://www.unimed.coop.br/site/web/cachoeirodoes/home" target="_blank">Portal Unimed Cachoeiro</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Painel -->
+  <div id="painel" class="tab-content">
+    <div class="container">
+      <h2>Painel de Continuidade</h2>
+      
+      <div class="status-box">
+        <span>📋</span>
+        <div>
+          <strong>Progresso de Transição:</strong>
+          <div class="progress-container">
+            <div class="progress-bar" id="transition-progress">75%</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="status-box">
+        <span>👥</span>
+        <div>
+          <strong>Equipe Responsável:</strong>
+          <ul>
+            <li>TI Unimed Cachoeiro (Responsável principal)</li>
+            <li>Everton (Suporte até 19/08/2025)</li>
+          </ul>
+        </div>
+      </div>
+      
+      <h3>Próximas Ações de Continuidade</h3>
+      <div class="accordion active">
+        <div class="accordion-header">
+          <span>Treinamento Técnico</span>
+          <span>▼</span>
+        </div>
+        <div class="accordion-content">
+          <p><strong>Data:</strong> 25/07/2025 às 14h</p>
+          <p><strong>Local:</strong> Sala de Reuniões TI - 3º andar</p>
+          <p><strong>Tópicos:</strong></p>
+          <ul>
+            <li>Arquitetura do sistema</li>
+            <li>Fluxo de deploy</li>
+            <li>Monitoramento de erros</li>
+            <li>Plano de contingência</li>
+          </ul>
+        </div>
+      </div>
+      
+      <h3>Checklist de Continuidade</h3>
+      <div class="accordion">
+        <div class="accordion-header">
+          <span>Itens Pendentes</span>
+          <span>▼</span>
+        </div>
+        <div class="accordion-content">
+          <ul>
+            <li><label class="checkbox"><input type="checkbox"> Transferência completa de acessos</label></li>
+            <li><label class="checkbox"><input type="checkbox"> Documentação de processos críticos</label></li>
+            <li><label class="checkbox"><input type="checkbox"> Configuração de monitoramento contínuo</label></li>
+            <li><label class="checkbox"><input type="checkbox"> Plano de backup validado</label></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Feedback -->
+  <div id="feedback" class="tab-content">
+    <div class="container">
+      <h2>📬 Canal de Continuidade</h2>
+      <p>Utilize este formulário para questões relacionadas à continuidade do projeto:</p>
+      
+      <form id="feedback-form" action="https://formspree.io/f/xdkdkyjj" method="POST">
+        <div class="form-group">
+          <label for="nome">Seu Nome:</label>
+          <input type="text" id="nome" name="nome" required placeholder="Nome completo">
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required placeholder="seu.email@unimedci.com.br">
+        </div>
+        
+        <div class="form-group">
+          <label for="tipo">Tipo de Solicitação:</label>
+          <select id="tipo" name="tipo" required>
+            <option value="">Selecione uma opção</option>
+            <option value="duvida">Dúvida Técnica</option>
+            <option value="sugestao">Sugestão de Melhoria</option>
+            <option value="problema">Reportar Problema</option>
+            <option value="acesso">Solicitação de Acesso</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="mensagem">Mensagem:</label>
+          <textarea id="mensagem" name="mensagem" required rows="6" placeholder="Descreva sua solicitação aqui..."></textarea>
+        </div>
+        
+        <button class="submit" type="submit">
+          <span>📤</span> Enviar Solicitação
+        </button>
+      </form>
+    </div>
+  </div>
+  
+  <footer>
+    <p>Guia de Continuidade - SOS Unimed Vidas v2.0 • © 2025 Unimed Cachoeiro do Itapemirim</p>
+    <div style="margin-top: 15px;">
+      <a href="https://github.com/Tomgit-cyber/guiaweb-sos" target="_blank">Repositório GitHub</a> • 
+      <a href="https://www.unimed.coop.br/site/web/cachoeirodoes/home" target="_blank">Portal Unimed Cachoeiro</a> • 
+      <a href="mailto:ti@unimedci.com.br">Contato TI</a>
+    </div>
+  </footer>
+
+  <div id="toast" class="toast">
+    <span>🔔</span>
+    <div id="toast-message">Mensagem de notificação</div>
+  </div>
+
+  <script>
+    // Função para mostrar a aba selecionada
+    function showTab(tabId) {
+      // Esconde todo o conteúdo das abas
+      document.querySelectorAll('.tab-content').forEach(el => {
+        el.classList.remove('active');
+      });
+      
+      // Remove a classe ativa de todos os botões
+      document.querySelectorAll('nav button').forEach(btn => {
+        btn.classList.remove('active-tab');
+      });
+      
+      // Mostra a aba selecionada
+      document.getElementById(tabId).classList.add('active');
+      
+      // Adiciona classe ativa ao botão correspondente
+      document.getElementById('tab-' + tabId).classList.add('active-tab');
+      
+      // Salva a aba selecionada no localStorage
+      localStorage.setItem('lastTab', tabId);
+    }
+    
+    // Função para mostrar notificação toast
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      const toastMessage = document.getElementById('toast-message');
+      
+      toastMessage.textContent = message;
+      toast.classList.add('show');
+      
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
+    
+    // Accordion functionality
+    document.querySelectorAll('.accordion-header').forEach(header => {
+      header.addEventListener('click', () => {
+        const accordion = header.parentElement;
+        accordion.classList.toggle('active');
+      });
+    });
+    
+    // Mark step as complete
+    function markStepComplete(stepId) {
+      showToast(`Passo "${stepId}" marcado como concluído!`);
+    }
+    
+    // Verifica se há uma aba salva no localStorage
+    document.addEventListener('DOMContentLoaded', function() {
+      // Carrega a última aba aberta
+      const lastTab = localStorage.getItem('lastTab') || 'guia';
+      showTab(lastTab);
+      
+      // Adiciona evento ao formulário de feedback
+      const form = document.getElementById('feedback-form');
+      if (form) {
+        form.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          // Mostra notificação
+          showToast('Solicitação enviada com sucesso!');
+          
+          // Envia o formulário
+          setTimeout(() => {
+            form.submit();
+          }, 2000);
+        });
+      }
+    });
+  </script>
+</body>
+</html>
