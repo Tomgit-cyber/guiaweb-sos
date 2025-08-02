@@ -133,19 +133,6 @@
       background: linear-gradient(135deg, var(--primary-dark) 0%, #006837 100%);
       color: white;
       margin-top: auto;
-      font-size: 16px;
-      font-family: var(--font-primary);
-    }
-    footer a {
-      color: white;
-      text-decoration: none;
-      margin: 0 10px;
-      transition: opacity 0.3s;
-      font-weight: 600;
-    }
-    footer a:hover {
-      opacity: 0.8;
-      text-decoration: underline;
     }
     /* Layout principal do guia */
     .main-container {
@@ -354,11 +341,12 @@
     .status-pending { background: #FFD100; }
     .status-completed { background: #00A651; }
     .status-not-started { background: #CCCCCC; }
-    /* Botão Voltar */
+    
+    /* Botão Voltar/Início -- REPOSICIONADO -- */
     .back-button {
       position: fixed;
       top: 20px;
-      left: 20px;
+      right: 20px; /* Movido para a direita */
       background: var(--primary-color);
       color: white;
       padding: 10px 15px;
@@ -452,9 +440,18 @@
         <p>Documentação e passo a passo técnico</p>
       </a>
     </div>
+    <!-- DIREITOS AUTORAIS NA PÁGINA INICIAL -->
+    <footer style="background: transparent; text-align: center; margin-top: 40px; font-size: 12px; color: #888;">
+      <hr style="margin-bottom: 10px; border-color: #ccc; border-style: solid; border-width: 1px 0 0 0;">
+      <p>
+        © 2025 <strong>Everton Simão Marques</strong> – Todos os direitos reservados.<br>
+        Este guia contém informações técnicas confidenciais e é de uso exclusivo autorizado.<br>
+        Reprodução total ou parcial proibida sem consentimento prévio por escrito.
+      </p>
+    </footer>
   </div>
-  <!-- Botão Voltar -->
-  <a href="#" class="back-button" id="back-button" onclick="showHomePage()">← Voltar à Página Inicial</a>
+  <!-- Botão Início (Ex-Voltar) -- NOME ALTERADO -->
+  <a href="#" class="back-button" id="back-button" onclick="showHomePage()">← Início</a>
   
   <!-- Layout Principal do Guia -->
   <div class="main-container" id="main-container">
@@ -573,10 +570,10 @@
         <div class="summary-card">
             <h3><i>📱</i> Escopo do MVP</h3>
              <ul>
-                <li><strong>Funcionalidade Chave:</strong> Botão de emergência para ligar diretamente para o serviço da Unimed.</li>
+                <li><strong>Funcionalidade Chave:</strong> Botão de emergência para ligar para a Unimed.</li>
                 <li><strong>Autenticação:</strong> Login seguro para associados.</li>
                 <li><strong>Perfil do Usuário:</strong> Visualização de dados básicos.</li>
-                <li><strong>Histórico de Chamadas:</strong> Registro das chamadas de emergência realizadas pelo app.</li>
+                <li><strong>Histórico de Chamadas:</strong> Registro das chamadas realizadas.</li>
             </ul>
         </div>
         <a href="#" class="link-button" onclick="showContent('structure-phases')">Próximo: Fases do Projeto</a>
@@ -1108,12 +1105,14 @@
     </div>
   </div>
   
-  <footer>
-    <p>Guia de Desenvolvimento Ponta a Ponta - SOS Unimed Vidas • © 2025 Unimed</p>
-    <div style="margin-top: 15px;">
-      <a href="https://github.com/Tomgit-cyber/guiaweb-sos" target="_blank">Repositório GitHub</a> •
-      <a href="https://www.unimed.coop.br/site/web/sulcapixaba" target="_blank">Portal Unimed Sul Capixaba</a>
-    </div>
+  <!-- DIREITOS AUTORAIS NO RODAPÉ PRINCIPAL -->
+  <footer style="text-align: center; margin-top: 40px; font-size: 12px; color: #ccc; background: var(--primary-dark); padding: 20px;">
+    <hr style="margin-bottom: 10px; border-color: rgba(255,255,255,0.2); border-style: solid; border-width: 1px 0 0 0;">
+    <p style="color: white;">
+      © 2025 <strong>Everton Simão Marques</strong> – Todos os direitos reservados.<br>
+      Este guia contém informações técnicas confidenciais e é de uso exclusivo autorizado.<br>
+      Reprodução total ou parcial proibida sem consentimento prévio por escrito.
+    </p>
   </footer>
   
   <script>
