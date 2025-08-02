@@ -1,16 +1,23 @@
-Copyright (c) 2025 - Projeto SOS Vidas
+**1. Licença Unificada para o Projeto SOS Unimed Vidas:**
 
-Todos os direitos reservados.
+**Licença Oficial - Projeto SOS Unimed Vidas**
 
-Este projeto e seus conteúdos (códigos, textos, fluxos, estrutura de pastas, arquivos e identidade visual) são propriedade intelectual da equipe SOS Vidas, liderada por seus idealizadores e colaboradores diretos. Está terminantemente proibida:
+Copyright © 2025 Everton Simão Marques & Unimed Cachoeiro do Itapemirim. Todos os direitos reservados.
 
-- A reprodução total ou parcial deste conteúdo sem autorização escrita
-- A cópia ou redistribuição dos códigos ou documentos aqui incluídos
-- A modificação e redistribuição sob outro nome ou finalidade
-- A publicação externa em qualquer site ou plataforma sem autorização expressa
+O projeto **SOS Unimed Vidas** (incluindo, mas não se limitando a, código-fonte, documentação, guias técnicos, fluxos de trabalho, estrutura de pastas, arquivos de configuração e identidade visual) é de propriedade intelectual conjunta de **Everton Simão Marques** e da **Unimed Cachoeiro do Itapemirim**, desenvolvido especificamente para o projeto SOS Unimed Vidas.
 
-O simples acesso ao conteúdo deste repositório não concede nenhuma licença de uso, revenda, modificação ou exposição pública.
+Está terminantemente proibida:
+
+*   A reprodução total ou parcial deste projeto ou de seus conteúdos sem autorização escrita prévia dos titulares dos direitos autorais.
+*   A cópia ou redistribuição dos códigos, documentos, guias ou quaisquer outros artefatos aqui incluídos.
+*   A modificação e redistribuição sob outro nome, marca ou finalidade.
+*   A publicação externa em qualquer site ou plataforma sem autorização expressa por escrito.
+
+**Este projeto contém informações técnicas confidenciais e é de uso exclusivo da equipe SOS Vidas, da Unimed Cachoeiro do Itapemirim e de parceiros autorizados.**
+
+O simples acesso ao conteúdo deste projeto não concede nenhuma licença de uso, revenda, modificação ou exposição pública.
 
 Para qualquer dúvida ou solicitação de uso autorizado, entre em contato com o responsável técnico do projeto.
 
-Este projeto está em desenvolvimento interno, uso exclusivo da equipe SOS Vidas e parceiros autorizados.
+
+
