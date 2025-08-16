@@ -352,7 +352,6 @@
     .status-pending { background: #FFD100; }
     .status-completed { background: #00A651; }
     .status-not-started { background: #CCCCCC; }
-    
     /* Botão Voltar/Início -- REPOSICIONADO -- */
     .back-button {
       position: fixed;
@@ -369,7 +368,6 @@
       display: none; /* Inicialmente oculto */
     }
     .back-button:hover { background: var(--primary-dark); }
-    
     /* ESTILOS ESPECÍFICOS PARA O GUIA DE ESTRUTURA */
     .structure-guide { background: var(--background-light-gray); }
     .structure-guide h2 {
@@ -425,7 +423,6 @@
       font-size: 1.3rem;
     }
     .structure-guide .phase-card p { font-size: 0.95rem; margin-bottom: 0; }
-    
     /* Responsividade */
     @media (max-width: 768px) {
       .main-container { flex-direction: column; }
@@ -463,7 +460,6 @@
   </div>
   <!-- Botão Início (Ex-Voltar) -- NOME ALTERADO E REPOSICIONADO -->
   <a href="#" class="back-button" id="back-button" onclick="showHomePage()">← Início</a>
-  
   <!-- Layout Principal do Guia -->
   <div class="main-container" id="main-container">
     <!-- Menu Lateral Completo -->
@@ -568,8 +564,19 @@
           <div class="submenu-item" onclick="showContent('future-n8n')">Automações (n8n)</div>
         </div>
       </div>
+      <!-- NOVA SEÇÃO: Arquitetura de Perfis -->
+      <div class="menu-item">
+        <div class="menu-title" onclick="toggleSubmenu('profiles')">
+          <span>🔐 Arquitetura de Perfis</span>
+          <span>▼</span>
+        </div>
+        <div class="submenu" id="submenu-profiles">
+          <div class="submenu-item" onclick="showContent('profiles-overview')">Visão Geral</div>
+          <div class="submenu-item" onclick="showContent('profiles-implementation')">Implementação</div>
+          <div class="submenu-item" onclick="showContent('profiles-security')">Segurança</div>
+        </div>
+      </div>
     </div>
-    
     <!-- Conteúdo Principal Completo -->
     <div class="content">
       <!-- Seções do Guia de Estrutura -->
@@ -591,7 +598,6 @@
         </div>
         <a href="#" class="link-button" onclick="showContent('structure-phases')">Próximo: Fases do Projeto</a>
       </div>
-
       <div class="content-section structure-guide" id="content-structure-phases">
         <h2>📘 Fases do Projeto</h2>
         <p>Visão macro das principais fases do desenvolvimento do SOS Unimed Vidas.</p>
@@ -605,7 +611,6 @@
         </div>
         <a href="#" class="link-button" onclick="showContent('structure-deliverables')">Próximo: Entregáveis</a>
       </div>
-
       <div class="content-section structure-guide" id="content-structure-deliverables">
         <h2>📘 Entregáveis do Projeto</h2>
         <p>Lista dos principais artefatos e resultados esperados ao final do projeto.</p>
@@ -626,7 +631,6 @@
         </div>
         <a href="#" class="link-button" onclick="showContent('setup-chromeos')">Iniciar Guia Técnico Detalhado →</a>
       </div>
-      
       <!-- INÍCIO DO CONTEÚDO ORIGINAL COMPLETO E NÃO OMITIDO -->
       <div class="content-section" id="content-setup-chromeos">
         <h2>⚙️ Configuração no ChromeOS/Linux</h2>
@@ -764,7 +768,6 @@
         <div class="step-action" onclick="markStepComplete('setup-chromeos')">Marcar como Concluído</div>
         <a href="#" class="link-button" onclick="showContent('setup-windows')">Próximo: Configuração Windows</a>
       </div>
-
       <div class="content-section" id="content-setup-windows">
         <!-- Conteúdo completo aqui... -->
         <h2>⚙️ Configuração no Windows</h2>
@@ -858,7 +861,6 @@
         <div class="step-action" onclick="markStepComplete('setup-windows')">Marcar como Concluído</div>
         <a href="#" class="link-button" onclick="showContent('setup-macos')">Próximo: Configuração macOS</a>
       </div>
-
       <div class="content-section" id="content-setup-macos">
         <!-- Conteúdo completo aqui... -->
         <h2>⚙️ Configuração no macOS</h2>
@@ -917,7 +919,6 @@
         <div class="step-action" onclick="markStepComplete('setup-macos')">Marcar como Concluído</div>
         <a href="#" class="link-button" onclick="showContent('android-studio-install')">Próximo: Android Studio</a>
       </div>
-
       <div class="content-section" id="content-android-studio-install">
         <!-- Conteúdo completo aqui... -->
         <h2>🤖 Instalação e Configuração do Android Studio</h2>
@@ -936,7 +937,6 @@
         <div class="step-action" onclick="markStepComplete('android-studio-install')">Marcar como Concluído</div>
         <a href="#" class="link-button" onclick="showContent('android-studio-sdk')">Próximo: Gerenciar SDKs</a>
       </div>
-
       <div class="content-section" id="content-android-studio-sdk">
         <!-- Conteúdo completo aqui... -->
         <h2>📱 Gerenciar SDKs do Android</h2>
@@ -948,7 +948,6 @@
         <div class="step-action" onclick="markStepComplete('android-studio-sdk')">Marcar como Concluído</div>
         <a href="#" class="link-button" onclick="showContent('android-studio-avd')">Próximo: Criar Emulador (AVD)</a>
       </div>
-
       <div class="content-section" id="content-android-studio-avd">
         <!-- Conteúdo completo aqui... -->
         <h2>📱 Criar Emulador Android (AVD)</h2>
@@ -962,7 +961,6 @@
         <div class="step-action" onclick="markStepComplete('android-studio-avd')">Marcar como Concluído</div>
         <a href="#" class="link-button" onclick="showContent('dev-project')">Próximo: Criar Projeto</a>
       </div>
-
       <div class="content-section" id="content-dev-project">
         <!-- Conteúdo completo aqui... -->
         <h2>💻 1. Criar Projeto Flutter</h2>
@@ -973,7 +971,6 @@
         <div class="step-box"><h4>Rodar o aplicativo de exemplo</h4><p>Com um dispositivo/emulador conectado, execute:</p><div class="code-block">flutter run</div><p>Você deve ver o aplicativo de exemplo "Counter" rodando.</p></div>
         <div class="step-action" onclick="markStepComplete('dev-project')">Marcar como Concluído</div>
       </div>
-      
       <div class="content-section" id="content-dev-structure">
         <!-- Conteúdo completo aqui... -->
         <h2>🏗️ 2. Estrutura Básica do Aplicativo</h2>
@@ -986,7 +983,6 @@
         <div class="step-box"><h4>Implementar navegação básica</h4><p>Modifique <code>lib/main.dart</code> para usar <code>MaterialApp</code> com rotas nomeadas.</p></div>
         <div class="step-action" onclick="markStepComplete('dev-structure')">Marcar como Concluído</div>
       </div>
-
       <div class="content-section" id="content-dev-ui">
         <!-- Conteúdo completo aqui... -->
         <h2>🎨 3. Interface do Usuário</h2>
@@ -997,7 +993,6 @@
         <div class="step-box"><h4>Componentes principais</h4><p>Crie widgets reutilizáveis em <code>lib/widgets/</code>: <code>emergency_button.dart</code>, <code>custom_app_bar.dart</code>, <code>info_card.dart</code>.</p></div>
         <div class="step-action" onclick="markStepComplete('dev-ui')">Marcar como Concluído</div>
       </div>
-
       <div class="content-section" id="content-dev-logic">
         <!-- Conteúdo completo aqui... -->
         <h2>🧠 4. Lógica de Negócio</h2>
@@ -1010,7 +1005,6 @@
         <div class="step-box"><h4>Gerenciar estado com Provider</h4><p>Instale o pacote Provider e crie provedores para gerenciar o estado global.</p></div>
         <div class="step-action" onclick="markStepComplete('dev-logic')">Marcar como Concluído</div>
       </div>
-
       <div class="content-section" id="content-integration-firebase">
         <!-- Conteúdo completo aqui... -->
         <h2>🔥 Integração com Firebase</h2>
@@ -1025,7 +1019,6 @@
         <div class="step-box"><h4>Fluxo de login básico</h4><p>Implemente a tela de login usando o serviço `FirebaseAuth`.</p></div>
         <div class="step-action" onclick="markStepComplete('integration-firebase')">Marcar como Concluído</div>
       </div>
-      
       <div class="content-section" id="content-integration-api">
         <!-- Conteúdo completo aqui... -->
         <h2>🌐 Integração com API Externa</h2>
@@ -1038,7 +1031,6 @@
         <div class="step-box"><h4>Implementar tratamento de erros</h4><p>Adicione tratamento para diferentes códigos de status (200, 401, 404, etc).</p></div>
         <div class="step-action" onclick="markStepComplete('integration-api')">Marcar como Concluído</div>
       </div>
-      
       <div class="content-section" id="content-testing-unit">
         <!-- Conteúdo completo aqui... -->
         <h2>🧪 Testes Unitários</h2>
@@ -1049,7 +1041,6 @@
         <div class="step-box"><h4>Rodar todos os testes</h4><p>No terminal, execute: <code>flutter test</code>.</p></div>
         <div class="step-action" onclick="markStepComplete('testing-unit')">Marcar como Concluído</div>
       </div>
-
       <div class="content-section" id="content-testing-device">
         <!-- Conteúdo completo aqui... -->
         <h2>📱 Testes em Dispositivo</h2>
@@ -1060,7 +1051,6 @@
         <div class="step-box"><h4>Verificar pontos críticos</h4><p>Teste o login, o botão de emergência, a navegação e a performance.</p></div>
         <div class="step-action" onclick="markStepComplete('testing-device')">Marcar como Concluído</div>
       </div>
-      
       <div class="content-section" id="content-deployment-build">
         <!-- Conteúdo completo aqui... -->
         <h2>📦 Build do Aplicativo</h2>
@@ -1074,7 +1064,6 @@
         <div class="step-action" onclick="markStepComplete('deployment-build')">Marcar como Concluído</div>
         <a href="#" class="link-button" onclick="showContent('deployment-ios-setup')">Próximo: Configuração iOS</a>
       </div>
-      
       <!-- NOVA SEÇÃO PARA IOS -->
       <div class="content-section" id="content-deployment-ios-setup">
         <h2>🍎 Configuração do Projeto no Xcode</h2>
@@ -1097,7 +1086,6 @@
         <div class="step-action" onclick="markStepComplete('deployment-ios-setup')">Marcar como Concluído</div>
         <a href="#" class="link-button" onclick="showContent('deployment-playstore')">Próximo: Google Play Store</a>
       </div>
-      
       <div class="content-section" id="content-deployment-playstore">
         <!-- Conteúdo completo aqui... -->
         <h2>🚀 Google Play Store</h2>
@@ -1109,7 +1097,6 @@
         <div class="step-action" onclick="markStepComplete('deployment-playstore')">Marcar como Concluído</div>
         <a href="#" class="link-button" onclick="showContent('deployment-appstore')">Próximo: Apple App Store</a>
       </div>
-      
       <!-- NOVA SEÇÃO PARA IOS -->
       <div class="content-section" id="content-deployment-appstore">
         <h2>🚀 Apple App Store</h2>
@@ -1130,7 +1117,6 @@
         <div class="step-action" onclick="markStepComplete('deployment-appstore')">Marcar como Concluído</div>
         <a href="#" class="link-button" onclick="showContent('deployment-analytics')">Próximo: Analytics</a>
       </div>
-      
       <div class="content-section" id="content-deployment-analytics">
         <!-- Conteúdo completo aqui... -->
         <h2>📊 Analytics</h2>
@@ -1139,7 +1125,6 @@
         <div class="step-box"><h4>Registrar Eventos</h4><p>Adicione `firebase_analytics` e registre eventos para ações importantes, como `emergency_call_made`.</p></div>
         <div class="step-action" onclick="markStepComplete('deployment-analytics')">Marcar como Concluído</div>
       </div>
-      
       <div class="content-section" id="content-delivery-documentation">
         <!-- Conteúdo completo aqui... -->
         <h2>📚 Documentação</h2>
@@ -1150,7 +1135,6 @@
         <div class="step-box"><h4>Recursos importantes</h4><p>Mantenha uma lista de links para o repositório, documentação do Firebase e do Flutter.</p></div>
         <div class="step-action" onclick="markStepComplete('delivery-documentation')">Marcar como Concluído</div>
       </div>
-      
       <div class="content-section" id="content-delivery-transfer">
         <!-- Conteúdo completo aqui... -->
         <h2>🤝 Transferência de Conhecimento</h2>
@@ -1158,7 +1142,6 @@
         <div class="step-box"><h4>Sessão de Apresentação</h4><p>Realize uma reunião para explicar a arquitetura do projeto, o fluxo de dados e como realizar a manutenção e futuros deploys.</p></div>
         <div class="step-action" onclick="markStepComplete('delivery-transfer')">Marcar como Concluído</div>
       </div>
-      
       <div class="content-section" id="content-future-n8n">
         <!-- Conteúdo completo aqui... -->
         <h2>🔮 Automações Futuras (n8n)</h2>
@@ -1169,10 +1152,168 @@
         <div class="step-box"><h4>Potenciais Casos de Uso</h4><p>Poderia ser usado para, quando uma emergência for acionada, notificar equipes internas via Slack, registrar em uma planilha e enviar SMS para administradores.</p></div>
         <div class="step-action" onclick="markStepComplete('future-n8n')">Marcar como Concluído</div>
       </div>
+      <!-- NOVA SEÇÃO: Arquitetura de Perfis -->
+      <div class="content-section" id="content-profiles-overview">
+        <h2>🔐 Arquitetura de Perfis - Visão Geral</h2>
+        <p>O aplicativo <strong>SOS Unimed Vidas</strong> segue uma arquitetura de <strong>navegação condicional</strong> baseada no perfil do usuário após o login. Isso significa que <strong>um único app</strong> pode oferecer <strong>funcionalidades distintas</strong> para diferentes tipos de usuários.</p>
+
+        <div class="summary-card">
+          <h3><i>👥</i> Tipos de Usuários</h3>
+          <ul>
+            <li><strong>Paciente:</strong> Usuário final que utilizará o serviço de emergência. Tem acesso a funcionalidades como acionar emergência, visualizar perfil e histórico de chamadas.</li>
+            <li><strong>Administrador:</strong> Usuário com acesso privilegiado. Tem acesso a funcionalidades de gestão, como dashboards, gerenciamento de pacientes e visualização de alertas.</li>
+          </ul>
+        </div>
+
+        <div class="summary-card">
+          <h3><i>🏗️</i> Estrutura Geral</h3>
+          <pre style="background:#f4f4f4; padding:15px; border-radius:5px; overflow-x:auto;">
+SOS Unimed Vidas (App Único)
+├── Tela de Login
+│   ├── Validação de credenciais no Firebase Auth
+│   └── (Opcional) Seleção de tipo de usuário (Paciente/Admin)
+├── Tela Principal (Home)
+│   ├── Para Pacientes:
+│   │   ├── Informações pessoais
+│   │   ├── Botão de emergência médica
+│   │   ├── Histórico de atendimentos
+│   │   └── Perfil e configurações
+│   └── Para Administradores:
+│       ├── Dashboard com estatísticas (Total de pacientes, atendimentos, alertas)
+│       ├── Gerenciamento de pacientes
+│       ├── Atendimentos em andamento
+│       ├── Alertas pendentes
+│       └── Ferramentas de teste (ex: Testar Conexão Firestore)
+└── Navegação Condicionada por Perfil
+          </pre>
+          <p><strong>Importante:</strong> Telas administrativas (como dashboards) <strong>não devem ser acessadas por pacientes</strong> — elas são exclusivas para administradores e protegidas por regras de segurança.</p>
+        </div>
+
+        <a href="#" class="link-button" onclick="showContent('profiles-implementation')">Próximo: Implementação</a>
+      </div>
+
+      <div class="content-section" id="content-profiles-implementation">
+        <h2>🔐 Arquitetura de Perfis - Implementação</h2>
+        <p>Esta seção detalha como implementar o sistema de perfis no aplicativo Flutter.</p>
+
+        <h3>1. Estrutura no Firebase Authentication + Firestore</h3>
+        <p>Após o cadastro do usuário no Firebase Authentication, armazene os dados adicionais no Firestore, incluindo o campo <code>role</code>.</p>
+        <div class="code-block">
+{
+  "uid": "abc123",
+  "email": "paciente@unimed.com",
+  "name": "João da Silva",
+  "role": "patient", // ou "admin"
+  "createdAt": "2025-04-01T10:00:00Z"
+}
+        </div>
+
+        <h3>2. Verificação de Perfil Após Login</h3>
+        <p>Após o login bem-sucedido, consulte o Firestore para obter o <code>role</code> do usuário e redirecione para a tela inicial apropriada.</p>
+        <div class="code-block">
+// Exemplo em Dart (Flutter)
+Future<void> loginAndRedirect(String email, String password) async {
+  try {
+    final userCredential = await AuthService.signIn(email, password);
+    final userData = await FirestoreService.getUserData(userCredential.user!.uid);
+
+    if (userData['role'] == 'admin') {
+      Navigator.pushReplacementNamed(context, '/admin/home');
+    } else {
+      Navigator.pushReplacementNamed(context, '/patient/home');
+    }
+  } catch (e) {
+    // Tratar erro de login
+    print("Erro no login: $e");
+  }
+}
+        </div>
+
+        <h3>3. Estrutura de Pastas no Projeto</h3>
+        <p>Organize o código para refletir a separação de responsabilidades por perfil.</p>
+        <div class="code-block">
+lib/
+├── auth/
+│   ├── auth_service.dart
+│   └── user_model.dart
+├── views/
+│   ├── login/
+│   │   └── login_screen.dart
+│   ├── patient/
+│   │   ├── patient_home_screen.dart
+│   │   ├── emergency_screen.dart
+│   │   └── profile_screen.dart
+│   └── admin/
+│       ├── admin_home_screen.dart
+│       ├── dashboard_screen.dart
+│       ├── patient_management_screen.dart
+│       └── alerts_screen.dart
+├── services/
+│   ├── firestore_service.dart
+│   └── notification_service.dart
+└── main.dart
+        </div>
+
+        <a href="#" class="link-button" onclick="showContent('profiles-security')">Próximo: Segurança</a>
+      </div>
+
+      <div class="content-section" id="content-profiles-security">
+        <h2>🔐 Arquitetura de Perfis - Segurança</h2>
+        <p>Implementar regras rigorosas no Firebase Firestore é crucial para proteger os dados e garantir que usuários só acessem informações para as quais têm permissão.</p>
+
+        <h3>Regras de Segurança no Firestore</h3>
+        <p>Configure as regras no Firebase Console (<code>Cloud Firestore > Rules</code>) para controlar o acesso com base no <code>role</code> do usuário.</p>
+        <div class="code-block">
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Função para verificar se o usuário é admin
+    function isAdmin() {
+      return request.auth != null &&
+             get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+
+    // Pacientes só podem ler seus próprios dados
+    match /patients/{patientId} {
+      allow read: if request.auth != null && request.auth.uid == resource.data.uid;
+      // Escrita pode ser permitida com validações adicionais
+      allow write: if request.auth != null && request.auth.uid == resource.data.uid;
+    }
+
+    // Apenas administradores podem acessar dados de pacientes e áreas administrativas
+    match /patients/{patientId} {
+      allow read, write, update, delete: if isAdmin();
+    }
+
+    match /admin/{document=**} {
+      allow read, write: if isAdmin();
+    }
+
+    // Adicione regras para outros documentos conforme necessário
+  }
+}
+        </div>
+
+        <div class="summary-card">
+          <h3><i>✅</i> Checklist de Implementação de Perfis</h3>
+          <ul>
+            <li>Criar campo <code>role</code> no cadastro de usuários no Firestore.</li>
+            <li>Implementar lógica de verificação de perfil após autenticação.</li>
+            <li>Criar rotas condicionais (<code>/patient/home</code>, <code>/admin/home</code>).</li>
+            <li>Desenvolver telas específicas para perfil de paciente.</li>
+            <li>Desenvolver telas específicas para perfil de administrador.</li>
+            <li>Configurar regras de segurança no Firestore para controlar acesso por perfil.</li>
+            <li>Testar login/logout com diferentes perfis de usuário.</li>
+            <li>Documentar o fluxo de autenticação e navegação condicional no guia.</li>
+          </ul>
+        </div>
+
+        <a href="#" class="link-button" onclick="showContent('structure-overview')">Voltar ao Início do Guia</a>
+      </div>
       <!-- FIM DO CONTEÚDO ORIGINAL -->
     </div>
   </div>
-  
   <!-- RODAPÉ PRINCIPAL DO GUIA (PARTE VERDE) COM TEXTO ORIGINAL -->
   <footer>
     <p>Guia de Desenvolvimento Ponta a Ponta - SOS Unimed Vidas • © 2025 Unimed Cachoeiro do Itapemirim</p>
@@ -1182,10 +1323,8 @@
       <a href="mailto:ti@unimedci.com.br">Contato TI</a>
     </div>
   </footer>
-  
   <script>
     const PROGRESS_KEY = 'sosUnimedVidasProgress';
-
     function saveProgress(stepId) {
       try {
         const progress = JSON.parse(localStorage.getItem(PROGRESS_KEY)) || {};
@@ -1193,7 +1332,6 @@
         localStorage.setItem(PROGRESS_KEY, JSON.stringify(progress));
       } catch (e) { console.error("Erro ao salvar progresso:", e); }
     }
-
     function loadProgress() {
       try {
         const progress = JSON.parse(localStorage.getItem(PROGRESS_KEY)) || {};
@@ -1207,13 +1345,11 @@
         });
       } catch (e) { console.error("Erro ao carregar progresso:", e); }
     }
-
     function showHomePage() {
       document.getElementById('home-page').style.display = 'flex';
       document.getElementById('main-container').style.display = 'none';
       document.getElementById('back-button').style.display = 'none';
     }
-
     function showGuide() {
       document.getElementById('home-page').style.display = 'none';
       document.getElementById('main-container').style.display = 'flex';
@@ -1222,7 +1358,6 @@
       toggleSubmenu('structure');
       loadProgress();
     }
-
     function toggleSubmenu(id) {
       document.querySelectorAll('.submenu').forEach(menu => {
         if (menu.id !== `submenu-${id}`) {
@@ -1237,12 +1372,10 @@
           title.classList.toggle('active');
       }
     }
-
     function showContent(id) {
       document.querySelectorAll('.content-section').forEach(section => section.classList.remove('active'));
       const targetContent = document.getElementById(`content-${id}`);
       if (targetContent) targetContent.classList.add('active');
-      
       document.querySelectorAll('.submenu-item').forEach(item => item.classList.remove('active'));
       const menuItem = document.querySelector(`.submenu-item[onclick="showContent('${id}')"]`);
       if (menuItem) {
@@ -1255,7 +1388,6 @@
       }
       document.querySelector('.content').scrollTop = 0;
     }
-
     function markStepComplete(stepId) {
       const menuItem = document.querySelector(`.submenu-item[onclick="showContent('${stepId}')"]`);
       if (menuItem && !menuItem.textContent.startsWith('✓')) {
@@ -1266,7 +1398,6 @@
         alert(`Este passo já foi concluído.`);
       }
     }
-
     document.addEventListener('DOMContentLoaded', () => {
         showHomePage();
         loadProgress();
