@@ -1,9 +1,9 @@
+Segue a versão pronta:
+
 ````markdown
-# 🚀 Projeto SOS Vidas - Unimed Sul Capixaba
+# 🚀 SOS Vidas - Unimed Sul Capixaba
 
 ![Status](https://img.shields.io/badge/Status-MVP%20Em%20Desenvolvimento-yellow)
-![Flutter](https://img.shields.io/badge/Flutter-2.20-blue)
-![Firebase](https://img.shields.io/badge/Firebase-Auth%20%26%20Firestore-orange)
 ![Versão](https://img.shields.io/badge/Versão-02%2F08%2F25-green)
 
 **Desenvolvido por:** Everton Simão Marques  
@@ -11,70 +11,74 @@
 
 ---
 
-## 📌 Descrição
+## 📌 Sobre o Projeto
 
-O **SOS Vidas** é uma aplicação digital para **suporte emergencial em saúde**, oferecendo:
+O **SOS Vidas** é uma aplicação digital de suporte emergencial em saúde, oferecendo:
 
 - Acionamento rápido de alertas médicos (Botão SOS)  
 - Painel interativo de progresso e acompanhamento de atendimentos  
-- Guia técnico e guia de usuário integrados  
+- **Guia técnico e guia de usuário integrados**, com acesso restrito à equipe autorizada  
 - Base sólida para futuras integrações e expansões  
 
-Este repositório contém o **código-fonte do MVP** e links para o **guia web interativo**, que detalha todo o fluxo técnico e operacional do projeto.
+> ⚠️ **Atenção:** O conteúdo completo do guia HTML permanece privado e exclusivo. Acesso somente via link autorizado.
 
 ---
 
 ## 🧩 Funcionalidades Principais
 
-- 🔹 Botão de emergência médica (SOS)  
-- 🔹 Autenticação segura via Firebase  
-- 🔹 Histórico de atendimentos e notificações  
-- 🔹 Dashboard administrativo para estatísticas e gestão de alertas  
-- 🔹 Guia interativo para equipe técnica e de manutenção  
+- 🚨 Botão SOS para emergências médicas  
+- 🔐 Autenticação segura via Firebase  
+- 📊 Dashboard administrativo com estatísticas e alertas  
+- 📜 Histórico de atendimentos  
+- 📘 Guia técnico interativo para equipe de TI  
+
+<div style="background:#e0f2f1; padding:15px; border-left:5px solid #00a859; margin-bottom:20px;">
+💡 **Step-box:** Cada funcionalidade possui checklist de uso vinculado ao guia web, **que é privado e protegido**.
+</div>
 
 ---
 
 ## 🛠 Tecnologias Utilizadas
 
-| Tecnologia | Detalhes |
-|------------|----------|
-| Flutter / Dart | Desenvolvimento mobile multiplataforma |
-| Firebase | Authentication, Firestore, Storage |
-| HTML / CSS / JS | Guia interativo web |
-| Vercel | Hospedagem do guia interativo |
-| Git / GitHub | Controle de versão e repositório privado |
+| Tecnologia | Propósito |
+|------------|-----------|
+| Flutter / Dart | App mobile multiplataforma |
+| Firebase | Autenticação, Firestore, Storage |
+| HTML5 / CSS3 / JS | Guia web interativo |
+| Vercel | Hospedagem do guia web (acesso controlado) |
+| Git / GitHub | Versionamento e gerenciamento do repositório |
 
 ---
 
 ## ⚙️ Setup & Execução
 
-Para rodar o projeto localmente:
-
 ```bash
-# Clonar o repositório
+# Clonar repositório
 git clone https://github.com/seuusuario/sos-vidas.git
 cd sos-vidas
 
 # Instalar dependências
 flutter pub get
 
-# Rodar no emulador ou dispositivo conectado
+# Rodar no emulador/dispositivo
 flutter run
 ````
 
-> ⚠️ Certifique-se de ter o Flutter SDK instalado e configurado.
+> ⚠️ Certifique-se de ter o Flutter SDK corretamente instalado.
 
 ---
 
-## 🌐 Guia Interativo
+## 🌐 Guia Web Interativo (Exclusivo)
 
-Acesse o **guia completo do projeto** como página web:
+O **guia completo do projeto** é acessível apenas a usuários autorizados da Unimed via link seguro.
 
-* Visualizar fases do desenvolvimento
-* Acompanhar checklists de configuração e testes
-* Consultar instruções técnicas passo a passo
+* ✅ Visualizar fases do desenvolvimento
+* ✅ Acompanhar checklists de configuração e testes
+* ✅ Consultar instruções técnicas detalhadas
 
-🔗 [Acessar o Guia Web Interativo](https://seu-guia-vercel-link.com)
+🔗 [Acesso ao Guia Web (autorizado)](https://seu-guia-vercel-link.com)
+
+> ⚠️ **Não compartilhe o link. O acesso é exclusivo da equipe da Unimed.**
 
 ---
 
@@ -82,15 +86,15 @@ Acesse o **guia completo do projeto** como página web:
 
 * Contribuições externas **necessitam autorização prévia** do autor ou da Unimed
 * Utilize **issues** para reportar bugs ou sugestões
-* Pull requests avaliados somente mediante autorização
+* Pull requests avaliados apenas pelo responsável técnico autorizado
 
 ---
 
-## 📜 Direitos e Licença
+## 📜 Direitos & Licença
 
 **© 2025 Everton Simão Marques – Todos os direitos reservados.**
 
-* Repositório privado, restrito ao uso interno da Unimed Cachoeiro do Itapemirim
+* Repositório privado, uso exclusivo Unimed
 * Reprodução, distribuição ou modificação **não autorizadas** proibidas
 * Marcas e identidade visual pertencem aos respectivos donos (Unimed, Flutter, Firebase, Vercel)
 
@@ -98,9 +102,9 @@ Acesse o **guia completo do projeto** como página web:
 
 ## 📈 Status & Próximos Passos
 
-* 🔹 **MVP concluído:** Funcionalidades básicas implementadas
-* 🔹 **Fase de Testes Internos:** Em andamento
-* 🔹 **Integrações Futuras:** Notificações avançadas, API interna Unimed, analytics detalhado
+* 🔹 **MVP concluído**: funcionalidades básicas implementadas
+* 🔹 **Testes internos**: em andamento
+* 🔹 **Integrações futuras**: Notificações avançadas, API Unimed, analytics detalhado
 
 ---
 
@@ -110,4 +114,5 @@ Acesse o **guia completo do projeto** como página web:
 ✉️ Email: [everton@example.com](mailto:everton@example.com)
 🌐 GitHub: [github.com/seuusuario](https://github.com/seuusuario)
 
+```
 
