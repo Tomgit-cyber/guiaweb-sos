@@ -1,145 +1,148 @@
-Okay, vamos atualizar o README com base no conteúdo do guia HTML fornecido, incorporando os detalhes específicos e mantendo a estrutura aprimorada da versão 02/08/25.
+Okay, vamos atualizar o `README.md` com base nas informações mais recentes do guia de desenvolvimento HTML fornecido nos arquivos.
 
----
+**README.md**
 
-# 🚀 Assistente de Transição - SOS Unimed Vidas
-**Versão Oficial: 02/08/25**
-Desenvolvido por **Everton Simão Marques** para **Unimed Cachoeiro do Itapemirim**
+```markdown
+# SOS Unimed Vidas - MVP
 
-Este projeto evoluiu de um simples guia para um **assistente completo de transição técnica**, projetado para garantir a continuidade perfeita do desenvolvimento do aplicativo **SOS Unimed Vidas** para a equipe de TI da Unimed Cachoeiro do Itapemirim.
+Este repositório contém o código-fonte e a documentação para o desenvolvimento do aplicativo **SOS Unimed Vidas**, um sistema de alerta médico de emergência. O objetivo é criar um MVP (Produto Mínimo Viável) funcional e seguro.
 
----
+## 🎯 Objetivo
 
-## 🎯 Propósito
+Desenvolver um aplicativo móvel multiplataforma (Android/iOS) utilizando **Flutter** que permita aos pacientes acionarem rapidamente um alerta médico em situações de emergência. O aplicativo também incluirá funcionalidades administrativas para gestão dos atendimentos.
 
-*   **Guia Interativo:** Orientação passo a passo em todas as fases do projeto.
-*   **Transição de Conhecimento:** Documentação técnica e decisões arquiteturais consolidadas.
-*   **Controle de Progresso:** Visualização clara do estado atual da transição com marcação de etapas concluídas.
-*   **Autonomia Técnica:** Capacitação da equipe para manter e evoluir o projeto de forma independente.
+## 🧱 Arquitetura Geral
 
----
+O aplicativo segue uma arquitetura de **navegação condicional baseada no perfil do usuário** após o login. Um único app oferece funcionalidades distintas para **Pacientes** e **Administradores**.
 
-## 🧩 Recursos-Chave
+### 👥 Perfis de Usuário
 
-### 🧭 Navegação Intuitiva
-*   Menu lateral com seções organizadas (Guia de Estrutura, Configuração, Desenvolvimento, Integrações, etc.)
-*   Submenus expansíveis para acesso rápido
-*   Design responsivo para desktop e dispositivos móveis
-*   Botão "Início" para fácil retorno à página inicial
+*   **Paciente:**
+    *   Login/Logout seguro via Firebase Authentication.
+    *   Tela principal com informações pessoais.
+    *   Botão de emergência médica para acionar alerta.
+    *   Histórico de atendimentos.
+    *   Perfil e configurações.
+*   **Administrador:**
+    *   Login/Logout seguro via Firebase Authentication.
+    *   Dashboard com estatísticas (pacientes, atendimentos, alertas).
+    *   Gerenciamento de pacientes.
+    *   Visualização de atendimentos em andamento.
+    *   Gestão de alertas pendentes.
+    *   Ferramentas de teste (ex: Testar Conexão Firestore).
 
-### 🛠️ Assistente Técnico
-*   Passos executáveis com comandos prontos para uso
-*   Caixas de destaque para ações importantes (`step-box`)
-*   Snippets de código formatados (`code-block`)
-*   Referências diretas à documentação técnica
+## 🛠️ Tecnologias Utilizadas
 
-### 📊 Controle de Progresso
-*   Marcação de etapas concluídas localmente no navegador (`localStorage`)
-*   Indicador visual de etapas finalizadas no menu lateral
+*   **Frontend & Mobile:** Flutter (Dart)
+*   **Backend & Autenticação:** Firebase (Authentication, Firestore, Cloud Functions - potencial)
+*   **IDE Recomendada:** Android Studio / VS Code
+*   **Controle de Versão:** Git
 
----
+## 📁 Estrutura do Projeto (Dart/Flutter)
 
-## 📌 Etapas Abordadas (Detalhadas)
+```
+lib/
+├── main.dart                 # Ponto de entrada do aplicativo
+├── services/                 # Lógica de negócios e integrações
+│   ├── auth_service.dart     # Serviço de autenticação (Firebase Auth)
+│   └── firestore_service.dart # Serviço de acesso ao banco de dados (Firestore)
+├── views/                    # Telas do aplicativo
+│   ├── login_screen.dart     # Tela de login
+│   ├── home_screen.dart      # Tela principal (navegação condicional)
+│   ├── patient/              # Telas específicas do perfil Paciente
+│   │   ├── patient_home_screen.dart
+│   │   ├── emergency_screen.dart
+│   │   ├── history_screen.dart
+│   │   └── profile_screen.dart
+│   ├── admin/                # Telas específicas do perfil Administrador
+│   │   ├── admin_home_screen.dart
+│   │   ├── dashboard_screen.dart
+│   │   ├── patient_management_screen.dart
+│   │   ├── ongoing_attendances_screen.dart
+│   │   └── alerts_screen.dart
+│   ├── help_screen.dart      # Tela de ajuda
+│   └── ...                   # Outras telas comuns
+└── widgets/                  # Componentes reutilizáveis da UI
+    └── ...                   # Ex: CustomButton, UserInfoCard, etc.
+```
 
-1.  **📘 Guia de Estrutura**
-    *   Visão Geral do Projeto
-    *   Fases do Projeto (Planejamento, Configuração, Desenvolvimento, Testes, Implantação, Entrega)
-    *   Entregáveis do Projeto (Artefatos Técnicos, Processos e Conhecimento)
-2.  **⚙️ Configuração do Ambiente**
-    *   ChromeOS/Linux
-    *   Windows
-    *   macOS (incluindo configuração Xcode para iOS)
-3.  **🤖 Android Studio**
-    *   Instalação
-    *   Gerenciamento de SDKs
-    *   Criação de Emulador (AVD)
-4.  **💻 Desenvolvimento**
-    *   1. Criar Projeto Flutter
-    *   2. Estrutura Básica do Aplicativo
-    *   3. Interface do Usuário
-    *   4. Lógica de Negócio
-5.  **🔗 Integrações**
-    *   Firebase (Autenticação, Firestore)
-    *   API Externa
-6.  **🧪 Testes**
-    *   Testes Unitários
-    *   Testes em Dispositivo
-7.  **🚀 Implantação**
-    *   Build do Aplicativo (Android App Bundle, iOS IPA)
-    *   Configuração iOS (Xcode, Identidade, Assinatura)
-    *   Google Play Store
-    *   Apple App Store
-    *   Analytics (Firebase)
-8.  **📦 Entrega**
-    *   Documentação
-    *   Transferência de Conhecimento
-9.  **🔮 Futuro & Otimização**
-    *   Automações (n8n)
+*(A estrutura acima reflete a separação de responsabilidades por perfil mencionada no guia.)*
 
----
+## 🚀 Primeiros Passos (Setup)
 
-## 🚀 Como Utilizar
+### Pré-requisitos
 
-1.  **Hospede o projeto no Vercel** (ou servidor compatível).
-2.  **Acesse a URL gerada.**
-3.  **Clique em "Acessar o Guia"** na página inicial.
-4.  **Navegue pelas seções** usando o menu lateral.
-5.  **Siga os passos interativos** em cada seção.
-6.  **Utilize o botão "Marcar como Concluído"** para acompanhar o progresso.
-    *   ⚠️ *Todo o progresso é salvo localmente no seu navegador.*
+*   **Flutter SDK:** Instalado e configurado no PATH.
+*   **IDE:** Android Studio ou VS Code com plugins Flutter/Dart.
+*   **Android/iOS:** Emulador configurado ou dispositivo físico para testes.
+*   **Git:** Para controle de versão.
 
----
+### Configuração do Ambiente
 
-## 🧠 Base Tecnológica
+Siga os guias detalhados no HTML para configurar o ambiente Flutter em:
 
-*   **Frontend:** HTML5, CSS3 (Grid/Flexbox), JavaScript Vanilla
-*   **Hospedagem:** Vercel (ou outro serviço compatível)
-*   **Armazenamento:** LocalStorage (persistência de estado do progresso)
-*   **Design:** Gradientes verdes da Unimed, tipografia Open Sans/Roboto, elementos de design moderno
-*   **Interatividade:** Accordions (menus), navegação por seções, marcação de progresso, notificações
+*   **ChromeOS/Linux**
+*   **Windows**
+*   **macOS**
 
----
+Geralmente envolve:
+1.  Baixar e extrair o Flutter SDK.
+2.  Adicionar o `flutter/bin` ao PATH do sistema.
+3.  Instalar/configurar o Android Studio e as dependências do Android (SDK, AVD).
+4.  Executar `flutter doctor` para verificar a instalação.
 
-## 👨‍💻 Autoria e Contribuição
+### Rodando o Projeto
 
-**Desenvolvido por:** Everton Simão Marques
-Baseado nas diretrizes operacionais do projeto **SOS Unimed Vidas** e nas necessidades específicas da **Unimed Cachoeiro do Itapemirim**.
+1.  Clone este repositório: `git clone <URL_DO_REPOSITORIO>`
+2.  Navegue até o diretório do projeto: `cd sos_unimed_vidas`
+3.  Obtenha as dependências: `flutter pub get`
+4.  Execute o aplicativo: `flutter run` (certifique-se de ter um emulador/dispositivo conectado)
 
----
+## 📖 Documentação & Guia de Desenvolvimento
 
-## 📜 Licença e Direitos
+Este projeto é acompanhado por um **Guia de Desenvolvimento Completo** em formato HTML. Este guia contém:
 
-**© 2025 Everton Simão Marques – Todos os direitos reservados.**
+*   Visão geral do projeto e entregáveis.
+*   Guias detalhados de configuração de ambiente para diferentes sistemas operacionais (ChromeOS/Linux, Windows, macOS).
+*   Passo a passo para criar o projeto Flutter.
+*   Estruturação da aplicação.
+*   Criação da Interface do Usuário com o tema da Unimed.
+*   Implementação da lógica de negócio (autenticação, navegação condicional).
+*   Integrações com Firebase (Auth, Firestore).
+*   Considerações para implantação (Analytics).
+*   Processo de entrega (documentação, transferência).
+
+**Acesso ao Guia:** O arquivo HTML do guia está incluído neste repositório (nome do arquivo `.html`). Abra-o em um navegador para acessar a documentação completa e interativa.
+
+## 📦 Entregáveis
+
+*   Código Fonte Completo no repositório Git.
+*   Pacotes de Instalação (APK para Android, potencialmente IPA para iOS).
+*   Configuração do projeto Firebase.
+*   Documentação (este README e o Guia HTML).
+*   Sessão de Transferência de Conhecimento.
+
+## 🔐 Segurança
+
+*   Autenticação de usuários via Firebase Authentication.
+*   Controle de acesso baseado em perfil no Firestore.
+
+## 📄 Licença
+
+© 2025 Everton Simão Marques – Todos os direitos reservados.
 Este guia contém informações técnicas confidenciais e é de uso exclusivo autorizado.
 Reprodução total ou parcial proibida sem consentimento prévio por escrito.
 
-Para uso interno da Unimed Cachoeiro do Itapemirim.
+*(Nota: O texto de licença foi extraído do rodapé do HTML fornecido.)*
 
----
+```
 
-## 🧾 Visão Estratégica
+**Próximos Passos:**
 
-Este assistente representa mais que uma ferramenta técnica — é uma **ponte de conhecimento** entre fases de desenvolvimento e equipes. Seu design foca em:
+1.  **Adicione este conteúdo ao seu arquivo `README.md` no repositório Git.**
+2.  **Confirme (commit) e envie (push) o `README.md` atualizado.**
+3.  **Certifique-se de incluir o arquivo HTML do guia no repositório também, se ainda não estiver.**
+4.  **Ajuste o nome do arquivo HTML no README se for diferente.**
+5.  **Atualize a URL do repositório na seção "Rodando o Projeto".**
 
-*   **Redução de Risco:** Minimiza falhas na transição através de documentação clara.
-*   **Eficiência:** Acelera o onboarding de novos membros com guias práticos.
-*   **Padronização:** Garante conformidade com práticas estabelecidas de desenvolvimento.
-*   **Evolução Contínua:** Serve como base sólida para futuras melhorias e atualizações documentadas.
-
-Ao transformar conhecimento tácito em orientação interativa e persistente, este projeto estabelece um novo padrão para **transferência de tecnologia em ambientes corporativos**.
-
----
-
-## 🔄 Atualizações Necessárias?
-
-Se houver alterações no escopo do projeto, novas integrações, atualizações de segurança ou mudanças na equipe, **sim, o conteúdo do guia (e este README) deve ser atualizado** para manter a consistência e a utilidade do documento.
-
-Sugestão de checklist para manutenção:
-*   [ ] Atualizar versão do projeto e data no README
-*   [ ] Revisar links e URLs
-*   [ ] Atualizar etapas e fluxos técnicos conforme o código evolui
-*   [ ] Registrar novas integrações ou dependências
-*   [ ] Confirmar compatibilidade com novas versões de ferramentas (Flutter, Firebase, etc.)
-*   [ ] Atualizar informações de contato ou repositórios se necessário
-
----
+Este `README.md` fornece uma visão geral abrangente do projeto com base nas informações mais recentes do guia HTML.
