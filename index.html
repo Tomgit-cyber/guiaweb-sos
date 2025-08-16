@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SOS Unimed Vidas - Guia Completo</title>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"> <!-- Adicionado Font Awesome -->
   <style>
     /* Esquema de cores verde Unimed */
     :root {
@@ -58,6 +59,12 @@
       justify-content: center;
       margin-bottom: 30px;
       box-shadow: var(--box-shadow);
+      animation: pulse 2s infinite; /* Animação sutil */
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(0, 166, 81, 0.4); }
+      70% { box-shadow: 0 0 0 10px rgba(0, 166, 81, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(0, 166, 81, 0); }
     }
     .logo span {
       font-size: 60px;
@@ -145,6 +152,46 @@
       opacity: 0.8;
       text-decoration: underline;
     }
+
+    /* Toast Notification */
+    #toast {
+      visibility: hidden;
+      min-width: 250px;
+      margin-left: -125px;
+      background-color: var(--primary-color);
+      color: #fff;
+      text-align: center;
+      border-radius: var(--border-radius);
+      padding: 16px;
+      position: fixed;
+      z-index: 1001;
+      left: 50%;
+      top: 30px;
+      font-size: 17px;
+      box-shadow: var(--box-shadow);
+    }
+    #toast.show {
+      visibility: visible;
+      -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+      animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    }
+    @-webkit-keyframes fadein {
+      from {top: 0; opacity: 0;}
+      to {top: 30px; opacity: 1;}
+    }
+    @keyframes fadein {
+      from {top: 0; opacity: 0;}
+      to {top: 30px; opacity: 1;}
+    }
+    @-webkit-keyframes fadeout {
+      from {top: 30px; opacity: 1;}
+      to {top: 0; opacity: 0;}
+    }
+    @keyframes fadeout {
+      from {top: 30px; opacity: 1;}
+      to {top: 0; opacity: 0;}
+    }
+
     /* Layout principal do guia */
     .main-container {
       display: none; /* Inicialmente oculto */
@@ -172,6 +219,9 @@
       border-bottom: 2px solid var(--primary-color);
       font-size: 1.5rem;
       font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
     .menu-item {
       margin-bottom: 15px;
@@ -203,7 +253,7 @@
       transition: max-height 0.4s ease-in-out;
     }
     .submenu.active {
-      max-height: 600px; /* Aumentado para comportar mais itens */
+      max-height: 800px; /* Aumentado para comportar mais itens */
     }
     .submenu-item {
       font-family: var(--font-primary);
@@ -215,6 +265,9 @@
       font-size: 0.95rem;
       font-weight: 400;
       color: #444;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
     .submenu-item:hover {
       background: #F0F9F2;
@@ -224,6 +277,10 @@
       background: var(--primary-color);
       color: white;
       font-weight: 600;
+    }
+    .submenu-item.completed {
+        text-decoration: line-through;
+        opacity: 0.7;
     }
     /* Conteúdo principal */
     .content {
@@ -253,6 +310,9 @@
       font-size: 1.9rem;
       font-weight: 700;
       letter-spacing: -0.3px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
     .content h3 {
       font-family: var(--font-secondary);
@@ -260,6 +320,9 @@
       margin: 25px 0 15px;
       font-size: 1.4rem;
       font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
     .content p {
       font-family: var(--font-primary);
@@ -283,6 +346,15 @@
       padding: 20px;
       margin: 20px 0;
       border-radius: 0 var(--border-radius) var(--border-radius) 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .step-box::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 4px;
+        background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
     }
     .step-box h4 {
       font-family: var(--font-secondary);
@@ -290,6 +362,9 @@
       color: var(--primary-dark);
       font-size: 1.2rem;
       font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
     .step-action {
       display: inline-block;
@@ -320,6 +395,23 @@
       font-size: 14px;
       overflow-x: auto;
       margin: 15px 0;
+      position: relative;
+    }
+    .copy-btn {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        background: rgba(255, 255, 255, 0.2);
+        border: none;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 12px;
+        transition: background 0.2s;
+    }
+    .copy-btn:hover {
+        background: rgba(255, 255, 255, 0.3);
     }
     .link-button {
       display: inline-block;
@@ -394,6 +486,8 @@
         margin-right: 15px;
         color: var(--primary-color);
         font-style: normal;
+        width: 30px;
+        text-align: center;
     }
     .structure-guide .summary-card p, .structure-guide .summary-card li {
         font-size: 1rem;
@@ -412,6 +506,8 @@
       padding: 20px;
       box-shadow: var(--box-shadow);
       transition: var(--transition);
+      display: flex;
+      flex-direction: column;
     }
     .structure-guide .phase-card:hover {
       transform: translateY(-5px);
@@ -421,8 +517,11 @@
       color: var(--primary-dark);
       margin-top: 0;
       font-size: 1.3rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
-    .structure-guide .phase-card p { font-size: 0.95rem; margin-bottom: 0; }
+    .structure-guide .phase-card p { font-size: 0.95rem; margin-bottom: 0; flex-grow: 1; }
     /* Responsividade */
     @media (max-width: 768px) {
       .main-container { flex-direction: column; }
@@ -434,6 +533,9 @@
   </style>
 </head>
 <body>
+  <!-- Toast Notification -->
+  <div id="toast">Passo marcado como concluído!</div>
+
   <!-- Página Inicial com Botão Único -->
   <div class="home-page" id="home-page">
     <div class="logo">
@@ -443,7 +545,7 @@
     <p class="subtitle">Guia Completo de Desenvolvimento e Entrega do MVP</p>
     <div class="buttons">
       <a href="#" class="main-button" onclick="showGuide()">
-        <i>🛠️</i>
+        <i class="fas fa-book"></i> <!-- Ícone do Font Awesome -->
         <h2>Acessar o Guia</h2>
         <p>Documentação e passo a passo técnico</p>
       </a>
@@ -464,116 +566,116 @@
   <div class="main-container" id="main-container">
     <!-- Menu Lateral Completo -->
     <div class="sidebar">
-      <h2>🗺️ Navegação</h2>
+      <h2><i class="fas fa-map"></i> Navegação</h2> <!-- Ícone adicionado -->
       <!-- Guia de Estrutura (Sumário) -->
       <div class="menu-item">
         <div class="menu-title" onclick="toggleSubmenu('structure')">
-          <span>📘 Guia de Estrutura</span>
+          <span><i class="fas fa-book-open"></i> Guia de Estrutura</span> <!-- Ícone adicionado -->
           <span>▼</span>
         </div>
         <div class="submenu" id="submenu-structure">
-          <div class="submenu-item" onclick="showContent('structure-overview')">Visão Geral</div>
-          <div class="submenu-item" onclick="showContent('structure-phases')">Fases do Projeto</div>
-          <div class="submenu-item" onclick="showContent('structure-deliverables')">Entregáveis</div>
+          <div class="submenu-item" onclick="showContent('structure-overview')"><i class="fas fa-eye"></i> Visão Geral</div> <!-- Ícone adicionado -->
+          <div class="submenu-item" onclick="showContent('structure-phases')"><i class="fas fa-project-diagram"></i> Fases do Projeto</div> <!-- Ícone adicionado -->
+          <div class="submenu-item" onclick="showContent('structure-deliverables')"><i class="fas fa-box-open"></i> Entregáveis</div> <!-- Ícone adicionado -->
         </div>
       </div>
       <!-- Guia de Desenvolvimento Detalhado -->
       <div class="menu-item">
         <div class="menu-title" onclick="toggleSubmenu('setup')">
-          <span>⚙️ Configuração do Ambiente</span>
+          <span><i class="fas fa-cogs"></i> Configuração do Ambiente</span> <!-- Ícone adicionado -->
           <span>▼</span>
         </div>
         <div class="submenu" id="submenu-setup">
-          <div class="submenu-item" onclick="showContent('setup-chromeos')">ChromeOS/Linux</div>
-          <div class="submenu-item" onclick="showContent('setup-windows')">Windows</div>
-          <div class="submenu-item" onclick="showContent('setup-macos')">macOS</div>
+          <div class="submenu-item" onclick="showContent('setup-chromeos')"><i class="fab fa-chrome"></i> ChromeOS/Linux</div> <!-- Ícone adicionado -->
+          <div class="submenu-item" onclick="showContent('setup-windows')"><i class="fab fa-windows"></i> Windows</div> <!-- Ícone adicionado -->
+          <div class="submenu-item" onclick="showContent('setup-macos')"><i class="fab fa-apple"></i> macOS</div> <!-- Ícone adicionado -->
         </div>
       </div>
        <div class="menu-item">
         <div class="menu-title" onclick="toggleSubmenu('android-studio')">
-          <span>🤖 Android Studio</span>
+          <span><i class="fab fa-android"></i> Android Studio</span> <!-- Ícone adicionado -->
           <span>▼</span>
         </div>
         <div class="submenu" id="submenu-android-studio">
-          <div class="submenu-item" onclick="showContent('android-studio-install')">Instalação</div>
-          <div class="submenu-item" onclick="showContent('android-studio-sdk')">Gerenciar SDKs</div>
-          <div class="submenu-item" onclick="showContent('android-studio-avd')">Criar Emulador (AVD)</div>
+          <div class="submenu-item" onclick="showContent('android-studio-install')"><i class="fas fa-download"></i> Instalação</div> <!-- Ícone adicionado -->
+          <div class="submenu-item" onclick="showContent('android-studio-sdk')"><i class="fas fa-microchip"></i> Gerenciar SDKs</div> <!-- Ícone adicionado -->
+          <div class="submenu-item" onclick="showContent('android-studio-avd')"><i class="fas fa-mobile-alt"></i> Criar Emulador (AVD)</div> <!-- Ícone adicionado -->
         </div>
       </div>
       <div class="menu-item">
         <div class="menu-title" onclick="toggleSubmenu('dev')">
-          <span>💻 Desenvolvimento</span>
+          <span><i class="fas fa-laptop-code"></i> Desenvolvimento</span> <!-- Ícone adicionado -->
           <span>▼</span>
         </div>
         <div class="submenu" id="submenu-dev">
-          <div class="submenu-item" onclick="showContent('dev-project')">1. Criar Projeto</div>
-          <div class="submenu-item" onclick="showContent('dev-structure')">2. Estrutura Básica</div>
-          <div class="submenu-item" onclick="showContent('dev-ui')">3. Interface do Usuário</div>
-          <div class="submenu-item" onclick="showContent('dev-logic')">4. Lógica de Negócio</div>
+          <div class="submenu-item" onclick="showContent('dev-project')"><i class="fas fa-folder-plus"></i> 1. Criar Projeto</div> <!-- Ícone adicionado -->
+          <div class="submenu-item" onclick="showContent('dev-structure')"><i class="fas fa-sitemap"></i> 2. Estrutura Básica</div> <!-- Ícone adicionado -->
+          <div class="submenu-item" onclick="showContent('dev-ui')"><i class="fas fa-paint-brush"></i> 3. Interface do Usuário</div> <!-- Ícone adicionado -->
+          <div class="submenu-item" onclick="showContent('dev-logic')"><i class="fas fa-brain"></i> 4. Lógica de Negócio</div> <!-- Ícone adicionado -->
         </div>
       </div>
       <div class="menu-item">
         <div class="menu-title" onclick="toggleSubmenu('integration')">
-          <span>🔗 Integrações</span>
+          <span><i class="fas fa-link"></i> Integrações</span> <!-- Ícone adicionado -->
           <span>▼</span>
         </div>
         <div class="submenu" id="submenu-integration">
-          <div class="submenu-item" onclick="showContent('integration-firebase')">Firebase</div>
-          <div class="submenu-item" onclick="showContent('integration-api')">API Externa</div>
+          <div class="submenu-item" onclick="showContent('integration-firebase')"><i class="fab fa-google"></i> Firebase</div> <!-- Ícone adicionado -->
+          <div class="submenu-item" onclick="showContent('integration-api')"><i class="fas fa-network-wired"></i> API Externa</div> <!-- Ícone adicionado -->
         </div>
       </div>
       <div class="menu-item">
         <div class="menu-title" onclick="toggleSubmenu('testing')">
-          <span>🧪 Testes</span>
+          <span><i class="fas fa-vial"></i> Testes</span> <!-- Ícone adicionado -->
           <span>▼</span>
         </div>
         <div class="submenu" id="submenu-testing">
-          <div class="submenu-item" onclick="showContent('testing-unit')">Testes Unitários</div>
-          <div class="submenu-item" onclick="showContent('testing-device')">Testes em Dispositivo</div>
+          <div class="submenu-item" onclick="showContent('testing-unit')"><i class="fas fa-flask"></i> Testes Unitários</div> <!-- Ícone adicionado -->
+          <div class="submenu-item" onclick="showContent('testing-device')"><i class="fas fa-mobile"></i> Testes em Dispositivo</div> <!-- Ícone adicionado -->
         </div>
       </div>
       <div class="menu-item">
         <div class="menu-title" onclick="toggleSubmenu('deployment')">
-          <span>🚀 Implantação</span>
+          <span><i class="fas fa-rocket"></i> Implantação</span> <!-- Ícone adicionado -->
           <span>▼</span>
         </div>
         <div class="submenu" id="submenu-deployment">
-          <div class="submenu-item" onclick="showContent('deployment-build')">Build do Aplicativo</div>
-          <div class="submenu-item" onclick="showContent('deployment-ios-setup')">Configuração iOS (Xcode)</div> <!-- NOVO -->
-          <div class="submenu-item" onclick="showContent('deployment-playstore')">Google Play Store</div>
-          <div class="submenu-item" onclick="showContent('deployment-appstore')">Apple App Store</div> <!-- NOVO -->
-          <div class="submenu-item" onclick="showContent('deployment-analytics')">Analytics</div>
+          <div class="submenu-item" onclick="showContent('deployment-build')"><i class="fas fa-box"></i> Build do Aplicativo</div> <!-- Ícone adicionado -->
+          <div class="submenu-item" onclick="showContent('deployment-ios-setup')"><i class="fab fa-apple"></i> Configuração iOS (Xcode)</div> <!-- Ícone adicionado -->
+          <div class="submenu-item" onclick="showContent('deployment-playstore')"><i class="fab fa-google-play"></i> Google Play Store</div> <!-- Ícone adicionado -->
+          <div class="submenu-item" onclick="showContent('deployment-appstore')"><i class="fab fa-app-store-ios"></i> Apple App Store</div> <!-- Ícone adicionado -->
+          <div class="submenu-item" onclick="showContent('deployment-analytics')"><i class="fas fa-chart-line"></i> Analytics</div> <!-- Ícone adicionado -->
         </div>
       </div>
       <div class="menu-item">
         <div class="menu-title" onclick="toggleSubmenu('delivery')">
-          <span>📦 Entrega</span>
+          <span><i class="fas fa-box"></i> Entrega</span> <!-- Ícone adicionado -->
           <span>▼</span>
         </div>
         <div class="submenu" id="submenu-delivery">
-          <div class="submenu-item" onclick="showContent('delivery-documentation')">Documentação</div>
-          <div class="submenu-item" onclick="showContent('delivery-transfer')">Transferência</div>
+          <div class="submenu-item" onclick="showContent('delivery-documentation')"><i class="fas fa-book"></i> Documentação</div> <!-- Ícone adicionado -->
+          <div class="submenu-item" onclick="showContent('delivery-transfer')"><i class="fas fa-hands-helping"></i> Transferência</div> <!-- Ícone adicionado -->
         </div>
       </div>
       <div class="menu-item">
         <div class="menu-title" onclick="toggleSubmenu('future')">
-          <span>🔮 Futuro & Otimização</span>
+          <span><i class="fas fa-crystal-ball"></i> Futuro & Otimização</span> <!-- Ícone adicionado -->
           <span>▼</span>
         </div>
         <div class="submenu" id="submenu-future">
-          <div class="submenu-item" onclick="showContent('future-n8n')">Automações (n8n)</div>
+          <div class="submenu-item" onclick="showContent('future-n8n')"><i class="fas fa-robot"></i> Automações (n8n)</div> <!-- Ícone adicionado -->
         </div>
       </div>
       <!-- NOVA SEÇÃO: Arquitetura de Perfis -->
       <div class="menu-item">
         <div class="menu-title" onclick="toggleSubmenu('profiles')">
-          <span>🔐 Arquitetura de Perfis</span>
+          <span><i class="fas fa-user-lock"></i> Arquitetura de Perfis</span> <!-- Ícone adicionado -->
           <span>▼</span>
         </div>
         <div class="submenu" id="submenu-profiles">
-          <div class="submenu-item" onclick="showContent('profiles-overview')">Visão Geral</div>
-          <div class="submenu-item" onclick="showContent('profiles-implementation')">Implementação</div>
-          <div class="submenu-item" onclick="showContent('profiles-security')">Segurança</div>
+          <div class="submenu-item" onclick="showContent('profiles-overview')"><i class="fas fa-eye"></i> Visão Geral</div> <!-- Ícone adicionado -->
+          <div class="submenu-item" onclick="showContent('profiles-implementation')"><i class="fas fa-code"></i> Implementação</div> <!-- Ícone adicionado -->
+          <div class="submenu-item" onclick="showContent('profiles-security')"><i class="fas fa-shield-alt"></i> Segurança</div> <!-- Ícone adicionado -->
         </div>
       </div>
     </div>
@@ -581,14 +683,14 @@
     <div class="content">
       <!-- Seções do Guia de Estrutura -->
       <div class="content-section structure-guide" id="content-structure-overview">
-        <h2>📘 Visão Geral do Projeto</h2>
+        <h2><i class="fas fa-book-open"></i> Visão Geral do Projeto</h2>
         <p>Este documento apresenta a visão macro do projeto, detalhando seus objetivos, escopo e principais componentes.</p>
         <div class="summary-card">
-            <h3><i>🎯</i> Objetivo Principal</h3>
+            <h3><i class="fas fa-bullseye"></i> Objetivo Principal</h3>
             <p>Desenvolver um aplicativo móvel de código aberto e multiplataforma que permita aos associados da Unimed acionar rapidamente o serviço de emergência, facilitando o acesso a cuidados médicos urgentes.</p>
         </div>
         <div class="summary-card">
-            <h3><i>📱</i> Escopo do MVP</h3>
+            <h3><i class="fas fa-mobile-alt"></i> Escopo do MVP</h3>
              <ul>
                 <li><strong>Funcionalidade Chave:</strong> Botão de emergência para ligar para a Unimed.</li>
                 <li><strong>Autenticação:</strong> Login seguro para associados.</li>
@@ -599,23 +701,23 @@
         <a href="#" class="link-button" onclick="showContent('structure-phases')">Próximo: Fases do Projeto</a>
       </div>
       <div class="content-section structure-guide" id="content-structure-phases">
-        <h2>📘 Fases do Projeto</h2>
+        <h2><i class="fas fa-project-diagram"></i> Fases do Projeto</h2>
         <p>Visão macro das principais fases do desenvolvimento do SOS Unimed Vidas.</p>
         <div class="phases-container">
-          <div class="phase-card"><h3>1. Planejamento</h3><p>Definição de requisitos, escopo e tecnologias.</p></div>
-          <div class="phase-card"><h3>2. Configuração</h3><p>Instalação das ferramentas de desenvolvimento.</p></div>
-          <div class="phase-card"><h3>3. Desenvolvimento</h3><p>Implementação da UI, lógica e integrações.</p></div>
-          <div class="phase-card"><h3>4. Testes</h3><p>Testes unitários e em dispositivos.</p></div>
-          <div class="phase-card"><h3>5. Implantação</h3><p>Geração dos pacotes de distribuição (Build).</p></div>
-          <div class="phase-card"><h3>6. Entrega</h3><p>Documentação final e transferência.</p></div>
+          <div class="phase-card"><h3><i class="fas fa-tasks"></i> 1. Planejamento</h3><p>Definição de requisitos, escopo e tecnologias.</p></div>
+          <div class="phase-card"><h3><i class="fas fa-cogs"></i> 2. Configuração</h3><p>Instalação das ferramentas de desenvolvimento.</p></div>
+          <div class="phase-card"><h3><i class="fas fa-laptop-code"></i> 3. Desenvolvimento</h3><p>Implementação da UI, lógica e integrações.</p></div>
+          <div class="phase-card"><h3><i class="fas fa-vial"></i> 4. Testes</h3><p>Testes unitários e em dispositivos.</p></div>
+          <div class="phase-card"><h3><i class="fas fa-rocket"></i> 5. Implantação</h3><p>Geração dos pacotes de distribuição (Build).</p></div>
+          <div class="phase-card"><h3><i class="fas fa-box"></i> 6. Entrega</h3><p>Documentação final e transferência.</p></div>
         </div>
         <a href="#" class="link-button" onclick="showContent('structure-deliverables')">Próximo: Entregáveis</a>
       </div>
       <div class="content-section structure-guide" id="content-structure-deliverables">
-        <h2>📘 Entregáveis do Projeto</h2>
+        <h2><i class="fas fa-box-open"></i> Entregáveis do Projeto</h2>
         <p>Lista dos principais artefatos e resultados esperados ao final do projeto.</p>
         <div class="summary-card">
-          <h3><i>📦</i> Artefatos Técnicos</h3>
+          <h3><i class="fas fa-box"></i> Artefatos Técnicos</h3>
           <ul>
             <li>Código Fonte Completo no repositório Git.</li>
             <li>Pacotes de Instalação (APK para Android, IPA para iOS).</li>
@@ -623,7 +725,7 @@
           </ul>
         </div>
         <div class="summary-card">
-          <h3><i>🤝</i> Processos e Conhecimento</h3>
+          <h3><i class="fas fa-hands-helping"></i> Processos e Conhecimento</h3>
           <ul>
             <li>Sessão de Transferência de Conhecimento para a equipe de TI.</li>
             <li>Fornecimento seguro de acessos e credenciais.</li>
@@ -633,18 +735,18 @@
       </div>
       <!-- INÍCIO DO CONTEÚDO ORIGINAL COMPLETO E NÃO OMITIDO -->
       <div class="content-section" id="content-setup-chromeos">
-        <h2>⚙️ Configuração no ChromeOS/Linux</h2>
+        <h2><i class="fas fa-cogs"></i> Configuração no ChromeOS/Linux</h2>
         <!-- Conteúdo completo aqui... -->
         <p>Siga este guia para configurar seu ambiente de desenvolvimento Flutter no ChromeOS com suporte a Linux (Crostini).</p>
-        <h3>📋 Pré-requisitos</h3>
+        <h3><i class="fas fa-list"></i> Pré-requisitos</h3>
         <ul>
           <li>Chromebook com suporte a Linux (Crostini)</li>
           <li>Pelo menos 8GB de armazenamento livre</li>
           <li>Conexão estável com a internet</li>
         </ul>
-        <h3>🔧 Passo 1: Configurar o Ambiente Linux</h3>
+        <h3><i class="fas fa-wrench"></i> Passo 1: Configurar o Ambiente Linux</h3>
         <div class="step-box">
-          <h4>Ativar Linux (Crostini)</h4>
+          <h4><i class="fab fa-linux"></i> Ativar Linux (Crostini)</h4>
           <ol>
             <li>Acesse <code>Configurações</code> > <code>Linux (Desenvolvedor)</code></li>
             <li>Clique em <code>Ativar</code></li>
@@ -652,61 +754,69 @@
           </ol>
         </div>
         <div class="step-box">
-          <h4>Atualizar pacotes</h4>
+          <h4><i class="fas fa-sync-alt"></i> Atualizar pacotes</h4>
           <p>Abra o Terminal Linux e execute:</p>
           <div class="code-block">
             sudo apt-get update && sudo apt-get upgrade -y
+            <button class="copy-btn" onclick="copyToClipboard(this)">Copiar</button>
           </div>
         </div>
-        <h3>📥 Passo 2: Instalar o Flutter</h3>
+        <h3><i class="fas fa-download"></i> Passo 2: Instalar o Flutter</h3>
         <div class="step-box">
-          <h4>Baixar o Flutter SDK</h4>
+          <h4><i class="fas fa-file-download"></i> Baixar o Flutter SDK</h4>
           <div class="code-block">
             cd ~<br>
             wget https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.22.0-stable.tar.xz
+            <button class="copy-btn" onclick="copyToClipboard(this)">Copiar</button>
           </div>
         </div>
         <div class="step-box">
-          <h4>Extrair o arquivo</h4>
+          <h4><i class="fas fa-archive"></i> Extrair o arquivo</h4>
           <div class="code-block">
             tar xf flutter_linux_3.22.0-stable.tar.xz
+            <button class="copy-btn" onclick="copyToClipboard(this)">Copiar</button>
           </div>
         </div>
         <div class="step-box">
-          <h4>Adicionar ao PATH</h4>
+          <h4><i class="fas fa-road"></i> Adicionar ao PATH</h4>
           <ol>
             <li>Edite o arquivo <code>.bashrc</code>:</li>
             <div class="code-block">
               nano ~/.bashrc
+              <button class="copy-btn" onclick="copyToClipboard(this)">Copiar</button>
             </div>
             <li>Adicione no final:</li>
             <div class="code-block">
               export PATH="$PATH:$HOME/flutter/bin"
+              <button class="copy-btn" onclick="copyToClipboard(this)">Copiar</button>
             </div>
             <li>Salve (Ctrl+O, Enter) e saia (Ctrl+X)</li>
             <li>Carregue as alterações:</li>
             <div class="code-block">
               source ~/.bashrc
+              <button class="copy-btn" onclick="copyToClipboard(this)">Copiar</button>
             </div>
           </ol>
         </div>
-        <h3>🔍 Passo 3: Verificar Dependências</h3>
+        <h3><i class="fas fa-search"></i> Passo 3: Verificar Dependências</h3>
         <div class="step-box">
-          <h4>Executar flutter doctor</h4>
+          <h4><i class="fas fa-user-md"></i> Executar flutter doctor</h4>
           <div class="code-block">
             flutter doctor
+            <button class="copy-btn" onclick="copyToClipboard(this)">Copiar</button>
           </div>
           <p>Você verá mensagens sobre dependências faltando - vamos resolver isso agora.</p>
         </div>
-        <h3>🤖 Passo 4: Configurar Android</h3>
+        <h3><i class="fab fa-android"></i> Passo 4: Configurar Android</h3>
         <div class="step-box">
-          <h4>Instalar Java JDK</h4>
+          <h4><i class="fab fa-java"></i> Instalar Java JDK</h4>
           <div class="code-block">
             sudo apt-get install openjdk-11-jdk -y
+            <button class="copy-btn" onclick="copyToClipboard(this)">Copiar</button>
           </div>
         </div>
         <div class="step-box">
-          <h4>Baixar Android Studio</h4>
+          <h4><i class="fab fa-android"></i> Baixar Android Studio</h4>
           <ol>
             <li>Acesse <a href="https://developer.android.com/studio" target="_blank">developer.android.com/studio</a></li>
             <li>Baixe a versão para Linux</li>
@@ -715,14 +825,16 @@
               cd ~/Downloads<br>
               unzip android-studio-*-linux.tar.gz<br>
               mv android-studio ~
+              <button class="copy-btn" onclick="copyToClipboard(this)">Copiar</button>
             </div>
           </ol>
         </div>
         <div class="step-box">
-          <h4>Iniciar Android Studio</h4>
+          <h4><i class="fas fa-play-circle"></i> Iniciar Android Studio</h4>
           <div class="code-block">
             cd ~/android-studio/bin<br>
             ./studio.sh
+            <button class="copy-btn" onclick="copyToClipboard(this)">Copiar</button>
           </div>
           <p>Siga o assistente de instalação e marque:</p>
           <ul>
@@ -732,36 +844,41 @@
           </ul>
         </div>
         <div class="step-box">
-          <h4>Configurar variáveis de ambiente</h4>
+          <h4><i class="fas fa-sliders-h"></i> Configurar variáveis de ambiente</h4>
           <ol>
             <li>Edite novamente o <code>.bashrc</code>:</li>
             <div class="code-block">
               nano ~/.bashrc
+              <button class="copy-btn" onclick="copyToClipboard(this)">Copiar</button>
             </div>
             <li>Adicione:</li>
             <div class="code-block">
               export ANDROID_HOME="$HOME/Android/Sdk"<br>
               export PATH="$PATH:$ANDROID_HOME/tools"<br>
               export PATH="$PATH:$ANDROID_HOME/platform-tools"
+              <button class="copy-btn" onclick="copyToClipboard(this)">Copiar</button>
             </div>
             <li>Salve e carregue:</li>
             <div class="code-block">
               source ~/.bashrc
+              <button class="copy-btn" onclick="copyToClipboard(this)">Copiar</button>
             </div>
           </ol>
         </div>
-        <h3>✅ Passo 5: Finalizar Configuração</h3>
+        <h3><i class="fas fa-check-circle"></i> Passo 5: Finalizar Configuração</h3>
         <div class="step-box">
-          <h4>Aceitar licenças Android</h4>
+          <h4><i class="fas fa-file-contract"></i> Aceitar licenças Android</h4>
           <div class="code-block">
             flutter doctor --android-licenses
+            <button class="copy-btn" onclick="copyToClipboard(this)">Copiar</button>
           </div>
           <p>Pressione <code>y</code> para aceitar todas as licenças.</p>
         </div>
         <div class="step-box">
-          <h4>Verificar instalação</h4>
+          <h4><i class="fas fa-search-plus"></i> Verificar instalação</h4>
           <div class="code-block">
             flutter doctor
+            <button class="copy-btn" onclick="copyToClipboard(this)">Copiar</button>
           </div>
           <p>Agora deverá mostrar todas as dependências como OK.</p>
         </div>
@@ -770,18 +887,18 @@
       </div>
       <div class="content-section" id="content-setup-windows">
         <!-- Conteúdo completo aqui... -->
-        <h2>⚙️ Configuração no Windows</h2>
+        <h2><i class="fas fa-cogs"></i> Configuração no Windows</h2>
         <p>Siga este guia para configurar seu ambiente de desenvolvimento Flutter no Windows.</p>
-        <h3>📋 Pré-requisitos</h3>
+        <h3><i class="fas fa-list"></i> Pré-requisitos</h3>
         <ul>
           <li>Windows 10 ou superior (64-bit)</li>
           <li>Pelo menos 8GB de RAM</li>
           <li>Pelo menos 4GB de espaço em disco livre</li>
           <li>Conexão estável com a internet</li>
         </ul>
-        <h3>📥 Passo 1: Instalar o Flutter SDK</h3>
+        <h3><i class="fas fa-download"></i> Passo 1: Instalar o Flutter SDK</h3>
         <div class="step-box">
-          <h4>Baixar o Flutter SDK</h4>
+          <h4><i class="fas fa-file-download"></i> Baixar o Flutter SDK</h4>
           <ol>
             <li>Acesse <a href="https://docs.flutter.dev/get-started/install/windows" target="_blank">docs.flutter.dev/get-started/install/windows</a></li>
             <li>Baixe o arquivo <code>flutter_windows_x.x.x-stable.zip</code></li>
@@ -789,7 +906,7 @@
           </ol>
         </div>
         <div class="step-box">
-          <h4>Adicionar ao PATH</h4>
+          <h4><i class="fas fa-road"></i> Adicionar ao PATH</h4>
           <ol>
             <li>Pressione <code>Win + R</code>, digite <code>sysdm.cpl</code> e pressione Enter</li>
             <li>Clique na aba <code>Avançado</code></li>
@@ -799,18 +916,19 @@
             <li>Clique <code>OK</code> para fechar todas as janelas</li>
           </ol>
         </div>
-        <h3>🔍 Passo 2: Verificar Dependências</h3>
+        <h3><i class="fas fa-search"></i> Passo 2: Verificar Dependências</h3>
         <div class="step-box">
-          <h4>Executar flutter doctor</h4>
+          <h4><i class="fas fa-user-md"></i> Executar flutter doctor</h4>
           <p>Abra o Prompt de Comando ou PowerShell e execute:</p>
           <div class="code-block">
             flutter doctor
+            <button class="copy-btn" onclick="copyToClipboard(this)">Copiar</button>
           </div>
           <p>Você verá mensagens sobre dependências faltando - vamos resolver isso agora.</p>
         </div>
-        <h3>🤖 Passo 3: Instalar Android Studio</h3>
+        <h3><i class="fab fa-android"></i> Passo 3: Instalar Android Studio</h3>
         <div class="step-box">
-          <h4>Baixar Android Studio</h4>
+          <h4><i class="fab fa-android"></i> Baixar Android Studio</h4>
           <ol>
             <li>Acesse <a href="https://developer.android.com/studio" target="_blank">developer.android.com/studio</a></li>
             <li>Baixe a versão para Windows</li>
@@ -818,7 +936,7 @@
           </ol>
         </div>
         <div class="step-box">
-          <h4>Configurar Android Studio</h4>
+          <h4><i class="fas fa-cog"></i> Configurar Android Studio</h4>
           <ol>
             <li>Abra o Android Studio</li>
             <li>No assistente de instalação, marque:</li>
@@ -830,9 +948,9 @@
             <li>Clique em <code>Next</code> e complete a instalação</li>
           </ol>
         </div>
-        <h3>📱 Passo 4: Configurar Emulador Android (Opcional)</h3>
+        <h3><i class="fas fa-mobile-alt"></i> Passo 4: Configurar Emulador Android (Opcional)</h3>
         <div class="step-box">
-          <h4>Criar um dispositivo virtual</h4>
+          <h4><i class="fas fa-plus-circle"></i> Criar um dispositivo virtual</h4>
           <ol>
             <li>No Android Studio, vá em <code>Tools</code> > <code>Device Manager</code></li>
             <li>Clique em <code>Create Device</code></li>
@@ -841,20 +959,22 @@
             <li>Clique em <code>Finish</code></li>
           </ol>
         </div>
-        <h3>✅ Passo 5: Finalizar Configuração</h3>
+        <h3><i class="fas fa-check-circle"></i> Passo 5: Finalizar Configuração</h3>
         <div class="step-box">
-          <h4>Aceitar licenças Android</h4>
+          <h4><i class="fas fa-file-contract"></i> Aceitar licenças Android</h4>
           <p>Execute no Prompt de Comando ou PowerShell:</p>
           <div class="code-block">
             flutter doctor --android-licenses
+            <button class="copy-btn" onclick="copyToClipboard(this)">Copiar</button>
           </div>
           <p>Pressione <code>y</code> para aceitar todas as licenças.</p>
         </div>
         <div class="step-box">
-          <h4>Verificar instalação</h4>
+          <h4><i class="fas fa-search-plus"></i> Verificar instalação</h4>
           <p>Execute novamente:</p>
           <div class="code-block">
             flutter doctor
+            <button class="copy-btn" onclick="copyToClipboard(this)">Copiar</button>
           </div>
           <p>Agora deverá mostrar todas as dependências como OK.</p>
         </div>
@@ -863,18 +983,18 @@
       </div>
       <div class="content-section" id="content-setup-macos">
         <!-- Conteúdo completo aqui... -->
-        <h2>⚙️ Configuração no macOS</h2>
-        <p>Siga este guia para configurar seu ambiente de desenvolvimento Flutter no macOS. Esta etapa é **obrigatória** para compilar e implantar o app para iOS.</p>
-        <h3>📋 Pré-requisitos</h3>
+        <h2><i class="fas fa-cogs"></i> Configuração no macOS</h2>
+        <p>Siga este guia para configurar seu ambiente de desenvolvimento Flutter no macOS. Esta etapa é <strong>obrigatória</strong> para compilar e implantar o app para iOS.</p>
+        <h3><i class="fas fa-list"></i> Pré-requisitos</h3>
         <ul>
           <li>macOS (High Sierra ou superior)</li>
           <li>Pelo menos 8GB de RAM</li>
           <li>Pelo menos 4GB de espaço em disco livre</li>
           <li>Conexão estável com a internet</li>
         </ul>
-        <h3>📥 Passo 1: Instalar o Flutter SDK</h3>
+        <h3><i class="fas fa-download"></i> Passo 1: Instalar o Flutter SDK</h3>
         <div class="step-box">
-          <h4>Baixar o Flutter SDK</h4>
+          <h4><i class="fas fa-file-download"></i> Baixar o Flutter SDK</h4>
           <ol>
             <li>Acesse <a href="https://docs.flutter.dev/get-started/install/macos" target="_blank">docs.flutter.dev/get-started/install/macos</a></li>
             <li>Baixe o arquivo <code>flutter_macos_arm64_x.x.x-stable.zip</code> (para Apple Silicon) ou <code>flutter_macos_x64_x.x.x-stable.zip</code> (para Intel)</li>
@@ -882,20 +1002,21 @@
           </ol>
         </div>
         <div class="step-box">
-          <h4>Adicionar ao PATH</h4>
+          <h4><i class="fas fa-road"></i> Adicionar ao PATH</h4>
           <ol>
             <li>Determine qual shell você está usando: <code>echo $SHELL</code></li>
             <li>Se for <code>zsh</code> (padrão no macOS Catalina e posteriores), edite <code>~/.zshrc</code>. Se for <code>bash</code>, edite <code>~/.bash_profile</code>.</li>
             <li>Adicione a seguinte linha (ajuste o caminho se necessário):</li>
             <div class="code-block">
               export PATH="$PATH:$HOME/development/flutter/bin"
+              <button class="copy-btn" onclick="copyToClipboard(this)">Copiar</button>
             </div>
             <li>Salve o arquivo e execute <code>source ~/.zshrc</code> (ou <code>source ~/.bash_profile</code>) para carregar as alterações.</li>
           </ol>
         </div>
-        <h3>🔍 Passo 2: Instalar e Configurar o Xcode</h3>
+        <h3><i class="fas fa-search"></i> Passo 2: Instalar e Configurar o Xcode</h3>
         <div class="step-box">
-          <h4>Instalar Xcode</h4>
+          <h4><i class="fab fa-apple"></i> Instalar Xcode</h4>
           <ol>
             <li>Abra a App Store</li>
             <li>Procure por "Xcode" e instale. A instalação pode demorar bastante.</li>
@@ -904,183 +1025,185 @@
             <div class="code-block">
               sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer<br>
               sudo xcodebuild -runFirstLaunch
+              <button class="copy-btn" onclick="copyToClipboard(this)">Copiar</button>
             </div>
           </ol>
         </div>
-         <h3>✅ Passo 3: Finalizar Configuração</h3>
+         <h3><i class="fas fa-check-circle"></i> Passo 3: Finalizar Configuração</h3>
         <div class="step-box">
-          <h4>Rodar Flutter Doctor</h4>
+          <h4><i class="fas fa-user-md"></i> Rodar Flutter Doctor</h4>
           <p>Abra um novo Terminal e execute novamente:</p>
            <div class="code-block">
             flutter doctor
+            <button class="copy-btn" onclick="copyToClipboard(this)">Copiar</button>
           </div>
-          <p>Siga as instruções para resolver qualquer pendência, como a instalação do CocoaPods (`sudo gem install cocoapods`) e a aceitação das licenças do Android.</p>
+          <p>Siga as instruções para resolver qualquer pendência, como a instalação do CocoaPods (<code>sudo gem install cocoapods</code>) e a aceitação das licenças do Android.</p>
         </div>
         <div class="step-action" onclick="markStepComplete('setup-macos')">Marcar como Concluído</div>
         <a href="#" class="link-button" onclick="showContent('android-studio-install')">Próximo: Android Studio</a>
       </div>
       <div class="content-section" id="content-android-studio-install">
         <!-- Conteúdo completo aqui... -->
-        <h2>🤖 Instalação e Configuração do Android Studio</h2>
+        <h2><i class="fab fa-android"></i> Instalação e Configuração do Android Studio</h2>
         <p>O Android Studio é o IDE oficial para desenvolvimento Android e é essencial para desenvolver, testar e depurar aplicativos Flutter.</p>
-        <h3>📥 Passo 1: Baixar o Android Studio</h3>
+        <h3><i class="fas fa-download"></i> Passo 1: Baixar o Android Studio</h3>
         <div class="step-box">
-          <h4>Acesse o site oficial</h4>
+          <h4><i class="fas fa-globe"></i> Acesse o site oficial</h4>
           <p>Visite <a href="https://developer.android.com/studio" target="_blank">developer.android.com/studio</a> e clique no botão de download para o seu sistema operacional (Windows, macOS ou Linux).</p>
         </div>
-        <h3>⚙️ Passo 2: Instalar o Android Studio</h3>
-        <div class="step-box"><h4>Windows</h4><p>Execute o <code>.exe</code> e siga o assistente, garantindo que "Android SDK" e "Android Virtual Device" estejam marcados.</p></div>
-        <div class="step-box"><h4>macOS</h4><p>Abra o <code>.dmg</code> e arraste para a pasta <code>Applications</code>.</p></div>
-        <div class="step-box"><h4>Linux</h4><p>Extraia o <code>.tar.gz</code> e rode <code>./studio.sh</code> na pasta <code>bin</code>.</p></div>
-        <h3>🔧 Passo 3: Configuração Inicial</h3>
-        <div class="step-box"><h4>Primeira Execução</h4><p>Ao abrir, siga o assistente de configuração. Escolha "Standard" e aguarde o download dos componentes.</p></div>
+        <h3><i class="fas fa-cog"></i> Passo 2: Instalar o Android Studio</h3>
+        <div class="step-box"><h4><i class="fab fa-windows"></i> Windows</h4><p>Execute o <code>.exe</code> e siga o assistente, garantindo que "Android SDK" e "Android Virtual Device" estejam marcados.</p></div>
+        <div class="step-box"><h4><i class="fab fa-apple"></i> macOS</h4><p>Abra o <code>.dmg</code> e arraste para a pasta <code>Applications</code>.</p></div>
+        <div class="step-box"><h4><i class="fab fa-linux"></i> Linux</h4><p>Extraia o <code>.tar.gz</code> e rode <code>./studio.sh</code> na pasta <code>bin</code>.</p></div>
+        <h3><i class="fas fa-wrench"></i> Passo 3: Configuração Inicial</h3>
+        <div class="step-box"><h4><i class="fas fa-play-circle"></i> Primeira Execução</h4><p>Ao abrir, siga o assistente de configuração. Escolha "Standard" e aguarde o download dos componentes.</p></div>
         <div class="step-action" onclick="markStepComplete('android-studio-install')">Marcar como Concluído</div>
         <a href="#" class="link-button" onclick="showContent('android-studio-sdk')">Próximo: Gerenciar SDKs</a>
       </div>
       <div class="content-section" id="content-android-studio-sdk">
         <!-- Conteúdo completo aqui... -->
-        <h2>📱 Gerenciar SDKs do Android</h2>
+        <h2><i class="fas fa-mobile"></i> Gerenciar SDKs do Android</h2>
         <p>O Android SDK (Software Development Kit) contém as ferramentas, APIs e emuladores necessários para desenvolver aplicativos Android.</p>
-        <h3>🛠️ Passo 1: Acessar o SDK Manager</h3>
-        <div class="step-box"><h4>Onde encontrar</h4><p>No Android Studio: <code>File > Settings</code> (ou <code>Android Studio > Preferences</code>) <code>> System Settings > Android SDK</code>.</p></div>
-        <h3>📦 Passo 2: Instalar Versões do SDK</h3>
-        <div class="step-box"><h4>Plataformas e Ferramentas</h4><p>Na aba "SDK Platforms", instale uma versão recente (ex: API 33). Na aba "SDK Tools", verifique se "Android SDK Build-Tools", "Android Emulator" e "Android SDK Platform-Tools" estão instalados.</p></div>
+        <h3><i class="fas fa-tools"></i> Passo 1: Acessar o SDK Manager</h3>
+        <div class="step-box"><h4><i class="fas fa-map-signs"></i> Onde encontrar</h4><p>No Android Studio: <code>File > Settings</code> (ou <code>Android Studio > Preferences</code>) <code>> System Settings > Android SDK</code>.</p></div>
+        <h3><i class="fas fa-box"></i> Passo 2: Instalar Versões do SDK</h3>
+        <div class="step-box"><h4><i class="fas fa-layer-group"></i> Plataformas e Ferramentas</h4><p>Na aba "SDK Platforms", instale uma versão recente (ex: API 33). Na aba "SDK Tools", verifique se "Android SDK Build-Tools", "Android Emulator" e "Android SDK Platform-Tools" estão instalados.</p></div>
         <div class="step-action" onclick="markStepComplete('android-studio-sdk')">Marcar como Concluído</div>
         <a href="#" class="link-button" onclick="showContent('android-studio-avd')">Próximo: Criar Emulador (AVD)</a>
       </div>
       <div class="content-section" id="content-android-studio-avd">
         <!-- Conteúdo completo aqui... -->
-        <h2>📱 Criar Emulador Android (AVD)</h2>
+        <h2><i class="fas fa-mobile-alt"></i> Criar Emulador Android (AVD)</h2>
         <p>O Android Virtual Device (AVD) permite testar seu aplicativo em diferentes versões do Android e dispositivos sem um aparelho físico.</p>
-        <h3>🔧 Passo 1: Acessar o AVD Manager</h3>
-        <div class="step-box"><h4>Onde encontrar</h4><p>No Android Studio, clique em `Tools > Device Manager`.</p></div>
-        <h3>➕ Passo 2: Criar um Novo Dispositivo Virtual</h3>
-        <div class="step-box"><h4>Assistente de criação</h4><p>Clique em "Create Device", escolha um hardware (ex: Pixel 6), selecione uma imagem de sistema (ex: API 33) e finalize.</p></div>
-        <h3>▶️ Passo 3: Iniciar o Emulador</h3>
-        <div class="step-box"><h4>Rodar</h4><p>No Device Manager, clique no botão de "Play" (▶️) ao lado do seu emulador.</p></div>
+        <h3><i class="fas fa-tools"></i> Passo 1: Acessar o AVD Manager</h3>
+        <div class="step-box"><h4><i class="fas fa-map-signs"></i> Onde encontrar</h4><p>No Android Studio, clique em `Tools > Device Manager`.</p></div>
+        <h3><i class="fas fa-plus-circle"></i> Passo 2: Criar um Novo Dispositivo Virtual</h3>
+        <div class="step-box"><h4><i class="fas fa-wizard"></i> Assistente de criação</h4><p>Clique em "Create Device", escolha um hardware (ex: Pixel 6), selecione uma imagem de sistema (ex: API 33) e finalize.</p></div>
+        <h3><i class="fas fa-play-circle"></i> Passo 3: Iniciar o Emulador</h3>
+        <div class="step-box"><h4><i class="fas fa-running"></i> Rodar</h4><p>No Device Manager, clique no botão de "Play" (▶️) ao lado do seu emulador.</p></div>
         <div class="step-action" onclick="markStepComplete('android-studio-avd')">Marcar como Concluído</div>
         <a href="#" class="link-button" onclick="showContent('dev-project')">Próximo: Criar Projeto</a>
       </div>
       <div class="content-section" id="content-dev-project">
         <!-- Conteúdo completo aqui... -->
-        <h2>💻 1. Criar Projeto Flutter</h2>
+        <h2><i class="fas fa-laptop-code"></i> 1. Criar Projeto Flutter</h2>
         <p>Agora que o ambiente está configurado, vamos criar o projeto do aplicativo SOS Unimed Vidas.</p>
-        <h3>🚀 Passo 1: Criar o Projeto</h3>
-        <div class="step-box"><h4>Executar comando de criação</h4><p>No terminal, execute:</p><div class="code-block">flutter create sos_unimed_vidas<br>cd sos_unimed_vidas</div></div>
-        <h3>▶️ Passo 2: Executar o Projeto</h3>
-        <div class="step-box"><h4>Rodar o aplicativo de exemplo</h4><p>Com um dispositivo/emulador conectado, execute:</p><div class="code-block">flutter run</div><p>Você deve ver o aplicativo de exemplo "Counter" rodando.</p></div>
+        <h3><i class="fas fa-rocket"></i> Passo 1: Criar o Projeto</h3>
+        <div class="step-box"><h4><i class="fas fa-hammer"></i> Executar comando de criação</h4><p>No terminal, execute:</p><div class="code-block">flutter create sos_unimed_vidas<br>cd sos_unimed_vidas<button class="copy-btn" onclick="copyToClipboard(this)">Copiar</button></div></div>
+        <h3><i class="fas fa-play-circle"></i> Passo 2: Executar o Projeto</h3>
+        <div class="step-box"><h4><i class="fas fa-running"></i> Rodar o aplicativo de exemplo</h4><p>Com um dispositivo/emulador conectado, execute:</p><div class="code-block">flutter run<button class="copy-btn" onclick="copyToClipboard(this)">Copiar</button></div><p>Você deve ver o aplicativo de exemplo "Counter" rodando.</p></div>
         <div class="step-action" onclick="markStepComplete('dev-project')">Marcar como Concluído</div>
       </div>
       <div class="content-section" id="content-dev-structure">
         <!-- Conteúdo completo aqui... -->
-        <h2>🏗️ 2. Estrutura Básica do Aplicativo</h2>
+        <h2><i class="fas fa-sitemap"></i> 2. Estrutura Básica do Aplicativo</h2>
         <p>Vamos organizar a estrutura do nosso aplicativo SOS Unimed Vidas.</p>
-        <h3>📂 Passo 1: Criar Estrutura de Pastas</h3>
-        <div class="step-box"><h4>Estrutura recomendada</h4><p>Dentro da pasta <code>lib/</code>, crie as seguintes pastas: <code>models/</code>, <code>views/</code>, <code>widgets/</code>, <code>services/</code>, <code>utils/</code>.</p></div>
-        <h3>📱 Passo 2: Criar Telas Principais</h3>
-        <div class="step-box"><h4>Telas do MVP</h4><p>Crie os arquivos em <code>lib/views/</code>: <code>home_screen.dart</code>, <code>emergency_screen.dart</code>, <code>profile_screen.dart</code>, <code>help_screen.dart</code>.</p></div>
-        <h3>🔄 Passo 3: Configurar Navegação</h3>
-        <div class="step-box"><h4>Implementar navegação básica</h4><p>Modifique <code>lib/main.dart</code> para usar <code>MaterialApp</code> com rotas nomeadas.</p></div>
+        <h3><i class="fas fa-folder"></i> Passo 1: Criar Estrutura de Pastas</h3>
+        <div class="step-box"><h4><i class="fas fa-folder-tree"></i> Estrutura recomendada</h4><p>Dentro da pasta <code>lib/</code>, crie as seguintes pastas: <code>models/</code>, <code>views/</code>, <code>widgets/</code>, <code>services/</code>, <code>utils/</code>.</p></div>
+        <h3><i class="fas fa-mobile-alt"></i> Passo 2: Criar Telas Principais</h3>
+        <div class="step-box"><h4><i class="fas fa-window-maximize"></i> Telas do MVP</h4><p>Crie os arquivos em <code>lib/views/</code>: <code>home_screen.dart</code>, <code>emergency_screen.dart</code>, <code>profile_screen.dart</code>, <code>help_screen.dart</code>.</p></div>
+        <h3><i class="fas fa-sync-alt"></i> Passo 3: Configurar Navegação</h3>
+        <div class="step-box"><h4><i class="fas fa-route"></i> Implementar navegação básica</h4><p>Modifique <code>lib/main.dart</code> para usar <code>MaterialApp</code> com rotas nomeadas.</p></div>
         <div class="step-action" onclick="markStepComplete('dev-structure')">Marcar como Concluído</div>
       </div>
       <div class="content-section" id="content-dev-ui">
         <!-- Conteúdo completo aqui... -->
-        <h2>🎨 3. Interface do Usuário</h2>
+        <h2><i class="fas fa-paint-brush"></i> 3. Interface do Usuário</h2>
         <p>Vamos criar a interface do usuário seguindo a identidade visual da Unimed.</p>
-        <h3>🎨 Passo 1: Definir Tema</h3>
-        <div class="step-box"><h4>Configurar cores da Unimed</h4><p>No <code>MaterialApp</code>, defina o tema com a cor primária <code>Color(0xFF00A651)</code>.</p></div>
-        <h3>📱 Passo 2: Criar Componentes</h3>
-        <div class="step-box"><h4>Componentes principais</h4><p>Crie widgets reutilizáveis em <code>lib/widgets/</code>: <code>emergency_button.dart</code>, <code>custom_app_bar.dart</code>, <code>info_card.dart</code>.</p></div>
+        <h3><i class="fas fa-palette"></i> Passo 1: Definir Tema</h3>
+        <div class="step-box"><h4><i class="fas fa-fill-drip"></i> Configurar cores da Unimed</h4><p>No <code>MaterialApp</code>, defina o tema com a cor primária <code>Color(0xFF00A651)</code>.</p></div>
+        <h3><i class="fas fa-puzzle-piece"></i> Passo 2: Criar Componentes</h3>
+        <div class="step-box"><h4><i class="fas fa-cubes"></i> Componentes principais</h4><p>Crie widgets reutilizáveis em <code>lib/widgets/</code>: <code>emergency_button.dart</code>, <code>custom_app_bar.dart</code>, <code>info_card.dart</code>.</p></div>
         <div class="step-action" onclick="markStepComplete('dev-ui')">Marcar como Concluído</div>
       </div>
       <div class="content-section" id="content-dev-logic">
         <!-- Conteúdo completo aqui... -->
-        <h2>🧠 4. Lógica de Negócio</h2>
+        <h2><i class="fas fa-brain"></i> 4. Lógica de Negócio</h2>
         <p>Implementar a lógica principal do aplicativo SOS Unimed Vidas.</p>
-        <h3>📞 Passo 1: Funcionalidade de Emergência</h3>
-        <div class="step-box"><h4>Ação do botão de emergência</h4><p>O botão deve mostrar confirmação, realizar chamada telefônica (usando <code>url_launcher</code>) e registrar o evento.</p></div>
-        <h3>💾 Passo 2: Gerenciamento de Dados</h3>
-        <div class="step-box"><h4>Modelos de dados</h4><p>Crie modelos em <code>lib/models/</code>: <code>user.dart</code>, <code>emergency_history.dart</code>.</p></div>
-        <h3>🔁 Passo 3: Estado da Aplicação</h3>
-        <div class="step-box"><h4>Gerenciar estado com Provider</h4><p>Instale o pacote Provider e crie provedores para gerenciar o estado global.</p></div>
+        <h3><i class="fas fa-phone-alt"></i> Passo 1: Funcionalidade de Emergência</h3>
+        <div class="step-box"><h4><i class="fas fa-bolt"></i> Ação do botão de emergência</h4><p>O botão deve mostrar confirmação, realizar chamada telefônica (usando <code>url_launcher</code>) e registrar o evento.</p></div>
+        <h3><i class="fas fa-database"></i> Passo 2: Gerenciamento de Dados</h3>
+        <div class="step-box"><h4><i class="fas fa-table"></i> Modelos de dados</h4><p>Crie modelos em <code>lib/models/</code>: <code>user.dart</code>, <code>emergency_history.dart</code>.</p></div>
+        <h3><i class="fas fa-sync"></i> Passo 3: Estado da Aplicação</h3>
+        <div class="step-box"><h4><i class="fas fa-project-diagram"></i> Gerenciar estado com Provider</h4><p>Instale o pacote Provider e crie provedores para gerenciar o estado global.</p></div>
         <div class="step-action" onclick="markStepComplete('dev-logic')">Marcar como Concluído</div>
       </div>
       <div class="content-section" id="content-integration-firebase">
         <!-- Conteúdo completo aqui... -->
-        <h2>🔥 Integração com Firebase</h2>
+        <h2><i class="fab fa-google"></i> Integração com Firebase</h2>
         <p>Configurar Firebase para autenticação, banco de dados e analytics.</p>
-        <h3>⚙️ Passo 1: Configurar Projeto Firebase</h3>
-        <div class="step-box"><h4>Criar projeto no Firebase Console</h4><p>Acesse o console do Firebase, crie o projeto e adicione um app Android, baixando o `google-services.json`.</p></div>
-        <h3>📦 Passo 2: Adicionar Dependências</h3>
-        <div class="step-box"><h4>Atualizar pubspec.yaml</h4><p>Adicione <code>firebase_core</code>, <code>firebase_auth</code> e <code>cloud_firestore</code>.</p></div>
-        <h3>🔌 Passo 3: Inicializar Firebase</h3>
-        <div class="step-box"><h4>Configurar inicialização</h4><p>No <code>main.dart</code>, inicialize o Firebase antes de rodar o app.</p></div>
-        <h3>🔐 Passo 4: Implementar Autenticação</h3>
-        <div class="step-box"><h4>Fluxo de login básico</h4><p>Implemente a tela de login usando o serviço `FirebaseAuth`.</p></div>
+        <h3><i class="fas fa-cog"></i> Passo 1: Configurar Projeto Firebase</h3>
+        <div class="step-box"><h4><i class="fas fa-plus-circle"></i> Criar projeto no Firebase Console</h4><p>Acesse o console do Firebase, crie o projeto e adicione um app Android, baixando o `google-services.json`.</p></div>
+        <h3><i class="fas fa-box"></i> Passo 2: Adicionar Dependências</h3>
+        <div class="step-box"><h4><i class="fas fa-plus"></i> Atualizar pubspec.yaml</h4><p>Adicione <code>firebase_core</code>, <code>firebase_auth</code> e <code>cloud_firestore</code>.</p></div>
+        <h3><i class="fas fa-plug"></i> Passo 3: Inicializar Firebase</h3>
+        <div class="step-box"><h4><i class="fas fa-power-off"></i> Configurar inicialização</h4><p>No <code>main.dart</code>, inicialize o Firebase antes de rodar o app.</p></div>
+        <h3><i class="fas fa-lock"></i> Passo 4: Implementar Autenticação</h3>
+        <div class="step-box"><h4><i class="fas fa-sign-in-alt"></i> Fluxo de login básico</h4><p>Implemente a tela de login usando o serviço `FirebaseAuth`.</p></div>
         <div class="step-action" onclick="markStepComplete('integration-firebase')">Marcar como Concluído</div>
       </div>
       <div class="content-section" id="content-integration-api">
         <!-- Conteúdo completo aqui... -->
-        <h2>🌐 Integração com API Externa</h2>
+        <h2><i class="fas fa-network-wired"></i> Integração com API Externa</h2>
         <p>Configurar integração com APIs externas para funcionalidades adicionais.</p>
-        <h3>🔌 Passo 1: Configurar Cliente HTTP</h3>
-        <div class="step-box"><h4>Adicionar dependência</h4><p>Adicione ao <code>pubspec.yaml</code>: <code>http: ^0.13.5</code></p></div>
-        <h3>📡 Passo 2: Criar Serviço de API</h3>
-        <div class="step-box"><h4>Exemplo de serviço</h4><p>Crie <code>lib/services/api_service.dart</code> para encapsular as chamadas HTTP.</p></div>
-        <h3>🔄 Passo 3: Tratar Erros</h3>
-        <div class="step-box"><h4>Implementar tratamento de erros</h4><p>Adicione tratamento para diferentes códigos de status (200, 401, 404, etc).</p></div>
+        <h3><i class="fas fa-plug"></i> Passo 1: Configurar Cliente HTTP</h3>
+        <div class="step-box"><h4><i class="fas fa-plus"></i> Adicionar dependência</h4><p>Adicione ao <code>pubspec.yaml</code>: <code>http: ^0.13.5</code></p></div>
+        <h3><i class="fas fa-satellite"></i> Passo 2: Criar Serviço de API</h3>
+        <div class="step-box"><h4><i class="fas fa-cogs"></i> Exemplo de serviço</h4><p>Crie <code>lib/services/api_service.dart</code> para encapsular as chamadas HTTP.</p></div>
+        <h3><i class="fas fa-exclamation-triangle"></i> Passo 3: Tratar Erros</h3>
+        <div class="step-box"><h4><i class="fas fa-bug"></i> Implementar tratamento de erros</h4><p>Adicione tratamento para diferentes códigos de status (200, 401, 404, etc).</p></div>
         <div class="step-action" onclick="markStepComplete('integration-api')">Marcar como Concluído</div>
       </div>
       <div class="content-section" id="content-testing-unit">
         <!-- Conteúdo completo aqui... -->
-        <h2>🧪 Testes Unitários</h2>
+        <h2><i class="fas fa-flask"></i> Testes Unitários</h2>
         <p>Criar testes para garantir a qualidade do código.</p>
-        <h3>🔬 Passo 1: Escrever Testes Unitários</h3>
-        <div class="step-box"><h4>Exemplo de teste para modelo</h4><p>Crie arquivos `_test.dart` na pasta `test/` e use a função `test()` para verificar a lógica.</p></div>
-        <h3>🏃 Passo 2: Executar Testes</h3>
-        <div class="step-box"><h4>Rodar todos os testes</h4><p>No terminal, execute: <code>flutter test</code>.</p></div>
+        <h3><i class="fas fa-microscope"></i> Passo 1: Escrever Testes Unitários</h3>
+        <div class="step-box"><h4><i class="fas fa-vial"></i> Exemplo de teste para modelo</h4><p>Crie arquivos `_test.dart` na pasta `test/` e use a função `test()` para verificar a lógica.</p></div>
+        <h3><i class="fas fa-running"></i> Passo 2: Executar Testes</h3>
+        <div class="step-box"><h4><i class="fas fa-play-circle"></i> Rodar todos os testes</h4><p>No terminal, execute: <code>flutter test</code>.</p></div>
         <div class="step-action" onclick="markStepComplete('testing-unit')">Marcar como Concluído</div>
       </div>
       <div class="content-section" id="content-testing-device">
         <!-- Conteúdo completo aqui... -->
-        <h2>📱 Testes em Dispositivo</h2>
+        <h2><i class="fas fa-mobile"></i> Testes em Dispositivo</h2>
         <p>Realizar testes em dispositivos físicos para validar funcionalidades.</p>
-        <h3>🔌 Passo 1: Conectar Dispositivo</h3>
-        <div class="step-box"><h4>Habilitar depuração USB</h4><p>Ative as opções de desenvolvedor e a depuração USB no seu celular e conecte-o.</p></div>
-        <h3>📋 Passo 2: Testar Funcionalidades</h3>
-        <div class="step-box"><h4>Verificar pontos críticos</h4><p>Teste o login, o botão de emergência, a navegação e a performance.</p></div>
+        <h3><i class="fas fa-plug"></i> Passo 1: Conectar Dispositivo</h3>
+        <div class="step-box"><h4><i class="fas fa-bug"></i> Habilitar depuração USB</h4><p>Ative as opções de desenvolvedor e a depuração USB no seu celular e conecte-o.</p></div>
+        <h3><i class="fas fa-list"></i> Passo 2: Testar Funcionalidades</h3>
+        <div class="step-box"><h4><i class="fas fa-check-square"></i> Verificar pontos críticos</h4><p>Teste o login, o botão de emergência, a navegação e a performance.</p></div>
         <div class="step-action" onclick="markStepComplete('testing-device')">Marcar como Concluído</div>
       </div>
       <div class="content-section" id="content-deployment-build">
         <!-- Conteúdo completo aqui... -->
-        <h2>📦 Build do Aplicativo</h2>
+        <h2><i class="fas fa-box"></i> Build do Aplicativo</h2>
         <p>Preparar o aplicativo para distribuição nas lojas.</p>
-        <h3>📱 Passo 1: Build para Android</h3>
-        <div class="step-box"><h4>Criar Android App Bundle</h4><p>No terminal, execute: <code>flutter build appbundle --release</code>. Este é o formato exigido pela Google Play.</p></div>
-        <h3>🔐 Passo 2: Assinatura (Android)</h3>
-        <div class="step-box"><h4>Criar Keystore</h4><p>Siga a documentação oficial do Flutter para criar uma chave de assinatura (`keystore`) e configurá-la no seu projeto. **Este passo é crucial e só precisa ser feito uma vez.**</p></div>
-        <h3>🍎 Passo 3: Build para iOS</h3>
-        <div class="step-box"><h4>Criar um build para iOS</h4><p>No terminal de um macOS com Xcode instalado, execute: <code>flutter build ipa --release</code>. Isso gerará o arquivo que será enviado para a App Store.</p></div>
+        <h3><i class="fas fa-mobile-alt"></i> Passo 1: Build para Android</h3>
+        <div class="step-box"><h4><i class="fas fa-archive"></i> Criar Android App Bundle</h4><p>No terminal, execute: <code>flutter build appbundle --release</code>. Este é o formato exigido pela Google Play.</p></div>
+        <h3><i class="fas fa-lock"></i> Passo 2: Assinatura (Android)</h3>
+        <div class="step-box"><h4><i class="fas fa-key"></i> Criar Keystore</h4><p>Siga a documentação oficial do Flutter para criar uma chave de assinatura (<code>keystore</code>) e configurá-la no seu projeto. <strong>Este passo é crucial e só precisa ser feito uma vez.</strong></p></div>
+        <h3><i class="fab fa-apple"></i> Passo 3: Build para iOS</h3>
+        <div class="step-box"><h4><i class="fas fa-box-open"></i> Criar um build para iOS</h4><p>No terminal de um macOS com Xcode instalado, execute: <code>flutter build ipa --release</code>. Isso gerará o arquivo que será enviado para a App Store.</p></div>
         <div class="step-action" onclick="markStepComplete('deployment-build')">Marcar como Concluído</div>
         <a href="#" class="link-button" onclick="showContent('deployment-ios-setup')">Próximo: Configuração iOS</a>
       </div>
       <!-- NOVA SEÇÃO PARA IOS -->
       <div class="content-section" id="content-deployment-ios-setup">
-        <h2>🍎 Configuração do Projeto no Xcode</h2>
+        <h2><i class="fab fa-apple"></i> Configuração do Projeto no Xcode</h2>
         <p>Antes de publicar na App Store, são necessárias algumas configurações obrigatórias dentro do projeto Xcode.</p>
-        <h3>🔑 Passo 1: Pré-requisito - Apple Developer Program</h3>
-        <div class="step-box"><h4>Inscrição Obrigatória</h4><p>Você **precisa** ser um membro inscrito no <a href="https://developer.apple.com/programs/" target="_blank">Apple Developer Program</a>. Há uma taxa anual (atualmente $99 USD). Sem isso, não é possível publicar apps na App Store.</p></div>
-        <h3>📂 Passo 2: Abrir o Projeto no Xcode</h3>
-        <div class="step-box"><h4>Abra o arquivo .xcworkspace</h4><p>No seu projeto Flutter, navegue até a pasta `ios/` e abra o arquivo `Runner.xcworkspace` (NÃO o `Runner.xcodeproj`).</p></div>
-        <h3>⚙️ Passo 3: Configurar Identidade e Assinatura</h3>
+        <h3><i class="fas fa-key"></i> Passo 1: Pré-requisito - Apple Developer Program</h3>
+        <div class="step-box"><h4><i class="fas fa-user-check"></i> Inscrição Obrigatória</h4><p>Você <strong>precisa</strong> ser um membro inscrito no <a href="https://developer.apple.com/programs/" target="_blank">Apple Developer Program</a>. Há uma taxa anual (atualmente $99 USD). Sem isso, não é possível publicar apps na App Store.</p></div>
+        <h3><i class="fas fa-folder-open"></i> Passo 2: Abrir o Projeto no Xcode</h3>
+        <div class="step-box"><h4><i class="fas fa-file"></i> Abra o arquivo .xcworkspace</h4><p>No seu projeto Flutter, navegue até a pasta <code>ios/</code> e abra o arquivo <code>Runner.xcworkspace</code> (NÃO o <code>Runner.xcodeproj</code>).</p></div>
+        <h3><i class="fas fa-sliders-h"></i> Passo 3: Configurar Identidade e Assinatura</h3>
         <div class="step-box">
-          <h4>Aba "Signing & Capabilities"</h4>
+          <h4><i class="fas fa-id-card"></i> Aba "Signing & Capabilities"</h4>
           <ol>
             <li>Com o projeto aberto, clique em "Runner" na barra de navegação à esquerda e, em seguida, selecione o alvo "Runner" na área principal.</li>
             <li>Vá para a aba "Signing & Capabilities".</li>
             <li>Marque a caixa "Automatically manage signing".</li>
             <li>No menu "Team", selecione a sua conta de desenvolvedor Apple. O Xcode tentará criar os certificados e perfis necessários.</li>
-            <li><strong>Bundle Identifier:</strong> Este é o ID único do seu app (ex: `br.com.unimed.sosvidas`). Ele deve ser único em toda a App Store.</li>
+            <li><strong>Bundle Identifier:</strong> Este é o ID único do seu app (ex: <code>br.com.unimed.sosvidas</code>). Ele deve ser único em toda a App Store.</li>
           </ol>
         </div>
         <div class="step-action" onclick="markStepComplete('deployment-ios-setup')">Marcar como Concluído</div>
@@ -1088,85 +1211,83 @@
       </div>
       <div class="content-section" id="content-deployment-playstore">
         <!-- Conteúdo completo aqui... -->
-        <h2>🚀 Google Play Store</h2>
+        <h2><i class="fab fa-google-play"></i> Google Play Store</h2>
         <p>Publicando o app para o mundo.</p>
-        <h3>📄 Passo 1: Preencher Detalhes</h3>
-        <div class="step-box"><h4>Listagem da Loja</h4><p>No Google Play Console, preencha a descrição, título, screenshots e política de privacidade.</p></div>
-        <h3>⬆️ Passo 2: Upload e Lançamento</h3>
-        <div class="step-box"><h4>Fazer Upload do App Bundle</h4><p>Faça o upload do arquivo <code>.aab</code> gerado, defina os países e lance para produção.</p></div>
+        <h3><i class="fas fa-file-alt"></i> Passo 1: Preencher Detalhes</h3>
+        <div class="step-box"><h4><i class="fas fa-store"></i> Listagem da Loja</h4><p>No Google Play Console, preencha a descrição, título, screenshots e política de privacidade.</p></div>
+        <h3><i class="fas fa-upload"></i> Passo 2: Upload e Lançamento</h3>
+        <div class="step-box"><h4><i class="fas fa-cloud-upload-alt"></i> Fazer Upload do App Bundle</h4><p>Faça o upload do arquivo <code>.aab</code> gerado, defina os países e lance para produção.</p></div>
         <div class="step-action" onclick="markStepComplete('deployment-playstore')">Marcar como Concluído</div>
         <a href="#" class="link-button" onclick="showContent('deployment-appstore')">Próximo: Apple App Store</a>
       </div>
       <!-- NOVA SEÇÃO PARA IOS -->
       <div class="content-section" id="content-deployment-appstore">
-        <h2>🚀 Apple App Store</h2>
+        <h2><i class="fab fa-app-store-ios"></i> Apple App Store</h2>
         <p>O processo de publicação para iOS é feito através do portal App Store Connect.</p>
-        <h3>🌐 Passo 1: Criar o App no App Store Connect</h3>
-        <div class="step-box"><h4>Acesse o Portal</h4><p>Faça login em <a href="https://appstoreconnect.apple.com/" target="_blank">App Store Connect</a> com sua conta de desenvolvedor. Vá para "Meus apps" e clique no "+" para criar um novo app. Preencha as informações iniciais, incluindo o Bundle ID que você configurou no Xcode.</p></div>
-        <h3>📦 Passo 2: Arquivar e Fazer Upload do Build</h3>
+        <h3><i class="fas fa-plus-circle"></i> Passo 1: Criar o App no App Store Connect</h3>
+        <div class="step-box"><h4><i class="fas fa-globe"></i> Acesse o Portal</h4><p>Faça login em <a href="https://appstoreconnect.apple.com/" target="_blank">App Store Connect</a> com sua conta de desenvolvedor. Vá para "Meus apps" e clique no "+" para criar um novo app. Preencha as informações iniciais, incluindo o Bundle ID que você configurou no Xcode.</p></div>
+        <h3><i class="fas fa-archive"></i> Passo 2: Arquivar e Fazer Upload do Build</h3>
         <div class="step-box">
-          <h4>Usando o Xcode</h4>
+          <h4><i class="fas fa-cogs"></i> Usando o Xcode</h4>
           <ol>
-            <li>No Xcode, com seu projeto aberto, vá em `Product > Archive`.</li>
+            <li>No Xcode, com seu projeto aberto, vá em <code>Product > Archive</code>.</li>
             <li>Após a compilação, a janela "Organizer" abrirá, mostrando seu build arquivado.</li>
             <li>Clique em "Distribute App" e siga as instruções para fazer o upload para o App Store Connect.</li>
           </ol>
         </div>
-        <h3>📝 Passo 3: Preencher Metadados e Enviar para Revisão</h3>
-        <div class="step-box"><h4>Preencher a Página do App</h4><p>No App Store Connect, preencha todas as informações necessárias: descrição, screenshots (em vários tamanhos de tela), palavras-chave, informações de contato e de privacidade. Selecione o build que você enviou e clique em "Enviar para Revisão".</p></div>
+        <h3><i class="fas fa-file-alt"></i> Passo 3: Preencher Metadados e Enviar para Revisão</h3>
+        <div class="step-box"><h4><i class="fas fa-edit"></i> Preencher a Página do App</h4><p>No App Store Connect, preencha todas as informações necessárias: descrição, screenshots (em vários tamanhos de tela), palavras-chave, informações de contato e de privacidade. Selecione o build que você enviou e clique em "Enviar para Revisão".</p></div>
         <div class="step-action" onclick="markStepComplete('deployment-appstore')">Marcar como Concluído</div>
         <a href="#" class="link-button" onclick="showContent('deployment-analytics')">Próximo: Analytics</a>
       </div>
       <div class="content-section" id="content-deployment-analytics">
         <!-- Conteúdo completo aqui... -->
-        <h2>📊 Analytics</h2>
+        <h2><i class="fas fa-chart-line"></i> Analytics</h2>
         <p>Entendendo o uso do seu aplicativo.</p>
-        <h3>🔥 Passo 1: Usar Firebase Analytics</h3>
-        <div class="step-box"><h4>Registrar Eventos</h4><p>Adicione `firebase_analytics` e registre eventos para ações importantes, como `emergency_call_made`.</p></div>
+        <h3><i class="fab fa-google"></i> Passo 1: Usar Firebase Analytics</h3>
+        <div class="step-box"><h4><i class="fas fa-chart-bar"></i> Registrar Eventos</h4><p>Adicione <code>firebase_analytics</code> e registre eventos para ações importantes, como <code>emergency_call_made</code>.</p></div>
         <div class="step-action" onclick="markStepComplete('deployment-analytics')">Marcar como Concluído</div>
       </div>
       <div class="content-section" id="content-delivery-documentation">
         <!-- Conteúdo completo aqui... -->
-        <h2>📚 Documentação</h2>
+        <h2><i class="fas fa-book"></i> Documentação</h2>
         <p>Criar documentação completa para entrega do MVP.</p>
-        <h3>📄 Passo 1: Documento de Entrega</h3>
-        <div class="step-box"><h4>Conteúdo essencial</h4><p>Este guia serve como a documentação principal. Garanta que ele esteja atualizado.</p></div>
-        <h3>🔗 Passo 2: Links e Recursos</h3>
-        <div class="step-box"><h4>Recursos importantes</h4><p>Mantenha uma lista de links para o repositório, documentação do Firebase e do Flutter.</p></div>
+        <h3><i class="fas fa-file-alt"></i> Passo 1: Documento de Entrega</h3>
+        <div class="step-box"><h4><i class="fas fa-file-contract"></i> Conteúdo essencial</h4><p>Este guia serve como a documentação principal. Garanta que ele esteja atualizado.</p></div>
+        <h3><i class="fas fa-link"></i> Passo 2: Links e Recursos</h3>
+        <div class="step-box"><h4><i class="fas fa-bookmark"></i> Recursos importantes</h4><p>Mantenha uma lista de links para o repositório, documentação do Firebase e do Flutter.</p></div>
         <div class="step-action" onclick="markStepComplete('delivery-documentation')">Marcar como Concluído</div>
       </div>
       <div class="content-section" id="content-delivery-transfer">
         <!-- Conteúdo completo aqui... -->
-        <h2>🤝 Transferência de Conhecimento</h2>
+        <h2><i class="fas fa-hands-helping"></i> Transferência de Conhecimento</h2>
         <p>Entregando o projeto para a equipe de TI.</p>
-        <div class="step-box"><h4>Sessão de Apresentação</h4><p>Realize uma reunião para explicar a arquitetura do projeto, o fluxo de dados e como realizar a manutenção e futuros deploys.</p></div>
+        <div class="step-box"><h4><i class="fas fa-chalkboard-teacher"></i> Sessão de Apresentação</h4><p>Realize uma reunião para explicar a arquitetura do projeto, o fluxo de dados e como realizar a manutenção e futuros deploys.</p></div>
         <div class="step-action" onclick="markStepComplete('delivery-transfer')">Marcar como Concluído</div>
       </div>
       <div class="content-section" id="content-future-n8n">
         <!-- Conteúdo completo aqui... -->
-        <h2>🔮 Automações Futuras (n8n)</h2>
+        <h2><i class="fas fa-crystal-ball"></i> Automações Futuras (n8n)</h2>
         <p>Considerando o futuro do projeto.</p>
-        <h3>🤖 Introdução ao n8n</h3>
-        <div class="step-box"><h4>O que é o n8n?</h4><p>O n8n é uma plataforma de automação de fluxo de trabalho de código aberto para conectar diferentes APIs e serviços sem código complexo.</p></div>
-        <h3>🚀 Benefícios para o SOS Unimed Vidas</h3>
-        <div class="step-box"><h4>Potenciais Casos de Uso</h4><p>Poderia ser usado para, quando uma emergência for acionada, notificar equipes internas via Slack, registrar em uma planilha e enviar SMS para administradores.</p></div>
+        <h3><i class="fas fa-robot"></i> Introdução ao n8n</h3>
+        <div class="step-box"><h4><i class="fas fa-question-circle"></i> O que é o n8n?</h4><p>O n8n é uma plataforma de automação de fluxo de trabalho de código aberto para conectar diferentes APIs e serviços sem código complexo.</p></div>
+        <h3><i class="fas fa-rocket"></i> Benefícios para o SOS Unimed Vidas</h3>
+        <div class="step-box"><h4><i class="fas fa-lightbulb"></i> Potenciais Casos de Uso</h4><p>Poderia ser usado para, quando uma emergência for acionada, notificar equipes internas via Slack, registrar em uma planilha e enviar SMS para administradores.</p></div>
         <div class="step-action" onclick="markStepComplete('future-n8n')">Marcar como Concluído</div>
       </div>
       <!-- NOVA SEÇÃO: Arquitetura de Perfis -->
       <div class="content-section" id="content-profiles-overview">
-        <h2>🔐 Arquitetura de Perfis - Visão Geral</h2>
+        <h2><i class="fas fa-user-lock"></i> Arquitetura de Perfis - Visão Geral</h2>
         <p>O aplicativo <strong>SOS Unimed Vidas</strong> segue uma arquitetura de <strong>navegação condicional</strong> baseada no perfil do usuário após o login. Isso significa que <strong>um único app</strong> pode oferecer <strong>funcionalidades distintas</strong> para diferentes tipos de usuários.</p>
-
         <div class="summary-card">
-          <h3><i>👥</i> Tipos de Usuários</h3>
+          <h3><i class="fas fa-users"></i> Tipos de Usuários</h3>
           <ul>
             <li><strong>Paciente:</strong> Usuário final que utilizará o serviço de emergência. Tem acesso a funcionalidades como acionar emergência, visualizar perfil e histórico de chamadas.</li>
             <li><strong>Administrador:</strong> Usuário com acesso privilegiado. Tem acesso a funcionalidades de gestão, como dashboards, gerenciamento de pacientes e visualização de alertas.</li>
           </ul>
         </div>
-
         <div class="summary-card">
-          <h3><i>🏗️</i> Estrutura Geral</h3>
+          <h3><i class="fas fa-sitemap"></i> Estrutura Geral</h3>
           <pre style="background:#f4f4f4; padding:15px; border-radius:5px; overflow-x:auto;">
 SOS Unimed Vidas (App Único)
 ├── Tela de Login
@@ -1188,15 +1309,12 @@ SOS Unimed Vidas (App Único)
           </pre>
           <p><strong>Importante:</strong> Telas administrativas (como dashboards) <strong>não devem ser acessadas por pacientes</strong> — elas são exclusivas para administradores e protegidas por regras de segurança.</p>
         </div>
-
         <a href="#" class="link-button" onclick="showContent('profiles-implementation')">Próximo: Implementação</a>
       </div>
-
       <div class="content-section" id="content-profiles-implementation">
-        <h2>🔐 Arquitetura de Perfis - Implementação</h2>
+        <h2><i class="fas fa-user-lock"></i> Arquitetura de Perfis - Implementação</h2>
         <p>Esta seção detalha como implementar o sistema de perfis no aplicativo Flutter.</p>
-
-        <h3>1. Estrutura no Firebase Authentication + Firestore</h3>
+        <h3><i class="fas fa-database"></i> 1. Estrutura no Firebase Authentication + Firestore</h3>
         <p>Após o cadastro do usuário no Firebase Authentication, armazene os dados adicionais no Firestore, incluindo o campo <code>role</code>.</p>
         <div class="code-block">
 {
@@ -1206,9 +1324,9 @@ SOS Unimed Vidas (App Único)
   "role": "patient", // ou "admin"
   "createdAt": "2025-04-01T10:00:00Z"
 }
+<button class="copy-btn" onclick="copyToClipboard(this)">Copiar</button>
         </div>
-
-        <h3>2. Verificação de Perfil Após Login</h3>
+        <h3><i class="fas fa-check-circle"></i> 2. Verificação de Perfil Após Login</h3>
         <p>Após o login bem-sucedido, consulte o Firestore para obter o <code>role</code> do usuário e redirecione para a tela inicial apropriada.</p>
         <div class="code-block">
 // Exemplo em Dart (Flutter)
@@ -1216,7 +1334,6 @@ Future<void> loginAndRedirect(String email, String password) async {
   try {
     final userCredential = await AuthService.signIn(email, password);
     final userData = await FirestoreService.getUserData(userCredential.user!.uid);
-
     if (userData['role'] == 'admin') {
       Navigator.pushReplacementNamed(context, '/admin/home');
     } else {
@@ -1227,9 +1344,9 @@ Future<void> loginAndRedirect(String email, String password) async {
     print("Erro no login: $e");
   }
 }
+<button class="copy-btn" onclick="copyToClipboard(this)">Copiar</button>
         </div>
-
-        <h3>3. Estrutura de Pastas no Projeto</h3>
+        <h3><i class="fas fa-folder-tree"></i> 3. Estrutura de Pastas no Projeto</h3>
         <p>Organize o código para refletir a separação de responsabilidades por perfil.</p>
         <div class="code-block">
 lib/
@@ -1252,51 +1369,44 @@ lib/
 │   ├── firestore_service.dart
 │   └── notification_service.dart
 └── main.dart
+<button class="copy-btn" onclick="copyToClipboard(this)">Copiar</button>
         </div>
-
         <a href="#" class="link-button" onclick="showContent('profiles-security')">Próximo: Segurança</a>
       </div>
-
       <div class="content-section" id="content-profiles-security">
-        <h2>🔐 Arquitetura de Perfis - Segurança</h2>
+        <h2><i class="fas fa-user-lock"></i> Arquitetura de Perfis - Segurança</h2>
         <p>Implementar regras rigorosas no Firebase Firestore é crucial para proteger os dados e garantir que usuários só acessem informações para as quais têm permissão.</p>
-
-        <h3>Regras de Segurança no Firestore</h3>
+        <h3><i class="fas fa-shield-alt"></i> Regras de Segurança no Firestore</h3>
         <p>Configure as regras no Firebase Console (<code>Cloud Firestore > Rules</code>) para controlar o acesso com base no <code>role</code> do usuário.</p>
         <div class="code-block">
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-
     // Função para verificar se o usuário é admin
     function isAdmin() {
       return request.auth != null &&
              get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
     }
-
     // Pacientes só podem ler seus próprios dados
     match /patients/{patientId} {
       allow read: if request.auth != null && request.auth.uid == resource.data.uid;
       // Escrita pode ser permitida com validações adicionais
       allow write: if request.auth != null && request.auth.uid == resource.data.uid;
     }
-
     // Apenas administradores podem acessar dados de pacientes e áreas administrativas
     match /patients/{patientId} {
       allow read, write, update, delete: if isAdmin();
     }
-
     match /admin/{document=**} {
       allow read, write: if isAdmin();
     }
-
     // Adicione regras para outros documentos conforme necessário
   }
 }
+<button class="copy-btn" onclick="copyToClipboard(this)">Copiar</button>
         </div>
-
         <div class="summary-card">
-          <h3><i>✅</i> Checklist de Implementação de Perfis</h3>
+          <h3><i class="fas fa-check-square"></i> Checklist de Implementação de Perfis</h3>
           <ul>
             <li>Criar campo <code>role</code> no cadastro de usuários no Firestore.</li>
             <li>Implementar lógica de verificação de perfil após autenticação.</li>
@@ -1308,7 +1418,6 @@ service cloud.firestore {
             <li>Documentar o fluxo de autenticação e navegação condicional no guia.</li>
           </ul>
         </div>
-
         <a href="#" class="link-button" onclick="showContent('structure-overview')">Voltar ao Início do Guia</a>
       </div>
       <!-- FIM DO CONTEÚDO ORIGINAL -->
@@ -1318,13 +1427,33 @@ service cloud.firestore {
   <footer>
     <p>Guia de Desenvolvimento Ponta a Ponta - SOS Unimed Vidas • © 2025 Unimed Cachoeiro do Itapemirim</p>
     <div style="margin-top: 15px;">
-      <a href="https://github.com/Tomgit-cyber/guiaweb-sos" target="_blank">Repositório GitHub</a> •
-      <a href="https://www.unimed.coop.br/site/web/sulcapixaba" target="_blank">Portal Unimed Sul Capixaba</a> •
-      <a href="mailto:ti@unimedci.com.br">Contato TI</a>
+      <a href="https://github.com/Tomgit-cyber/guiaweb-sos" target="_blank"><i class="fab fa-github"></i> Repositório GitHub</a> •
+      <a href="https://www.unimed.coop.br/site/web/sulcapixaba" target="_blank"><i class="fas fa-globe"></i> Portal Unimed Sul Capixaba</a> •
+      <a href="mailto:ti@unimedci.com.br"><i class="fas fa-envelope"></i> Contato TI</a>
     </div>
   </footer>
   <script>
     const PROGRESS_KEY = 'sosUnimedVidasProgress';
+
+    function showToast(message) {
+        const toast = document.getElementById("toast");
+        toast.innerText = message;
+        toast.className = "show";
+        setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 3000);
+    }
+
+    function copyToClipboard(button) {
+        const codeBlock = button.parentElement;
+        const text = codeBlock.innerText.replace("Copiar", "").trim();
+        navigator.clipboard.writeText(text).then(() => {
+            const originalText = button.innerText;
+            button.innerText = "Copiado!";
+            setTimeout(() => { button.innerText = originalText; }, 2000);
+        }).catch(err => {
+            console.error('Erro ao copiar: ', err);
+        });
+    }
+
     function saveProgress(stepId) {
       try {
         const progress = JSON.parse(localStorage.getItem(PROGRESS_KEY)) || {};
@@ -1338,8 +1467,11 @@ service cloud.firestore {
         Object.keys(progress).forEach(stepId => {
           if (progress[stepId]) {
             const menuItem = document.querySelector(`.submenu-item[onclick="showContent('${stepId}')"]`);
-            if (menuItem && !menuItem.textContent.startsWith('✓')) {
-              menuItem.innerHTML = `✓ ${menuItem.textContent.trim()}`;
+            if (menuItem) {
+                menuItem.classList.add('completed');
+                if (!menuItem.textContent.trim().startsWith('✓')) {
+                    menuItem.innerHTML = `<i class="fas fa-check"></i> ${menuItem.textContent.trim()}`;
+                }
             }
           }
         });
@@ -1390,12 +1522,15 @@ service cloud.firestore {
     }
     function markStepComplete(stepId) {
       const menuItem = document.querySelector(`.submenu-item[onclick="showContent('${stepId}')"]`);
-      if (menuItem && !menuItem.textContent.startsWith('✓')) {
-        menuItem.innerHTML = `✓ ${menuItem.textContent.trim()}`;
+      if (menuItem && !menuItem.classList.contains('completed')) {
+        menuItem.classList.add('completed');
+        if (!menuItem.innerHTML.includes('fa-check')) {
+            menuItem.innerHTML = `<i class="fas fa-check"></i> ${menuItem.textContent.trim()}`;
+        }
         saveProgress(stepId);
-        alert(`Passo "${stepId}" marcado como concluído!`);
+        showToast(`Passo "${stepId}" marcado como concluído!`);
       } else if (menuItem) {
-        alert(`Este passo já foi concluído.`);
+        showToast(`Este passo já foi concluído.`);
       }
     }
     document.addEventListener('DOMContentLoaded', () => {
