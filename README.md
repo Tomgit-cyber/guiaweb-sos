@@ -1,118 +1,86 @@
-Segue a versão pronta:
+# Atualizações para o Guia SOS Unimed Vidas
 
-````markdown
-# 🚀 SOS Vidas - Unimed Sul Capixaba
+Este repositório contém as atualizações a serem incorporadas ao guia web existente em https://guiaweb-sos.vercel.app/#.
 
-![Status](https://img.shields.io/badge/Status-MVP%20Em%20Desenvolvimento-yellow)
-![Versão](https://img.shields.io/badge/Versão-02%2F08%2F25-green)
+## Conteúdo das Atualizações
 
-**Desenvolvido por:** Everton Simão Marques  
-**Cliente/Parceiro:** Unimed Cachoeiro do Itapemirim  
+1. **Correção do Histórico de Chamadas**
+   - Implementação para mostrar apenas chamadas específicas do usuário logado
+   - Security Rules restritivas para garantir privacidade
+   - Modelo de dados atualizado
 
----
+2. **Otimizações de Custos**
+   - Queries específicas no Firestore
+   - Caching local
+   - Functions on-demand
+   - Rate limit de geolocalização
+   - Notificações apenas para eventos críticos
+   - Analytics enxuto
 
-## 📌 Sobre o Projeto
+3. **Resultados Esperados**
+   - Economia de custos estimada
+   - Melhorias de privacidade
+   - Melhorias de performance
+   - Métricas de sucesso
 
-O **SOS Vidas** é uma aplicação digital de suporte emergencial em saúde, oferecendo:
-
-- Acionamento rápido de alertas médicos (Botão SOS)  
-- Painel interativo de progresso e acompanhamento de atendimentos  
-- **Guia técnico e guia de usuário integrados**, com acesso restrito à equipe autorizada  
-- Base sólida para futuras integrações e expansões  
-
-> ⚠️ **Atenção:** O conteúdo completo do guia HTML permanece privado e exclusivo. Acesso somente via link autorizado.
-
----
-
-## 🧩 Funcionalidades Principais
-
-- 🚨 Botão SOS para emergências médicas  
-- 🔐 Autenticação segura via Firebase  
-- 📊 Dashboard administrativo com estatísticas e alertas  
-- 📜 Histórico de atendimentos  
-- 📘 Guia técnico interativo para equipe de TI  
-
-<div style="background:#e0f2f1; padding:15px; border-left:5px solid #00a859; margin-bottom:20px;">
-💡 **Step-box:** Cada funcionalidade possui checklist de uso vinculado ao guia web, **que é privado e protegido**.
-</div>
-
----
-
-## 🛠 Tecnologias Utilizadas
-
-| Tecnologia | Propósito |
-|------------|-----------|
-| Flutter / Dart | App mobile multiplataforma |
-| Firebase | Autenticação, Firestore, Storage |
-| HTML5 / CSS3 / JS | Guia web interativo |
-| Vercel | Hospedagem do guia web (acesso controlado) |
-| Git / GitHub | Versionamento e gerenciamento do repositório |
-
----
-
-## ⚙️ Setup & Execução
-
-```bash
-# Clonar repositório
-git clone https://github.com/seuusuario/sos-vidas.git
-cd sos-vidas
-
-# Instalar dependências
-flutter pub get
-
-# Rodar no emulador/dispositivo
-flutter run
-````
-
-> ⚠️ Certifique-se de ter o Flutter SDK corretamente instalado.
-
----
-
-## 🌐 Guia Web Interativo (Exclusivo)
-
-O **guia completo do projeto** é acessível apenas a usuários autorizados da Unimed via link seguro.
-
-* ✅ Visualizar fases do desenvolvimento
-* ✅ Acompanhar checklists de configuração e testes
-* ✅ Consultar instruções técnicas detalhadas
-
-🔗 [Acesso ao Guia Web (autorizado)](https://seu-guia-vercel-link.com)
-
-> ⚠️ **Não compartilhe o link. O acesso é exclusivo da equipe da Unimed.**
-
----
-
-## 👨‍💻 Contribuição
-
-* Contribuições externas **necessitam autorização prévia** do autor ou da Unimed
-* Utilize **issues** para reportar bugs ou sugestões
-* Pull requests avaliados apenas pelo responsável técnico autorizado
-
----
-
-## 📜 Direitos & Licença
-
-**© 2025 Everton Simão Marques – Todos os direitos reservados.**
-
-* Repositório privado, uso exclusivo Unimed
-* Reprodução, distribuição ou modificação **não autorizadas** proibidas
-* Marcas e identidade visual pertencem aos respectivos donos (Unimed, Flutter, Firebase, Vercel)
-
----
-
-## 📈 Status & Próximos Passos
-
-* 🔹 **MVP concluído**: funcionalidades básicas implementadas
-* 🔹 **Testes internos**: em andamento
-* 🔹 **Integrações futuras**: Notificações avançadas, API Unimed, analytics detalhado
-
----
-
-## 🔗 Contato
-
-**Everton Simão Marques**
-✉️ Email: [everton@example.com](mailto:everton@example.com)
-🌐 GitHub: [github.com/seuusuario](https://github.com/seuusuario)
+## Estrutura de Arquivos
 
 ```
+/docs/
+├── correcao-historico.md      # Correção do histórico de chamadas
+├── otimizacoes-custos.md      # Otimizações de custos
+└── resultados-esperados.md    # Resultados esperados
+```
+
+## Instruções para Incorporação
+
+Para incorporar estas atualizações ao guia web existente:
+
+1. **Clone o repositório do guia web**:
+   ```bash
+   git clone https://github.com/Tomgit-cyber/guiaweb-sos.git
+   cd guiaweb-sos
+   ```
+
+2. **Crie uma nova branch**:
+   ```bash
+   git checkout -b atualizacao-correcoes-otimizacoes
+   ```
+
+3. **Copie os arquivos de atualização**:
+   - Copie os arquivos da pasta `/docs` para a pasta correspondente no repositório do guia web
+   - Atualize os links de navegação para incluir as novas seções
+
+4. **Faça commit das mudanças**:
+   ```bash
+   git add .
+   git commit -m "Atualização: Correção de histórico por usuário e otimizações de custos"
+   ```
+
+5. **Faça push para o repositório**:
+   ```bash
+   git push origin atualizacao-correcoes-otimizacoes
+   ```
+
+6. **Crie um Pull Request** no GitHub para revisão
+
+## Prioridade das Atualizações
+
+1. **Correção Crítica (Privacidade)**:
+   - Histórico de Chamadas por Usuário
+   - Security Rules restritivas
+   - Modelo de dados atualizado
+
+2. **Otimizações de Custo**:
+   - Queries específicas Firestore
+   - Caching local
+   - Functions on-demand
+   - Rate limit geolocalização
+
+## Próximos Passos Após Atualização
+
+1. **Deploy automático** pelo Vercel (quando PR for mergeado)
+2. **Verificação em**: https://guiaweb-sos.vercel.app/
+3. **Teste das correções** no app principal
+4. **Monitoramento de consumo** de créditos
 
